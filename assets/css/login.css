@@ -1,0 +1,64 @@
+* {
+    font-family: 'Cousine';
+}
+
+
+/* SECCIÓN CABECERA*/
+
+#titulo {
+    /* text-align: center; */
+    padding-top: 2.5%;
+}
+
+#logo {
+    padding-top: 1%;
+    padding-left: 30%;
+}
+
+
+/* SECCIÓN CABECERA*/
+
+
+/* SECCIÓN FORMULARIO*/
+
+#formulario {
+    padding-left: 35%;
+    padding-right: 35%;
+    padding-bottom: 12%;
+}
+
+.btn-default:hover {
+    background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
+    color: white;
+}
+
+
+/* SECCIÓN FORMULARIO*/
+
+
+/* SECCIÓN FOOTER*/
+
+#footer div {
+    /* clear: both; */
+    /* height: 100px; */
+    padding: 15px 0;
+    background: #D1D1D1;
+    /* border-top: 5px solid #999999; */
+    text-align: center;
+}
+
+#footer p {
+    margin: 0;
+    color: #999999;
+}
+
+#footer a {
+    color: #999999;
+}
+
+#footer a:hover {
+    color: #FFFFFF;
+}
+
+
+/* SECCIÓN FOOTER*/
