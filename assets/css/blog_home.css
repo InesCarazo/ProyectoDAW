@@ -109,6 +109,11 @@
     text-align: center;
 }
 
+#slider {
+    padding-left: -25%;
+    padding-right: -25%;
+}
+
 
 /* SECCION TEMAS */
 
