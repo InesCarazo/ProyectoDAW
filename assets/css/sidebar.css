@@ -9,6 +9,7 @@ body {
 }
 
 p {
+    font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -52,6 +53,7 @@ a:focus {
 
 .wrapper {
     display: flex;
+    width: 100%;
     align-items: stretch;
     perspective: 1500px;
 }
@@ -106,23 +108,18 @@ a[data-toggle="collapse"] {
     position: relative;
 }
 
-a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-    content: '\e259';
+.dropdown-toggle::after {
     display: block;
     position: absolute;
+    top: 50%;
     right: 20px;
-    font-size: 0.6em;
-}
-
-a[aria-expanded="true"]::before {
-    content: '\e260';
+    transform: translateY(-50%);
 }
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: rgba(238, 232, 232, 0.747);
+    background: #c20e68;
 }
 
 ul.CTAs {
@@ -137,12 +134,24 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
 
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 
 #content {
+    width: 100%;
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
@@ -152,6 +161,7 @@ ul.CTAs a {
     width: 40px;
     height: 40px;
     background: #f5f5f5;
+    cursor: pointer;
 }
 
 #sidebarCollapse span {
@@ -187,6 +197,8 @@ ul.CTAs a {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
+
+/* 
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -215,4 +227,4 @@ ul.CTAs a {
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
-}
+} */
