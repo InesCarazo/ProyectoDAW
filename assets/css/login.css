@@ -2,11 +2,18 @@
     font-family: 'Cousine';
 }
 
+#contenedor {
+    background-image: url("./../images/icono/light_pink/cleaner256.png");
+    background-repeat: no-repeat;
+    background-position-x: 34%;
+    background-position-y: 50%;
+}
+
 
 /* SECCIÓN CABECERA*/
 
 #titulo {
-    /* text-align: center; */
+    text-align: center;
     padding-top: 2.5%;
 }
 
