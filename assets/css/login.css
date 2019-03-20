@@ -1,3 +1,5 @@
+/*   Inés Carazo Núñez  */
+
 * {
     font-family: 'Cousine';
 }
@@ -31,7 +33,7 @@
 #formulario {
     padding-left: 35%;
     padding-right: 35%;
-    padding-bottom: 12%;
+    padding-bottom: 16%;
 }
 
 .btn-default:hover {

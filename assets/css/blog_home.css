@@ -1,0 +1,261 @@
+/*   Inés Carazo Núñez  */
+
+* {
+    font-family: 'Cousine';
+}
+
+
+/* Barra Top */
+
+#top {
+    background-color: #f16e94;
+    color: white;
+    padding: .5em 0;
+}
+
+
+/* Barra superior */
+
+#barra {
+    padding: 1em 0;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    box-shadow: 2px 2px 20px #eaeaea;
+}
+
+.navbar-toggle span {
+    background-color: gray;
+}
+
+
+/* Logo*/
+
+#titulo-pagina {
+    font-size: 2.5em;
+    text-decoration: none;
+    vertical-align: text-bottom;
+    color: #f16e94;
+}
+
+#titulo-pagina img,
+#titulo-pagina span {
+    float: left;
+}
+
+#titulo-pagina span {
+    padding-left: 1%;
+    padding-right: 2%;
+}
+
+
+/* Logo*/
+
+
+/*Menú*/
+
+#myNavbar ul li a {
+    text-decoration: none;
+    color: #c20e68;
+    font-size: 1.3em;
+}
+
+#myNavbar ul li a:hover {
+    color: white;
+    background-color: #f16e94;
+}
+
+#login {
+    padding: 0;
+    margin: 0;
+}
+
+#myNavbar ul li #login:hover {
+    background-color: white;
+}
+
+
+/*Menú*/
+
+
+/* Iconos social*/
+
+#iconos-social {
+    float: right;
+    margin: 0;
+}
+
+#iconos-social li {
+    float: left;
+    list-style: none;
+}
+
+#iconos-social li a {
+    font-size: 1.5em;
+    margin-left: 0.2em;
+    color: white;
+}
+
+#iconos-social li a:hover {
+    color: grey;
+}
+
+
+/* Iconos social*/
+
+.cabecera-seccion h2,
+.cabecera-seccion p {
+    text-align: center;
+}
+
+
+/* SECCION TEMAS */
+
+.icono-tema .fas {
+    color: #45AED6;
+    font-size: 2.5em;
+    padding-top: 8px;
+    width: 60px;
+    height: 60px;
+}
+
+.tema {
+    margin-top: 3em;
+}
+
+.tema i {
+    position: relative;
+    size: 0.25em;
+}
+
+.fas {
+    color: #fabada !important;
+}
+
+.gal {
+    color: rgb(63, 212, 209) !important;
+}
+
+.checked {
+    color: #fabada;
+}
+
+
+/* GALERÍA*/
+
+.galeria {
+    margin-bottom: 2em;
+}
+
+.galeria h3 {
+    margin-top: -50px;
+    margin-left: 5%;
+    color: white;
+}
+
+.galeria img {
+    width: 300px;
+    height: 200px;
+}
+
+
+/* GALERÍA*/
+
+
+/*CONTACTO*/
+
+#contacto {
+    background-color: rgba(201, 99, 170, 0.459);
+}
+
+#contacto input[type=text],
+#contacto input[type=email],
+#contacto select,
+#contacto textarea {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+#contacto input[type=submit] {
+    background-color: white;
+    color: #f16e94;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#contacto input[type=submit]:hover {
+    background-color: #f16e94;
+    color: white;
+}
+
+#contacto .contenedor {
+    border-radius: 5px;
+    /* background-color: rgba(156, 169, 225, 0.5); */
+    padding: 2%;
+}
+
+
+/*CONTACTO*/
+
+
+/*FOOTER*/
+
+#footer {
+    background-color: #2E2E2E;
+    padding-top: 3%;
+    margin-top: 5%;
+}
+
+.copyright {
+    color: white;
+}
+
+#map-container-google {
+    height: 500px;
+}
+
+#map-container-google iframe {
+    width: 40%;
+    height: 50%;
+}
+
+
+/*FOOTER*/
+
+
+/*BUSCADOR*/
+
+#buscador {
+    padding-top: 5%;
+}
+
+.buscar {
+    margin-bottom: 2em;
+}
+
+.buscar h3 {
+    margin-top: -50px;
+    margin-left: 5%;
+    color: white;
+}
+
+.buscar img {
+    width: 300px;
+    height: 200px;
+}
+
+.buscar h3 div {
+    width: 505;
+}
+
+
+/*BUSCADOR*/
