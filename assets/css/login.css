@@ -3,12 +3,15 @@
 * {
     font-family: 'Cousine';
 }
-
 #contenedor {
     background-image: url("./../images/icono/light_pink/cleaner256.png");
     background-repeat: no-repeat;
-    background-position-x: 34%;
-    background-position-y: 50%;
+    background-position-x: 37%;
+    background-position-y: 34%;
+}
+
+section{
+    margin-top: 5%;
 }
 
 
@@ -21,7 +24,6 @@
 
 #logo {
     padding-top: 1%;
-    padding-left: 30%;
 }
 
 
@@ -30,10 +32,17 @@
 
 /* SECCIÓN FORMULARIO*/
 
-#formulario {
-    padding-left: 35%;
-    padding-right: 35%;
-    padding-bottom: 16%;
+input[type=text], input[type=password]{
+    width: 50%;
+}
+
+input, label{
+    margin-left: 25%;
+}
+
+#secForm{
+    height: 450px;
+    /* margin-top: 10%; */
 }
 
 .btn-default:hover {
@@ -47,12 +56,9 @@
 
 /* SECCIÓN FOOTER*/
 
-#footer div {
-    /* clear: both; */
-    /* height: 100px; */
-    padding: 15px 0;
+#footer {
+    padding: 20px 0;
     background: #D1D1D1;
-    /* border-top: 5px solid #999999; */
     text-align: center;
 }
 
