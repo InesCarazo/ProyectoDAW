@@ -1,3 +1,27 @@
+<?php
+// Inés Carazo Núñez
+require 'funciones/conexion.php';
+require 'funciones/funciones.php';
+session_start();
+if (isset($_POST["iniciar"])) {
+    
+    $usuario = $_POST['user'];
+    $password = $_POST['password'];
+    if (!comprobar($conexion, $usuario, $password)) {
+        
+        header("Location: http://localhost/repo/ONG/login.php");
+    } else {
+       
+        $_SESSION['logueado'] = "Si";
+        $_SESSION['usuario'] = $usuario;
+       
+    }
+} elseif ($_SESSION['logueado'] == "Si") {
+    
+} else {
+    header("Location: http://localhost/repo/ONG/login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <!-- Inés Carazo Núñez -->
@@ -14,18 +38,6 @@
     <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
     <!--CSS propio-->
     <link rel="stylesheet" type="text/css" href="./../../css/login.css">
-    <!-- <style>    
-    .affix {
-        top: 0;
-        width: 100%;
-        z-index: 9999 !important;
-        background-color: white;
-    }
-    
-    .affix+.container-fluid {
-        padding-top: 70px;
-    }
-</style> -->
 </head>
 
 <body>
@@ -44,7 +56,7 @@
                         <label for="usuario">Usuario:</label>
                         <input type="text" class="form-control" id="usuario" placeholder="Introduce el usuario" name="usuario">
                         <label for="pwd">Contraseña:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Introduce la contraseña" name="pwd">
+                        <input type="password" class="form-control" id="password" placeholder="Introduce la contraseña" name="password">
                     </div>
                     <!-- <div class="checkbox">
                         <label><input type="checkbox" name="remember"> Remember me</label>
