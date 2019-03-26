@@ -3,7 +3,7 @@
 <!-- Inés Carazo Núñez -->
 
 <head>
-    <title>Login</title>
+    <title>SIGN IN</title>
     <meta charset="UTF-8">
     <!-- Font cousine -->
     <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
@@ -13,27 +13,15 @@
     <!--CSS de Bootstrap -->
     <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
     <!--CSS propio-->
-    <link rel="stylesheet" type="text/css" href="./../../css/login.css">
-    <!-- <style>    
-    .affix {
-        top: 0;
-        width: 100%;
-        z-index: 9999 !important;
-        background-color: white;
-    }
-    
-    .affix+.container-fluid {
-        padding-top: 70px;
-    }
-</style> -->
+    <link rel="stylesheet" type="text/css" href="./../../css/sign_in.css">
 </head>
 
 <body>
     <div id="contenedor" class="container-fluid">
         <section class="container">
-            <div class="col-md-offset-5 col-md-2">
+            <div class="col-md-offset-3 col-md-6">
                 <!-- <img id="logo" class="col-md-5" src="./../../images/icono/pink/cleaner128.png"> -->
-            <h1 id="titulo">Login</h1>
+            <h1 id="titulo">SIGN IN - NEW CLIENT</h1>
             </div>
         </section>
 
@@ -45,14 +33,21 @@
                         <input type="text" class="form-control" id="usuario" placeholder="Introduce el usuario" name="usuario">
                         <label for="pwd">Contraseña:</label>
                         <input type="password" class="form-control" id="pwd" placeholder="Introduce la contraseña" name="pwd">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre" name="nombre">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Introduce el apellido" name="apellido">
+                        <label for="correo">Correo:</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Introduce el correo" name="correo">
+                        <label for="fnacimiento">Fecha de nacimiento:</label>
+                        <input type="date" class="form-control" id="fnacimiento" name="fnacimiento">
+                        
                     </div>
                     <!-- <div class="checkbox">
                         <label><input type="checkbox" name="remember"> Remember me</label>
                     </div> -->
-                    <input type="submit" class="btn btn-default" value="Aceptar">
-                   
-                </form> 
-                <h4>¿Aún no eres cliente? <a href="./../sign_in/sign_in.html">REGÍSTRATE</a></h4>
+                    <input type="submit" class="btn btn-default" value="Confirmar">
+                </form>
             </div>
         </section>
     
