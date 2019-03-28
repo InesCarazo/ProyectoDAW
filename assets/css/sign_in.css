@@ -3,14 +3,16 @@
 * {
     font-family: 'Cousine';
 }
+
 #contenedor {
-    background-image: url("./../images/icono/light_pink/cleaner256.png");
+    background-image: url(./../images/icono/light_pink/cleaner512.png);
     background-repeat: no-repeat;
-    background-position-x: 37%;
-    background-position-y: 34%;
+    background-position-x: 48%;
+    background-position-y: 49%;
+    background-size: 34%;
 }
 
-section{
+section {
     margin-top: 5%;
 }
 
@@ -32,15 +34,19 @@ section{
 
 /* SECCIÓN FORMULARIO*/
 
-input[type=text], input[type=password], input[type=email], input[type=date]{
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=date] {
     width: 50%;
 }
 
-input, label{
+input,
+label {
     margin-left: 25%;
 }
 
-#secForm{
+#secForm {
     height: 450px;
     /* margin-top: 10%; */
 }
