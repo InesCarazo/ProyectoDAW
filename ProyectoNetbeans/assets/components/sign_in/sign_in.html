@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<!-- Inés Carazo Núñez -->
+
+<head>
+    <title>Sign in</title>
+    <meta charset="UTF-8">
+    <!-- Font cousine -->
+    <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
+    <!--Fontawesome-->
+    <link href="./../../vendors/font-awesome/fonts/fontawesome-webfont.woff" rel="application/font-woff">
+    <link href="./../../vendors/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!--CSS de Bootstrap -->
+    <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
+    <!--CSS propio-->
+    <link rel="stylesheet" type="text/css" href="./../../css/sign_in.css">
+</head>
+<!-- background-image: url(./../images/icono/light_pink/cleaner512.png);
+background-repeat: no-repeat;
+background-position-x: 47%;
+background-position-y: 49%;
+background-size: 34%; -->
+
+<body>
+    <div id="contenedor" class="container-fluid">
+        <section class="container">
+            <div class="col-md-offset-3 col-md-6">
+                <!-- <img id="logo" class="col-md-5" src="./../../images/icono/pink/cleaner128.png"> -->
+                <h1 id="titulo">SIGN IN - NEW CLIENT</h1>
+            </div>
+        </section>
+
+        <section id="secForm" class="container">
+            <div class="col-md-offset-3 col-md-6">
+                <form id="formulario" action="/action_page.php">
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Introduce el usuario" name="usuario">
+                        <label for="pwd">Contraseña:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Introduce la contraseña" name="pwd">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre" name="nombre">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Introduce el apellido" name="apellido">
+                        <label for="correo">Correo:</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Introduce el correo" name="correo">
+                        <label for="fnacimiento">Fecha de nacimiento:</label>
+                        <input type="date" class="form-control" id="fnacimiento" name="fnacimiento">
+
+                    </div>
+                    <!-- <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> Remember me</label>
+                    </div> -->
+                    <input type="submit" class="btn btn-default" value="Confirmar">
+                </form>
+            </div>
+        </section>
+
+        <div id="footer" class="container-fluid">
+            <p>&copy;Inés Carazo Núñez 2019</p>
+            Icons made by
+            <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from
+            <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+            <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <!--jQuery-->
+    <script src="./../../vendors/jquery/jquery.min.js "></script>
+    <!--Boostrap-->
+    <script src="./../../vendors/bootstrap/js/bootstrap.min.js "></script>
+    <!--MainScripts-->
+    <script type="text/javascript " src="./../../js/main.js "></script>
+
+</footer>
+
+</html>

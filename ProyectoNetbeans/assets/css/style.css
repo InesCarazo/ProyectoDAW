@@ -1,0 +1,182 @@
+/*   Inés Carazo Núñez  */
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-padding {
+    padding: 0%;
+}
+
+.no-margin {
+    margin: 0%;
+}
+
+
+/* Barra Top */
+
+#top .container {
+    padding-left: 80%;
+}
+
+#myNavbar ul li #camera {
+    background: #2d9152;
+}
+
+#myNavbar ul li #book {
+    background: #eb8900;
+}
+
+#myNavbar ul li .verde {
+    background: #026260;
+}
+
+
+/* Barra Top */
+
+
+/*Menú*/
+
+#myNavbar ul li a {
+    text-decoration: none;
+    background-color: #004443;
+    color: white;
+}
+
+#myNavbar ul li a:hover {
+    background-color: #eb8900;
+    color: #004443;
+}
+
+#myNavbar ul li {
+    color: white
+}
+
+#barra {
+    background-color: #004443;
+}
+
+
+/*Menú*/
+
+
+/*Imagen*/
+
+#imagen {
+    /* background-image: url("../images/cabecera/Aliva.jpg"); */
+    height: 200px;
+}
+
+#imagen img {
+    position: relative;
+    bottom: 150px;
+    z-index: -1;
+}
+
+#titulo {
+    position: relative;
+    bottom: 70px;
+    padding-left: 20%;
+}
+
+#titulo img {
+    width: 20%;
+}
+
+#enlaces {
+    padding-top: 2%;
+}
+
+#enlaces img {
+    width: 10%;
+}
+
+#enlaces a {
+    font-size: 0.7em;
+}
+
+
+/*Imagen*/
+
+
+/*Actualidad*/
+
+#actualidad {
+    padding-top: 20%;
+}
+
+
+/*Actualidad*/
+
+
+/*interes*/
+
+#interes {
+    background-color: #f3f3f3;
+}
+
+#interes h4 {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 7%;
+}
+
+
+/*interes*/
+
+
+/*social*/
+
+#social {
+    background-color: #2d9152;
+}
+
+#social h3 {
+    color: white;
+}
+
+#social h4 a {
+    color: white;
+}
+
+#iconossocial i {
+    font-size: 200%;
+}
+
+
+/*social*/
+
+#trabaja {
+    background-color: #012928;
+    font-size: 2em;
+    padding-left: 27%;
+    color: white;
+    font-weight: lighter;
+}
+
+#contacto {
+    background-color: #62a001;
+    padding-top: 2%;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 2%;
+    color: white;
+}
+
+#pie {
+    background-color: #012928;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    color: white;
+}
+
+#pie1 {
+    padding-left: 15%;
+    /* padding-right: 20%; */
+}
+
+#pie a {
+    color: #2d9152
+}
+
+;
