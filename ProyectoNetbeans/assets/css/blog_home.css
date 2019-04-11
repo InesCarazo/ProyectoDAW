@@ -4,6 +4,14 @@
     font-family: 'Cousine';
 }
 
+.no-padding {
+    padding: 0%;
+}
+
+.no-margin {
+    padding: 0%;
+}
+
 
 /* Barra Top */
 
@@ -109,69 +117,11 @@
     text-align: center;
 }
 
-#slider {
-    padding-left: -25%;
-    padding-right: -25%;
-}
-
-
-/* SECCION TEMAS */
-
-.icono-tema .fas {
-    color: #45AED6;
-    font-size: 2.5em;
-    padding-top: 8px;
-    width: 60px;
-    height: 60px;
-}
-
-.tema {
-    margin-top: 3em;
-}
-
-.tema i {
-    position: relative;
-    size: 0.25em;
-}
-
-.fas {
-    color: #fabada !important;
-}
-
-.gal {
-    color: rgb(63, 212, 209) !important;
-}
-
-.checked {
-    color: #fabada;
-}
-
-
-/* GALERÍA*/
-
-.galeria {
-    margin-bottom: 2em;
-}
-
-.galeria h3 {
-    margin-top: -50px;
-    margin-left: 5%;
-    color: white;
-}
-
-.galeria img {
-    width: 300px;
-    height: 200px;
-}
-
-
-/* GALERÍA*/
-
 
 /*CONTACTO*/
 
 #contacto {
-    background-color: rgba(201, 99, 170, 0.459);
+    background-color: #fabada;
 }
 
 #contacto input[type=text],
@@ -264,3 +214,13 @@
 
 
 /*BUSCADOR*/
+
+
+/* RELLENO */
+
+#relleno {
+    padding: 15%;
+}
+
+
+/* RELLENO */
