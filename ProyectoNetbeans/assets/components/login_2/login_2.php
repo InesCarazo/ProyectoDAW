@@ -27,15 +27,15 @@
     <div class="main">
         <div class="col-md-8 col-sm-12">
             <div class="login-form">
-                <form>
+                <form method="POST" action="./controller_2.php">
                     <h2 class="text-center text-uppercase">login</h2>
                     <div class="form-group">
                         <label>Usuario</label>
-                        <input type="text" class="form-control" placeholder="User Name">
+                        <input type="text" name="usuario" class="form-control" placeholder="User Name">
                     </div>
                     <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
                     <button id="boton" type="submit" class="btn btn-black">Login</button>
 
