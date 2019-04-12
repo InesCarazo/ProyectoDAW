@@ -2,8 +2,8 @@
 
 require_once './../conexion/conexion.php';
 
-$usuario = $_POST["usuario"];
-$contrasena = $_POST["contrasena"];
+//$usuario = $_POST["usuario"];
+//$contrasena = $_POST["contrasena"];
 
 echo $usuario;
 echo "<br/>";

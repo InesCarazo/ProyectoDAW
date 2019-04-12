@@ -6,6 +6,14 @@ if (isset($_POST['login']))
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
     comprobarLogin($usuario, $contrasena);
+    if (!comprobarLogin($usuario, $contrasena)) 
+    {
+        alert("Login incorrecto");
+    }
+}
+
+if(!isset($_POST['login'])){
+
 }
 ?>
 <!DOCTYPE html>
