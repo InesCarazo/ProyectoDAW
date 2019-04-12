@@ -1,3 +1,13 @@
+<?php
+require_once './controller_2.php';
+
+if (isset($_POST['login'])) 
+{
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+    comprobarLogin($usuario, $contrasena);
+}
+?>
 <!DOCTYPE html>
 <html>
 <!-- Inés Carazo Núñez -->
@@ -37,7 +47,7 @@
                         <label>Contraseña</label>
                         <input type="password" name="contrasena" class="form-control" placeholder="Password">
                     </div>
-                    <button id="boton" type="submit" class="btn btn-black">Login</button>
+                    <button id="boton" type="submit" name="login" class="btn btn-black">Login</button>
 
                 </form>
                 <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in_2/sign_in_2.html">REGÍSTRATE</a></h4>
