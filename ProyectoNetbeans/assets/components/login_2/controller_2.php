@@ -3,35 +3,26 @@
 require_once './../conexion/conexion.php';
 
 $usuario = $_POST["usuario"];
-$password = $_POST["password"];
+$contrasena = $_POST["contrasena"];
 
 echo $usuario;
 echo "<br/>";
-echo $password;
-comprobarLogin($conexion, $usuario, $password);
-function comprobarLogin($conexion, $usuario, $password) {
+echo $contrasena;
+comprobarLogin($conexion, $usuario, $contrasena);
+function comprobarLogin($conexion, $usuario, $contrasena) {
 
-$login = false;
-
-$sql = "SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario='$usuario' AND u.contrasena='$password';
-$stmt = $conexion->prepare($sql);
-if (!$stmt) {
-    echo "Error: " . $conexion->error;
-    exit();
-}
-
-$stmt->bind_param('ss', $usuario, $password);
-$stmt->execute();
-$stmt->bind_result($user, $pass);
-
-$stmt->fetch();
-    if ($usuario == $user && $password == $pass) {
-        $login = true;
-    } else {
-        $login = false;
+    if (mysqli_connect_errno()) {
+        printf("Error de conexión: %s\n", mysqli_connect_error());
+        exit();
     }
 
-return $login;
+$sql = "SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena";
+$stmt = $conexion->prepare($sql);
+
+$stmt->bind_param(':usuario', $usuario);
+$stmt->bind_param(':contrasena', $contrasena);
+$stmt->execute();
+$stmt->close();
 }
 
 ?>
