@@ -1,83 +1,102 @@
-/*   Inés Carazo Núñez  */
-
-* {
-    font-family: 'Cousine';
+body {
+    font-family: "Lato", sans-serif;
 }
 
-#contenedor {
-    background-image: url(./../images/icono/light_pink/cleaner256.png);
-    background-repeat: no-repeat;
-    background-position-x: 51%;
-    background-position-y: 30%;
-    background-size: 16%;
+#boton {
+    margin-left: 79%;
 }
 
-section {
-    margin-top: 5%;
+.main-head {
+    height: 150px;
+    background: #FFF;
 }
 
-
-/* SECCIÓN CABECERA*/
-
-#titulo {
-    text-align: center;
-    padding-top: 2.5%;
+.sidenav {
+    height: 100%;
+    background-color: #f16e94;
+    overflow-x: hidden;
+    padding-top: 20px;
 }
 
-#logo {
-    padding-top: 1%;
+.main {
+    padding: 0px 10px;
 }
 
-
-/* SECCIÓN CABECERA*/
-
-
-/* SECCIÓN FORMULARIO*/
-
-input[type=text],
-input[type=password] {
-    width: 50%;
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
 }
 
-input,
-label {
-    margin-left: 25%;
+@media screen and (max-width: 450px) {
+    .register-form {
+        margin-top: 10%;
+    }
 }
 
-#secForm {
-    height: 450px;
-    /* margin-top: 10%; */
+@media screen and (min-width: 768px) {
+    .main {
+        margin-left: 40%;
+    }
+    .sidenav {
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+    .login-form {
+        margin-top: 40%;
+        margin-left: 20%;
+    }
+    .register-form {
+        margin-top: 20%;
+    }
 }
 
-.btn-default:hover {
+@media screen and (min-width: 1000px) {
+    .main {
+        margin-left: 40%;
+    }
+    .sidenav {
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+    .login-form {
+        margin-top: 40%;
+        margin-left: 20%;
+    }
+    .register-form {
+        margin-top: 20%;
+    }
+}
+
+.login-main-text h2 {
+    font-weight: lighter;
+    color: #fff;
+}
+
+.btn-black {
+    background-color: #f16e94 !important;
+    color: #fff;
+}
+
+.sidenav img {
+    padding-top: 22%;
+}
+
+#boton:hover {
     background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
     color: white;
 }
 
-
-/* SECCIÓN FORMULARIO*/
-
-
-/* SECCIÓN FOOTER*/
-
-#footer {
-    padding: 20px 0;
-    background: #D1D1D1;
-    text-align: center;
+#registro {
+    margin-top: 20%;
 }
 
-#footer p {
-    margin: 0;
-    color: #999999;
+#registro a {
+    color: #f16e94;
 }
-
-#footer a {
-    color: #999999;
-}
-
-#footer a:hover {
-    color: #FFFFFF;
-}
-
-
-/* SECCIÓN FOOTER*/

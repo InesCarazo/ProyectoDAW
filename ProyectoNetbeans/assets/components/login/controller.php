@@ -1,29 +1,12 @@
-<?php 
+<?php
 
-function comprobarLogin($conexion, $usuario, $password) {
+require './../conexion/conexion.php';
 
-//$password = md5($password);
-$login = false;
+function comprobarLogin($usuario, $contrasena) {
+    require_once './../conexion/conexion.php';
+    $stmt = $conn->prepare("SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
 
-$sql = "SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=? AND u.contrasena=?";
-$stmt = $conexion->prepare($sql);
-if (!$stmt) {
-    echo "Error: " . $conexion->error;
-    exit();
+    $stmt->bindParam(':usuario', $usuario);
+    $stmt->bindParam(':contrasena', $contrasena);
+    $stmt->execute();
 }
-
-$stmt->bind_param('ss', $usuario, $password);
-$stmt->execute();
-$stmt->bind_result($user, $pass);
-
-$stmt->fetch();
-    if ($usuario == $user && $password == $pass) {
-        $login = true;
-    } else {
-        $login = false;
-    }
-
-return $login;
-}
-
-?>
