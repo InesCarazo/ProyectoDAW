@@ -2,23 +2,23 @@
 require_once './controller.php';
 
 session_start();
-//if (!isset($_SESSION['logueado'])) {
-//    $_SESSION['logueado'] = "No";
-//}
+if (!isset($_SESSION['logueado'])) {
+    $_SESSION['logueado'] = "No";
+}
 
 if (isset($_POST['login'])) {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
-    echo $usuario;
-    echo "<br/><hr/><br/>";
-    echo $contrasena;
-
+    
     if (!comprobarLogin($usuario, $contrasena)) {
-        alert("Login incorrecto");
-       // header("Location: http://localhost/ProyectoDAW/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php");
+        echo "ERROR";
+        //$message = "Login incorrecto";
+        //echo "<script type='text/javascript'>alert('$message');</script>";
+        
     } else {
         $_SESSION['logueado'] = "Si";
         $_SESSION['usuario'] = $usuario;
+        header("Location: http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/");
     }
 }
 //  else if ($_SESSION['logueado'] == "Si") 
@@ -58,8 +58,8 @@ if (isset($_POST['login'])) {
         <div class="main">
             <div class="col-md-8 col-sm-12">
                 <div class="login-form">
-                    <form method="POST" action="./../home/home.html">
-                    <!-- <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
+                    <!-- <form method="POST" action="./../home/home.html"> -->
+                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <h2 class="text-center text-uppercase">login</h2>
                         <div class="form-group">
                             <label>Usuario</label>
