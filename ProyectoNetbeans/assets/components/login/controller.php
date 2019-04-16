@@ -1,25 +1,25 @@
 <?php
 
 // require './../conexion/conexion.php';
+class controllerClass{
 
-function comprobarLogin($usuario, $contrasena) 
-{
-    require_once './../conexion/conexion.php';
-    $login = false;
-    // $stmt = $conn->prepare("SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
-    $stmt = $conn->prepare("SELECT count(*) as num FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
+    function comprobarLogin($usuario, $contrasena) 
+    {
+        require_once './../conexion/conexion.php';
+       
+        // $stmt = $conn->prepare("SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
+        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
 
-    $stmt->bindParam(':usuario', $usuario);
-    $stmt->bindParam(':contrasena', $contrasena);
-    $resultado =  $stmt->execute();
-    echo $resultado['num'];
+        $stmt->bindParam(':usuario', $usuario);
+        $stmt->bindParam(':contrasena', $contrasena);
+        $stmt->execute();
 
-    // foreach ($resultado->fetch() as $variable) {
-    //     echo $variable[0];
-    // }
-    // if(== 1){
-    //     $login = true;
-    // }
+        $resultado = $stmt -> fetch();
 
-    return $login;    
+        if($resultado == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
