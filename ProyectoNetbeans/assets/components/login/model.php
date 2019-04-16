@@ -1,7 +1,5 @@
 <?php
-
 class modelClass{
-
     function comprobarLogin($usuario, $contrasena) 
     {
         require_once './../conexion/conexion.php';
