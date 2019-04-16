@@ -1,49 +1,11 @@
 <?php
 require_once './controller.php';
-$controllerClass = new controllerClass();
-session_start();
-if (!isset($_SESSION['logueado'])) {
-    $_SESSION['logueado'] = "No";
-}
 
 if (isset($_POST['login'])) {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
-    $uid=$controllerClass->comprobarLogin($usuario, $contrasena);
-    echo $uid;
-    echo "<br/>";
-    if($uid)
-    {
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
-       header("Location: $url"); 
-       echo "OK";
-    }
-    else
-    {
-        $errorMsgLogin="Please check login details.";
-        echo "<script type='text/javascript'>alert('$errorMsgLogin');</script>";
-    }
-
-
-
-    // if (!comprobarLogin($usuario, $contrasena)) {
-    //     echo "ERROR";
-    //     //$message = "Login incorrecto";
-    //     //echo "<script type='text/javascript'>alert('$message');</script>";
-        
-    // } else {
-    //     $_SESSION['logueado'] = "Si";
-    //     $_SESSION['usuario'] = $usuario;
-    //     header("Location: http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/");
-    // }
+    loginCorrecto($usuario, $contrasena);
 }
-//  else if ($_SESSION['logueado'] == "Si") 
-//  {
-// }
-//  else 
-// {
-//     header("Location: http://localhost/ProyectoDAW/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php");
-// }
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,25 +1,30 @@
 <?php
 
-// require './../conexion/conexion.php';
-class controllerClass{
+require_once './model.php';
 
-    function comprobarLogin($usuario, $contrasena) 
+session_start();
+
+if (!isset($_SESSION['logueado'])) {
+    $_SESSION['logueado'] = "No";
+}
+else
+{
+    $isLogged = $_SESSION['logueado'];
+}
+function loginCorrecto($usuario, $contrasena)
+{
+    $modelClass = new modelClass();
+    $result=$modelClass->comprobarLogin($usuario, $contrasena);
+    if($result)
     {
-        require_once './../conexion/conexion.php';
-       
-        // $stmt = $conn->prepare("SELECT u.usuario, u.contrasena FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
-        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
-
-        $stmt->bindParam(':usuario', $usuario);
-        $stmt->bindParam(':contrasena', $contrasena);
-        $stmt->execute();
-
-        $resultado = $stmt -> fetch();
-
-        if($resultado == null){
-            return false;
-        }else{
-            return true;
-        }
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+       header("Location: $url"); 
+       echo "OK";
     }
+    else
+    {
+        $message = "Login incorrecto";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+
 }
