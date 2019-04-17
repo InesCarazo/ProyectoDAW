@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2019 a las 19:27:14
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 17-04-2019 a las 13:01:07
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -255,15 +257,15 @@ CREATE TABLE `tarea` (
 --
 
 INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_tarea`) VALUES
-(1, 1, '', 0.00, 0),
-(2, 1, '', 0.00, 0),
-(3, 1, '', 0.00, 0),
-(4, 1, '', 0.00, 0),
-(5, 2, '', 0.00, 0),
-(6, 2, '', 0.00, 0),
-(7, 1, '', 0.00, 0),
-(8, 1, '', 0.00, 0),
-(9, 1, '', 0.00, 0);
+(1, 1, '', 0.00, 1),
+(2, 1, '', 0.00, 2),
+(3, 1, '', 0.00, 3),
+(4, 1, '', 0.00, 4),
+(5, 2, '', 0.00, 5),
+(6, 2, '', 0.00, 6),
+(7, 1, '', 0.00, 7),
+(8, 1, '', 0.00, 8),
+(9, 1, '', 0.00, 9);
 
 -- --------------------------------------------------------
 
@@ -382,7 +384,8 @@ ALTER TABLE `beacon`
 -- Indices de la tabla `casa`
 --
 ALTER TABLE `casa`
-  ADD PRIMARY KEY (`P_casa`);
+  ADD PRIMARY KEY (`P_casa`),
+  ADD KEY `A_cliente` (`A_cliente`);
 
 --
 -- Indices de la tabla `cliente`
@@ -456,66 +459,79 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `ausencia`
   MODIFY `P_ausencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `ausencia_empleado`
 --
 ALTER TABLE `ausencia_empleado`
   MODIFY `P_ausenciaEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `beacon`
 --
 ALTER TABLE `beacon`
   MODIFY `P_beacon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
   MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
 --
 ALTER TABLE `empleado_cliente_tarea`
   MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
 -- AUTO_INCREMENT de la tabla `empleado_horario`
 --
 ALTER TABLE `empleado_horario`
   MODIFY `P_empleadoHorario` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
   MODIFY `P_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
   MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `tarea_realizada`
 --
 ALTER TABLE `tarea_realizada`
   MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_tarea`
 --
 ALTER TABLE `tipo_tarea`
   MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -534,6 +550,12 @@ ALTER TABLE `beacon`
   ADD CONSTRAINT `beacon_ibfk_1` FOREIGN KEY (`A_sala`) REFERENCES `casa` (`P_casa`);
 
 --
+-- Filtros para la tabla `casa`
+--
+ALTER TABLE `casa`
+  ADD CONSTRAINT `casa_ibfk_1` FOREIGN KEY (`A_cliente`) REFERENCES `cliente` (`P_cliente`);
+
+--
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
@@ -550,8 +572,8 @@ ALTER TABLE `empleado`
 --
 ALTER TABLE `empleado_cliente_tarea`
   ADD CONSTRAINT `empleado_cliente_tarea_ibfk_1` FOREIGN KEY (`A_empleado`) REFERENCES `empleado` (`P_empleado`),
-  ADD CONSTRAINT `empleado_cliente_tarea_ibfk_2` FOREIGN KEY (`A_cliente`) REFERENCES `casa` (`P_casa`),
   ADD CONSTRAINT `empleado_cliente_tarea_ibfk_3` FOREIGN KEY (`A_tarea`) REFERENCES `tarea` (`P_tarea`),
+  ADD CONSTRAINT `empleado_cliente_tarea_ibfk_4` FOREIGN KEY (`A_cliente`) REFERENCES `cliente` (`P_cliente`),
   ADD CONSTRAINT `tarea_realizada` FOREIGN KEY (`A_realizada`) REFERENCES `tarea_realizada` (`P_tarea_realizada`);
 
 --
@@ -560,6 +582,13 @@ ALTER TABLE `empleado_cliente_tarea`
 ALTER TABLE `empleado_horario`
   ADD CONSTRAINT `empleado_horario_ibfk_1` FOREIGN KEY (`A_empleado`) REFERENCES `empleado` (`P_empleado`),
   ADD CONSTRAINT `empleado_horario_ibfk_2` FOREIGN KEY (`A_horario`) REFERENCES `horario` (`P_horario`);
+
+--
+-- Filtros para la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
