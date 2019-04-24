@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-04-2019 a las 13:12:17
+-- Tiempo de generación: 24-04-2019 a las 10:37:40
 -- Versión del servidor: 5.5.43-0ubuntu0.14.04.1
 -- Versión de PHP: 5.5.9-1ubuntu4.21
 
@@ -126,7 +126,6 @@ INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `hasFurniture`, `A_cliente`) 
 
 CREATE TABLE IF NOT EXISTS `cliente` (
   `P_cliente` int(11) NOT NULL AUTO_INCREMENT,
-  `telefono` int(10) NOT NULL,
   `formaPago` varchar(20) NOT NULL,
   `nCuenta` varchar(50) NOT NULL,
   `A_usuario` int(11) NOT NULL,
@@ -138,11 +137,11 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`P_cliente`, `telefono`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
-(1, 653245865, 'TARJETA', '', 1),
-(2, 658742136, 'BANCO', '', 2),
-(3, 658974216, 'TARJETA', '', 3),
-(4, 655224494, 'BANCO', '', 4);
+INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
+(1, 'TARJETA', '', 1),
+(2, 'BANCO', '', 2),
+(3, 'TARJETA', '', 3),
+(4, 'BANCO', '', 4);
 
 -- --------------------------------------------------------
 
