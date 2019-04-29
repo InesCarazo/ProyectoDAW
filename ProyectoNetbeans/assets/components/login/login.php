@@ -50,7 +50,7 @@ if (isset($_POST['login'])) {
                         <button id="boton" type="submit" name="login" class="btn btn-black">Login</button>
 
                     </form>
-                    <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in_2/sign_in_2.html">REGÍSTRATE</a></h4>
+                    <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in/sign_in.php">REGÍSTRATE</a></h4>
                 </div>
             </div>
         </div>

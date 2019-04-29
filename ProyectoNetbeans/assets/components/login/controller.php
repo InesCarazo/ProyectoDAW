@@ -15,7 +15,7 @@ function loginCorrecto($usuario, $contrasena)
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {          
-        $url= 'http://localhost/ProyectoDAW/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
         header("Location: $url"); 
         echo "OK";
     }

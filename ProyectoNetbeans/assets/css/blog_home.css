@@ -1,226 +1,281 @@
-/*   Inés Carazo Núñez  */
-
-* {
-    font-family: 'Cousine';
-}
-
-.no-padding {
-    padding: 0%;
-}
-
-.no-margin {
-    padding: 0%;
-}
-
-
-/* Barra Top */
-
-#top {
-    background-color: #f16e94;
-    color: white;
-    padding: .5em 0;
-}
-
-
-/* Barra superior */
-
-#barra {
-    padding: 1em 0;
-}
-
-.navbar {
-    margin-bottom: 0px;
-    box-shadow: 2px 2px 20px #eaeaea;
-}
-
-.navbar-toggle span {
-    background-color: gray;
-}
-
-
-/* Logo*/
-
-#titulo-pagina {
-    font-size: 2.5em;
-    text-decoration: none;
-    vertical-align: text-bottom;
-    color: #f16e94;
-}
-
-#titulo-pagina img,
-#titulo-pagina span {
-    float: left;
-}
-
-#titulo-pagina span {
-    padding-left: 1%;
-    padding-right: 2%;
-}
-
-
-/* Logo*/
-
-
-/*Menú*/
-
-#myNavbar ul li a {
-    text-decoration: none;
-    color: #c20e68;
-    font-size: 1.3em;
-}
-
-#myNavbar ul li a:hover {
-    color: white;
-    background-color: #f16e94;
-}
-
-#login {
-    padding: 0;
-    margin: 0;
-}
-
-#myNavbar ul li #login:hover {
-    background-color: white;
-}
-
-
-/*Menú*/
-
-
-/* Iconos social*/
-
-#iconos-social {
-    float: right;
-    margin: 0;
-}
-
-#iconos-social li {
-    float: left;
-    list-style: none;
-}
-
-#iconos-social li a {
-    font-size: 1.5em;
-    margin-left: 0.2em;
-    color: white;
-}
-
-#iconos-social li a:hover {
-    color: grey;
-}
-
-
-/* Iconos social*/
-
-.cabecera-seccion h2,
-.cabecera-seccion p {
-    text-align: center;
-}
-
-
-/*CONTACTO*/
-
-#contacto {
-    background-color: #fabada;
-}
-
-#contacto input[type=text],
-#contacto input[type=email],
-#contacto select,
-#contacto textarea {
-    width: 50%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-}
-
-#contacto input[type=submit] {
-    background-color: white;
-    color: #f16e94;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#contacto input[type=submit]:hover {
-    background-color: #f16e94;
-    color: white;
-}
-
-#contacto .contenedor {
-    border-radius: 5px;
-    /* background-color: rgba(156, 169, 225, 0.5); */
-    padding: 2%;
-}
-
-
-/*CONTACTO*/
-
-
-/*FOOTER*/
-
-#footer {
-    background-color: #2E2E2E;
-    padding-top: 3%;
-    margin-top: 5%;
-}
-
-.copyright {
-    color: white;
-}
-
-#map-container-google {
-    height: 500px;
-}
-
-#map-container-google iframe {
-    width: 40%;
-    height: 50%;
-}
-
-
-/*FOOTER*/
-
-
-/*BUSCADOR*/
-
-#buscador {
-    padding-top: 5%;
-}
-
-.buscar {
-    margin-bottom: 2em;
-}
-
-.buscar h3 {
-    margin-top: -50px;
-    margin-left: 5%;
-    color: white;
-}
-
-.buscar img {
-    width: 300px;
-    height: 200px;
-}
-
-.buscar h3 div {
-    width: 505;
-}
-
-
-/*BUSCADOR*/
-
-
-/* RELLENO */
-
-#relleno {
-    padding: 15%;
-}
-
-
-/* RELLENO */
+        /*   Inés Carazo Núñez  */
+        
+        * {
+            font-family: 'Cousine';
+        }
+        
+        .no-padding {
+            padding: 0%;
+        }
+        
+        .no-margin {
+            padding: 0%;
+        }
+        /* Barra Top */
+        
+        #top {
+            background-color: #f16e94;
+            color: white;
+            padding: .5em 0;
+        }
+        /* Barra superior */
+        
+        #barra {
+            padding: 1em 0;
+        }
+        
+        .navbar {
+            margin-bottom: 0px;
+            box-shadow: 2px 2px 20px #eaeaea;
+        }
+        
+        .navbar-toggle span {
+            background-color: gray;
+        }
+        /* Logo*/
+        
+        #titulo-pagina {
+            font-size: 2.5em;
+            text-decoration: none;
+            vertical-align: text-bottom;
+            color: #f16e94;
+        }
+        
+        #titulo-pagina img,
+        #titulo-pagina span {
+            float: left;
+        }
+        
+        #titulo-pagina span {
+            padding-left: 1%;
+            padding-right: 2%;
+        }
+        /* Logo*/
+        /*Menú*/
+        
+        #myNavbar ul li a {
+            text-decoration: none;
+            color: #c20e68;
+            font-size: 1.3em;
+        }
+        
+        #myNavbar ul li a:hover {
+            color: white;
+            background-color: #f16e94;
+        }
+        
+        #login {
+            padding: 0;
+            margin: 0;
+        }
+        
+        #myNavbar ul li #login:hover {
+            background-color: white;
+        }
+        /*Menú*/
+        /* Iconos social*/
+        
+        #iconos-social {
+            float: right;
+            margin: 0;
+        }
+        
+        #iconos-social li {
+            float: left;
+            list-style: none;
+        }
+        
+        #iconos-social li a {
+            font-size: 1.5em;
+            margin-left: 0.2em;
+            color: white;
+        }
+        
+        #iconos-social li a:hover {
+            color: grey;
+        }
+        /* Iconos social*/
+        
+        .cabecera-seccion h2,
+        .cabecera-seccion p {
+            text-align: center;
+        }
+        /*CONTACTO*/
+        
+        #seccontact {
+            padding-top: 13%;
+            padding-bottom: 15%;
+        }
+        
+        #contacto {
+            background-color: #fabada93;
+        }
+        
+        #contacto input[type=text],
+        #contacto input[type=email],
+        #contacto select,
+        #contacto textarea {
+            width: 50%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        
+        #contacto input[type=submit] {
+            background-color: white;
+            color: #f16e94;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 2%;
+            margin-left: 59%;
+        }
+        
+        #contacto input[type=submit]:hover {
+            background-color: #f16e94;
+            color: white;
+        }
+        
+        #contacto .contenedor {
+            border-radius: 5px;
+            padding: 2%;
+        }
+        
+        #contacto #map-container-google {
+            padding-top: 2%;
+            padding-left: 5%;
+            padding-right: 5%;
+            height: 400px;
+        }
+        
+        #contacto #map-container-google iframe {
+            width: 100%;
+            height: 70%;
+        }
+        /*CONTACTO*/
+        /* FAQS */
+        
+        #faq {
+            padding-top: 14%;
+            padding-bottom: 15%;
+        }
+        
+        #faq h4 {
+            padding-top: 2%;
+        }
+        
+        #faq p {
+            padding-top: 3%;
+        }
+        /* FAQS */
+        /*FOOTER*/
+        
+        #footer {
+            background-color: #2E2E2E;
+            padding-top: 3%;
+            margin-top: 5%;
+        }
+        
+        .copyright {
+            color: white;
+        }
+        /*FOOTER*/
+        /*BUSCADOR*/
+        
+        #buscador {
+            padding-top: 5%;
+        }
+        
+        .buscar {
+            margin-bottom: 2em;
+        }
+        
+        .buscar h3 {
+            margin-top: -50px;
+            margin-left: 5%;
+            color: white;
+        }
+        
+        .buscar img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        .buscar h3 div {
+            width: 505;
+        }
+        /*BUSCADOR*/
+        /* SERVICIOS */
+        
+        #servicios {
+            padding-top: 15%;
+            padding-bottom: 15%;
+        }
+        
+        .overlay1,
+        .overlay2 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #f16e94;
+        }
+        
+        #casa:hover .overlay1,
+        #mudanza:hover .overlay2 {
+            opacity: 1;
+        }
+        
+        .text1,
+        .text2 {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+        /* RESERVICIOSLLENO */
+        /* SOBRE NOSOTROS */
+        
+        #sobrenosotros {
+            padding-top: 15%;
+            padding-bottom: 15%;
+        }
+        
+        #sntexto {
+            padding-top: 13%;
+        }
+        
+        #sntexto h2 {
+            padding-left: 5%;
+        }
+        
+        #sntexto h3 {
+            padding-top: 4%;
+            /* padding-left: 5%; */
+            color: #f16e938f;
+            font-weight: lighter;
+        }
+        
+        #sntexto p {
+            padding-left: 12%;
+            padding-right: 5%;
+            padding-top: 4%;
+        }
+        /* SOBRE NOSOTROS */
+        
+        .chachi {
+            color: #f16e94;
+        }

@@ -15,7 +15,7 @@ function registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, 
     $modelClass = new modelClass();
     $modelClass->registro($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
               
-        $url= 'http://localhost/ProyectoDAW/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
         header("Location: $url"); 
         //echo "OK";
 
