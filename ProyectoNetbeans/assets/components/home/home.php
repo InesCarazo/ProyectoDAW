@@ -27,7 +27,7 @@
             <ul class="list-unstyled components">
                 <p>Dummy Heading</p>
                 <li class="active">
-                    <a href="#homeSubmenu" aria-expanded="false">Home</a>
+                    <a href="?home" aria-expanded="false">Home</a>
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Gestión</a>
@@ -48,6 +48,18 @@
             </ul>
 
         </nav>
+        <div id='content'>
+
+<nav class='navbar navbar-default'>
+    <div class='container-fluid'>
+
+        <div class='navbar-header'>
+            <button type='button' id='sidebarCollapse' class='navbar-btn'>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+        </div>
         <?php
 require_once './controller.php';
 
@@ -64,11 +76,20 @@ if (isset($_GET["cerrarsesion"]))
 {
     cerrarSesion();
 }
+if (isset($_GET["home"]))
+{
+    volverAlHome();
+}
+
                             
 
 ?>
 
-                </div>
+
+         
+    <!-- </div>
+</nav>
+ </div> -->
 </body>
 <footer>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
