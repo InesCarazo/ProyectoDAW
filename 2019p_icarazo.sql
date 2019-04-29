@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 24-04-2019 a las 10:37:40
--- Versión del servidor: 5.5.43-0ubuntu0.14.04.1
--- Versión de PHP: 5.5.9-1ubuntu4.21
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-04-2019 a las 15:46:29
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `2019p_icarazo`
@@ -26,11 +28,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `ausencia`
 --
 
-CREATE TABLE IF NOT EXISTS `ausencia` (
-  `P_ausencia` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`P_ausencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+CREATE TABLE `ausencia` (
+  `P_ausencia` int(11) NOT NULL,
+  `tipo` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ausencia`
@@ -47,15 +48,12 @@ INSERT INTO `ausencia` (`P_ausencia`, `tipo`) VALUES
 -- Estructura de tabla para la tabla `ausencia_empleado`
 --
 
-CREATE TABLE IF NOT EXISTS `ausencia_empleado` (
-  `P_ausenciaEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ausencia_empleado` (
+  `P_ausenciaEmpleado` int(11) NOT NULL,
   `A_empleado` int(11) DEFAULT NULL,
   `A_ausencia` int(11) DEFAULT NULL,
-  `justificada` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`P_ausenciaEmpleado`),
-  KEY `A_empleado` (`A_empleado`),
-  KEY `A_ausencia` (`A_ausencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `justificada` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ausencia_empleado`
@@ -71,15 +69,13 @@ INSERT INTO `ausencia_empleado` (`P_ausenciaEmpleado`, `A_empleado`, `A_ausencia
 -- Estructura de tabla para la tabla `beacon`
 --
 
-CREATE TABLE IF NOT EXISTS `beacon` (
-  `P_beacon` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `beacon` (
+  `P_beacon` int(11) NOT NULL,
   `A_sala` int(11) DEFAULT NULL,
   `UUID` varchar(40) NOT NULL,
   `major` int(10) NOT NULL,
-  `minor` int(10) NOT NULL,
-  PRIMARY KEY (`P_beacon`),
-  KEY `A_sala` (`A_sala`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `minor` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `beacon`
@@ -96,15 +92,13 @@ INSERT INTO `beacon` (`P_beacon`, `A_sala`, `UUID`, `major`, `minor`) VALUES
 -- Estructura de tabla para la tabla `casa`
 --
 
-CREATE TABLE IF NOT EXISTS `casa` (
-  `P_casa` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `casa` (
+  `P_casa` int(11) NOT NULL,
   `sice` int(4) DEFAULT NULL,
   `direccion` varchar(200) NOT NULL,
   `hasFurniture` tinyint(4) NOT NULL,
-  `A_cliente` int(11) NOT NULL,
-  PRIMARY KEY (`P_casa`),
-  KEY `A_cliente` (`A_cliente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `A_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `casa`
@@ -124,14 +118,12 @@ INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `hasFurniture`, `A_cliente`) 
 -- Estructura de tabla para la tabla `cliente`
 --
 
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `P_cliente` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cliente` (
+  `P_cliente` int(11) NOT NULL,
   `formaPago` varchar(20) NOT NULL,
   `nCuenta` varchar(50) NOT NULL,
-  `A_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`P_cliente`),
-  KEY `A_usuario` (`A_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `A_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cliente`
@@ -149,26 +141,23 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 -- Estructura de tabla para la tabla `empleado`
 --
 
-CREATE TABLE IF NOT EXISTS `empleado` (
-  `P_empleado` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleado` (
+  `P_empleado` int(11) NOT NULL,
   `nSS` varchar(20) DEFAULT NULL,
-  `telefono` varchar(10) NOT NULL,
   `isAdmin` tinyint(4) DEFAULT NULL,
-  `A_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`P_empleado`),
-  KEY `P_Usuario` (`A_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `A_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`P_empleado`, `nSS`, `telefono`, `isAdmin`, `A_usuario`) VALUES
-(1, '', '', 0, 5),
-(2, '', '', 0, 6),
-(3, '', '', 0, 7),
-(4, '', '', 0, 8),
-(5, '', '', 1, 9);
+INSERT INTO `empleado` (`P_empleado`, `nSS`, `isAdmin`, `A_usuario`) VALUES
+(1, '', 0, 5),
+(2, '', 0, 6),
+(3, '', 0, 7),
+(4, '', 0, 8),
+(5, '', 1, 9);
 
 -- --------------------------------------------------------
 
@@ -176,20 +165,15 @@ INSERT INTO `empleado` (`P_empleado`, `nSS`, `telefono`, `isAdmin`, `A_usuario`)
 -- Estructura de tabla para la tabla `empleado_cliente_tarea`
 --
 
-CREATE TABLE IF NOT EXISTS `empleado_cliente_tarea` (
-  `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleado_cliente_tarea` (
+  `P_empleadoSalaTarea` int(11) NOT NULL,
   `A_empleado` int(11) DEFAULT NULL,
   `A_cliente` int(11) DEFAULT NULL,
   `A_tarea` int(11) DEFAULT NULL,
   `A_realizada` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `duracion_h` int(11) DEFAULT NULL,
-  PRIMARY KEY (`P_empleadoSalaTarea`),
-  KEY `A_empleado` (`A_empleado`),
-  KEY `A_sala` (`A_cliente`),
-  KEY `A_tarea` (`A_tarea`),
-  KEY `A_realizada` (`A_realizada`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+  `duracion_h` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empleado_cliente_tarea`
@@ -221,14 +205,11 @@ INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cl
 -- Estructura de tabla para la tabla `empleado_horario`
 --
 
-CREATE TABLE IF NOT EXISTS `empleado_horario` (
-  `P_empleadoHorario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `empleado_horario` (
+  `P_empleadoHorario` int(11) NOT NULL,
   `A_empleado` int(11) DEFAULT NULL,
-  `A_horario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`P_empleadoHorario`),
-  KEY `A_empleado` (`A_empleado`),
-  KEY `A_horario` (`A_horario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `A_horario` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -236,14 +217,13 @@ CREATE TABLE IF NOT EXISTS `empleado_horario` (
 -- Estructura de tabla para la tabla `horario`
 --
 
-CREATE TABLE IF NOT EXISTS `horario` (
-  `P_horario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `horario` (
+  `P_horario` int(11) NOT NULL,
   `turno` varchar(30) NOT NULL,
   `fecha` date DEFAULT NULL,
   `hEntrada` time NOT NULL,
-  `hSalida` time NOT NULL,
-  PRIMARY KEY (`P_horario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `hSalida` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `horario`
@@ -260,15 +240,13 @@ INSERT INTO `horario` (`P_horario`, `turno`, `fecha`, `hEntrada`, `hSalida`) VAL
 -- Estructura de tabla para la tabla `tarea`
 --
 
-CREATE TABLE IF NOT EXISTS `tarea` (
-  `P_tarea` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tarea` (
+  `P_tarea` int(11) NOT NULL,
   `duracion_h` int(11) DEFAULT NULL,
   `comentarios` varchar(100) NOT NULL,
   `precio` float(10,2) NOT NULL,
-  `A_tipo_tarea` int(11) NOT NULL,
-  PRIMARY KEY (`P_tarea`),
-  KEY `P_tipo_tarea` (`A_tipo_tarea`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `A_tipo_tarea` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tarea`
@@ -291,13 +269,12 @@ INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_t
 -- Estructura de tabla para la tabla `tarea_realizada`
 --
 
-CREATE TABLE IF NOT EXISTS `tarea_realizada` (
-  `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tarea_realizada` (
+  `P_tarea_realizada` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   `pagada` tinyint(4) DEFAULT NULL,
-  `duracion_h` int(11) DEFAULT NULL,
-  PRIMARY KEY (`P_tarea_realizada`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `duracion_h` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tarea_realizada`
@@ -322,11 +299,10 @@ INSERT INTO `tarea_realizada` (`P_tarea_realizada`, `fecha`, `pagada`, `duracion
 -- Estructura de tabla para la tabla `tipo_tarea`
 --
 
-CREATE TABLE IF NOT EXISTS `tipo_tarea` (
-  `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT,
-  `texto` varchar(30) NOT NULL,
-  PRIMARY KEY (`P_tipo_tarea`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+CREATE TABLE `tipo_tarea` (
+  `P_tipo_tarea` int(11) NOT NULL,
+  `texto` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tipo_tarea`
@@ -349,8 +325,8 @@ INSERT INTO `tipo_tarea` (`P_tipo_tarea`, `texto`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `P_Usuario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `P_Usuario` int(11) NOT NULL,
   `usuario` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `contrasena` varchar(32) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL,
@@ -358,9 +334,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `telefono` int(10) NOT NULL,
   `correo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `fechaNacimiento` date NOT NULL,
-  `rol` enum('CLIENTE','EMPLEADO') COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY (`P_Usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=10 ;
+  `rol` enum('CLIENTE','EMPLEADO') COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -376,6 +351,183 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 0, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
 (8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 0, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
 (9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 0, 'antoniosierra@gmail.com', '0000-00-00', 'EMPLEADO');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `ausencia`
+--
+ALTER TABLE `ausencia`
+  ADD PRIMARY KEY (`P_ausencia`);
+
+--
+-- Indices de la tabla `ausencia_empleado`
+--
+ALTER TABLE `ausencia_empleado`
+  ADD PRIMARY KEY (`P_ausenciaEmpleado`),
+  ADD KEY `A_empleado` (`A_empleado`),
+  ADD KEY `A_ausencia` (`A_ausencia`);
+
+--
+-- Indices de la tabla `beacon`
+--
+ALTER TABLE `beacon`
+  ADD PRIMARY KEY (`P_beacon`),
+  ADD KEY `A_sala` (`A_sala`);
+
+--
+-- Indices de la tabla `casa`
+--
+ALTER TABLE `casa`
+  ADD PRIMARY KEY (`P_casa`),
+  ADD KEY `A_cliente` (`A_cliente`);
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`P_cliente`),
+  ADD KEY `A_usuario` (`A_usuario`);
+
+--
+-- Indices de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`P_empleado`),
+  ADD KEY `P_Usuario` (`A_usuario`);
+
+--
+-- Indices de la tabla `empleado_cliente_tarea`
+--
+ALTER TABLE `empleado_cliente_tarea`
+  ADD PRIMARY KEY (`P_empleadoSalaTarea`),
+  ADD KEY `A_empleado` (`A_empleado`),
+  ADD KEY `A_sala` (`A_cliente`),
+  ADD KEY `A_tarea` (`A_tarea`),
+  ADD KEY `A_realizada` (`A_realizada`);
+
+--
+-- Indices de la tabla `empleado_horario`
+--
+ALTER TABLE `empleado_horario`
+  ADD PRIMARY KEY (`P_empleadoHorario`),
+  ADD KEY `A_empleado` (`A_empleado`),
+  ADD KEY `A_horario` (`A_horario`);
+
+--
+-- Indices de la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`P_horario`);
+
+--
+-- Indices de la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  ADD PRIMARY KEY (`P_tarea`),
+  ADD KEY `P_tipo_tarea` (`A_tipo_tarea`);
+
+--
+-- Indices de la tabla `tarea_realizada`
+--
+ALTER TABLE `tarea_realizada`
+  ADD PRIMARY KEY (`P_tarea_realizada`);
+
+--
+-- Indices de la tabla `tipo_tarea`
+--
+ALTER TABLE `tipo_tarea`
+  ADD PRIMARY KEY (`P_tipo_tarea`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`P_Usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `ausencia`
+--
+ALTER TABLE `ausencia`
+  MODIFY `P_ausencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `ausencia_empleado`
+--
+ALTER TABLE `ausencia_empleado`
+  MODIFY `P_ausenciaEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `beacon`
+--
+ALTER TABLE `beacon`
+  MODIFY `P_beacon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `casa`
+--
+ALTER TABLE `casa`
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
+--
+ALTER TABLE `empleado_cliente_tarea`
+  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado_horario`
+--
+ALTER TABLE `empleado_horario`
+  MODIFY `P_empleadoHorario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `P_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `tarea_realizada`
+--
+ALTER TABLE `tarea_realizada`
+  MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_tarea`
+--
+ALTER TABLE `tipo_tarea`
+  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
@@ -433,6 +585,7 @@ ALTER TABLE `empleado_horario`
 --
 ALTER TABLE `tarea`
   ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

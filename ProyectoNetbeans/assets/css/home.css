@@ -100,6 +100,14 @@ a[aria-expanded="true"] {
     background: #f16e94;
 }
 
+.navbar-default .navbar-nav>li>a {
+    color: black;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #f16e94;
+}
+
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -214,4 +222,14 @@ ul.CTAs a {
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
+}
+
+#addEmpleado:hover {
+    background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
+    color: white;
+}
+
+#addEmpleado {
+    background-color: #f16e94 !important;
+    color: #fff;
 }

@@ -25,7 +25,6 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
                 <li class="active">
                     <a href="?home" aria-expanded="false">Home</a>
                 </li>
@@ -66,7 +65,7 @@ require_once './controller.php';
 if (isset($_GET["gestion"]))
  {
     $tipoGestion = $_GET["gestion"];
-    echo tipoFormGestion($tipoGestion);
+    echo tipoMenuGestion($tipoGestion);
 }
 if (isset($_GET["contacto"]))
  {
@@ -80,16 +79,14 @@ if (isset($_GET["home"]))
 {
     volverAlHome();
 }
-
-                            
+if (isset($_GET['empleado'])) {
+    $tipoForm = $_GET['empleado'];
+    echo tipoFormEmpleados($tipoForm);
+}
 
 ?>
 
 
-         
-    <!-- </div>
-</nav>
- </div> -->
 </body>
 <footer>
     <!-- jQuery CDN - Slim version (=without AJAX) -->

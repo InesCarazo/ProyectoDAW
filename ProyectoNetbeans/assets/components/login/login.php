@@ -41,11 +41,11 @@ if (isset($_POST['login'])) {
                         <h2 class="text-center text-uppercase">login</h2>
                         <div class="form-group">
                             <label>Usuario</label>
-                            <input type="text" name="usuario" class="form-control" placeholder="User Name">
+                            <input type="text" name="usuario" class="form-control" placeholder="Usuario">
                         </div>
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" name="contrasena" class="form-control" placeholder="Password">
+                            <input type="password" name="contrasena" class="form-control" placeholder="Contraseña">
                         </div>
                         <button id="boton" type="submit" name="login" class="btn btn-black">Login</button>
 
