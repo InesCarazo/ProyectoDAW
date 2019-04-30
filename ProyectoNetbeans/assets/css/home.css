@@ -224,12 +224,39 @@ ul.CTAs a {
     }
 }
 
-#addEmpleado:hover {
+@media(min-width: 769px) {
+    .contenido-home {
+        width: 1000px;
+    }
+    .contenido-tabla {
+        width: 905px;
+    }
+    #tablaVista {
+        padding-top: 3%;
+        padding-left: 6%;
+    }
+    #tablaVista th,
+    #tablaVista td {
+        padding: 2%;
+    }
+}
+
+.estilo-btn:hover {
     background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
     color: white;
 }
 
-#addEmpleado {
+.estilo-btn {
     background-color: #f16e94 !important;
     color: #fff;
+}
+
+#tablaVista table,
+#tablaVista th,
+#tablaVista td {
+    border: 1px solid #f16e94;
+}
+
+#modificarEmpleado {
+    margin-top: 5%;
 }
