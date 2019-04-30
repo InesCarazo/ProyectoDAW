@@ -1,21 +1,41 @@
 <?php
-class modelClass{
-    function verEmpleados($usuario, $contrasena) 
-    {
+
+require_once './../clases/usuario.php';
+
+class modelClass {
+    
+    function verEmpleados() {
         require_once './../conexion/conexion.php';
-       
-        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
 
-        $stmt->bindParam(':usuario', $usuario);
-        $stmt->bindParam(':contrasena', $contrasena);
+        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.rol='EMPLEADO'");
         $stmt->execute();
+        $empleados = Array();
+        $resultado = $stmt->fetch();
 
-        $resultado = $stmt -> fetch();
+        while ($resultado != null) {
+            $empleado = new Usuario($resultado);
+            array_push($empleados, $empleado);
 
-        if($resultado == null){
-            return false;
-        }else{
-            return true;
+            $resultado = $stmt->fetch();
         }
+        return $empleados;
     }
+
+    function verClientes() {
+        require_once './../conexion/conexion.php';
+
+        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.rol='CLIENTE'");
+        $stmt->execute();
+        $empleados = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) {
+            $empleado = new Usuario($resultado);
+            array_push($empleados, $empleado);
+
+            $resultado = $stmt->fetch();
+        }
+        return $empleados;
+    }
+
 }

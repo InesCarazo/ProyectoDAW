@@ -1,5 +1,5 @@
 <?php
-
+require_once './model.php';
 function cerrarSesion(){
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php';
     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/login.php';
@@ -155,8 +155,45 @@ function formAddEmpleados($tipoForm){
 return $contenido;
 }
 
-function formShowEmpleados($tipoForm){
+function tablaVistaEmpleados(){
+    $tablaHTML= "<table id='tablaVistaEmpleados'>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Fecha de nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>";
+    $model = new modelClass();
+    $empleados = $model->verEmpleados();
+    foreach ($empleados as $value) {
+        $tablaHTML.= "
+    <tr>
+        <td>
+            <input class='radio' type='radio' name='optradio' checked>
+        </td>
+        <td>" . $value->getNombre() . "</td>
+        <td>" . $value->getApellidos() . "</td>
+        <td>" . $value->getTelefono() . "</td>
+        <td>" . $value->getCorreo() . "</td>
+        <td>" . $value->getFechaNacimiento() . "</td>
+    </tr>";
+    }
+    $tablaHTML.= "</tbody>
+</table>";
+return $tablaHTML;
+}
 
+function formShowEmpleados($tipoForm){
+    
+$contenido ="" . 
+tablaVistaEmpleados()
+ . "";
+return $contenido;
 }
 
 function formModifyEmpleados($tipoForm){
@@ -248,9 +285,44 @@ function menuEmpleados($tipoGestion){
 }
 
 
+function tablaVistaClientes(){
+    $tablaHTML= "<table id='tablaVista'>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Fecha de nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>";
+    $model = new modelClass();
+    $clientes = $model->verClientes();
+    foreach ($clientes as $value) {
+        $tablaHTML.= "
+    <tr>
+        <td>
+            <input class='radio' type='radio' name='optradio' checked>
+        </td>
+        <td>" . $value->getNombre() . "</td>
+        <td>" . $value->getApellidos() . "</td>
+        <td>" . $value->getTelefono() . "</td>
+        <td>" . $value->getCorreo() . "</td>
+        <td>" . $value->getFechaNacimiento() . "</td>
+    </tr>";
+    }
+    $tablaHTML.= "</tbody>
+</table>";
+return $tablaHTML;
+}
+
 function formShowClientes($tipoForm){
-    $contenido = "";
-    return $contenido;
+$contenido ="" . 
+tablaVistaClientes()
+ . "";
+return $contenido;
 }
 
 function formModifyClientes($tipoForm){
