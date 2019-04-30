@@ -6,11 +6,11 @@ El dominio para navegar el sitio es: http://aglinformatica.es:6080/tu_nombre_usu
 
 Acceso SFTP:
 
-·  Servidor: aglinformatica.es
-·   Puerto = 6022
+ï¿½  Servidor: aglinformatica.es
+ï¿½   Puerto = 6022
 - Protocolo: SFTP
 - Usuario:  tu usuario
-- Contraseña:  tu clave
+- ContraseÃ±a:  tu clave
 Fijate que el protocolo es sftp (no ftp simple)
 
 phpmyadmin:
@@ -19,6 +19,6 @@ http://aglinformatica.es:6080/phpmyadmin
 Las credenciaes de acceso:
 
 - Usuario:  tu usuario
-- Contraseña:  tu clave
+- Contraseï¿½a:  tu clave
 
 - BBDD: 2018p_tu usuario
