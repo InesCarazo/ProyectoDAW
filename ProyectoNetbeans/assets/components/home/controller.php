@@ -2,7 +2,7 @@
 
 function cerrarSesion(){
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/ProyectoNetbeans/assets/components/login/login.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/login.php';
     header("Location: $url"); 
 }
 
@@ -34,10 +34,6 @@ function tipoMenuGestion($tipoGestion){
         case 'tareas':
         return menuTareas($tipoGestion);
             break;
-        // case 'pagos':
-        // return menuPagos($tipoGestion);
-        //     break;
-        
     }
 }
 
