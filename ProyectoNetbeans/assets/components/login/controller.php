@@ -1,5 +1,6 @@
 <?php
 require_once './model.php';
+
 session_start();
 
 if (!isset($_SESSION['logueado'])) {
@@ -16,6 +17,7 @@ function loginCorrecto($usuario, $contrasena)
     if($result)
     {          
         $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+        //$url= 'http://aglinformatica.es:6080/icarazo/ProyectoNetbeans/assets/components/home/';
         header("Location: $url"); 
         echo "OK";
     }

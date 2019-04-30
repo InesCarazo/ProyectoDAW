@@ -1,5 +1,6 @@
 <?php
 require_once './model.php';
+
 session_start();
 
 
@@ -14,8 +15,8 @@ function registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, 
     }
     $modelClass = new modelClass();
     $modelClass->registro($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
-              
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/';
+    //$url= 'http://aglinformatica.es:6080/icarazo/ProyectoNetbeans/assets/components/home/';
         header("Location: $url"); 
         //echo "OK";
 

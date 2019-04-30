@@ -35,7 +35,7 @@
                         <li><a href="?gestion=clientes" name="clientes">Clientes</a></li>
                         <li><a href="?gestion=casas" name="casas">Casas</a></li>
                         <li><a href="?gestion=tareas" name="tareas">Tareas</a></li>
-                        <li><a href="?gestion=pagos" name="pagos">Pagos</a></li>
+                        <!-- <li><a href="?gestion=pagos" name="pagos">Pagos</a></li> -->
                     </ul>
                 </li>
                 <li>
@@ -49,7 +49,7 @@
         </nav>
         <div id='content'>
 
-<nav class='navbar navbar-default'>
+    <nav class='navbar navbar-default'>
     <div class='container-fluid'>
 
         <div class='navbar-header'>
@@ -83,7 +83,14 @@ if (isset($_GET['empleado'])) {
     $tipoForm = $_GET['empleado'];
     echo tipoFormEmpleados($tipoForm);
 }
-
+if (isset($_GET['cliente'])) {
+    $tipoForm = $_GET['cliente'];
+    echo tipoFormClientes($tipoForm);
+}
+if (isset($_GET['casa'])) {
+    $tipoForm = $_GET['casa'];
+    echo tipoFormCasas($tipoForm);
+}
 ?>
 
 
