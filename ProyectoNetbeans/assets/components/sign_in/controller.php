@@ -15,8 +15,8 @@ function registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, 
     }
     $modelClass = new modelClass();
     $modelClass->registro($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/login.php';
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
         header("Location: $url"); 
         //echo "OK";
 

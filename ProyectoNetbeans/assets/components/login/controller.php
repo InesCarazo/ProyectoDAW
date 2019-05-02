@@ -16,8 +16,8 @@ function loginCorrecto($usuario, $contrasena)
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {          
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/home.php';
-        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/home.php';
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
+        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
         header("Location: $url"); 
         echo "OK";
     }

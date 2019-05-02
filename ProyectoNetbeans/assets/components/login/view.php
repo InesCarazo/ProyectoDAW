@@ -36,7 +36,6 @@ if (isset($_POST['login'])) {
         <div class="main">
             <div class="col-md-8 col-sm-12">
                 <div class="login-form">
-                    <!-- <form method="POST" action="./../home/home.html"> -->
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <h2 class="text-center text-uppercase">login</h2>
                         <div class="form-group">
@@ -50,7 +49,7 @@ if (isset($_POST['login'])) {
                         <button id="boton" type="submit" name="login" class="btn btn-black">Login</button>
 
                     </form>
-                    <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in/sign_in.php">REGÍSTRATE</a></h4>
+                    <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in/view.php">REGÍSTRATE</a></h4>
                 </div>
             </div>
         </div>

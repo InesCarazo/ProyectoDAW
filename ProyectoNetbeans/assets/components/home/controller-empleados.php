@@ -52,7 +52,7 @@ if (isset($_POST['modificar']))
     $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
 }
 
-function formAddEmpleados($tipoForm)
+function formAddEmpleados()
 {
     $contenido = "<form method='POST' class='contenido-home'>
     <div class='row'>
@@ -160,14 +160,14 @@ function tablaVistaEmpleados(){
 return $tablaHTML;
 }
 
-function formShowEmpleados($tipoForm){
+function formShowEmpleados(){
 $contenido ="" . 
 tablaVistaEmpleados()
  . "";
 return $contenido;
 }
 
-function formModifyEmpleados($tipoForm, $id){
+function formModifyEmpleados($id){
     $_SESSION['idEmplSelect']= $id;
     $model2 = new modelClass();
     $empleado = $model2->buscarEmpleado($id);
@@ -176,7 +176,7 @@ function formModifyEmpleados($tipoForm, $id){
         <div class='row'>
         <div class='form-group'>
             <label for='id' class='control-label col-md-4'>Id</label>
-            <input type='text' id='id' name='modifyId' value='$id' class='col-md-8 control-label' disabled>
+            <label type='text' id='id' name='modifyId' class='col-md-8 control-label'>$id</label
         </div>
         <div class='form-group'>
             <label for='usuario' class='control-label col-md-4'>Usuario</label>
@@ -259,8 +259,8 @@ function menuEmpleados($tipoGestion){
               
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
-        <li><a href='?empleado=anadir'>Añadir</a></li>
         <li><a href='?empleado=ver'>Ver</a></li>
+        <li><a href='?empleado=anadir'>Añadir</a></li>
         <!--<li><a href='?empleado=modificar'>Modificar</a></li> -->
         <li><a href='?empleado=tareas'>Tareas</a></li>
         <li><a href='?empleado=pagos'>Pagos</a></li>

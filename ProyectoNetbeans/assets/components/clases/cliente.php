@@ -1,5 +1,5 @@
 <?php
-require_once 'Usuario.php';
+require_once 'usuario.php';
 class Cliente extends Usuario{
     private $P_cliente;
     private $formaPago;

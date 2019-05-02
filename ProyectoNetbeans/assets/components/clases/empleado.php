@@ -1,5 +1,5 @@
 <?php
-require_once 'Usuario.php';
+require_once 'usuario.php';
 class Empleado extends Usuario{
     private $P_empleado;
     private $nSS;

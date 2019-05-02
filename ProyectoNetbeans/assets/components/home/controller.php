@@ -5,6 +5,7 @@ session_start();
 require_once './model.php';
 require_once './controller-empleados.php';
 require_once './controller-clientes.php';
+require_once './controller-casas.php';
 
 
 
@@ -48,17 +49,17 @@ function tipoMenuGestion($tipoGestion){
 function tipoFormEmpleados($tipoForm){
     switch ($tipoForm) {
         case 'anadir':
-           return menuEmpleados("empleados") . formAddEmpleados($tipoForm) . "</div>";
+           return menuEmpleados("empleados") . formAddEmpleados() . "</div>";
            
             break;
         case 'ver':
-        return menuEmpleados("empleados") . formShowEmpleados($tipoForm) . "</div>";
+        return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
             break;
         case 'modificar':
             if (isset($_POST['btnradio'])) 
             {
                 $id = $_POST['btnradio'];
-                return menuEmpleados("empleados") . formModifyEmpleados($tipoForm, $id) . "</div>";
+                return menuEmpleados("empleados") . formModifyEmpleados($id) . "</div>";
             }
             else
             {
@@ -79,11 +80,20 @@ function tipoFormEmpleados($tipoForm){
 function tipoFormClientes($tipoForm){
     switch ($tipoForm) {
         case 'ver':
-           return menuClientes("clientes") . formShowClientes($tipoForm) . "</div>";
+           return menuClientes("clientes") . formShowClientes() . "</div>";
            
             break;
         case 'modificar':
-        return menuClientes("clientes") . formModifyClientes($tipoForm) . "</div>";
+            if (isset($_POST['btnRadioCli'])) 
+            {
+                $id = $_POST['btnRadioCli'];
+                return menuClientes("clientes") . formModifyClientes($id) . "</div>";
+            }
+            else
+            {
+                $message = "Tienes que seleccionar un cliente para poder editar";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
             break;
         case 'pagos':
             return menuClientes("clientes") . formPagosClientes($tipoForm) . "</div>";
@@ -93,48 +103,29 @@ function tipoFormClientes($tipoForm){
 
 function tipoFormCasas($tipoForm){
     switch ($tipoForm) {
-        case 'anadir':
-            return menuCasas("casas") . formAddCasas($tipoForm) . "</div>";
+        case 'ver':
+           return menuCasas("casas") . formShowCasas() . "</div>";
             break;
-        case 'mostrar':
-           return menuCasas("casas") . formShowCasas($tipoForm) . "</div>";
-           
+        case 'anadir':
+            return menuCasas("casas") . formAddCasas() . "</div>";
             break;
         case 'modificar':
-        return menuCasas("casas") . formModifyCasas($tipoForm) . "</div>";
+            if (isset($_POST['btnRadioCasa'])) 
+            {
+                $id = $_POST['btnRadioCasa'];
+                return menuCasas("casas") . formModifyCasas($id) . "</div>";
+            }
+            else
+            {
+                $message = "Tienes que seleccionar una casa para poder editar";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+           
+            break;
+        case 'casa-cliente':
+            return menuCasas("casas") . formCasaCliente($tipoForm) . "</div>";
             break;
     }
-}
-
-
-
-function formAddCasas($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
-function formShowCasas($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
-function formModifyCasas($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
-function menuCasas($tipoGestion){
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-    <ul class='nav navbar-nav navbar-right'>
-        <li><a>". strtoupper($tipoGestion) ."</a></li>
-        <li><a href='?casa=anadir'>Añadir</a></li>
-        <li><a href='?casa=mostrar'>Mostrar</a></li>
-        <li><a href='?casa=modificar'>Modificar</a></li>
-    </ul>
-</div>
-</div>
-</nav>";
-    return $contenido;
 }
 
 function menuTareas($tipoGestion){
