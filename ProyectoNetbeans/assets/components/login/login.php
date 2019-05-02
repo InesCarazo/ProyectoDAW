@@ -45,7 +45,7 @@ if (isset($_POST['login'])) {
                         </div>
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" name="contrasena" class="form-control" placeholder="Contraseña">
+                            <input type="password" name="contrasena" class="form-control" placeholder="*********">
                         </div>
                         <button id="boton" type="submit" name="login" class="btn btn-black">Login</button>
 

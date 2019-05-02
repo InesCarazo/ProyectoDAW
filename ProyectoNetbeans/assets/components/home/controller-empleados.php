@@ -1,60 +1,113 @@
 <?php
+require_once './model.php';
 
-function formAddEmpleados($tipoForm){
+
+//session_start();
+
+if (isset($_POST['addEmpleado'])) 
+{
+    $addUsuario = $_POST['addUsuario'];
+    $addContrasena = $_POST['addContrasena'];
+    $addNombre = $_POST['addNombre'];
+    $addApellidos = $_POST['addApellidos'];
+    $addTelefono = $_POST['addTelefono'];
+    $addCorreo = $_POST['addCorreo'];
+    $addFnacimiento = $_POST['addFnacimiento'];
+    $addNss = $_POST['addNss'];
+    $addAdmin = '';
+    if($_POST['addAdmin'] == 1)
+    {
+        $addAdmin = 1;
+    }
+    else
+    {
+        $addAdmin=0;
+    }
+    $modelClass = new modelClass();
+    $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
+
+}
+
+if (isset($_POST['modificar'])) 
+{
+    $id = $_SESSION['idEmplSelect'];
+    $modifyUsuario = $_POST['modifyUsuario'];
+    $modifyContrasena = $_POST['modifyContrasena'];
+    $modifyNombre = $_POST['modifyNombre'];
+    $modifyApellidos = $_POST['modifyApellidos'];
+    $modifyTelefono = $_POST['modifyTelefono'];
+    $modifyCorreo = $_POST['modifyCorreo'];
+    $modifyFnacimiento = $_POST['modifyFnacimiento'];
+    $modifyNss = $_POST['modifyNss'];
+    $modifyAdmin = '';
+    if($_POST['modifyAdmin'] == 'admin')
+    {
+        $modifyAdmin = 1;
+    }
+    else
+    {
+        $modifyAdmin=0;
+    }
+    $modelClass = new modelClass();
+    $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
+}
+
+function formAddEmpleados($tipoForm)
+{
     $contenido = "<form method='POST' class='contenido-home'>
     <div class='row'>
     <div class='form-group'>
         <label for='usuario' class='control-label col-md-4'>Usuario</label>
         <div class='col-md-8'>
-            <input id='usuario' name='usuario' placeholder='usuario' type='text' required='required' class='form-control'>
+            <input id='usuario' name='addUsuario' placeholder='usuario' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
         <div class='col-md-8'>
-            <input id='contrasena' name='contrasena' type='password' required='required' class='form-control'>
+            <input id='contrasena' name='addContrasena' type='password' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='nombre' class='control-label col-md-4'>Nombre</label>
         <div class='col-md-8'>
-            <input id='nombre' name='nombre' placeholder='nombre' type='text' required='required' class='form-control'>
+            <input id='nombre' name='addNombre' placeholder='nombre' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
         <div class='col-md-8'>
-            <input id='apellidos' name='apellidos' placeholder='apellidos' type='text' class='form-control'>
+            <input id='apellidos' name='addApellidos' placeholder='apellidos' type='text' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='telefono' class='control-label col-md-4'>Telefono</label>
         <div class='col-md-8'>
-            <input id='telefono' name='telefono' placeholder='658974125' type='number' required='required' class='form-control'>
+            <input id='telefono' name='addTelefono' placeholder='658974125' type='number' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='correo' class='control-label col-md-4'>Correo</label>
         <div class='col-md-8'>
-            <input id='correo' name='correo' placeholder='correo@correo.es' type='email' required='required' class='form-control'>
+            <input id='correo' name='addCorreo' placeholder='correo@correo.es' type='email' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
         <div class='col-md-8'>
-            <input id='fnacimiento' name='fnacimiento' type='date' required='required' class='form-control'>
+            <input id='fnacimiento' name='addFnacimiento' type='date' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='nss' class='control-label col-md-4'>Nº SS</label>
         <div class='col-md-8'>
-            <input id='nss' name='nss' type='text' required='required' class='form-control'>
+            <input id='nss' name='addNss' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
     <label for='admin' class='control-label col-md-4'>Administrador</label> 
     <div class='col-md-8'>
-        <input type='checkbox' name='admin' value='admin' checked='checked'>
+        <input type='checkbox' name='addAdmin' value='1' checked='checked'>
     </div>
   </div> 
     <div class='form-group'>
@@ -115,81 +168,81 @@ return $contenido;
 }
 
 function formModifyEmpleados($tipoForm, $id){
+    $_SESSION['idEmplSelect']= $id;
     $model2 = new modelClass();
     $empleado = $model2->buscarEmpleado($id);
-        // echo $empleado->getNombre();
-    $contenido = "
-    <form method='POST' action='?empleado=ver'  class='contenido-home'>
-    <div class='row'>
-    <div class='form-group'>
-        <label for='id' class='control-label col-md-4'>Id</label>
-        <label id='id' name='id' class='col-md-8 control-label'>$id</label>
-    </div>
-    <div class='form-group'>
-        <label for='usuario' class='control-label col-md-4'>Usuario</label>
-        <div class='col-md-8'>
-            <input id='usuario' name='usuario' placeholder='usuario' type='text' required='required' value='". $empleado->getUsuario() ."' class='form-control'>
+        
+    $contenido = "<form method='POST' action='?gestion=empleados' class='contenido-home'>
+        <div class='row'>
+        <div class='form-group'>
+            <label for='id' class='control-label col-md-4'>Id</label>
+            <input type='text' id='id' name='modifyId' value='$id' class='col-md-8 control-label' disabled>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
-        <div class='col-md-8'>
-            <input id='contrasena' name='contrasena' type='password' required='required' value='". $empleado->getContrasena() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='usuario' class='control-label col-md-4'>Usuario</label>
+            <div class='col-md-8'>
+                <input id='usuario' name='modifyUsuario' placeholder='usuario' type='text' required='required' value='". $empleado->getUsuario() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='nombre' class='control-label col-md-4'>Nombre</label>
-        <div class='col-md-8'>
-            <input id='nombre' name='nombre' placeholder='nombre' type='text' required='required' value='". $empleado->getNombre() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
+            <div class='col-md-8'>
+                <input id='contrasena' name='modifyContrasena' type='password' required='required' value='". $empleado->getContrasena() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
-        <div class='col-md-8'>
-            <input id='apellidos' name='apellidos' placeholder='apellidos' type='text' value='". $empleado->getApellidos() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='nombre' class='control-label col-md-4'>Nombre</label>
+            <div class='col-md-8'>
+                <input id='nombre' name='modifyNombre' placeholder='nombre' type='text' required='required' value='". $empleado->getNombre() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='telefono' class='control-label col-md-4'>Telefono</label>
-        <div class='col-md-8'>
-            <input id='telefono' name='telefono' placeholder='658974125' type='number' required='required' value='". $empleado->getTelefono() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
+            <div class='col-md-8'>
+                <input id='apellidos' name='modifyApellidos' placeholder='apellidos' type='text' value='". $empleado->getApellidos() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='correo' class='control-label col-md-4'>Correo</label>
-        <div class='col-md-8'>
-            <input id='correo' name='correo' placeholder='correo@correo.es' type='email' required='required' value='". $empleado->getCorreo() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='telefono' class='control-label col-md-4'>Telefono</label>
+            <div class='col-md-8'>
+                <input id='telefono' name='modifyTelefono' placeholder='658974125' type='number' required='required' value='". $empleado->getTelefono() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
-        <div class='col-md-8'>
-            <input id='fnacimiento' name='fnacimiento' type='date' required='required' value='". $empleado->getFechaNacimiento() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='correo' class='control-label col-md-4'>Correo</label>
+            <div class='col-md-8'>
+                <input id='correo' name='modifyCorreo' placeholder='correo@correo.es' type='email' required='required' value='". $empleado->getCorreo() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label for='nss' class='control-label col-md-4'>Nº SS</label>
-        <div class='col-md-8'>
-            <input id='nss' name='nss' type='text' required='required' value='". $empleado->getnSS() ."' class='form-control'>
+        <div class='form-group'>
+            <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
+            <div class='col-md-8'>
+                <input id='fnacimiento' name='modifyFnacimiento' type='date' required='required' value='". $empleado->getFechaNacimiento() ."' class='form-control'>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-    <label for='admin' class='control-label col-md-4'>Administrador</label> 
-    <div class='col-md-8'>"; 
+        <div class='form-group'>
+            <label for='nss' class='control-label col-md-4'>Nº SS</label>
+            <div class='col-md-8'>
+                <input id='nss' name='modifyNss' type='text' required='required' value='". $empleado->getnSS() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+        <label for='admin' class='control-label col-md-4'>Administrador</label> 
+        <div class='col-md-8'> "; 
 
     if ($empleado->getIsAdmin() == 1) 
     {
-        $contenido.= "<input type='checkbox' name='admin' value='admin' checked>";   
+        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin' checked>";   
     }
     else
     {
-        $contenido.= "<input type='checkbox' name='admin' value='admin'>"; 
+        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin'>"; 
     }
     $contenido.="</div>
   </div> 
     <div class='form-group'>
         <div class='ccol-md-offset-9 col-md-3''>
-        <button  id='modEmpleado'  name='modEmpleado' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
+        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
         </div>
     </div>
     </div>
@@ -208,7 +261,7 @@ function menuEmpleados($tipoGestion){
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?empleado=anadir'>Añadir</a></li>
         <li><a href='?empleado=ver'>Ver</a></li>
-        <li><a href='?empleado=modificar'>Modificar</a></li> 
+        <!--<li><a href='?empleado=modificar'>Modificar</a></li> -->
         <li><a href='?empleado=tareas'>Tareas</a></li>
         <li><a href='?empleado=pagos'>Pagos</a></li>
     </ul>
