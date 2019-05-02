@@ -1,35 +1,42 @@
 <?php 
 function tablaVistaClientes(){
-    $tablaHTML= "<div id='tablaVista' class='row contenido-home'>
-    <table class='contenido-tabla'>
-    <thead>
-    <tr>
-        <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
-        <th class='text-center'>Nombre</th>
-        <th class='text-center'>Apellidos</th>
-        <th class='text-center'>Telefono</th>
-        <th class='text-center'>Correo</th>
-        <th class='text-center'>Fecha de nacimiento</th>
-    </tr>
-    </thead>
-    <tbody>";
+    $tablaHTML= "<div id='tablaVista' class='container-fluid'>
+    <form method='POST' action='?cliente=modificar'>
+        <table class='row table-bordered table-hover table-responsive'>
+            <thead>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th class='text-center'>Nombre</th>
+                    <th class='text-center'>Apellidos</th>
+                    <th class='text-center'>Telefono</th>
+                    <th class='text-center'>Correo</th>
+                    <th class='text-center'>Fecha de nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>";
     $model = new modelClass();
     $clientes = $model->verClientes();
     foreach ($clientes as $value) {
         $tablaHTML.= "
-    <tr>
-        <td>
-            <input class='radio' type='radio' name='optradio' checked>
-        </td>
-        <td class='text-center'>" . $value->getNombre() . "</td>
-        <td class='text-center'>" . $value->getApellidos() . "</td>
-        <td class='text-center'>" . $value->getTelefono() . "</td>
-        <td class='text-center'>" . $value->getCorreo() . "</td>
-        <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
-    </tr>";
+        <tr>
+            <td>
+                <input class='radio' type='radio' name='optradio' checked>
+            </td>
+            <td class='text-center'>" . $value->getNombre() . "</td>
+            <td class='text-center'>" . $value->getApellidos() . "</td>
+            <td class='text-center'>" . $value->getTelefono() . "</td>
+            <td class='text-center'>" . $value->getCorreo() . "</td>
+            <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
+        </tr>";
     }
     $tablaHTML.= "</tbody>
-</table>";
+    </table>
+
+    <div class='col-md-offset-10 col-md-3'>
+        <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn'>Modificar</button>
+    </div>
+</form>
+</div>";
 return $tablaHTML;
 }
 

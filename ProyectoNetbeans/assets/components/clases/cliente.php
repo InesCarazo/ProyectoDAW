@@ -1,9 +1,9 @@
 <?php
 require_once 'Usuario.php';
-class Empleado extends Usuario{
-    private $P_empleado;
-    private $nSS;
-    private $isAdmin;
+class Cliente extends Usuario{
+    private $P_cliente;
+    private $formaPago;
+    private $nCuenta;
     private $A_usuario;
 
     public function __construct($row) {
@@ -17,35 +17,35 @@ class Empleado extends Usuario{
         $this->correo = $row["correo"];
         $this->fechaNacimiento = $row["fechaNacimiento"];
         $this->rol = $row["rol"];
-        $this->P_empleado = $row["P_empleado"];
-        $this->nSS = $row["nSS"];
-        $this->isAdmin = $row["isAdmin"];
+        $this->P_cliente = $row["P_cliente"];
+        $this->formaPago = $row["formaPago"];
+        $this->nCuenta = $row["nCuenta"];
         $this->A_usuario = $row["A_usuario"];
 
     }
 
-    public function setP_empleado($P_empleado){
-        $this->P_empleado = $P_empleado;
+    public function setP_cliente($P_cliente){
+        $this->P_cliente = $P_cliente;
     }
     
-    public function getP_empleado(){
-        return $this->P_empleado;
+    public function getP_cliente(){
+        return $this->P_cliente;
     }
 
-    public function setnSS($nSS){
-        $this->nSS = $nSS;
+    public function setFormaPago($formaPago){
+        $this->formaPago = $formaPago;
     }
     
-    public function getnSS(){
-        return $this->nSS;
+    public function getFormaPago(){
+        return $this->formaPago;
     }
 
-    public function setIsAdmin($isAdmin){
-        $this->isAdmin = $isAdmin;
+    public function setnCuenta($nCuenta){
+        $this->nCuenta = $nCuenta;
     }
     
-    public function getIsAdmin(){
-        return $this->isAdmin;
+    public function getnCuenta(){
+        return $this->nCuenta;
     }
 
     public function setA_usuario($A_usuario){
