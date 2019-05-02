@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2019 a las 15:46:29
+-- Tiempo de generación: 02-05-2019 a las 17:19:55
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -96,6 +96,7 @@ CREATE TABLE `casa` (
   `P_casa` int(11) NOT NULL,
   `sice` int(4) DEFAULT NULL,
   `direccion` varchar(200) NOT NULL,
+  `ciudad` varchar(40) NOT NULL,
   `hasFurniture` tinyint(4) NOT NULL,
   `A_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -104,13 +105,14 @@ CREATE TABLE `casa` (
 -- Volcado de datos para la tabla `casa`
 --
 
-INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `hasFurniture`, `A_cliente`) VALUES
-(1, 0, '', 1, 1),
-(2, 0, '', 0, 2),
-(3, 0, '', 1, 3),
-(4, 0, '', 0, 4),
-(5, 0, '', 1, 4),
-(7, 0, '', 0, 1);
+INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `ciudad`, `hasFurniture`, `A_cliente`) VALUES
+(1, 170, 'Calle de la Piruleta, 2', 'Leon', 1, 1),
+(2, 180, 'Calle Mendoza, 56', 'Palencia', 0, 2),
+(3, 190, 'Calle Bolero, 80', 'Santander', 1, 3),
+(4, 200, 'Paseo Tinamús, 267 2ºE', 'Bilbao', 0, 4),
+(5, 210, 'Avenida Pintor Sorolla, 125 4ºG', 'Málaga', 1, 4),
+(7, 222, 'Calle Altamirano, 8 4ºD', 'Madrid', 0, 1),
+(8, 111, 'Paseo Tinamús, 267 2ºE', 'Madrid', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,8 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 (1, 'TARJETA', '', 1),
 (2, 'BANCO', '', 2),
 (3, 'TARJETA', '', 3),
-(4, 'BANCO', '', 4);
+(4, 'BANCO', '', 4),
+(5, 'BANCO', '321364', 11);
 
 -- --------------------------------------------------------
 
@@ -153,11 +156,12 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`P_empleado`, `nSS`, `isAdmin`, `A_usuario`) VALUES
-(1, '', 0, 5),
-(2, '', 0, 6),
-(3, '', 0, 7),
-(4, '', 0, 8),
-(5, '', 1, 9);
+(1, '111222333', 0, 5),
+(2, '44555666', 0, 6),
+(3, '777888999', 0, 7),
+(4, '111555999', 0, 8),
+(5, '333555777', 1, 9),
+(6, '12341234', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -342,15 +346,17 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellidos`, `telefono`, `correo`, `fechaNacimiento`, `rol`) VALUES
-(1, 'jagima', 'jagima12_*', 'Jacinto', 'Girasol Margarito', 655224494, 'jagima_thebest@hotmail.com', '2001-04-15', 'CLIENTE'),
-(2, 'mar123', 'DWES19', 'Mari', 'Iborra Ipinta', 658974216, 'chachimari@gmail.com', '1953-02-03', 'CLIENTE'),
-(3, 'johnypower', 'john82', 'Johny', 'Mentero Nilavo', 658742136, 'johnypower@outlook.es', '1982-11-13', 'CLIENTE'),
+(1, 'jagima', '0c176616d052eac44a98d77a6c4410a7', 'Jacinto', 'Girasol Margarito', 655224494, 'jagima_thebest@hotmail.com', '2001-04-15', 'CLIENTE'),
+(2, 'mar123', '62377a725ac3474427341e3a52b4e5a8', 'Mari', 'Iborra Ipinta', 658974216, 'chachimari@gmail.com', '1953-02-03', 'CLIENTE'),
+(3, 'johnypower', '62377a725ac3474427341e3a52b4e5a8', 'Johny', 'Mentero Nilavo', 658742136, 'johnypower@outlook.es', '1982-11-13', 'CLIENTE'),
 (4, 'chachiagl', 'amazonbasi', 'Augusta', 'González Linares', 653245865, 'conceptronic@gmail.com', '1938-09-13', 'CLIENTE'),
-(5, 'ignacio1', 'SoyIgnacio', 'Ignacio', 'Fernández Ortiz', 0, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
-(6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', 0, 'anaCasado@gmail.com', '1997-09-02', 'EMPLEADO'),
-(7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 0, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
-(8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 0, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
-(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 0, 'antoniosierra@gmail.com', '0000-00-00', 'EMPLEADO');
+(5, 'ignacio1', 'SoyIgnacio', 'Ignacio', 'Fernández Ortiz', 256652623, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
+(6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
+(7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
+(8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
+(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
+(10, '1234', '1234', 'Test', 'test', 12341234, 'test@gmail.com', '2019-04-04', 'EMPLEADO'),
+(11, 'TestCli', '56a7f6f421344e9d8d1ab6c0131eb5e9', 'TestCli', 'TestCli', 111222333, 'TestCli@TestCli.es', '2019-04-22', 'CLIENTE');
 
 --
 -- Índices para tablas volcadas
@@ -473,19 +479,19 @@ ALTER TABLE `beacon`
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
-  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
@@ -527,7 +533,7 @@ ALTER TABLE `tipo_tarea`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
