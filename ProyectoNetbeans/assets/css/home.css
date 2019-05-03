@@ -260,3 +260,7 @@ ul.CTAs a {
 #modificarEmpleado {
     margin-top: 5%;
 }
+
+.table-hover>tbody>tr:hover {
+    background-color: #ec98b03d
+}

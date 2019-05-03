@@ -2,3 +2,4 @@ Controller login	1
 Controller signin	1
 Controller home		1
 Conexion		1
+index.php		1

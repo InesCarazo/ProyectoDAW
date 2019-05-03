@@ -77,15 +77,27 @@ class modelClass {
     //CLIENTES
     function verClientes() 
     {
-    require_once './../conexion/conexion.php';
-        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.rol='CLIENTE'");
+    //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
+    $stmt = $conn->prepare("SELECT * FROM usuario u, cliente c WHERE u.P_Usuario = c.A_usuario AND u.rol='CLIENTE'");
         $stmt->execute();
         $clientes = Array();
         $resultado = $stmt->fetch();
 
         while ($resultado != null) 
         {
-            $cliente = new Usuario($resultado);
+            $cliente = new Cliente($resultado);
+            //print_r($cliente);
+
             array_push($clientes, $cliente);
 
             $resultado = $stmt->fetch();
@@ -144,6 +156,7 @@ class modelClass {
         }
         return $casas;
     }
+
 
     function buscarCasa($id) {   
         require_once './../conexion/conexion.php';
