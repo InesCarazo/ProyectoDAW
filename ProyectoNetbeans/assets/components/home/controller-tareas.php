@@ -99,7 +99,7 @@ function formModifyTareas($id){
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='modifyComentarios' type='text' class='form-control' required='required'>". $tarea->getComentarios() ."</textarea>
+                <textarea id='Comentarios' name='modifyComentarios' type='text' class='form-control'>". $tarea->getComentarios() ."</textarea>
             </div>
         </div>
         <div class='form-group row'>
@@ -137,7 +137,7 @@ function formAddTareas(){
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control' required='required'></textarea>
+                <textarea id='Comentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control'></textarea>
             </div>
         </div>
         <div class='form-group row'>
