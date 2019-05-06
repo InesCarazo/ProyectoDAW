@@ -39,7 +39,7 @@ if (isset($_POST['registro'])) {
         </div>
     </div>
     <div class="main no-margin no-padding">
-        <div class="col-md-8 col-sm-12  no-margin no-padding">
+        <div class="col-md-8 col-sm-12 col-xs-12  no-margin no-padding">
             <h3 class="text-center text-uppercase">Registro - Nuevo cliente</h3>
             <div class="login-form no-margin no-padding">
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">

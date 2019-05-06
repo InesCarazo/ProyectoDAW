@@ -32,8 +32,10 @@ if (isset($_POST['addCasa']))
         $addHasForniture  = 0;
     }
     $addSice = $_POST['addSice'];
+    $cliente = $_POST['chooseClient'];
+
     $modelClass = new modelClass();
-    $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice);
+    $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
 
 }
 
@@ -42,20 +44,20 @@ function generarSelectClientesAdd(){
     $clientes = $modelClass->verClientes();
     foreach ($clientes as $key => $value) 
     {
-    $contenido ="
-    <div class='form-group row'>
-    <label for='chooseClient' class='control-label col-md-4'>Cliente</label>
-        <div class='col-md-8'>
-            <select name='chooseClient' class='form-control'>";
-            foreach ($clientes as $key => $value2)
+        $contenido ="
+        <div class='form-group row'>
+        <label for='chooseClient' class='control-label col-md-4'>Cliente</label>
+            <div class='col-md-8'>
+                <select name='chooseClient' class='form-control'>";
+                foreach ($clientes as $key => $value2)
                 {
-                    $contenido.= "<option id='chooseClient' name='modifychooseClient' class='form-control'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
-            }
-                $contenido.="
-            </select>
-        </div>
-    </div>";
-}
+                        $contenido.= "<option id='chooseClient' name='chooseClient' class='form-control' value='" . $value2->getP_cliente() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                }
+            $contenido.="
+                </select>
+            </div>
+        </div>";
+    }
     return $contenido;
 }
 
@@ -77,7 +79,7 @@ function formAddCasas(){
         <div class='form-group row'>
             <label for='hasForniture' class='control-label col-md-4'>Electrodomésticos</label>
             <div class='col-md-8'>
-                <input type='checkbox' id='hasForniture' name='addHasForniture' class='checkbox checkbox-inline form-control'>
+                <input type='checkbox' id='hasForniture' name='addHasForniture' class='checkbox checkbox-inline form-control-static'>
             </div>
         </div>
         <div class='form-group row'>
@@ -137,8 +139,8 @@ function tablaVistaCasas(){
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
 
-        <div class='col-md-offset-10 col-md-3 row'>
-            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn'>Modificar</button>
+        <div class='col-md-offset-8 col-md-4 row'>
+            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn'>Modificar Casa</button>
         </div>
     </form>
 </div>";
@@ -212,10 +214,10 @@ function formModifyCasas($id){
             <div class='col-md-8'>";
                 if ($casa->getHasFurniture() == 1) 
                 {
-                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='1' class='checkbox checkbox-inline form-control' checked>";
+                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='1' class='checkbox form-control-static' checked>";
                 }
                 else{
-                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='0' class='checkbox checkbox-inline form-control'>";
+                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='0' class='checkbox checkbox-inline form-control-static'>";
                 }
                 $contenido.="
             </div>
@@ -228,7 +230,7 @@ function formModifyCasas($id){
         </div>". generarSelectClientesModify($casa->getA_cliente()) .
         "
         <div class='form-group row'>
-            <div class='col-md-offset-10 col-md-2'>
+            <div class='col-md-offset-9 col-md-3'>
                 <button id='modCasa' name='modCasa' type='submit' class='btn estilo-btn'>Modificar Casa</button>
             </div>
         </div>

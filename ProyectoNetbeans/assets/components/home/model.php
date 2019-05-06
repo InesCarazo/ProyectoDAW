@@ -4,6 +4,7 @@ require_once './../clases/usuario.php';
 require_once './../clases/empleado.php';
 require_once './../clases/cliente.php';
 require_once './../clases/casa.php';
+require_once './../clases/tipo_tarea.php';
 class modelClass {
     //EMPLEADOS
     function verEmpleados() {      
@@ -179,11 +180,83 @@ class modelClass {
             $stmt->execute();
         }
 
-        function addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice)
+        function addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente)
         {
             require_once './../conexion/conexion.php';
-            $stmt = $conn->prepare("INSERT INTO casa(sice, direccion, ciudad, hasFurniture, A_Cliente) VALUES ($addSice, '$addDireccion', '$addCiudad', $addHasForniture, 5)");
+            $stmt = $conn->prepare("INSERT INTO casa(sice, direccion, ciudad, hasFurniture, A_Cliente) VALUES ($addSice, '$addDireccion', '$addCiudad', $addHasForniture, $cliente)");
             $stmt->execute();
         }
     //CASAS
+
+    //TAREAS
+    function verTareas() 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM tarea t, tipo_tarea ti WHERE t.A_tipo_tarea = ti.P_tipo_tarea");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Tipo_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+
+    function buscarTarea($id) 
+    {   
+        require_once './../conexion/conexion.php';
+            $stmt = $conn->prepare("SELECT * FROM tarea t, tipo_tarea ti WHERE t.A_tipo_tarea = ti.P_tipo_tarea AND t.P_tarea = $id");
+            $stmt->execute();
+            $tarea = Array();
+            $resultado = $stmt->fetch();
+    
+            while ($resultado != null) 
+            {
+                $tarea = new Tipo_tarea($resultado);
+                
+                $resultado = $stmt->fetch();
+            }
+            return $tarea;
+    }
+
+    function addTarea($addTexto, $addDuracion, $addPrecio, $addComentario)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("INSERT INTO tipo_tarea(texto) VALUES ('$addTexto')");
+            $lastId = $conn->lastInsertId();
+            $conn->exec("INSERT INTO tarea(duracion_h, comentarios, precio, A_tipo_tarea) VALUES ($addDuracion, '$addComentario', $addPrecio, $lastId)");
+            $conn->commit();
+            
+        }
+        catch (Exception $e) 
+        {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+        }
+    }
+    function modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("UPDATE tipo_tarea ti SET texto='$modifyTexto' WHERE ti.P_tipo_tarea=$id");
+            $conn->exec("UPDATE tarea t SET t.duracion_h=$modifyDuracion, t.comentarios='$modifyComentario', t.precio=$modifyPrecio WHERE t.A_tipo_tarea=$id");
+            $conn->commit();
+            
+        }
+        catch (Exception $e) 
+        {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+        }
+    }
+    //TAREAS
 }

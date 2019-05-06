@@ -264,3 +264,26 @@ ul.CTAs a {
 .table-hover>tbody>tr:hover {
     background-color: #ec98b03d
 }
+
+.form-control:focus {
+    border: 1px solid #f16e94;
+    box-shadow: 0 0 0 0.2rem #f16e935d;
+}
+
+span#btnTextoSpan {
+    padding-top: 5%;
+    padding-right: 2%;
+}
+
+#progAddTarea {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.no-padding {
+    padding: 0%;
+}
+
+.no-margin {
+    margin: 0%;
+}

@@ -91,6 +91,10 @@ if (isset($_GET['casa'])) {
     $tipoForm = $_GET['casa'];
     echo tipoFormCasas($tipoForm);
 }
+if (isset($_GET['tarea'])) {
+    $tipoForm = $_GET['tarea'];
+    echo tipoFormTareas($tipoForm);
+}
 ?>
 
 

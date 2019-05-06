@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
             </div>
         </div>
         <div class="main">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="login-form">
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <h2 class="text-center text-uppercase">login</h2>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2019 a las 17:19:55
+-- Tiempo de generación: 06-05-2019 a las 16:55:16
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -106,13 +106,12 @@ CREATE TABLE `casa` (
 --
 
 INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `ciudad`, `hasFurniture`, `A_cliente`) VALUES
-(1, 170, 'Calle de la Piruleta, 2', 'Leon', 1, 1),
+(1, 170, 'Calle de la Piruleta, 2', 'León', 1, 1),
 (2, 180, 'Calle Mendoza, 56', 'Palencia', 0, 2),
 (3, 190, 'Calle Bolero, 80', 'Santander', 1, 3),
 (4, 200, 'Paseo Tinamús, 267 2ºE', 'Bilbao', 0, 4),
 (5, 210, 'Avenida Pintor Sorolla, 125 4ºG', 'Málaga', 1, 4),
-(7, 222, 'Calle Altamirano, 8 4ºD', 'Madrid', 0, 1),
-(8, 111, 'Paseo Tinamús, 267 2ºE', 'Madrid', 1, 5);
+(7, 222, 'Calle Altamirano, 8 4ºC', 'Madrid', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +247,7 @@ CREATE TABLE `tarea` (
   `P_tarea` int(11) NOT NULL,
   `duracion_h` int(11) DEFAULT NULL,
   `comentarios` varchar(100) NOT NULL,
-  `precio` float(10,2) NOT NULL,
+  `precio` int(2) NOT NULL,
   `A_tipo_tarea` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -257,15 +256,15 @@ CREATE TABLE `tarea` (
 --
 
 INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_tarea`) VALUES
-(1, 1, '', 0.00, 1),
-(2, 1, '', 0.00, 2),
-(3, 1, '', 0.00, 3),
-(4, 1, '', 0.00, 4),
-(5, 2, '', 0.00, 5),
-(6, 2, '', 0.00, 6),
-(7, 1, '', 0.00, 7),
-(8, 1, '', 0.00, 8),
-(9, 1, '', 0.00, 9);
+(1, 1, '', 10, 1),
+(2, 1, '', 10, 2),
+(3, 1, '', 15, 3),
+(4, 1, '', 10, 4),
+(5, 2, '', 20, 5),
+(6, 2, '', 25, 6),
+(7, 1, '', 25, 7),
+(8, 1, '', 10, 8),
+(9, 1, '', 15, 9);
 
 -- --------------------------------------------------------
 
@@ -479,7 +478,7 @@ ALTER TABLE `beacon`
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
-  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`

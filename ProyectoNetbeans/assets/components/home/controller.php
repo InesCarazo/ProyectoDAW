@@ -6,6 +6,7 @@ require_once './model.php';
 require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
+require_once './controller-tareas.php';
 
 
 
@@ -128,17 +129,29 @@ function tipoFormCasas($tipoForm){
     }
 }
 
-function menuTareas($tipoGestion){
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-    <ul class='nav navbar-nav navbar-right'>
-        <li><a>". strtoupper($tipoGestion) ."</a></li>
-        <li><a href='#'>Page</a></li>
-        <li><a href='#'>Page</a></li>
-        <li><a href='#'>Page</a></li>
-        <li><a href='#'>Page</a></li>
-    </ul>
-</div>
-</div>
-</nav>";
-    return $contenido;
+function tipoFormTareas($tipoForm){
+    switch ($tipoForm) {
+        case 'ver':
+           return menuTareas("tareas") . formShowTareas() . "</div>";
+            break;
+        case 'programar':
+            return menuTareas("tareas") . formProgramarTareas() . "</div>";
+            break;
+        case 'modificar':
+            if (isset($_POST['btnRadioTarea'])) 
+            {
+                $id = $_POST['btnRadioTarea'];
+                return menuTareas("tareas") . formModifyTareas($id) . "</div>";
+            }
+            else
+            {
+                $message = "Tienes que seleccionar una tarea para poder editar";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+           
+            break;
+        case 'anadir':
+            return menuTareas("tareas") . formAddTareas() . "</div>";
+            break;
+    }
 }
