@@ -128,45 +128,41 @@ return $contenido;
 }
 
 function tablaVistaEmpleados(){
-    $tablaHTML= "
+    $tablaHTML= "<form method='POST' action='?empleado=modificar'>
     <div id='tablaVista' class='row'>
-    <form method='POST' action='?empleado=modificar'>
-    <table class='row table-bordered table-hover table-responsive'>
-    <thead>
-        <tr>
-            <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th class='text-center'>Nombre</th>
-            <th class='text-center'>Apellidos</th>
-            <th class='text-center'>Telefono</th>
-            <th class='text-center'>Correo</th>
-            <th class='text-center'>Fecha de nacimiento</th>
-        </tr>
-    </thead>
-    <tbody>";
-    $model = new modelClass();
-    $empleados = $model->verEmpleados();
-    foreach ($empleados as $value) {
-        $tablaHTML.= "
-    <tr>
-        <td>
-            <input class='radio' type='radio' name='btnradio' value='". $value->getP_Usuario()."' checked>
-        </td>
-        <td class='text-center'>" . $value->getNombre() . "</td>
-        <td class='text-center'>" . $value->getApellidos() . "</td>
-        <td class='text-center'>" . $value->getTelefono() . "</td>
-        <td class='text-center'>" . $value->getCorreo() . "</td>
-        <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
-    </tr>";
-    }
-    $tablaHTML.= "</tbody>
-</table>
-
-<div class='col-md-offset-8 col-md-4 row'>
-<form method='POST' action='?empleado=ver'>
-    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
-    <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
-</div>
+        <table class='row table-bordered table-hover table-responsive'>
+            <thead>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th class='text-center'>Nombre</th>
+                    <th class='text-center'>Apellidos</th>
+                    <th class='text-center'>Telefono</th>
+                    <th class='text-center'>Correo</th>
+                    <th class='text-center'>Fecha de nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>"; $model = new modelClass(); $empleados = $model->verEmpleados(); foreach ($empleados as $value) { $tablaHTML.= "
+                <tr>
+                    <td>
+                        <input class='radio' type='radio' name='btnradio' value='". $value->getP_Usuario()."' checked>
+                    </td>
+                    <td class='text-center'>" . $value->getNombre() . "</td>
+                    <td class='text-center'>" . $value->getApellidos() . "</td>
+                    <td class='text-center'>" . $value->getTelefono() . "</td>
+                    <td class='text-center'>" . $value->getCorreo() . "</td>
+                    <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
+                </tr>"; } $tablaHTML.= "</tbody>
+        </table>
+        <div class='col-md-6'>
+            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+        </div>
+</form>
+<div class='col-md-6'>
+    <form method='POST' action='?empleado=ver'>
+        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
     </form>
+
+</div>
 </div>";
 return $tablaHTML;
 }

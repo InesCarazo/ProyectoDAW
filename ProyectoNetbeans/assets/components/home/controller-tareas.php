@@ -64,13 +64,16 @@ function tablaVistaTareas()
                     <td class='text-center'>" . $value->getPrecio() . "</td>
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
-
-        <div class='col-md-offset-4 col-md-8 row'>
-            <form method='POST' action='?tarea=ver'>
-                <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
+        <div class='col-md-6'>
                 <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
-        </div>
+            </div>
     </form>
+    <div class='col-md-6'>
+        <form method='POST' action='?tarea=ver'>
+            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+        </form>
+    
+    </div>
     </div>";
 return $tablaHTML;
 }

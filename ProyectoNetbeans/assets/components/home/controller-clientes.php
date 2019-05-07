@@ -56,13 +56,16 @@ function tablaVistaClientes(){
     }
     $tablaHTML.= "</tbody>
     </table>
-    <div class='col-md-offset-6 col-md-6 row'>
+    <div class='col-md-6'>
+            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+        </div>
+</form>
+<div class='col-md-6'>
     <form method='POST' action='?cliente=ver'>
-        <button id='borrarClientes' name='borrarClientes' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
-
-        <button id='modificarClientes' name='modificarClientes' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
-    </div>
+        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
     </form>
+
+</div>
 </div>";
 return $tablaHTML;
 }

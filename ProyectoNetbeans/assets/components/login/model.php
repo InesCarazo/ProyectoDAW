@@ -4,7 +4,7 @@ class modelClass{
     {
         require_once './../conexion/conexion.php';
        
-        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=:contrasena");
+        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.usuario=:usuario AND u.contrasena=MD5(:contrasena)");
 
         $stmt->bindParam(':usuario', $usuario);
         $stmt->bindParam(':contrasena', $contrasena);
