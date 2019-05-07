@@ -79,6 +79,7 @@ function formModifyClientes($id)
     $_SESSION['idCliSelect']= $id;
     $model2 = new modelClass();
     $cliente = $model2->buscarCliente($id);
+
     $contenido = "<form method='POST' action='?gestion=clientes' class='contenido-home'>
     <div class='row'>
         <div class='form-group'>

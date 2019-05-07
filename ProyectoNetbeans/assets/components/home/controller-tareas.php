@@ -40,7 +40,7 @@ if (isset($_POST['borrarTarea']))
 function tablaVistaTareas()
 {
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
-    <form method='POST' action='?tarea=modificar'>
+    <form method='POST' action='?tarea=ver'>
         <table class='row table table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
@@ -66,9 +66,9 @@ function tablaVistaTareas()
         </table>
 
         <div class='col-md-offset-4 col-md-8 row'>
-            <form method='POST' action='?tarea=ver'>
-                <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
-                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+            <!--<form method='POST' action='?tarea=ver'>-->
+                <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button><!--</form>-->
+                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr'><a href='?tarea=modificar' >Modificar</a></button>
         </div>
     </form>
     </div>";

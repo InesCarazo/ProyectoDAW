@@ -135,7 +135,17 @@ class modelClass {
     }
 
     function buscarCliente($id) {   
-        require_once './../conexion/conexion.php';
+        //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    } 
             $stmt = $conn->prepare("SELECT * FROM usuario u, cliente c WHERE u.rol='CLIENTE' AND u.P_Usuario=$id AND c.A_usuario = u.P_Usuario");
             $stmt->execute();
             $cliente = Array();
@@ -338,7 +348,7 @@ class modelClass {
         try 
         {
             $conn->beginTransaction();
-            $conn->exec("DELETE tipo_tarea WHERE tipo_tarea.P_tipo_tarea=$id");
+            $conn->exec("DELETE FROM tipo_tarea WHERE tipo_tarea.P_tipo_tarea=$id");
             $conn->exec("DELETE FROM tarea WHERE tarea.A_tipo_tarea=$id");
             $conn->commit();
             

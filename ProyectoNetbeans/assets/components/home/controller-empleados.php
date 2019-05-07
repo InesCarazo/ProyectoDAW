@@ -129,7 +129,7 @@ return $contenido;
 
 function tablaVistaEmpleados(){
     $tablaHTML= "
-    <div id='tablaVista' class='row'>
+    <div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?empleado=modificar'>
     <table class='row table-bordered table-hover table-responsive'>
     <thead>
@@ -160,10 +160,10 @@ function tablaVistaEmpleados(){
     }
     $tablaHTML.= "</tbody>
 </table>
-
+<!--</form>-->
 <div class='col-md-offset-8 col-md-4 row'>
-<form method='POST' action='?empleado=ver'>
-    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
+<!--<form method='POST' action='?empleado=ver'>-->
+    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
     <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
 </div>
     </form>
