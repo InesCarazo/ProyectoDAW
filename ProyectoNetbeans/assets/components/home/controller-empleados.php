@@ -52,6 +52,13 @@ if (isset($_POST['modificar']))
     $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
 }
 
+if (isset($_POST['borrarEmpleado'])) 
+{
+    $id = $_SESSION['idEmplSelect'];
+    $modelClass = new modelClass();
+    $modelClass->deleteEmpleado($id);
+}
+
 function formAddEmpleados()
 {
     $contenido = "<form method='POST' class='contenido-home'>
@@ -121,7 +128,8 @@ return $contenido;
 }
 
 function tablaVistaEmpleados(){
-    $tablaHTML= "<div id='tablaVista' class='container-fluid'>
+    $tablaHTML= "
+    <div id='tablaVista' class='row'>
     <form method='POST' action='?empleado=modificar'>
     <table class='row table-bordered table-hover table-responsive'>
     <thead>
@@ -152,9 +160,11 @@ function tablaVistaEmpleados(){
     }
     $tablaHTML.= "</tbody>
 </table>
-<div class='col-md-offset-7 col-md-5 row'>
-    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn'>Borrar</button>
-    <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn'>Modificar</button>
+
+<div class='col-md-offset-8 col-md-4 row'>
+<form method='POST' action='?empleado=ver'>
+    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
+    <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
 </div>
     </form>
 </div>";

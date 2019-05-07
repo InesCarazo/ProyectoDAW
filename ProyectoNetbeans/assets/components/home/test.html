@@ -1,2 +1,0 @@
-if (isset($_POST["iniciar"])) { $usuario = $_POST['user']; $password = $_POST['password']; if (!comprobar($conexion, $usuario, $password)) { header("Location: http://localhost/repo/ONG/login.php"); } else { $_SESSION['logueado'] = "Si"; $_SESSION['usuario']
-= $usuario; } } elseif ($_SESSION['logueado'] == "Si") { } else { header("Location: http://localhost/repo/ONG/login.php"); }

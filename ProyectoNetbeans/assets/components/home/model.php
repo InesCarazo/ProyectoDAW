@@ -8,7 +8,17 @@ require_once './../clases/tipo_tarea.php';
 class modelClass {
     //EMPLEADOS
     function verEmpleados() {      
-    require_once './../conexion/conexion.php';
+     //require_once './../conexion/conexion.php';
+     try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
         $stmt = $conn->prepare("SELECT * FROM usuario u, empleado e WHERE u.rol='EMPLEADO' AND e.A_usuario = u.P_Usuario");
         $stmt->execute();
         $empleados = Array();
@@ -65,6 +75,24 @@ class modelClass {
             $conn->beginTransaction();
             $conn->exec("UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'");
             $conn->exec("UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id");
+            $conn->commit();
+            
+        }
+           catch (Exception $e) 
+           {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+           }
+    }
+
+    function deleteEmpleado($id)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("DELETE FROM usuario WHERE usuario.P_Usuario=$id");
+            $conn->exec("DELETE FROM empleado WHERE  empleado.A_usuario=$id");
             $conn->commit();
             
         }
@@ -138,6 +166,24 @@ class modelClass {
             echo "Fallo: " . $e->getMessage();
            }
     }
+
+    function deleteCliente($id)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("DELETE FROM usuario WHERE usuario.P_Usuario=$id");
+            $conn->exec("DELETE FROM cliente WHERE  cliente.A_usuario=$id");
+            $conn->commit();
+            
+        }
+           catch (Exception $e) 
+           {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+           }
+    }
     //CLIENTES
     //CASAS
     function verCasas() 
@@ -186,6 +232,23 @@ class modelClass {
             $stmt = $conn->prepare("INSERT INTO casa(sice, direccion, ciudad, hasFurniture, A_Cliente) VALUES ($addSice, '$addDireccion', '$addCiudad', $addHasForniture, $cliente)");
             $stmt->execute();
         }
+
+    function deleteCasa($id)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("DELETE FROM casa WHERE  casa.P_casa=$id");
+            $conn->commit();
+            
+        }
+           catch (Exception $e) 
+           {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+           }
+    }
     //CASAS
 
     //TAREAS
@@ -267,6 +330,24 @@ class modelClass {
             $conn->rollBack();
             echo "Fallo: " . $e->getMessage();
         }
+    }
+
+    function deleteTarea($id)
+    {
+    require_once './../conexion/conexion.php';
+        try 
+        {
+            $conn->beginTransaction();
+            $conn->exec("DELETE tipo_tarea WHERE tipo_tarea.P_tipo_tarea=$id");
+            $conn->exec("DELETE FROM tarea WHERE tarea.A_tipo_tarea=$id");
+            $conn->commit();
+            
+        }
+           catch (Exception $e) 
+           {
+            $conn->rollBack();
+            echo "Fallo: " . $e->getMessage();
+           }
     }
     //TAREAS
 }

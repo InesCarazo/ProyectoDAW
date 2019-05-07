@@ -17,6 +17,13 @@ if (isset($_POST['modCliente']))
     $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
 }
 
+if (isset($_POST['borrarClientes'])) 
+{
+    $id = $_SESSION['idCliSelect'];
+    $modelClass = new modelClass();
+    $modelClass->deleteCliente($id);
+}
+
 function tablaVistaClientes(){
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?cliente=modificar'>
@@ -49,12 +56,13 @@ function tablaVistaClientes(){
     }
     $tablaHTML.= "</tbody>
     </table>
+    <div class='col-md-offset-6 col-md-6 row'>
+    <form method='POST' action='?cliente=ver'>
+        <button id='borrarClientes' name='borrarClientes' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
 
-    <div class='col-md-offset-7 col-md-5 row'>
-    <button id='borrarClientes' name='borrarClientes' type='submit' class='btn estilo-btn'>Borrar</button>
-        <button id='modificarClientes' name='modificarClientes' type='submit' class='btn estilo-btn'>Modificar</button>
+        <button id='modificarClientes' name='modificarClientes' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
     </div>
-</form>
+    </form>
 </div>";
 return $tablaHTML;
 }

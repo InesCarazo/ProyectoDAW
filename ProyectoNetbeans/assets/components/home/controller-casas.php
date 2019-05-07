@@ -39,6 +39,13 @@ if (isset($_POST['addCasa']))
 
 }
 
+if (isset($_POST['borrarCasa'])) 
+{
+    $id = $_SESSION['idCasaSelect'];
+    $modelClass = new modelClass();
+    $modelClass->deleteCasa($id);
+}
+
 function generarSelectClientesAdd(){
     $modelClass = new modelClass(); 
     $clientes = $modelClass->verClientes();
@@ -140,11 +147,12 @@ function tablaVistaCasas(){
         </table>
 
         <div class='col-md-offset-7 col-md-5 row'>
-            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn'>Borrar</button>
-            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn'>Modificar</button>
+        <form method='POST' action='?casa=ver'>
+            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
+            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
         </div>
-    </form>
-</div>";
+        </form>
+    </div>";
 return $tablaHTML;
 }
 
@@ -159,11 +167,9 @@ function generarSelectClientesModify($idClienteSelected)
 {
     $modelClass = new modelClass(); 
     $clientes = $modelClass->verClientes();
-       // print_r($clientes);
     foreach ($clientes as $key => $value) 
     {
-        //echo "<br/<br/>";
-        //print_r($key);
+       
     $contenido ="
     <div class='form-group row'>
     <label for='chooseClient' class='control-label col-md-4'>Cliente</label>
@@ -172,7 +178,6 @@ function generarSelectClientesModify($idClienteSelected)
             foreach ($clientes as $key => $value2)
             {
                 if ($idClienteSelected == $value2->getP_cliente()) {
-                    //echo $idClienteSelected . "  ->  " . $value2->getP_cliente()."<br/>".$value2->getApellidos() ."<hr/>";
                     $contenido.= "<option id='chooseClient' name='modifychooseClient' class='form-control' selected>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
                 }
                     else

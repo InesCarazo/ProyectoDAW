@@ -30,6 +30,13 @@ if (isset($_POST['addTarea']))
 
 }
 
+if (isset($_POST['borrarTarea'])) 
+{
+    $id = $_SESSION['idTareaSelect'];
+    $modelClass = new modelClass();
+    $modelClass->deleteTarea($id);
+}
+
 function tablaVistaTareas()
 {
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
@@ -59,11 +66,12 @@ function tablaVistaTareas()
         </table>
 
         <div class='col-md-offset-4 col-md-8 row'>
-            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn'>Borrar</button>
-            <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn'>Modificar</button>
+            <form method='POST' action='?tarea=ver'>
+                <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button></form>
+                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
         </div>
     </form>
-</div>";
+    </div>";
 return $tablaHTML;
 }
 
@@ -86,10 +94,6 @@ function generarSelectTareasModify($idTareaSelected)
         <label for='chooseTarea' class='control-label col-md-4'>Tarea</label>
             <div class='col-md-8'>
                 <select name='chooseTarea' class='form-control'>";
-                // foreach ($tareas as $key => $value2)
-                // {
-                        // $contenido.= "<!--<option id='chooseTarea' name='chooseTarea' class='form-control' value='" . $value2->getP_tarea() . "'>" .$value2->getTexto() ."</option>-->";
-                // }
             foreach ($tareas as $key => $value2)
             {
                 if ($idTareaSelected == $value2->getP_tipo_tarea()) {
@@ -180,10 +184,9 @@ function formAddTareas()
     <div>
         <div class='form-group row'>
             <label for='texto' class='control-label col-md-4'>Nombre de tarea</label>
-             <!--<div class='col-md-8'>
+             <div class='col-md-8'>
                <input id='texto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
-            </div>-->
-            ". generarSelectTareasAdd() ."
+            </div>
         </div>
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración</label>
