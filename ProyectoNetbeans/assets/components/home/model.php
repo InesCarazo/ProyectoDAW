@@ -9,13 +9,13 @@ class modelClass {
     //EMPLEADOS
     function verEmpleados() {      
     require_once './../conexion/conexion.php';
-        $stmt = $conn->prepare("SELECT * FROM usuario u WHERE u.rol='EMPLEADO'");
+        $stmt = $conn->prepare("SELECT * FROM usuario u, empleado e WHERE u.rol='EMPLEADO' AND e.A_usuario = u.P_Usuario");
         $stmt->execute();
         $empleados = Array();
         $resultado = $stmt->fetch();
 
         while ($resultado != null) {
-            $empleado = new Usuario($resultado);
+            $empleado = new Empleado($resultado);
             array_push($empleados, $empleado);
 
             $resultado = $stmt->fetch();
@@ -191,7 +191,17 @@ class modelClass {
     //TAREAS
     function verTareas() 
     {
-    require_once './../conexion/conexion.php';
+    //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
         $stmt = $conn->prepare("SELECT * FROM tarea t, tipo_tarea ti WHERE t.A_tipo_tarea = ti.P_tipo_tarea");
         $stmt->execute();
         $tareas = Array();

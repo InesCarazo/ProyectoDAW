@@ -1,4 +1,9 @@
 <?php
+if (!isset($_SESSION['carrito'])) 
+{
+    $carrito = Array();
+    $_SESSION['carrito'] = $carrito;
+}
 
 if (isset($_POST['modTarea'])) 
 {
@@ -25,7 +30,8 @@ if (isset($_POST['addTarea']))
 
 }
 
-function tablaVistaTareas(){
+function tablaVistaTareas()
+{
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?tarea=modificar'>
         <table class='row table table-bordered table-hover table-responsive'>
@@ -60,15 +66,49 @@ function tablaVistaTareas(){
 return $tablaHTML;
 }
 
-function formShowTareas(){
+function formShowTareas()
+{
     $contenido = "" . 
     tablaVistaTareas()
      . "";
     return $contenido;
 }
 
+function generarSelectTareasModify($idTareaSelected)
+{
+    $modelClass = new modelClass(); 
+    $tareas = $modelClass->verTareas();
+    foreach ($tareas as $key => $value) 
+    {
+        $contenido ="
+        <div class='form-group row'>
+        <label for='chooseTarea' class='control-label col-md-4'>Tarea</label>
+            <div class='col-md-8'>
+                <select name='chooseTarea' class='form-control'>";
+                // foreach ($tareas as $key => $value2)
+                // {
+                        // $contenido.= "<!--<option id='chooseTarea' name='chooseTarea' class='form-control' value='" . $value2->getP_tarea() . "'>" .$value2->getTexto() ."</option>-->";
+                // }
+            foreach ($tareas as $key => $value2)
+            {
+                if ($idTareaSelected == $value2->getP_tipo_tarea()) {
+                    $contenido.= "<option id='chooseTarea' name='chooseTarea' class='form-control' value='" . $value2->getP_tipo_tarea() . "' selected>" .$value2->getTexto() ."</option>.";
+                }
+                    else
+                {
+                    $contenido.= "<option id='chooseTarea' name='chooseTarea' class='form-control' value='" . $value2->getP_tipo_tarea() . "'>" .$value2->getTexto() ."</option>";
+                }
+            }
+            $contenido.="
+                </select>
+            </div>
+        </div>";
+    }
+    return $contenido;
+}
 
-function formModifyTareas($id){
+function formModifyTareas($id)
+{
     $_SESSION['idTareaSelect']= $id;
     $model = new modelClass();
     $tarea = $model->buscarTarea($id);
@@ -78,12 +118,13 @@ function formModifyTareas($id){
             <label for='id' class='control-label col-md-4'>Id</label>
             <label type='text' id='id' name='modifyId' class='col-md-8 control-label'>$id</label>
         </div>
-        <div class='form-group row'>
+        <!--<div class='form-group row'>
             <label for='texto' class='control-label col-md-4'>Nombre de tarea</label>
             <div class='col-md-8'>
                 <input id='texto' name='modifyTexto' placeholder='Ej: Barrer el suelo' type='text' value='". $tarea->getTexto() ."' required='required' class='form-control'>
             </div>
-        </div>
+        </div>-->".
+        generarSelectTareasModify($id)."
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración (h)</label>
             <div class='col-md-8'>
@@ -112,15 +153,36 @@ function formModifyTareas($id){
     return $contenido;
 }
 
+function generarSelectTareasAdd()
+{
+    $modelClass = new modelClass(); 
+    $tareas = $modelClass->verTareas();
+    foreach ($tareas as $key => $value) 
+    {
+        $contenido ="
+            <div class='col-md-8'>
+                <select name='chooseTarea' class='form-control'>";
+                foreach ($tareas as $key => $value2)
+                {
+                        $contenido.= "<option id='chooseTarea' name='chooseTarea' class='form-control' value='" . $value2->getP_tipo_tarea() . "'>" .$value2->getTexto() ."</option>";
+                }
+            $contenido.="
+                </select>
+            </div>";
+    }
+    return $contenido;
+}
 
-function formAddTareas(){
+function formAddTareas()
+{
     $contenido = "<form method='POST' action='?gestion=tareas' class='contenido-home'>
     <div>
         <div class='form-group row'>
             <label for='texto' class='control-label col-md-4'>Nombre de tarea</label>
-            <div class='col-md-8'>
-                <input id='texto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
-            </div>
+             <!--<div class='col-md-8'>
+               <input id='texto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
+            </div>-->
+            ". generarSelectTareasAdd() ."
         </div>
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración</label>
@@ -150,22 +212,72 @@ function formAddTareas(){
     return $contenido;
 }
 
+function generarSelectTareasProg()
+{
+    $modelClass = new modelClass(); 
+    $tareas = $modelClass->verTareas();
+    foreach ($tareas as $key => $value) 
+    {
+        $contenido ="
+            <div class='col-md-8'>
+                <select name='chooseTareaProg' class='form-control' required='required'>";
+                foreach ($tareas as $key => $value2)
+                {
+                        $contenido.= "<option id='chooseTareaProg' name='chooseTareaProg' class='form-control' value='" . $value2->getP_tarea() . "'>" .$value2->getTexto() ."</option>";
+                }
+            $contenido.="
+                </select>
+            </div>";
+    }
+    return $contenido;
+}
 
-function formProgramarTareas(){
-    $contenido = "<form method='POST' action='?gestion=tareas' class='contenido-home'>
+function generarSelectClientesProg(){
+    $modelClass = new modelClass(); 
+    $clientes = $modelClass->verClientes();
+    foreach ($clientes as $key => $value) 
+    {
+        $contenido ="
+                <select name='chooseClientProg' class='form-control' required='required'>";
+                foreach ($clientes as $key => $value2)
+                {
+                        $contenido.= "<option id='chooseClientProg' name='chooseClientProg' class='form-control' value='" . $value2->getP_cliente() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                }
+            $contenido.="
+                </select>
+           ";
+    }
+    return $contenido;
+}
+
+function generarSelectEmpleadosProg(){
+    $modelClass = new modelClass(); 
+    $empleados = $modelClass->verEmpleados();
+    foreach ($empleados as $key => $value) 
+    {
+        $contenido ="
+                <select name='chooseEmpleadoProg' class='form-control' required='required'>";
+                foreach ($empleados as $key => $value2)
+                {
+                        $contenido.= "<option id='chooseEmpleadoProg' name='chooseEmpleadoProg' class='form-control' value='" . $value2->getP_empleado() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                }
+            $contenido.="
+                </select>
+           ";
+    }
+    return $contenido;
+}
+
+function formProgramarTareas()
+{
+    $contenido = "<form method='POST' action='?tarea=programar' class='contenido-home'>
     <div class='col-md-6'>
         <div class='form-group row'>
             <label class='col-md-4 col-form-label' for='progTarea'>Tareas</label>
-            <div class='col-md-8'>
-                <select id='progTarea' name='progTarea' class='custom-select form-control' required='required'>
-                    <option value='rabbit'>Rabbit</option>
-                    <option value='duck'>Duck</option>
-                    <option value='fish'>Fish</option>
-                </select>
-            </div>
+           ". generarSelectTareasProg() ."
         </div>
         <div class='form-group row'>
-            <label for='fecha' class='control-label col-md-4'>Duración (h)</label>
+            <label for='fecha' class='control-label col-md-4'>Fecha</label>
             <div class='col-md-8'>
                 <input id='fecha' name='progfecha' type='date' required='required' class='form-control'>
             </div>
@@ -173,11 +285,13 @@ function formProgramarTareas(){
         <div class='form-group row'>
             <label class='col-md-4 col-form-label' for='progCliente'>Cliente</label>
             <div class='col-md-8'>
-                <select id='progCliente' name='progCliente' class='custom-select form-control' required='required'>
-                    <option value='rabbit'>Rabbit</option>
-                    <option value='duck'>Duck</option>
-                    <option value='fish'>Fish</option>
-                </select>
+            ". generarSelectClientesProg() ."
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label class='col-md-4 col-form-label' for='progCliente'>Empleado</label>
+            <div class='col-md-8'>
+            ". generarSelectEmpleadosProg() ."
             </div>
         </div>
         <div class='form-group row'>
@@ -189,6 +303,7 @@ function formProgramarTareas(){
             </div>
         </div>
     </div>
+    </form>
     <div class='col-md-6'>
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-12'>DIV 1 Nº tareas y Duración</label>
@@ -203,12 +318,13 @@ function formProgramarTareas(){
 
         </div>
     </div
-</form>";
+";
     return $contenido;
 }
 
 
-function menuTareas($tipoGestion){
+function menuTareas($tipoGestion)
+{
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>

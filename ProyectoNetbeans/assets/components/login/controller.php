@@ -10,6 +10,13 @@ else
 {
     $isLogged = $_SESSION['logueado'];
 }
+
+if (isset($_POST['login'])) 
+{
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+    loginCorrecto($usuario, $contrasena);
+}
 function loginCorrecto($usuario, $contrasena)
 {
     $modelClass = new modelClass();

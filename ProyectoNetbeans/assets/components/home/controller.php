@@ -7,12 +7,13 @@ require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
 require_once './controller-tareas.php';
+require_once './../clases/carrito.php';
 
 
 
 function cerrarSesion(){
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/login.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/login.php';
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
     header("Location: $url"); 
 }
 

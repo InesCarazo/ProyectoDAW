@@ -1,11 +1,5 @@
 <?php
 require_once './controller.php';
-
-if (isset($_POST['login'])) {
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
-    loginCorrecto($usuario, $contrasena);
-}
 ?>
 <!DOCTYPE html>
 <html>

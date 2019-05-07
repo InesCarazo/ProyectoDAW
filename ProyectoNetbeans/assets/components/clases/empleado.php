@@ -18,7 +18,7 @@ class Empleado extends Usuario{
         $this->fechaNacimiento = $row["fechaNacimiento"];
         $this->rol = $row["rol"];
         $this->P_empleado = $row["P_empleado"];
-        $this->nSS = $row["nSS"];
+        $this->nSS = $row["nss"];
         $this->isAdmin = $row["isAdmin"];
         $this->A_usuario = $row["A_usuario"];
 
