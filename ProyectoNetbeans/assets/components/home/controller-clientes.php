@@ -17,7 +17,7 @@ if (isset($_POST['modCliente']))
     $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
 }
 
-if (isset($_POST['borrarClientes'])) 
+if (isset($_POST['borrarCliente'])) 
 {
     $id = $_SESSION['idCliSelect'];
     $modelClass = new modelClass();
@@ -42,6 +42,7 @@ function tablaVistaClientes(){
             $model = new modelClass();
             $clientes = $model->verClientes();
             foreach ($clientes as $value) {
+                $_SESSION['idCliSelect'] = $value->getP_Usuario();
                 $tablaHTML.= "
         <tr>
             <td>

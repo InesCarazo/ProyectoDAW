@@ -248,19 +248,14 @@ function formModifyCasas($id){
     return $contenido;
 }
 
-function formCasaCliente($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
 function menuCasas($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?casa=ver'>Ver</a></li>
         <li><a href='?casa=anadir'>Añadir</a></li> 
-        <li><a href='?casa=casa-cliente'>Casa-Cliente</a></li>       
-        <!--<li><a href='?casa=modificar'>Modificar</a></li>-->
+        <!--<li><a href='?casa=casa-cliente'>Casa-Cliente</a></li>       
+        <li><a href='?casa=modificar'>Modificar</a></li>-->
     </ul>
 </div>
 </div>

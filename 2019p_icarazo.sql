@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2019 a las 16:55:16
+-- Tiempo de generación: 07-05-2019 a las 17:16:34
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -111,7 +111,7 @@ INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `ciudad`, `hasFurniture`, `A_
 (3, 190, 'Calle Bolero, 80', 'Santander', 1, 3),
 (4, 200, 'Paseo Tinamús, 267 2ºE', 'Bilbao', 0, 4),
 (5, 210, 'Avenida Pintor Sorolla, 125 4ºG', 'Málaga', 1, 4),
-(7, 222, 'Calle Altamirano, 8 4ºC', 'Madrid', 0, 1);
+(9, 220, 'Calle Altamirano, 8 4ºC', 'Madrid', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,7 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 (1, 'TARJETA', '', 1),
 (2, 'BANCO', '', 2),
 (3, 'TARJETA', '', 3),
-(4, 'BANCO', '', 4),
-(5, 'BANCO', '321364', 11);
+(4, 'BANCO', '', 4);
 
 -- --------------------------------------------------------
 
@@ -145,7 +144,7 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 
 CREATE TABLE `empleado` (
   `P_empleado` int(11) NOT NULL,
-  `nSS` varchar(20) DEFAULT NULL,
+  `nss` varchar(20) DEFAULT NULL,
   `isAdmin` tinyint(4) DEFAULT NULL,
   `A_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -154,13 +153,12 @@ CREATE TABLE `empleado` (
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`P_empleado`, `nSS`, `isAdmin`, `A_usuario`) VALUES
+INSERT INTO `empleado` (`P_empleado`, `nss`, `isAdmin`, `A_usuario`) VALUES
 (1, '111222333', 0, 5),
 (2, '44555666', 0, 6),
 (3, '777888999', 0, 7),
 (4, '111555999', 0, 8),
-(5, '333555777', 1, 9),
-(6, '12341234', 1, 10);
+(5, '333555777', 1, 9);
 
 -- --------------------------------------------------------
 
@@ -264,7 +262,8 @@ INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_t
 (6, 2, '', 25, 6),
 (7, 1, '', 25, 7),
 (8, 1, '', 10, 8),
-(9, 1, '', 15, 9);
+(9, 1, '', 15, 9),
+(10, 2, '', 2, 10);
 
 -- --------------------------------------------------------
 
@@ -320,7 +319,8 @@ INSERT INTO `tipo_tarea` (`P_tipo_tarea`, `texto`) VALUES
 (6, 'Hacer la colada'),
 (7, 'Limpiar el baño'),
 (8, 'Tender la ropa'),
-(9, 'Planchar la ropa');
+(9, 'Planchar la ropa'),
+(10, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -353,9 +353,7 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
 (7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
 (8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
-(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
-(10, '1234', '1234', 'Test', 'test', 12341234, 'test@gmail.com', '2019-04-04', 'EMPLEADO'),
-(11, 'TestCli', '56a7f6f421344e9d8d1ab6c0131eb5e9', 'TestCli', 'TestCli', 111222333, 'TestCli@TestCli.es', '2019-04-22', 'CLIENTE');
+(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO');
 
 --
 -- Índices para tablas volcadas
@@ -478,19 +476,19 @@ ALTER TABLE `beacon`
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
-  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
@@ -514,7 +512,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea_realizada`
@@ -526,13 +524,13 @@ ALTER TABLE `tarea_realizada`
 -- AUTO_INCREMENT de la tabla `tipo_tarea`
 --
 ALTER TABLE `tipo_tarea`
-  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
@@ -561,13 +559,13 @@ ALTER TABLE `casa`
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`);
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`);
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `empleado_cliente_tarea`
@@ -589,7 +587,7 @@ ALTER TABLE `empleado_horario`
 -- Filtros para la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`);
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
