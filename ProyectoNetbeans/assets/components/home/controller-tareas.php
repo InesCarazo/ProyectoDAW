@@ -58,8 +58,9 @@ function tablaVistaTareas()
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
 
-        <div class='col-md-offset-8 col-md-4 row'>
-            <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn'>Modificar Tarea</button>
+        <div class='col-md-offset-4 col-md-8 row'>
+            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn'>Borrar</button>
+            <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn'>Modificar</button>
         </div>
     </form>
 </div>";

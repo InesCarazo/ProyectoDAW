@@ -50,8 +50,9 @@ function tablaVistaClientes(){
     $tablaHTML.= "</tbody>
     </table>
 
-    <div class='col-md-offset-10 col-md-3'>
-        <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn'>Modificar</button>
+    <div class='col-md-offset-7 col-md-5 row'>
+    <button id='borrarClientes' name='borrarClientes' type='submit' class='btn estilo-btn'>Borrar</button>
+        <button id='modificarClientes' name='modificarClientes' type='submit' class='btn estilo-btn'>Modificar</button>
     </div>
 </form>
 </div>";

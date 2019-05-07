@@ -139,8 +139,9 @@ function tablaVistaCasas(){
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
 
-        <div class='col-md-offset-8 col-md-4 row'>
-            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn'>Modificar Casa</button>
+        <div class='col-md-offset-7 col-md-5 row'>
+            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn'>Borrar</button>
+            <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn'>Modificar</button>
         </div>
     </form>
 </div>";

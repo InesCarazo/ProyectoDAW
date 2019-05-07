@@ -257,7 +257,8 @@ ul.CTAs a {
     border: 1px solid #f16e94;
 }
 
-#modificarEmpleado {
+#modificarEmpleado,
+#borrarEmpleado {
     margin-top: 5%;
 }
 

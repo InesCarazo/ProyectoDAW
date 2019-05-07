@@ -152,9 +152,10 @@ function tablaVistaEmpleados(){
     }
     $tablaHTML.= "</tbody>
 </table>
-<div class='col-md-offset-10 col-md-3'>
-            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn'>Modificar</button>
-        </div>
+<div class='col-md-offset-7 col-md-5 row'>
+    <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn'>Borrar</button>
+    <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn'>Modificar</button>
+</div>
     </form>
 </div>";
 return $tablaHTML;
