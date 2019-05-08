@@ -147,12 +147,12 @@ function tablaVistaCasas(){
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
-                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
-            </div>
+                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
+        </div>
     </form>
     <div class='col-md-6'>
         <form method='POST' action='?casa=ver'>
-            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
         </form>
     
     </div>

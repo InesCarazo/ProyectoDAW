@@ -27,13 +27,13 @@ if (isset($_POST['borrarCliente']))
 function tablaVistaClientes(){
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?cliente=modificar'>
-        <table class='row table-bordered table-hover table-responsive'>
+        <table class='col-md-12 table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th class='text-center'>Nombre</th>
                     <th class='text-center'>Apellidos</th>
-                    <th class='text-center'>Telefono</th>
+                    <th class='text-center'>Teléfono</th>
                     <th class='text-center'>Correo</th>
                     <th class='text-center'>Fecha de nacimiento</th>
                 </tr>
@@ -58,12 +58,12 @@ function tablaVistaClientes(){
     $tablaHTML.= "</tbody>
     </table>
     <div class='col-md-6'>
-            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
         </div>
 </form>
 <div class='col-md-6'>
     <form method='POST' action='?cliente=ver'>
-        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
     </form>
 
 </div>

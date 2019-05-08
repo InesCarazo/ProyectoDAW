@@ -154,12 +154,12 @@ function tablaVistaEmpleados(){
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
-            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
         </div>
 </form>
 <div class='col-md-6'>
     <form method='POST' action='?empleado=ver'>
-        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
     </form>
 
 </div>
@@ -268,8 +268,8 @@ function menuEmpleados($tipoGestion){
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?empleado=ver'>Ver</a></li>
         <li><a href='?empleado=anadir'>Añadir</a></li>
-        <!--<li><a href='?empleado=modificar'>Modificar</a></li> -->
-        <li><a href='?empleado=tareas'>Tareas</a></li>
+        <!--<li><a href='?empleado=modificar'>Modificar</a></li> 
+        <li><a href='?empleado=tareas'>Tareas</a></li>-->
         <li><a href='?empleado=pagos'>Pagos</a></li>
     </ul>
 </div>
