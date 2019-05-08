@@ -39,12 +39,12 @@ if (isset($_POST['modificar']))
     $modifyCorreo = $_POST['modifyCorreo'];
     $modifyFnacimiento = $_POST['modifyFnacimiento'];
     $modifyNss = $_POST['modifyNss'];
-    $modifyAdmin = '';
-    if($_POST['modifyAdmin'] == 'admin')
+    $modifyAdmin= 0;
+    if (isset($_POST['modifyAdmin']) && $_POST['modifyAdmin'])
     {
         $modifyAdmin = 1;
     }
-    else
+    else 
     {
         $modifyAdmin=0;
     }
@@ -239,16 +239,18 @@ function formModifyEmpleados($id){
 
     if ($empleado->getIsAdmin() == 1) 
     {
-        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin' checked>";   
+        $contenido.= "<input type='checkbox' name='modifyAdmin' checked>";   
+       // $_SESSION['modifyAdmin']=1;
     }
     else
     {
-        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin'>"; 
+        $contenido.= "<input type='checkbox' name='modifyAdmin'>"; 
+        //$_SESSION['modifyAdmin']=0;
     }
     $contenido.="</div>
   </div> 
     <div class='form-group'>
-        <div class='ccol-md-offset-9 col-md-3''>
+        <div class='col-md-offset-9 col-md-3''>
         <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
         </div>
     </div>
@@ -256,10 +258,6 @@ function formModifyEmpleados($id){
 </form>";
 return $contenido;
 }
-
-function menuTareasEmpleados($tipoForm){}
-
-function menuPagosEmpleados($tipoForm){}
 
 function menuEmpleados($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
