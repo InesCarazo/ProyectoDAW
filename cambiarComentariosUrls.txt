@@ -3,4 +3,7 @@ Controller signin	1
 Controller home		1
 Conexion		1
 index.php		1
-home/model.php		1(verClientes() conexión)
+home/model.php		4(verClientes() conexión)
+			 (verEmpleados() conexión)
+			 (verCasas() conexión)
+			 (verTareas() conexión)
