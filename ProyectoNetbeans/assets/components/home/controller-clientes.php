@@ -153,11 +153,6 @@ function formModifyClientes($id)
     return $contenido;
 }
 
-function formPagosClientes($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
 function menuClientes($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>

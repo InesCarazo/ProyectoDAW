@@ -5,6 +5,7 @@ require_once './../clases/empleado.php';
 require_once './../clases/cliente.php';
 require_once './../clases/casa.php';
 require_once './../clases/tipo_tarea.php';
+require_once './../clases/empleado_cliente_tarea.php';
 class modelClass {
     //EMPLEADOS
     function verEmpleados() {      
@@ -73,10 +74,11 @@ class modelClass {
         try 
         {
             $conn->beginTransaction();
-            $conn->exec("UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'");
-            $conn->exec("UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id");
+            $sql1="UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'";
+            $sql2="UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id";
+            $conn->exec($sql1);
+            $conn->exec($sql2);
             $conn->commit();
-            
         }
            catch (Exception $e) 
            {
@@ -360,4 +362,24 @@ class modelClass {
            }
     }
     //TAREAS
+    //PAGOS
+    function verPagos() 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Empleado_cliente_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+    // SELECT * FROM empleado e, empleado_cliente_tarea ect, tarea_realizada tr WHERE e.P_empleado= ect.A_empleado AND ect.A_realizada IS NULL
+    //PAGOS
+
 }
