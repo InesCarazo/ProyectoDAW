@@ -257,10 +257,6 @@ function formModifyEmpleados($id){
 return $contenido;
 }
 
-function menuTareasEmpleados($tipoForm){}
-
-function menuPagosEmpleados($tipoForm){}
-
 function menuEmpleados($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
               

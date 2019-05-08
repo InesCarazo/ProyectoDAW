@@ -1,5 +1,8 @@
 <?php
-class Empleado_cliente_tarea{
+
+require_once 'tarea_realizada.php';
+
+class Empleado_cliente_tarea extends Tarea_realizada{
     private $P_empleadoSalaTarea;
     private $A_empleado;
     private $A_cliente;
@@ -9,6 +12,11 @@ class Empleado_cliente_tarea{
     private $duracion_h;
 
     public function __construct($row) {
+        parent::__construct($row);
+        $this->P_tarea_realizada = $row["P_tarea_realizada"];
+        $this->fecha = $row["fecha"];
+        $this->pagada = $row["pagada"];
+        $this->duracion_h = $row["duracion_h"];
         $this->P_empleadoSalaTarea = $row["P_empleadoSalaTarea"];
         $this->A_empleado = $row["A_empleado"];
         $this->A_cliente = $row["A_cliente"];
