@@ -123,6 +123,7 @@ function tablaVistaCasas(){
             $model = new modelClass(); 
             $casas = $model->verCasas(); 
             foreach ($casas as $value) { 
+                $_SESSION['idCasaSelect'] = $value->getP_casa();
                 $tablaHTML.= "
                 <tr>
                     <td>

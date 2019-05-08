@@ -54,6 +54,8 @@ function tablaVistaTareas()
             $model = new modelClass(); 
             $tareas = $model->verTareas(); 
             foreach ($tareas as $value) { 
+                
+                $_SESSION['idTareaSelect'] = $value->getP_tipo_tarea();
                 $tablaHTML.= "
                 <tr>
                     <td>
