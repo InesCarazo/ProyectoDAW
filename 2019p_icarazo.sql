@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2019 a las 17:16:34
+-- Tiempo de generación: 09-05-2019 a las 16:27:53
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -158,7 +158,8 @@ INSERT INTO `empleado` (`P_empleado`, `nss`, `isAdmin`, `A_usuario`) VALUES
 (2, '44555666', 0, 6),
 (3, '777888999', 0, 7),
 (4, '111555999', 0, 8),
-(5, '333555777', 1, 9);
+(5, '333555777', 1, 9),
+(6, '2354254', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -172,6 +173,7 @@ CREATE TABLE `empleado_cliente_tarea` (
   `A_cliente` int(11) DEFAULT NULL,
   `A_tarea` int(11) DEFAULT NULL,
   `A_realizada` int(11) DEFAULT NULL,
+  `pagoCliente` tinyint(1) NOT NULL,
   `fecha` date DEFAULT NULL,
   `duracion_h` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -180,25 +182,27 @@ CREATE TABLE `empleado_cliente_tarea` (
 -- Volcado de datos para la tabla `empleado_cliente_tarea`
 --
 
-INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cliente`, `A_tarea`, `A_realizada`, `fecha`, `duracion_h`) VALUES
-(1, 2, 1, 1, 1, '2018-06-15', 2),
-(2, 1, 1, 3, 2, '2018-05-28', 1),
-(3, 2, 1, 1, 4, '2018-06-15', 1),
-(4, 3, 1, 3, 3, '2018-06-11', 1),
-(5, 4, 2, 5, NULL, '2018-06-11', 2),
-(6, 1, 2, 2, NULL, '2018-06-16', 1),
-(7, 1, 1, 4, NULL, '2018-06-16', 1),
-(18, 1, 1, 2, NULL, '2018-06-17', 1),
-(19, 1, 2, 2, NULL, '2018-06-17', 1),
-(20, 1, 3, 2, NULL, '2018-06-17', 1),
-(21, 1, 1, 3, 5, '2018-06-18', 1),
-(22, 1, 2, 5, 6, '2018-06-18', 1),
-(23, 1, 3, 3, 7, '2018-06-18', 1),
-(24, 1, 1, 2, 8, '2018-06-18', 1),
-(25, 1, 2, 2, 9, '2018-06-18', 1),
-(26, 1, 3, 7, 10, '2018-06-18', 1),
-(27, 1, 2, 1, 11, '2018-06-17', 1),
-(28, 1, 1, 1, NULL, '2018-06-19', 1);
+INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cliente`, `A_tarea`, `A_realizada`, `pagoCliente`, `fecha`, `duracion_h`) VALUES
+(1, 2, 1, 1, 1, 1, '2018-06-15', 2),
+(2, 1, 1, 3, 2, 1, '2018-05-28', 1),
+(3, 2, 1, 1, 4, 1, '2018-06-15', 1),
+(4, 3, 1, 3, 3, 1, '2018-06-11', 1),
+(5, 4, 2, 5, NULL, 0, '2018-06-11', 2),
+(6, 1, 2, 2, NULL, 0, '2018-06-16', 1),
+(7, 1, 1, 4, NULL, 0, '2018-06-16', 1),
+(18, 1, 1, 2, NULL, 0, '2018-06-17', 1),
+(19, 1, 2, 2, NULL, 0, '2018-06-17', 1),
+(20, 1, 3, 2, NULL, 0, '2018-06-17', 1),
+(21, 1, 1, 3, 5, 0, '2018-06-18', 1),
+(22, 1, 2, 5, 6, 1, '2018-06-18', 1),
+(23, 1, 3, 3, 7, 0, '2018-06-18', 1),
+(24, 1, 1, 2, 8, 1, '2018-06-18', 1),
+(25, 1, 2, 2, 9, 0, '2018-06-18', 1),
+(26, 1, 3, 7, 10, 0, '2018-06-18', 1),
+(27, 1, 2, 1, 11, 0, '2018-06-17', 1),
+(28, 1, 1, 1, NULL, 0, '2018-06-19', 1),
+(29, 6, 1, 1, 12, 1, '2019-05-08', 2),
+(30, 6, 1, 2, 13, 1, '2019-05-08', 1);
 
 -- --------------------------------------------------------
 
@@ -262,8 +266,7 @@ INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_t
 (6, 2, '', 25, 6),
 (7, 1, '', 25, 7),
 (8, 1, '', 10, 8),
-(9, 1, '', 15, 9),
-(10, 2, '', 2, 10);
+(9, 1, '', 15, 9);
 
 -- --------------------------------------------------------
 
@@ -285,15 +288,17 @@ CREATE TABLE `tarea_realizada` (
 INSERT INTO `tarea_realizada` (`P_tarea_realizada`, `fecha`, `pagada`, `duracion_h`) VALUES
 (1, '2018-05-22', 0, 1),
 (2, '2018-05-22', 1, 1),
-(3, '2018-06-10', 0, 1),
+(3, '2018-06-10', 1, 1),
 (4, '2018-06-16', 1, 1),
-(5, '2018-06-18', 1, 1),
+(5, '2018-06-18', 0, 1),
 (6, '2018-06-18', 1, 1),
-(7, '2018-06-18', 1, 1),
+(7, '2018-06-18', 0, 1),
 (8, '2018-06-18', 1, 1),
 (9, '2018-06-18', 1, 1),
 (10, '2018-06-18', 1, 1),
-(11, '2018-06-18', 0, 1);
+(11, '2018-06-18', 0, 1),
+(12, '2019-05-08', 0, 2),
+(13, '2019-05-08', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -319,8 +324,7 @@ INSERT INTO `tipo_tarea` (`P_tipo_tarea`, `texto`) VALUES
 (6, 'Hacer la colada'),
 (7, 'Limpiar el baño'),
 (8, 'Tender la ropa'),
-(9, 'Planchar la ropa'),
-(10, 'prueba');
+(9, 'Planchar la ropa');
 
 -- --------------------------------------------------------
 
@@ -353,7 +357,8 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
 (7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
 (8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
-(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO');
+(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
+(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO');
 
 --
 -- Índices para tablas volcadas
@@ -488,13 +493,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
 --
 ALTER TABLE `empleado_cliente_tarea`
-  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_horario`
@@ -512,25 +517,25 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea_realizada`
 --
 ALTER TABLE `tarea_realizada`
-  MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_tarea`
 --
 ALTER TABLE `tipo_tarea`
-  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
