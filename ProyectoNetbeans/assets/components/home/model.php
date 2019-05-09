@@ -293,7 +293,17 @@ class modelClass {
 
     function buscarTarea($id) 
     {   
-        require_once './../conexion/conexion.php';
+         //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
             $stmt = $conn->prepare("SELECT * FROM tarea t, tipo_tarea ti WHERE t.A_tipo_tarea = ti.P_tipo_tarea AND t.P_tarea = $id");
             $stmt->execute();
             $tarea = Array();
@@ -363,39 +373,71 @@ class modelClass {
     }
     //TAREAS
     //PAGOS
-    function verPagos() 
-    {
-    require_once './../conexion/conexion.php';
-        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea");
-        $stmt->execute();
-        $tareas = Array();
-        $resultado = $stmt->fetch();
+    // function verPagos() 
+    // {
+    // require_once './../conexion/conexion.php';
+    //     $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea");
+    //     $stmt->execute();
+    //     $tareas = Array();
+    //     $resultado = $stmt->fetch();
 
-        while ($resultado != null) 
-        {
-            $tarea = new Empleado_cliente_tarea($resultado);
-            array_push($tareas, $tarea);
-            $resultado = $stmt->fetch();
-        }
-        return $tareas;
-    }
-    function verPago() 
-    {
-    require_once './../conexion/conexion.php';
-        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada=tr.P_tarea_realizada");
-        $stmt->execute();
-        $tareas = Array();
-        $resultado = $stmt->fetch();
+    //     while ($resultado != null) 
+    //     {
+    //         $tarea = new Empleado_cliente_tarea($resultado);
+    //         array_push($tareas, $tarea);
+    //         $resultado = $stmt->fetch();
+    //     }
+    //     return $tareas;
+    // }
+    // function verPago() 
+    // {
+    // require_once './../conexion/conexion.php';
+    //     $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada=tr.P_tarea_realizada");
+    //     $stmt->execute();
+    //     $tareas = Array();
+    //     $resultado = $stmt->fetch();
 
-        while ($resultado != null) 
-        {
-            $tarea = new Empleado_cliente_tarea($resultado);
-            array_push($tareas, $tarea);
-            $resultado = $stmt->fetch();
-        }
-        return $tareas;
-    }
+    //     while ($resultado != null) 
+    //     {
+    //         $tarea = new Empleado_cliente_tarea($resultado);
+    //         array_push($tareas, $tarea);
+    //         $resultado = $stmt->fetch();
+    //     }
+    //     return $tareas;
+    // }
     // SELECT * FROM empleado e, empleado_cliente_tarea ect, tarea_realizada tr WHERE e.P_empleado= ect.A_empleado AND ect.A_realizada IS NULL
+    //SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=1 AND tr.pagada=1
+
+    function buscarPagos($id, $isPagada) 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=$id AND tr.pagada=$isPagada");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Empleado_cliente_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+
+    function modifyPagos($id)
+    {
+        require_once './../conexion/conexion.php';
+        try
+        {
+        $stmt = $conn->prepare("UPDATE tarea_realizada SET pagada=1 WHERE tarea_realizada.P_tarea_realizada=$id");
+        $stmt->execute();
+        return true;
+        }catch(Exception $e)
+        {
+            return false;
+        }
+    }
     //PAGOS
 
 }

@@ -69,10 +69,6 @@ function tipoFormEmpleados($tipoForm){
                 $message = "Tienes que seleccionar un empleado para poder editar";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
-            
-            break;
-        case 'tareas':
-        return menuEmpleados("empleados") . menuTareasEmpleados() . "</div>";
             break;
             case 'pagos':
         return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";

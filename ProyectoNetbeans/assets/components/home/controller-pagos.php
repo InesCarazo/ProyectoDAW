@@ -19,37 +19,45 @@ function generarSelectEmpleadosPagos(){
     return $contenido;
 }
 
-function mensaje()
+function generarTablaHTML($pagos)
 {
-    if (isset($_POST['searchPagos'])) 
-{
-    $idEmpleado = $_POST['chooseEmpleadoProg'];
-
-    $model = new modelClass(); 
-    $pagos = $model->verPago(); 
-
-    $pagado = Array();
-    foreach ($pagos as $value) 
-    { 
-        array_push($pagado, $value);
-            print_r($pagado);
-            echo count($pagado);
-        if ($value->getA_empleado() == intval($idEmpleado)) 
-        {
-            
-
-            if ($value->getPagada() == 1) 
-            {
-                $contenido = "<label>Todos los pagos están al día</label>";
-                return $contenido;
-            }else if( $value->getPagada() == 0)
-            {
-                $contenido = "<label>Todos los pagos NO están al día</label>";
-                return $contenido;
-            }
-    }
+    $tablaHTML ="<form method='POST' action='?empleado=pagos'>
+                <table class='table-bordered table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th class='text-center'>Tarea</th>
+                            <th class='text-center'>Duración (h)</th>
+                            <th class='text-center'>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($pagos as $value) 
+                    {
+                    $tablaHTML.= "
+                        <tr>
+                            <td>
+                            ".$value->getP_tarea_realizada()."<input class='radio' type='radio' name='btnradioPagos' value='". $value->getP_tarea_realizada()."' checked>
+                            </td>";
+                            $model = new modelClass(); 
+                            $tarea = $model->buscarTarea($value->getA_tarea());
+                            
+                            $tablaHTML.="<td>". $tarea->getTexto() ."</td>";
+                            
+                            $tablaHTML.="<td>". $value->getDuracion_h()."</td>
+                            <td>". $value->getFecha()."</td>
+                        </tr>
+                        ";
+                    }
+                    $tablaHTML.="
+                    </tbody>
+                </table>
+                <div class='col-md-'>
+                    <button id='pagarEmpleado' name='pagarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Pagar</button>
+                </div>
+            </form>";
+    return $tablaHTML;
 }
-}}
 
 function menuPagosEmpleados()
 {
@@ -70,10 +78,43 @@ function menuPagosEmpleados()
     </div>
     </form>
 </div>
-<div id='mensaje' class='container-fluid row'>
-". mensaje() ."
-</div>
+<div id='tabla' class='container-fluid'>
 ";
+if (isset($_POST['searchPagos'])) 
+{
+    $idEmpleado = $_POST['chooseEmpleadoProg'];
+
+    $model = new modelClass(); 
+    $pagos = $model->buscarPagos($idEmpleado, 0); 
+
+    if ($pagos != null) 
+    {
+        $contenido .= generarTablaHTML($pagos);
+    }
+    else {
+        $contenido .= "<label>Todos los pagos están al día</label>";
+    }
+}
+$contenido .="
+</div>
+<div class='container-fluid'>
+";
+//CONFIRMACIÓN
+if (isset($_POST["btnradioPagos"])) 
+{
+   $id = $_POST["btnradioPagos"];
+    $model = new modelClass();
+    $pagos = $model->modifyPagos($id);
+    if($pagos)
+    {
+        $message = "Pago realizado";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+}
+
+//CONFIRMACIÓN
+$contenido.="
+</div>";
     return $contenido;    
 }
 
