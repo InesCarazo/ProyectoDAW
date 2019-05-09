@@ -2,12 +2,14 @@
 
 require_once 'tarea_realizada.php';
 
-class Empleado_cliente_tarea extends Tarea_realizada{
+class Empleado_cliente_tarea extends Tarea_realizada
+{
     private $P_empleadoSalaTarea;
     private $A_empleado;
     private $A_cliente;
     private $A_tarea;
     private $A_realizada;
+    private $pagoCliente;
     private $fecha;
     private $duracion_h;
 
@@ -22,6 +24,7 @@ class Empleado_cliente_tarea extends Tarea_realizada{
         $this->A_cliente = $row["A_cliente"];
         $this->A_tarea = $row["A_tarea"];
         $this->A_realizada = $row["A_realizada"];
+        $this->pagoCliente = $row["pagoCliente"];
         $this->fecha = $row["fecha"];
         $this->duracion_h = $row["duracion_h"];
     }
@@ -66,6 +69,13 @@ class Empleado_cliente_tarea extends Tarea_realizada{
         return $this->A_realizada;
     }
 
+    public function setPagoCliente($pagoCliente){
+        $this->pagoCliente = $pagoCliente;
+    }
+    
+    public function getPagoCliente(){
+        return $this->pagoCliente;
+    }
     public function setFecha($fecha){
         $this->fecha = $fecha;
     }

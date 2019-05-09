@@ -373,45 +373,14 @@ class modelClass {
     }
     //TAREAS
     //PAGOS
-    // function verPagos() 
-    // {
-    // require_once './../conexion/conexion.php';
-    //     $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea");
-    //     $stmt->execute();
-    //     $tareas = Array();
-    //     $resultado = $stmt->fetch();
-
-    //     while ($resultado != null) 
-    //     {
-    //         $tarea = new Empleado_cliente_tarea($resultado);
-    //         array_push($tareas, $tarea);
-    //         $resultado = $stmt->fetch();
-    //     }
-    //     return $tareas;
-    // }
-    // function verPago() 
-    // {
-    // require_once './../conexion/conexion.php';
-    //     $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada=tr.P_tarea_realizada");
-    //     $stmt->execute();
-    //     $tareas = Array();
-    //     $resultado = $stmt->fetch();
-
-    //     while ($resultado != null) 
-    //     {
-    //         $tarea = new Empleado_cliente_tarea($resultado);
-    //         array_push($tareas, $tarea);
-    //         $resultado = $stmt->fetch();
-    //     }
-    //     return $tareas;
-    // }
+    
     // SELECT * FROM empleado e, empleado_cliente_tarea ect, tarea_realizada tr WHERE e.P_empleado= ect.A_empleado AND ect.A_realizada IS NULL
     //SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=1 AND tr.pagada=1
 
-    function buscarPagos($id, $isPagada) 
+    function buscarPagos($id) 
     {
     require_once './../conexion/conexion.php';
-        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=$id AND tr.pagada=$isPagada");
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=$id AND tr.pagada=0");
         $stmt->execute();
         $tareas = Array();
         $resultado = $stmt->fetch();
@@ -438,6 +407,40 @@ class modelClass {
             return false;
         }
     }
+
+    function buscarPagosCliente($id) 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE tr.P_tarea_realizada = ect.A_realizada AND ect.A_cliente=$id AND ect.pagoCliente=0");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Empleado_cliente_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+
+    function modifyPagosCliente($idTareaR, $idCliente)
+    {
+        require_once './../conexion/conexion.php';
+        try
+        {
+            $sql= "UPDATE empleado_cliente_tarea SET pagoCliente=1 WHERE empleado_cliente_tarea.A_cliente=$idCliente AND empleado_cliente_tarea.A_realizada=$idTareaR";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return true;
+        }catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+
     //PAGOS
 
 }

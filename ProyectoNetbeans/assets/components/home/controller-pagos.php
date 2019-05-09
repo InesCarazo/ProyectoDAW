@@ -6,11 +6,11 @@ function generarSelectEmpleadosPagos(){
     foreach ($empleados as $key => $value) 
     {
         $contenido ="
-                <select name='chooseEmpleadoProg' class='form-control' required='required'>";
+                <select name='chooseEmpleadoPagos' class='form-control' required='required'>";
                 foreach ($empleados as $key => $value2)
                 {
                     // $_SESSION['idEmplPagos'] = $value2->getP_empleado();
-                    $contenido.= "<option id='chooseEmpleadoProg' name='chooseEmpleadoProg' class='form-control' value='" . $value2->getP_empleado() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                    $contenido.= "<option id='chooseEmpleadoPagos' name='chooseEmpleadoPagos' class='form-control' value='" . $value2->getP_empleado() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
                 }
             $contenido.="
                 </select>
@@ -19,13 +19,14 @@ function generarSelectEmpleadosPagos(){
     return $contenido;
 }
 
-function generarTablaHTML($pagos)
+function generarTablaHTMLEmpleados($pagos)
 {
     $tablaHTML ="<form method='POST' action='?empleado=pagos'>
-                <table class='table-bordered table-hover table-responsive'>
+    <div id='tablaVista' class='row'>
+    <table class='table-bordered table-hover table-responsive contenido-home'>
                     <thead>
                         <tr>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th></th>
                             <th class='text-center'>Tarea</th>
                             <th class='text-center'>Duración (h)</th>
                             <th class='text-center'>Fecha</th>
@@ -36,16 +37,16 @@ function generarTablaHTML($pagos)
                     {
                     $tablaHTML.= "
                         <tr>
-                            <td>
-                            ".$value->getP_tarea_realizada()."<input class='radio' type='radio' name='btnradioPagos' value='". $value->getP_tarea_realizada()."' checked>
+                            <td class='text-center'>
+                            <input class='radio' type='radio' name='btnradioPagos' value='". $value->getP_tarea_realizada()."' checked>
                             </td>";
                             $model = new modelClass(); 
                             $tarea = $model->buscarTarea($value->getA_tarea());
                             
-                            $tablaHTML.="<td>". $tarea->getTexto() ."</td>";
+                            $tablaHTML.="<td class='text-center'>". $tarea->getTexto() ."</td>";
                             
-                            $tablaHTML.="<td>". $value->getDuracion_h()."</td>
-                            <td>". $value->getFecha()."</td>
+                            $tablaHTML.="<td class='text-center'>". $value->getDuracion_h()."</td>
+                            <td class='text-center'>". $value->getFecha()."</td>
                         </tr>
                         ";
                     }
@@ -55,6 +56,7 @@ function generarTablaHTML($pagos)
                 <div class='col-md-'>
                     <button id='pagarEmpleado' name='pagarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Pagar</button>
                 </div>
+                </div>
             </form>";
     return $tablaHTML;
 }
@@ -62,18 +64,17 @@ function generarTablaHTML($pagos)
 function menuPagosEmpleados()
 {
     $contenido = "
-    <div class='container-fluid row'>
+    <div class='container-fluid row contenido-home'>
     <form method='POST' action='?empleado=pagos'>
         <div class='form-group'>
-            <label class='col-md-3 form-label' for='progCliente'>Empleado</label>
+            <label class='col-md-3 form-label' for='progEmpleado'>Empleado</label>
             <div class='col-md-9'>
             ". generarSelectEmpleadosPagos() ."
             </div>
         </div>
-        
         <div class='form-group'>
-        <div class='col-md-offset-9 col-md-3''>
-        <button  id='searchPagos'  name='searchPagos' type='submit' class='btn estilo-btn'>Buscar</button>
+        <div class='col-md-12'>
+        <button  id='searchPagos'  name='searchPagos' type='submit' class='btn estilo-btn center-block'>Buscar</button>
         </div>
     </div>
     </form>
@@ -82,14 +83,14 @@ function menuPagosEmpleados()
 ";
 if (isset($_POST['searchPagos'])) 
 {
-    $idEmpleado = $_POST['chooseEmpleadoProg'];
+    $idEmpleado = $_POST['chooseEmpleadoPagos'];
 
     $model = new modelClass(); 
-    $pagos = $model->buscarPagos($idEmpleado, 0); 
+    $pagos = $model->buscarPagos($idEmpleado); 
 
     if ($pagos != null) 
     {
-        $contenido .= generarTablaHTML($pagos);
+        $contenido .= generarTablaHTMLEmpleados($pagos);
     }
     else {
         $contenido .= "<label>Todos los pagos están al día</label>";
@@ -115,11 +116,131 @@ if (isset($_POST["btnradioPagos"]))
 //CONFIRMACIÓN
 $contenido.="
 </div>";
-    return $contenido;    
+    return $contenido;
 }
 
-function formPagosClientes()
+function generarTablaHTMLClientes($pagos)
 {
-    $contenido = "";
+    $tablaHTML ="<form method='POST' action='?cliente=pagos'>
+    <div id='tablaVista' class='row'>
+                <table class='table-bordered table-hover table-responsive contenido-home'>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class='text-center'>Tarea</th>
+                            <th class='text-center'>Duración (h)</th>
+                            <th class='text-center'>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($pagos as $value) 
+                    {
+                    $tablaHTML.= "
+                        <tr>
+                            <td>
+                            ". $value->getP_tarea_realizada()."<input class='radio' type='radio' name='btnradioPagosCliente' value='". $value->getP_tarea_realizada()."' checked>
+                            </td>";
+                            $model = new modelClass(); 
+                            $tarea = $model->buscarTarea($value->getA_tarea());
+                            $_SESSION['idCliente'] = $value->getA_cliente();
+                            $tablaHTML.="<td class='text-center'>". $tarea->getTexto() ."</td>";
+                            
+                            $tablaHTML.="<td class='text-center'>". $value->getDuracion_h()."</td>
+                            <td class='text-center'>". $value->getFecha()."</td>
+                        </tr>
+                        ";
+                    }
+                    $tablaHTML.="
+                    </tbody>
+                </table>
+                <div class='col-md-'>
+                    <button id='pagarCliente' name='pagarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Pagar</button>
+                </div>
+                </div>
+            </form>";
+    return $tablaHTML;
+}
+
+function generarSelectClientesPagos()
+{
+    $modelClass = new modelClass(); 
+    $clientes = $modelClass->verClientes();
+        $contenido ="
+                <select name='chooseClientPagos' class='form-control' required='required'>";
+                foreach ($clientes as $key => $value2)
+                {
+                        $contenido.= "<option id='chooseClientPagos' name='chooseClientPagos' class='form-control' value='" . $value2->getP_cliente() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                }
+            $contenido.="
+                </select>
+           ";
+    return $contenido;
+}
+
+function menuPagosClientes()
+{
+    $contenido = "
+    <div class='container-fluid row contenido-home'>
+    <form id='tablaVista' method='POST' action='?cliente=pagos'>
+        <div class='form-group col-md-12'>
+            <label class='col-md-3 form-label' for='progCliente'>Cliente</label>
+            <div class='col-md-9'>
+            ". generarSelectClientesPagos() ."
+            </div>
+        </div>
+        
+        <div class='form-group'>
+            <div class='col-md-12'>
+                <button  id='searchPagosCliente'  name='searchPagosCliente' type='submit' class='btn estilo-btn center-block'>Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id='tabla' class='container-fluid'>
+";
+if (isset($_POST['searchPagosCliente'])) 
+{
+    
+    $idCliente = $_POST['chooseClientPagos'];
+
+    $model = new modelClass(); 
+    $pagos = $model->buscarPagosCliente($idCliente); 
+
+    if ($pagos != null) 
+    {
+        $contenido .= generarTablaHTMLClientes($pagos);
+    }
+    else {
+        $contenido .= "<label>No tiene pagos pendientes</label>";
+    }
+}
+$contenido .="
+</div>
+<div class='container-fluid'>
+";
+//CONFIRMACIÓN
+if (isset($_POST["btnradioPagosCliente"])) 
+{
+    $idCliente='';
+    if (isset($_SESSION['idCliente'])) 
+    {
+       $idCliente = $_SESSION['idCliente'];
+    }
+   $idTareaR = $_POST["btnradioPagosCliente"];
+   echo $idCliente;
+   echo "<br/><br/>";
+   echo $idTareaR;
+    $model = new modelClass();
+    $pagos = $model->modifyPagosCliente($idTareaR, $idCliente);
+    if($pagos)
+    {
+        $message = "Pago realizado";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+}
+
+//CONFIRMACIÓN
+$contenido.="
+</div>";
     return $contenido;
 }

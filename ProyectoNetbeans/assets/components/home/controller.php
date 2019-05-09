@@ -94,7 +94,7 @@ function tipoFormClientes($tipoForm){
             }
             break;
         case 'pagos':
-            return menuClientes("clientes") . formPagosClientes() . "</div>";
+            return menuClientes("clientes") . menuPagosClientes() . "</div>";
             break;
     }
 }
