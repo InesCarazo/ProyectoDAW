@@ -34,17 +34,17 @@ function contacto(){
 function tipoMenuGestion($tipoGestion){
     switch ($tipoGestion) {
         case 'empleados':
-           return menuEmpleados($tipoGestion);
+           return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
            
             break;
         case 'clientes':
-        return menuClientes($tipoGestion);
+        return menuClientes("clientes") . formShowClientes() . "</div>";
             break;
         case 'casas':
-        return menuCasas($tipoGestion);
+        return menuCasas($tipoGestion) . formShowCasas() . "</div>";
             break;
         case 'tareas':
-        return menuTareas($tipoGestion);
+        return menuTareas($tipoGestion) . formShowTareas() . "</div>";
             break;
     }
 }
