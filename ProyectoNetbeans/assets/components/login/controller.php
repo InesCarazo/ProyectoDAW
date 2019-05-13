@@ -3,34 +3,42 @@ require_once './model.php';
 
 session_start();
 
-if (!isset($_SESSION['logueado'])) {
-    $_SESSION['logueado'] = "No";
+if (!isset($_SESSION['isLogged']))
+{
+    $_SESSION['isLogged'] = "No";
+}
+
+if ($_SESSION['isLogged'] == "Si")
+{
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
+    header("Location: $url"); 
+    echo "OK";
 }
 else
 {
-    $isLogged = $_SESSION['logueado'];
+    $message = "Login incorrecto";
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 if (isset($_POST['login'])) 
 {
     $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $_SESSION['userLogueado'] = $usuario;
+    $_SESSION['pwdLogueado'] = $contrasena;
     loginCorrecto($usuario, $contrasena);
 }
+
 function loginCorrecto($usuario, $contrasena)
 {
     $modelClass = new modelClass();
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
-    {          
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
-        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
-        header("Location: $url"); 
-        echo "OK";
+    {   
+        $_SESSION['isLogged'] = "Si";
     }
     else
     {
-        $message = "Login incorrecto";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        $_SESSION['isLogged'] = "No";
     }
 }
