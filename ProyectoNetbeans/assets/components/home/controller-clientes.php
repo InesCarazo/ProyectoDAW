@@ -52,7 +52,7 @@ function tablaVistaClientes(){
             <td class='text-center'>" . $value->getApellidos() . "</td>
             <td class='text-center'>" . $value->getTelefono() . "</td>
             <td class='text-center'>" . $value->getCorreo() . "</td>
-            <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
+            <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
         </tr>";
     }
     $tablaHTML.= "</tbody>
@@ -128,7 +128,7 @@ function formModifyClientes($id)
         <div class='form-group'>
             <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
             <div class='col-md-8'>
-                <input id='fnacimiento' name='modifyFnacimiento' type='date'  value='". $cliente->getFechaNacimiento() ."' required='required' class='form-control'>
+                <input id='fnacimiento' name='modifyFnacimiento' type='date'  value='". date("d-m-Y", strtotime($cliente->getFechaNacimiento())) ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
