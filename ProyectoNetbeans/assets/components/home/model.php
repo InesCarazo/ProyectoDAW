@@ -5,6 +5,7 @@ require_once './../clases/empleado.php';
 require_once './../clases/cliente.php';
 require_once './../clases/casa.php';
 require_once './../clases/tipo_tarea.php';
+require_once './../clases/empleado_cliente_tarea.php';
 class modelClass {
     //EMPLEADOS
     function verEmpleados() {      
@@ -73,10 +74,11 @@ class modelClass {
         try 
         {
             $conn->beginTransaction();
-            $conn->exec("UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'");
-            $conn->exec("UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id");
+            $sql1="UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'";
+            $sql2="UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id";
+            $conn->exec($sql1);
+            $conn->exec($sql2);
             $conn->commit();
-            
         }
            catch (Exception $e) 
            {
@@ -188,7 +190,17 @@ class modelClass {
     //CASAS
     function verCasas() 
     {
-    require_once './../conexion/conexion.php';
+    //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
         $stmt = $conn->prepare("SELECT * FROM casa");
         $stmt->execute();
         $casas = Array();
@@ -281,7 +293,17 @@ class modelClass {
 
     function buscarTarea($id) 
     {   
-        require_once './../conexion/conexion.php';
+         //require_once './../conexion/conexion.php';
+    try {
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+        $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+        // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getCode();
+        echo 'Error en la conexión: ' . $e->getMessage();
+        exit();
+    }
             $stmt = $conn->prepare("SELECT * FROM tarea t, tipo_tarea ti WHERE t.A_tipo_tarea = ti.P_tipo_tarea AND t.P_tarea = $id");
             $stmt->execute();
             $tarea = Array();
@@ -338,7 +360,7 @@ class modelClass {
         try 
         {
             $conn->beginTransaction();
-            $conn->exec("DELETE tipo_tarea WHERE tipo_tarea.P_tipo_tarea=$id");
+            $conn->exec("DELETE FROM tipo_tarea WHERE tipo_tarea.P_tipo_tarea=$id");
             $conn->exec("DELETE FROM tarea WHERE tarea.A_tipo_tarea=$id");
             $conn->commit();
             
@@ -350,4 +372,75 @@ class modelClass {
            }
     }
     //TAREAS
+    //PAGOS
+    
+    // SELECT * FROM empleado e, empleado_cliente_tarea ect, tarea_realizada tr WHERE e.P_empleado= ect.A_empleado AND ect.A_realizada IS NULL
+    //SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=1 AND tr.pagada=1
+
+    function buscarPagos($id) 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE ect.A_realizada = tr.P_tarea_realizada AND ect.A_realizada IS NOT NULL AND ect.A_empleado=$id AND tr.pagada=0");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Empleado_cliente_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+
+    function modifyPagos($id)
+    {
+        require_once './../conexion/conexion.php';
+        try
+        {
+        $stmt = $conn->prepare("UPDATE tarea_realizada SET pagada=1 WHERE tarea_realizada.P_tarea_realizada=$id");
+        $stmt->execute();
+        return true;
+        }catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+    function buscarPagosCliente($id) 
+    {
+    require_once './../conexion/conexion.php';
+        $stmt = $conn->prepare("SELECT * FROM empleado_cliente_tarea ect, tarea_realizada tr WHERE tr.P_tarea_realizada = ect.A_realizada AND ect.A_cliente=$id AND ect.pagoCliente=0");
+        $stmt->execute();
+        $tareas = Array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) 
+        {
+            $tarea = new Empleado_cliente_tarea($resultado);
+            array_push($tareas, $tarea);
+            $resultado = $stmt->fetch();
+        }
+        return $tareas;
+    }
+
+    function modifyPagosCliente($idTareaR, $idCliente)
+    {
+        require_once './../conexion/conexion.php';
+        try
+        {
+            $sql= "UPDATE empleado_cliente_tarea SET pagoCliente=1 WHERE empleado_cliente_tarea.A_cliente=$idCliente AND empleado_cliente_tarea.A_realizada=$idTareaR";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return true;
+        }catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+
+    //PAGOS
+
 }

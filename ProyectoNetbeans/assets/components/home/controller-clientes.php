@@ -17,7 +17,7 @@ if (isset($_POST['modCliente']))
     $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
 }
 
-if (isset($_POST['borrarClientes'])) 
+if (isset($_POST['borrarCliente'])) 
 {
     $id = $_SESSION['idCliSelect'];
     $modelClass = new modelClass();
@@ -27,13 +27,13 @@ if (isset($_POST['borrarClientes']))
 function tablaVistaClientes(){
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?cliente=modificar'>
-        <table class='row table-bordered table-hover table-responsive'>
+        <table class='col-md-12 table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th class='text-center'>Nombre</th>
                     <th class='text-center'>Apellidos</th>
-                    <th class='text-center'>Telefono</th>
+                    <th class='text-center'>Teléfono</th>
                     <th class='text-center'>Correo</th>
                     <th class='text-center'>Fecha de nacimiento</th>
                 </tr>
@@ -42,6 +42,7 @@ function tablaVistaClientes(){
             $model = new modelClass();
             $clientes = $model->verClientes();
             foreach ($clientes as $value) {
+                $_SESSION['idCliSelect'] = $value->getP_Usuario();
                 $tablaHTML.= "
         <tr>
             <td>
@@ -51,18 +52,18 @@ function tablaVistaClientes(){
             <td class='text-center'>" . $value->getApellidos() . "</td>
             <td class='text-center'>" . $value->getTelefono() . "</td>
             <td class='text-center'>" . $value->getCorreo() . "</td>
-            <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
+            <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
         </tr>";
     }
     $tablaHTML.= "</tbody>
     </table>
     <div class='col-md-6'>
-            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
         </div>
 </form>
 <div class='col-md-6'>
     <form method='POST' action='?cliente=ver'>
-        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
     </form>
 
 </div>
@@ -127,7 +128,7 @@ function formModifyClientes($id)
         <div class='form-group'>
             <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
             <div class='col-md-8'>
-                <input id='fnacimiento' name='modifyFnacimiento' type='date'  value='". $cliente->getFechaNacimiento() ."' required='required' class='form-control'>
+                <input id='fnacimiento' name='modifyFnacimiento' type='date'  value='". date("d-m-Y", strtotime($cliente->getFechaNacimiento())) ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
@@ -149,11 +150,6 @@ function formModifyClientes($id)
         </div>
     </div>
 </form>";
-    return $contenido;
-}
-
-function formPagosClientes($tipoForm){
-    $contenido = "";
     return $contenido;
 }
 

@@ -2,8 +2,6 @@
 require_once './model.php';
 
 
-//session_start();
-
 if (isset($_POST['addEmpleado'])) 
 {
     $addUsuario = $_POST['addUsuario'];
@@ -39,12 +37,12 @@ if (isset($_POST['modificar']))
     $modifyCorreo = $_POST['modifyCorreo'];
     $modifyFnacimiento = $_POST['modifyFnacimiento'];
     $modifyNss = $_POST['modifyNss'];
-    $modifyAdmin = '';
-    if($_POST['modifyAdmin'] == 'admin')
+    $modifyAdmin= 0;
+    if (isset($_POST['modifyAdmin']) && $_POST['modifyAdmin'])
     {
         $modifyAdmin = 1;
     }
-    else
+    else 
     {
         $modifyAdmin=0;
     }
@@ -150,16 +148,16 @@ function tablaVistaEmpleados(){
                     <td class='text-center'>" . $value->getApellidos() . "</td>
                     <td class='text-center'>" . $value->getTelefono() . "</td>
                     <td class='text-center'>" . $value->getCorreo() . "</td>
-                    <td class='text-center'>" . $value->getFechaNacimiento() . "</td>
+                    <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
-            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
         </div>
 </form>
 <div class='col-md-6'>
     <form method='POST' action='?empleado=ver'>
-        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
     </form>
 
 </div>
@@ -224,7 +222,7 @@ function formModifyEmpleados($id){
         <div class='form-group'>
             <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
             <div class='col-md-8'>
-                <input id='fnacimiento' name='modifyFnacimiento' type='date' required='required' value='". $empleado->getFechaNacimiento() ."' class='form-control'>
+                <input id='fnacimiento' name='modifyFnacimiento' type='date' required='required' value='". date("d-m-Y", strtotime($empleado->getFechaNacimiento())) ."' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
@@ -239,16 +237,16 @@ function formModifyEmpleados($id){
 
     if ($empleado->getIsAdmin() == 1) 
     {
-        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin' checked>";   
+        $contenido.= "<input type='checkbox' name='modifyAdmin' checked>";   
     }
     else
     {
-        $contenido.= "<input type='checkbox' name='modifyAdmin' value='admin'>"; 
+        $contenido.= "<input type='checkbox' name='modifyAdmin'>"; 
     }
     $contenido.="</div>
   </div> 
     <div class='form-group'>
-        <div class='ccol-md-offset-9 col-md-3''>
+        <div class='col-md-offset-9 col-md-3''>
         <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
         </div>
     </div>
@@ -257,10 +255,6 @@ function formModifyEmpleados($id){
 return $contenido;
 }
 
-function menuTareasEmpleados($tipoForm){}
-
-function menuPagosEmpleados($tipoForm){}
-
 function menuEmpleados($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
               
@@ -268,8 +262,8 @@ function menuEmpleados($tipoGestion){
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?empleado=ver'>Ver</a></li>
         <li><a href='?empleado=anadir'>Añadir</a></li>
-        <!--<li><a href='?empleado=modificar'>Modificar</a></li> -->
-        <li><a href='?empleado=tareas'>Tareas</a></li>
+        <!--<li><a href='?empleado=modificar'>Modificar</a></li> 
+        <li><a href='?empleado=tareas'>Tareas</a></li>-->
         <li><a href='?empleado=pagos'>Pagos</a></li>
     </ul>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2019 a las 16:55:16
+-- Tiempo de generación: 09-05-2019 a las 16:27:53
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -111,7 +111,7 @@ INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `ciudad`, `hasFurniture`, `A_
 (3, 190, 'Calle Bolero, 80', 'Santander', 1, 3),
 (4, 200, 'Paseo Tinamús, 267 2ºE', 'Bilbao', 0, 4),
 (5, 210, 'Avenida Pintor Sorolla, 125 4ºG', 'Málaga', 1, 4),
-(7, 222, 'Calle Altamirano, 8 4ºC', 'Madrid', 0, 1);
+(9, 220, 'Calle Altamirano, 8 4ºC', 'Madrid', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,7 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 (1, 'TARJETA', '', 1),
 (2, 'BANCO', '', 2),
 (3, 'TARJETA', '', 3),
-(4, 'BANCO', '', 4),
-(5, 'BANCO', '321364', 11);
+(4, 'BANCO', '', 4);
 
 -- --------------------------------------------------------
 
@@ -145,7 +144,7 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 
 CREATE TABLE `empleado` (
   `P_empleado` int(11) NOT NULL,
-  `nSS` varchar(20) DEFAULT NULL,
+  `nss` varchar(20) DEFAULT NULL,
   `isAdmin` tinyint(4) DEFAULT NULL,
   `A_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -154,13 +153,13 @@ CREATE TABLE `empleado` (
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`P_empleado`, `nSS`, `isAdmin`, `A_usuario`) VALUES
+INSERT INTO `empleado` (`P_empleado`, `nss`, `isAdmin`, `A_usuario`) VALUES
 (1, '111222333', 0, 5),
 (2, '44555666', 0, 6),
 (3, '777888999', 0, 7),
 (4, '111555999', 0, 8),
 (5, '333555777', 1, 9),
-(6, '12341234', 1, 10);
+(6, '2354254', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -174,6 +173,7 @@ CREATE TABLE `empleado_cliente_tarea` (
   `A_cliente` int(11) DEFAULT NULL,
   `A_tarea` int(11) DEFAULT NULL,
   `A_realizada` int(11) DEFAULT NULL,
+  `pagoCliente` tinyint(1) NOT NULL,
   `fecha` date DEFAULT NULL,
   `duracion_h` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -182,25 +182,27 @@ CREATE TABLE `empleado_cliente_tarea` (
 -- Volcado de datos para la tabla `empleado_cliente_tarea`
 --
 
-INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cliente`, `A_tarea`, `A_realizada`, `fecha`, `duracion_h`) VALUES
-(1, 2, 1, 1, 1, '2018-06-15', 2),
-(2, 1, 1, 3, 2, '2018-05-28', 1),
-(3, 2, 1, 1, 4, '2018-06-15', 1),
-(4, 3, 1, 3, 3, '2018-06-11', 1),
-(5, 4, 2, 5, NULL, '2018-06-11', 2),
-(6, 1, 2, 2, NULL, '2018-06-16', 1),
-(7, 1, 1, 4, NULL, '2018-06-16', 1),
-(18, 1, 1, 2, NULL, '2018-06-17', 1),
-(19, 1, 2, 2, NULL, '2018-06-17', 1),
-(20, 1, 3, 2, NULL, '2018-06-17', 1),
-(21, 1, 1, 3, 5, '2018-06-18', 1),
-(22, 1, 2, 5, 6, '2018-06-18', 1),
-(23, 1, 3, 3, 7, '2018-06-18', 1),
-(24, 1, 1, 2, 8, '2018-06-18', 1),
-(25, 1, 2, 2, 9, '2018-06-18', 1),
-(26, 1, 3, 7, 10, '2018-06-18', 1),
-(27, 1, 2, 1, 11, '2018-06-17', 1),
-(28, 1, 1, 1, NULL, '2018-06-19', 1);
+INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cliente`, `A_tarea`, `A_realizada`, `pagoCliente`, `fecha`, `duracion_h`) VALUES
+(1, 2, 1, 1, 1, 1, '2018-06-15', 2),
+(2, 1, 1, 3, 2, 1, '2018-05-28', 1),
+(3, 2, 1, 1, 4, 1, '2018-06-15', 1),
+(4, 3, 1, 3, 3, 1, '2018-06-11', 1),
+(5, 4, 2, 5, NULL, 0, '2018-06-11', 2),
+(6, 1, 2, 2, NULL, 0, '2018-06-16', 1),
+(7, 1, 1, 4, NULL, 0, '2018-06-16', 1),
+(18, 1, 1, 2, NULL, 0, '2018-06-17', 1),
+(19, 1, 2, 2, NULL, 0, '2018-06-17', 1),
+(20, 1, 3, 2, NULL, 0, '2018-06-17', 1),
+(21, 1, 1, 3, 5, 0, '2018-06-18', 1),
+(22, 1, 2, 5, 6, 1, '2018-06-18', 1),
+(23, 1, 3, 3, 7, 0, '2018-06-18', 1),
+(24, 1, 1, 2, 8, 1, '2018-06-18', 1),
+(25, 1, 2, 2, 9, 0, '2018-06-18', 1),
+(26, 1, 3, 7, 10, 0, '2018-06-18', 1),
+(27, 1, 2, 1, 11, 0, '2018-06-17', 1),
+(28, 1, 1, 1, NULL, 0, '2018-06-19', 1),
+(29, 6, 1, 1, 12, 1, '2019-05-08', 2),
+(30, 6, 1, 2, 13, 1, '2019-05-08', 1);
 
 -- --------------------------------------------------------
 
@@ -286,15 +288,17 @@ CREATE TABLE `tarea_realizada` (
 INSERT INTO `tarea_realizada` (`P_tarea_realizada`, `fecha`, `pagada`, `duracion_h`) VALUES
 (1, '2018-05-22', 0, 1),
 (2, '2018-05-22', 1, 1),
-(3, '2018-06-10', 0, 1),
+(3, '2018-06-10', 1, 1),
 (4, '2018-06-16', 1, 1),
-(5, '2018-06-18', 1, 1),
+(5, '2018-06-18', 0, 1),
 (6, '2018-06-18', 1, 1),
-(7, '2018-06-18', 1, 1),
+(7, '2018-06-18', 0, 1),
 (8, '2018-06-18', 1, 1),
 (9, '2018-06-18', 1, 1),
 (10, '2018-06-18', 1, 1),
-(11, '2018-06-18', 0, 1);
+(11, '2018-06-18', 0, 1),
+(12, '2019-05-08', 0, 2),
+(13, '2019-05-08', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -354,8 +358,7 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
 (8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
 (9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
-(10, '1234', '1234', 'Test', 'test', 12341234, 'test@gmail.com', '2019-04-04', 'EMPLEADO'),
-(11, 'TestCli', '56a7f6f421344e9d8d1ab6c0131eb5e9', 'TestCli', 'TestCli', 111222333, 'TestCli@TestCli.es', '2019-04-22', 'CLIENTE');
+(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO');
 
 --
 -- Índices para tablas volcadas
@@ -478,13 +481,13 @@ ALTER TABLE `beacon`
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
-  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -496,7 +499,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
 --
 ALTER TABLE `empleado_cliente_tarea`
-  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_horario`
@@ -520,7 +523,7 @@ ALTER TABLE `tarea`
 -- AUTO_INCREMENT de la tabla `tarea_realizada`
 --
 ALTER TABLE `tarea_realizada`
-  MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `P_tarea_realizada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_tarea`
@@ -532,7 +535,7 @@ ALTER TABLE `tipo_tarea`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
@@ -561,13 +564,13 @@ ALTER TABLE `casa`
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`);
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`);
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`A_usuario`) REFERENCES `usuario` (`P_Usuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `empleado_cliente_tarea`
@@ -589,7 +592,7 @@ ALTER TABLE `empleado_horario`
 -- Filtros para la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`);
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`A_tipo_tarea`) REFERENCES `tipo_tarea` (`P_tipo_tarea`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

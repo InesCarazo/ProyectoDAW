@@ -123,6 +123,7 @@ function tablaVistaCasas(){
             $model = new modelClass(); 
             $casas = $model->verCasas(); 
             foreach ($casas as $value) { 
+                $_SESSION['idCasaSelect'] = $value->getP_casa();
                 $tablaHTML.= "
                 <tr>
                     <td>
@@ -146,12 +147,12 @@ function tablaVistaCasas(){
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
-                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
-            </div>
+                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
+        </div>
     </form>
     <div class='col-md-6'>
         <form method='POST' action='?casa=ver'>
-            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
         </form>
     
     </div>
@@ -248,19 +249,14 @@ function formModifyCasas($id){
     return $contenido;
 }
 
-function formCasaCliente($tipoForm){
-    $contenido = "";
-    return $contenido;
-}
-
 function menuCasas($tipoGestion){
     $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?casa=ver'>Ver</a></li>
         <li><a href='?casa=anadir'>Añadir</a></li> 
-        <li><a href='?casa=casa-cliente'>Casa-Cliente</a></li>       
-        <!--<li><a href='?casa=modificar'>Modificar</a></li>-->
+        <!--<li><a href='?casa=casa-cliente'>Casa-Cliente</a></li>       
+        <li><a href='?casa=modificar'>Modificar</a></li>-->
     </ul>
 </div>
 </div>

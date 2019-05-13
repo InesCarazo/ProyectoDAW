@@ -7,6 +7,7 @@ require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
 require_once './controller-tareas.php';
+require_once './controller-pagos.php';
 require_once './../clases/carrito.php';
 
 
@@ -68,13 +69,9 @@ function tipoFormEmpleados($tipoForm){
                 $message = "Tienes que seleccionar un empleado para poder editar";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
-            
-            break;
-        case 'tareas':
-        return menuEmpleados("empleados") . menuTareasEmpleados($tipoForm) . "</div>";
             break;
             case 'pagos':
-        return menuEmpleados("empleados") .  menuPagosEmpleados($tipoForm) . "</div>";
+        return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";
             break; 
     }
 }
@@ -83,7 +80,6 @@ function tipoFormClientes($tipoForm){
     switch ($tipoForm) {
         case 'ver':
            return menuClientes("clientes") . formShowClientes() . "</div>";
-           
             break;
         case 'modificar':
             if (isset($_POST['btnRadioCli'])) 
@@ -98,7 +94,7 @@ function tipoFormClientes($tipoForm){
             }
             break;
         case 'pagos':
-            return menuClientes("clientes") . formPagosClientes($tipoForm) . "</div>";
+            return menuClientes("clientes") . menuPagosClientes() . "</div>";
             break;
     }
 }

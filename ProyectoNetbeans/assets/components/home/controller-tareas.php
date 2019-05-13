@@ -54,6 +54,8 @@ function tablaVistaTareas()
             $model = new modelClass(); 
             $tareas = $model->verTareas(); 
             foreach ($tareas as $value) { 
+                
+                $_SESSION['idTareaSelect'] = $value->getP_tipo_tarea();
                 $tablaHTML.= "
                 <tr>
                     <td>
@@ -65,12 +67,12 @@ function tablaVistaTareas()
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
-                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr'>Modificar</button>
+                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
             </div>
     </form>
     <div class='col-md-6'>
         <form method='POST' action='?tarea=ver'>
-            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr'>Borrar</button>
+            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
         </form>
     
     </div>
