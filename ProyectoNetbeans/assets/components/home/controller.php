@@ -10,21 +10,27 @@ require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 require_once './../clases/carrito.php';
 
-// if (!isset($_SESSION['isLogged'])) 
-// {
-//     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-//     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-//     header("Location: $url");
-// }
-// elseif (isset($_SESSION['isLogged']) == "No") 
-// {
-//     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-//     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-//     header("Location: $url");
-// }
+if (!isset($_SESSION['isLogged'])) 
+{
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
+    header("Location: $url");
+}
+elseif ($_SESSION['isLogged'] == "No") 
+{
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
+    header("Location: $url");
+}
+elseif ($_SESSION['isLogged'] == "Si") 
+{
+    echo $_SESSION['userLogueado'] ."<br/>" ;
+    echo $_SESSION['pwdLogueado'];
+}
 
 function cerrarSesion()
 {
+    session_destroy();
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
     header("Location: $url"); 
