@@ -279,8 +279,8 @@ function generarSelectEmpleadosProg(){
 
 function formProgramarTareas()
 {
-    $contenido = "<form method='POST' action='?tarea=programar' class='contenido-home'>
-    <div class='col-md-6'>
+    $contenido = "
+    <div class='col-md-6'><form method='POST' action='?tarea=programar'>
         <div class='form-group row'>
             <label class='col-md-4 col-form-label' for='progTarea'>Tareas</label>
            ". generarSelectTareasProg() ."
@@ -311,9 +311,21 @@ function formProgramarTareas()
                 </button>
             </div>
         </div>
+        </form>
     </div>
-    </form>
+    
     <div class='col-md-6'>
+    <form method='POST' action='?tarea=programar'>
+    ";
+    if (isset($_POST['progAddTarea'])) 
+    {
+        $carrito = Carrito();
+        echo "<h1>". $_POST['chooseTareaProg'] ."</h1>";
+        echo "<h1>". $_POST['progfecha'] ."</h1>";
+        echo "<h1>". $_POST['chooseClientProg'] ."</h1>";
+        echo "<h1>". $_POST['chooseEmpleadoProg'] ."</h1>";
+    }
+    $contenido.="
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-12'>DIV 1 Nº tareas y Duración</label>
         </div>
@@ -326,7 +338,8 @@ function formProgramarTareas()
             </div>
 
         </div>
-    </div
+        </form>
+    </div>
 ";
     return $contenido;
 }

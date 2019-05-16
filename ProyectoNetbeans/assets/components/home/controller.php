@@ -24,8 +24,8 @@ elseif ($_SESSION['isLogged'] == "No")
 }
 elseif ($_SESSION['isLogged'] == "Si") 
 {
-    echo $_SESSION['userLogueado'] ."<br/>" ;
-    echo $_SESSION['pwdLogueado'];
+    //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
+    //echo $_SESSION['pwdLogueado'];
 }
 
 function cerrarSesion()

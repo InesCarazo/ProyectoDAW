@@ -1,66 +1,31 @@
 <?php
 class Carrito{
-    // private $tarea;
-    // private $fecha;
-    // private $cliente;
-    // private $ciudad;
-    // private $hasFurniture;
-    // private $A_cliente;
+    private $carrito;
 
-    // public function __construct($row) {
-    //     $this->tarea = $row["tarea"];
-    //     $this->fecha = $row["fecha"];
-    //     $this->cliente = $row["cliente"];
-    //     $this->ciudad = $row["ciudad"];
-    //     $this->hasFurniture = $row["hasFurniture"];
-    //     $this->A_cliente = $row["A_cliente"];
-    // }
+    private $idEmpleado;
+    private $idCliente;
+    private $idTarea;
+    private $idRealizada;
+    private $fecha;
+    private $duracion_h;
 
-    // public function setTarea($tarea){
-    //     $this->tarea = $tarea;
-    // }
-    
-    // public function getTarea(){
-    //     return $this->tarea;
-    // }
+    public function __construct($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h) 
+    {
+        $this->carrito = array();
+        $this->idEmpleado = $idEmpleado;
+        $this->idCliente = $idCliente;
+        $this->idTarea = $idTarea;
+        $this->fecha = $fecha;
+        $this->idRealizada = NULL;
+        $this->duracion_h = $duracion_h;
+    }
 
-    // public function setFecha($fecha){
-    //     $this->fecha = $fecha;
-    // }
-    
-    // public function getFecha(){
-    //     return $this->fecha;
-    // }
+    public function getArray() {
+        return $this->carrito;
+    }
 
-    // public function setcliente($cliente){
-    //     $this->cliente = $cliente;
-    // }
-    
-    // public function getcliente(){
-    //     return $this->cliente;
-    // }
+    public function setArray($carrito) {
+        $this->carrito = $carrito;
+    }
 
-    // public function setCiudad($ciudad){
-    //     $this->ciudad = $ciudad;
-    // }
-    
-    // public function getCiudad(){
-    //     return $this->ciudad;
-    // }
-
-    // public function setHasFurniture($hasFurniture){
-    //     $this->hasFurniture = $hasFurniture;
-    // }
-    
-    // public function getHasFurniture(){
-    //     return $this->hasFurniture;
-    // }
-
-    // public function setA_cliente($A_cliente){
-    //     $this->A_cliente = $A_cliente;
-    // }
-    
-    // public function getA_cliente(){
-    //     return $this->A_cliente;
-    // }
 }
