@@ -1,6 +1,10 @@
 <?php
-// require_once './../clases/carrito.php';
 
+if (isset($_POST['quitarTarea'])) 
+{
+    $carrito = quitarTarea($_POST['valorQuitar']);
+    $_SESSION['carrito'] = $carrito;
+}
 
 $carrito = Array();
 //$_SESSION['carrito'] = $carrito;
@@ -306,19 +310,22 @@ function listTaskAdded()
     $carrito = $_SESSION['carrito'];
     foreach ($carrito as $key => $value) 
     {
-        //echo $value[2];
-        //print_r($value);
-        //echo "<br/>";
             $modelClass = new modelClass(); 
             $tareas = $modelClass->buscarTarea($value[2]);
-            //print_r($tareas);
-            $tablaHTML.="<form action='?tarea=programar' method='POST'>";
-            $tablaHTML.= $tareas->getTexto() ."(".$value[3].") <input id='btnEnlace' type='submit' name='quitar' value='Quitar'>
-            <input type='hidden' name='valorQuitar' value='". $tareas->getP_tipo_tarea() ."'><br/>";
-            $tablaHTML.= "</form>";
+            $tablaHTML.="<div class='row'><form action='?tarea=programar' method='POST'>";
+            $tablaHTML.= $tareas->getTexto() ."(".$value[3].") <input id='btnEnlace' type='submit' name='quitarTarea' value='Quitar' class='btn btn-default'>
+            <input type='hidden' name='valorQuitar' value='". $tareas->getP_tipo_tarea() ."'>";
+            $tablaHTML.= "</form></div>";
     }
     
 return $tablaHTML;
+}
+
+function quitarTarea($id) 
+{
+    $carrito = $_SESSION['carrito'];
+    unset($carrito[array_search($id, $carrito)]);
+    return $carrito;
 }
 
 function formProgramarTareas()
@@ -359,7 +366,7 @@ function formProgramarTareas()
     </div>
     
     <div class='col-md-6'>
-    <form method='POST' action='?tarea=programar'>
+   <!-- <form method='POST' action='?tarea=programar'>-->
     ";
     if (isset($_POST['progAddTarea'])) 
     {
@@ -376,7 +383,7 @@ function formProgramarTareas()
     }
     $contenido.="
         <div class='form-group row'>
-            <label for='duracion' class='control-label col-md-12'>Nº tareas:" . count($carrito)."</label>
+            <label for='duracion' class='control-label col-md-12'>Nº tareas:" . count($_SESSION['carrito'])."</label>
         </div>
         <div class='form-group row'>
             <div id='carritoTareas' name='carritoTareas' class='col-md-12'>
@@ -388,7 +395,7 @@ function formProgramarTareas()
             </div>
 
         </div>
-        </form>
+        <!--</form>-->
     </div>
 ";
     return $contenido;

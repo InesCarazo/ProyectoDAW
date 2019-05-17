@@ -241,7 +241,8 @@ ul.CTAs a {
     }
 }
 
-.estilo-btn:hover {
+.estilo-btn:hover,
+.btn-default:hover {
     background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
     color: white;
 }
@@ -251,10 +252,18 @@ ul.CTAs a {
     color: #fff;
 }
 
+.btn-default {
+    border: 1px sold #f16e94 !important;
+}
+
+.btn-default:hover {
+    background-image: url();
+}
+
 #tablaVista table,
 #tablaVista th,
 #tablaVista td {
-    border: 1px solid #f16e94;
+    border: 2px solid #f16e94;
 }
 
 .modBorr {
