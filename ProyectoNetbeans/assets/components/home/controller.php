@@ -10,6 +10,7 @@ require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 require_once './../clases/carrito.php';
 
+
 if (!isset($_SESSION['isLogged'])) 
 {
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
