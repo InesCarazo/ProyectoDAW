@@ -7,3 +7,6 @@ var template_params = {
 };
 
 emailjs.send(service_id, template_id, template_params);
+
+//https://www.smtpjs.com/
+//https://www.emailjs.com/
