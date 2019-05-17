@@ -1,13 +1,13 @@
 <?php
 
+$carrito = Array();
+//$_SESSION['carrito'] = $carrito;
+
 if (isset($_POST['quitarTarea'])) 
 {
     $carrito = quitarTarea($_POST['valorQuitar']);
     $_SESSION['carrito'] = $carrito;
 }
-
-$carrito = Array();
-//$_SESSION['carrito'] = $carrito;
 
 if (isset($_SESSION['carrito'])) 
 {
@@ -313,7 +313,7 @@ function listTaskAdded()
             $modelClass = new modelClass(); 
             $tareas = $modelClass->buscarTarea($value[2]);
             $tablaHTML.="<div class='row'><form action='?tarea=programar' method='POST'>";
-            $tablaHTML.= $tareas->getTexto() ."(".$value[3].") <input id='btnEnlace' type='submit' name='quitarTarea' value='Quitar' class='btn btn-default'>
+            $tablaHTML.= $tareas->getTexto() ."(". date("d-m-Y", strtotime($value[3])) .") <button id='btnEnlace' type='submit' name='quitarTarea' class='btn btn-default'><!--<img src='./../../images/delete/bin_2/bin2_32.png'>--><!--<img src='./../../images/delete/bin_1/bin1_24.png'>--><img src='./../../images/delete/cart/cart_32.png'></button>
             <input type='hidden' name='valorQuitar' value='". $tareas->getP_tipo_tarea() ."'>";
             $tablaHTML.= "</form></div>";
     }
@@ -328,12 +328,29 @@ function quitarTarea($id)
     return $carrito;
 }
 
+if (isset($_POST['programarTarea'])) 
+{
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+        $idEmpleado = $value[0]; 
+        $idCliente = $value[1];
+        $idTarea = $value[2];
+        $fecha = $value[3];;
+        $duracion_h =  $value[4];
+
+        $modelClass = new modelClass(); 
+        $tareas = $modelClass->programarTarea($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+
+    }
+}
+
 function formProgramarTareas()
 {
     $contenido = "
     <div class='col-md-6'><form method='POST' action='?tarea=programar'>
         <div class='form-group row'>
-            <label class='col-md-4 col-form-label' for='progTarea'>Tareas</label>
+            <label class='col-md-4 col-form-label'>Tareas</label>
            ". generarSelectTareasProg() ."
         </div>
         <div class='form-group row'>
@@ -365,9 +382,8 @@ function formProgramarTareas()
         </form>
     </div>
     
-    <div class='col-md-6'>
-   <!-- <form method='POST' action='?tarea=programar'>-->
-    ";
+    <div class='col-md-6'>";
+
     if (isset($_POST['progAddTarea'])) 
     {
         $idEmpleado = $_POST['chooseEmpleadoProg']; 
@@ -388,14 +404,16 @@ function formProgramarTareas()
         <div class='form-group row'>
             <div id='carritoTareas' name='carritoTareas' class='col-md-12'>
                <h3>Lista de tareas añadidas</h3>
+               " . listTaskAdded() . "
             </div>
             <div class='col-md-12 form-group'>
-            " . listTaskAdded() . "
-                <button id='progTarea' name='progTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+            <form method='POST' action='?tarea=programar'>
+                <button id='progTarea' name='programarTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+                </form>
             </div>
 
         </div>
-        <!--</form>-->
+        
     </div>
 ";
     return $contenido;
