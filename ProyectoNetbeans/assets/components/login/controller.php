@@ -5,7 +5,7 @@ session_start();
 
  if (!isset($_SESSION['isLogged']))
  {
-     $_SESSION['isLogged'] = "empty";
+     $_SESSION['isLogged'] = false;
  }
 
 
@@ -27,26 +27,23 @@ function loginCorrecto($usuario, $contrasena)
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {   
-        $_SESSION['isLogged'] = "Si";
+        $_SESSION['isLogged'] = true;
     }
     else
     {
-        $_SESSION['isLogged'] = "No";
+        $_SESSION['isLogged'] = false;
     }
 }
 
-if ($_SESSION['isLogged'] == "Si")
+if ($_SESSION['isLogged'] == true)
     {
         $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
         //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
         header("Location: $url"); 
         echo "OK";
     }
-    elseif($_SESSION['isLogged'] == "No")
+    elseif($_SESSION['isLogged'] == false)
     {
         $message = "Login incorrecto";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-    elseif($_SESSION['isLogged'] == "empty")
-    {
     }
