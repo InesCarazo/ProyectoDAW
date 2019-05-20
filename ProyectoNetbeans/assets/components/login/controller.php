@@ -8,6 +8,17 @@ session_start();
      $_SESSION['isLogged'] = false;
  }
 
+ if ($_SESSION['isLogged'] == true)
+    {
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
+        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
+        header("Location: $url"); 
+        echo "OK";
+    }
+    elseif($_SESSION['isLogged'] == false)
+    {
+    }
+
 
 
 if (isset($_POST['login'])) 
@@ -21,6 +32,11 @@ if (isset($_POST['login']))
     
 }
 
+/*  Nombre: loginCorrecto
+    Entrada: $usuario: string,
+             $contrasena: string
+    Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
+*/
 function loginCorrecto($usuario, $contrasena)
 {
     $modelClass = new modelClass();
@@ -32,18 +48,8 @@ function loginCorrecto($usuario, $contrasena)
     else
     {
         $_SESSION['isLogged'] = false;
-    }
-}
-
-if ($_SESSION['isLogged'] == true)
-    {
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
-        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
-        header("Location: $url"); 
-        echo "OK";
-    }
-    elseif($_SESSION['isLogged'] == false)
-    {
         $message = "Login incorrecto";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
+}
+

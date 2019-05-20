@@ -1,5 +1,12 @@
 <?php
-class modelClass{
+class modelClass
+{
+    /*  Nombre: comprobarLogin
+        Entrada: $usuario: string,
+                 $contrasena: string
+        Salida: true/false: boolean
+        Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
+    */
     function comprobarLogin($usuario, $contrasena) 
     {
         require_once './../conexion/conexion.php';
@@ -12,9 +19,12 @@ class modelClass{
 
         $resultado = $stmt -> fetch();
 
-        if($resultado == null){
+        if($resultado == null)
+        {
             return false;
-        }else{
+        }
+        else
+        {
             return true;
         }
     }

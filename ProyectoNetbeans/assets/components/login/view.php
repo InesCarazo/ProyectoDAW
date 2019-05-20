@@ -4,7 +4,6 @@ require_once './controller.php';
 <!DOCTYPE html>
 <html>
     <!-- Inés Carazo Núñez -->
-
     <head>
         <title>Login</title>
         <meta charset="UTF-8">
