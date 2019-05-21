@@ -113,14 +113,14 @@
             padding-bottom: 15%;
         }
         
-        #contacto {
+        .contacto {
             background-color: #fabada93;
         }
         
-        #contacto input[type=text],
-        #contacto input[type=email],
-        #contacto select,
-        #contacto textarea {
+        .contacto input[type=text],
+        .contacto input[type=email],
+        .contacto select,
+        .contacto textarea {
             width: 50%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -131,7 +131,7 @@
             resize: vertical;
         }
         
-        #contacto input[type=submit] {
+        .contacto input[type=submit] {
             background-color: white;
             color: #f16e94;
             padding: 12px 20px;
@@ -142,24 +142,24 @@
             margin-left: 59%;
         }
         
-        #contacto input[type=submit]:hover {
+        .contacto input[type=submit]:hover {
             background-color: #f16e94;
             color: white;
         }
         
-        #contacto .contenedor {
+        .contacto .contenedor {
             border-radius: 5px;
             padding: 2%;
         }
         
-        #contacto #map-container-google {
+        .contacto #map-container-google {
             padding-top: 2%;
             padding-left: 5%;
             padding-right: 5%;
             height: 400px;
         }
         
-        #contacto #map-container-google iframe {
+        .contacto #map-container-google iframe {
             width: 100%;
             height: 70%;
         }
