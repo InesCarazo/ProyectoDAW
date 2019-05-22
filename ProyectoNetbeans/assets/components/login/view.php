@@ -21,7 +21,9 @@ require_once './controller.php';
     <body>
 
         <div class="sidenav">
+        <a href='./../blog_home/blog.html'>
             <img class="center-block" src="./../../images/icono/white/cleaner256.png">
+        </a>
             <div class="login-main-text">
                 <h2 class="text-center text-uppercase">chacha chachi</h2>
             </div>
