@@ -33,7 +33,9 @@ if (isset($_POST['registro'])) {
 <body>
 
     <div class="sidenav">
+    <a href='./../login/view.php'>
         <img class="center-block" src="./../../images/icono/white/cleaner256.png">
+    </a>
         <div class="login-main-text">
             <h2 class="text-center text-uppercase">chacha chachi</h2>
         </div>

@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
     <!-- CSS propio que usaremos para personalizar BS -->
     <link rel="stylesheet " href="./../../css/blog_home.css" />
-
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!--jQuery-->
+    <script src="./../../vendors/jquery/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" defer></script>
-
+    <script src="./controller.js"></script>
     <style>
         /* Note: Try to remove the following lines to see the effect of CSS positioning */
         
@@ -34,6 +37,14 @@
             padding-top: 70px;
         }
     </style>
+    <!-- Mail -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
+        })();
+    </script>
+    <!-- Mail -->
 </head>
 
 
@@ -159,7 +170,7 @@
     </div>
 
     <!-- SECCION sobre nosotros -->
-    <section id="sobrenosotros" class="container no-margin no-padding">
+    <section id="sobrenosotros" class="container-fluid no-margin no-padding">
         <div class="row">
             <img src="./../../images/sobrenosotros/mitadsofa.jpg" class="col-md-6">
             <div id="sntexto" class="col-md-6">
@@ -175,59 +186,55 @@
 
     <!-- SECCION servicios -->
     <section id="servicios" class="container-fluid no-margin no-padding">
-        <!-- <div class="row"> -->
         <div id="casa" class="col-md-6 no-margin no-padding">
-            <img src="./../../images/servicios/sala.jpg" class="no-margin no-padding img-responsive">
+            <img src="./../../images/servicios/sala.jpg">
             <div class="overlay1 no-margin no-padding">
-                <div class="text1">
+                <div class="text1 no-margin no-padding">
                     <h3>Limpieza de casas</h3>
                 </div>
             </div>
         </div>
         <div id="mudanza" class="col-md-6 no-margin no-padding">
-            <img src="./../../images/servicios/openHouse.jpg" class="no-margin no-padding img-responsive">
+            <img src="./../../images/servicios/openHouse.jpg">
             <div class="overlay2 no-margin no-padding">
-                <div class="text2">
+                <div class="text2 no-margin no-padding">
                     <h3>Limpieza en mudanzas</h3>
                 </div>
             </div>
         </div>
-        <!-- </div> -->
-
     </section>
     <!-- SECCION servicios -->
 
     <!--SECCION contacto -->
-    <section id="seccontact" class="container">
-        <div id="contacto" class="row">
+    <section id="seccontact" class="container-fluid">
+        <div class="row contacto no-margin no-padding">
             <div class="col-md-6">
                 <h3 class="text-center text-uppercase">Contacto</h3>
-
                 <div class="contenedor">
-                    <form action="#">
+                    <form id="contact-form">
+                        <input id="numhid" type="hidden" name="contact_number">
                         <div class="row">
                             <label class="col-md-3">Nombre</label>
-                            <input type="text" id="name" class="col-md-9" name="firstname" placeholder="Escribe tu nombre">
+                            <input type="text" id="name" class="col-md-9" name="user_name" placeholder="Escribe tu nombre" required>
                         </div>
                         <div class="row">
                             <label class="col-md-3">Correo</label>
-                            <input type="email" id="mail" class="col-md-9" name="mail" placeholder="example@mail.com">
+                            <input type="email" id="mail" class="col-md-9" name="user_email" placeholder="example@mail.com" required>
                         </div>
                         <div class="row">
-                            <label class="col-md-3">País</label>
-                            <select id="country" class="col-md-9" name="country">
-                            <option value="spain">España</option>
-                            <option value="australia">Australia</option>
-                            <option value="canada">Canada</option>
-                            <option value="usa">USA</option>
+                            <label class="col-md-3">Servicio</label>
+                            <select id="serviciolimpieza" class="col-md-9" name="user_cleaning" required>
+                            <option value="" selected disabled hidden>Eliga un servicio de limpieza</option>
+                            <option value="Limpieza de Casa">Limpieza de Casa</option>
+                            <option value="Limpieza en mudanzas">Limpieza en mudanzas</option>
                         </select>
                         </div>
                         <div class="row">
                             <label class="col-md-3">Comentario</label>
-                            <textarea id="subject" class="col-md-9" name="subject" placeholder="Escribe aquí"></textarea>
+                            <textarea id="comentario" class="col-md-9" name="contact" placeholder="Escribe aquí" required></textarea>
                         </div>
                         <div class="row">
-                            <input type="submit" value="Enviar">
+                            <input type="submit" id="enviar" value="Enviar">
                         </div>
 
                     </form>
@@ -261,7 +268,7 @@
                         <h4>
                             Estamos orgullosos de ofrecer servicios de limpieza profesional y empleamos a amas de llaves residenciales que se enorgullecen de ofrecer servicios de alta calidad. Después de someterse a una exhaustiva verificación de antecedentes, cada miembro de nuestro
                             equipo está completamente capacitado en cada paso de nuestros planes de limpieza detallados. También respaldamos todo nuestro trabajo con una garantía de 24 horas. Estas son solo algunas de las muchas razones por las que los
-                            clientes confían en Molly Maid.</h4>
+                            clientes confían en Chacha Chachi.</h4>
                         <div class="panel-footer"></div>
                     </div>
                 </div>

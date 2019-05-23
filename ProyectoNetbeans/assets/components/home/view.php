@@ -112,6 +112,7 @@ if (isset($_GET['tarea'])) {
     <script type="text/javascript" src="./../../js/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+          //  $('#tablaVista').width("900px");
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');

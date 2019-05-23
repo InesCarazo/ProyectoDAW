@@ -1,8 +1,21 @@
 <?php
-if (!isset($_SESSION['carrito'])) 
+
+$carrito = Array();
+//$_SESSION['carrito'] = $carrito;
+
+if (isset($_POST['quitarTarea'])) 
 {
-    $carrito = Array();
+    $carrito = quitarTarea($_POST['valorQuitar']);
     $_SESSION['carrito'] = $carrito;
+}
+
+if (isset($_SESSION['carrito'])) 
+{
+     $carrito = $_SESSION['carrito'];
+}
+else
+{
+    $_SESSION['carrito'] = Array();
 }
 
 if (isset($_POST['modTarea'])) 
@@ -233,6 +246,8 @@ function generarSelectTareasProg()
                 foreach ($tareas as $key => $value2)
                 {
                         $contenido.= "<option id='chooseTareaProg' name='chooseTareaProg' class='form-control' value='" . $value2->getP_tarea() . "'>" .$value2->getTexto() ."</option>";
+                        $_SESSION['duracionTareaProg'] = $value2->getDuracion_h();
+                        
                 }
             $contenido.="
                 </select>
@@ -277,12 +292,65 @@ function generarSelectEmpleadosProg(){
     return $contenido;
 }
 
+function addTask($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h) 
+{
+    $carr = array();
+    array_push($carr, $idEmpleado);
+    array_push($carr, $idCliente);
+    array_push($carr, $idTarea);
+    array_push($carr, $fecha);
+    array_push($carr, $duracion_h);
+    return $carr;
+
+}
+
+function listTaskAdded()
+{
+    $tablaHTML="";
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+            $modelClass = new modelClass(); 
+            $tareas = $modelClass->buscarTarea($value[2]);
+            $tablaHTML.="<div class='row'><form action='?tarea=programar' method='POST'>";
+            $tablaHTML.= $tareas->getTexto() ."(". date("d-m-Y", strtotime($value[3])) .") <button id='btnEnlace' type='submit' name='quitarTarea' class='btn btn-default'><!--<img src='./../../images/delete/bin_2/bin2_32.png'>--><!--<img src='./../../images/delete/bin_1/bin1_24.png'>--><img src='./../../images/delete/cart/cart_32.png'></button>
+            <input type='hidden' name='valorQuitar' value='". $tareas->getP_tipo_tarea() ."'>";
+            $tablaHTML.= "</form></div>";
+    }
+    
+return $tablaHTML;
+}
+
+function quitarTarea($id) 
+{
+    $carrito = $_SESSION['carrito'];
+    unset($carrito[array_search($id, $carrito)]);
+    return $carrito;
+}
+
+if (isset($_POST['programarTarea'])) 
+{
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+        $idEmpleado = $value[0]; 
+        $idCliente = $value[1];
+        $idTarea = $value[2];
+        $fecha = $value[3];;
+        $duracion_h =  $value[4];
+
+        $modelClass = new modelClass(); 
+        $tareas = $modelClass->programarTarea($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+
+    }
+}
+
 function formProgramarTareas()
 {
     $contenido = "
     <div class='col-md-6'><form method='POST' action='?tarea=programar'>
         <div class='form-group row'>
-            <label class='col-md-4 col-form-label' for='progTarea'>Tareas</label>
+            <label class='col-md-4 col-form-label'>Tareas</label>
            ". generarSelectTareasProg() ."
         </div>
         <div class='form-group row'>
@@ -314,31 +382,38 @@ function formProgramarTareas()
         </form>
     </div>
     
-    <div class='col-md-6'>
-    <form method='POST' action='?tarea=programar'>
-    ";
+    <div class='col-md-6'>";
+
     if (isset($_POST['progAddTarea'])) 
     {
-        $carrito = Carrito();
-        echo "<h1>". $_POST['chooseTareaProg'] ."</h1>";
-        echo "<h1>". $_POST['progfecha'] ."</h1>";
-        echo "<h1>". $_POST['chooseClientProg'] ."</h1>";
-        echo "<h1>". $_POST['chooseEmpleadoProg'] ."</h1>";
+        $idEmpleado = $_POST['chooseEmpleadoProg']; 
+        $idCliente = $_POST['chooseClientProg'];
+        $idTarea = $_POST['chooseTareaProg'];
+        $fecha = $_POST['progfecha'];
+        $duracion_h =  $_SESSION['duracionTareaProg'];
+        
+        $carrito = $_SESSION['carrito'];
+        $carr = addTask($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+        array_push($carrito, $carr);
+        $_SESSION['carrito'] = $carrito;
     }
     $contenido.="
         <div class='form-group row'>
-            <label for='duracion' class='control-label col-md-12'>DIV 1 Nº tareas y Duración</label>
+            <label for='duracion' class='control-label col-md-12'>Nº tareas:" . count($_SESSION['carrito'])."</label>
         </div>
         <div class='form-group row'>
             <div id='carritoTareas' name='carritoTareas' class='col-md-12'>
                <h3>Lista de tareas añadidas</h3>
+               " . listTaskAdded() . "
             </div>
-            <div class='col-md-offset-8 col-md-4 form-group'>
-                <button id='progTarea' name='progTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+            <div class='col-md-12 form-group'>
+            <form method='POST' action='?tarea=programar'>
+                <button id='progTarea' name='programarTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+                </form>
             </div>
 
         </div>
-        </form>
+        
     </div>
 ";
     return $contenido;

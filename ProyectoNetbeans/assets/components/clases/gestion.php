@@ -79,7 +79,7 @@ class Gestion
     }
 
     public function setDuracion_h($duracion_h){
-        $this->fecha = $fecha;
+        $this->duracion_h = $duracion_h;
     }
     
     public function getduracion_h(){

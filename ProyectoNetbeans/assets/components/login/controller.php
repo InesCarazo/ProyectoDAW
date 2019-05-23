@@ -5,8 +5,24 @@ session_start();
 
  if (!isset($_SESSION['isLogged']))
  {
-     $_SESSION['isLogged'] = "empty";
+     $_SESSION['isLogged'] = false;
  }
+
+
+ /**
+  * Redireccionar a la pagina home
+  */
+  function goHome() {
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
+    header("Location: $url"); 
+    echo "OK";
+}
+
+ if ($_SESSION['isLogged'] == true)
+{
+    goHome();   
+}
 
 
 
@@ -21,32 +37,26 @@ if (isset($_POST['login']))
     
 }
 
+/**
+ * Nombre: loginCorrecto
+ *   Entrada: $usuario: string,
+ *            $contrasena: string
+ *   Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
+*/
 function loginCorrecto($usuario, $contrasena)
 {
     $modelClass = new modelClass();
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {   
-        $_SESSION['isLogged'] = "Si";
+        $_SESSION['isLogged'] = true;
+        goHome();
     }
     else
     {
-        $_SESSION['isLogged'] = "No";
-    }
-}
-
-if ($_SESSION['isLogged'] == "Si")
-    {
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
-        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
-        header("Location: $url"); 
-        echo "OK";
-    }
-    elseif($_SESSION['isLogged'] == "No")
-    {
+        $_SESSION['isLogged'] = false;
         $message = "Login incorrecto";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-    elseif($_SESSION['isLogged'] == "empty")
-    {
-    }
+}
+
