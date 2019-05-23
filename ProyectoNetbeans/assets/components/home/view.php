@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
     <!-- CSS propio que usaremos para personalizar BS -->
     <link rel="stylesheet" type="text/css" href="./../../css/home.css">
-
 </head>
 
 <body>
@@ -109,6 +108,9 @@ if (isset($_GET['tarea'])) {
     <!--Boostrap-->
     <script src="./../../vendors/bootstrap/js/bootstrap.min.js"></script>
     <!--MainScripts-->
+    <!-- Validaciones -->
+    <script type="text/javascript" src="./scripts/empleados.js"></script>
+    <!-- Validaciones -->
     <script type="text/javascript" src="./../../js/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {

@@ -2,29 +2,29 @@
 require_once './model.php';
 
 
-if (isset($_POST['addEmpleado'])) 
-{
-    $addUsuario = $_POST['addUsuario'];
-    $addContrasena = $_POST['addContrasena'];
-    $addNombre = $_POST['addNombre'];
-    $addApellidos = $_POST['addApellidos'];
-    $addTelefono = $_POST['addTelefono'];
-    $addCorreo = $_POST['addCorreo'];
-    $addFnacimiento = $_POST['addFnacimiento'];
-    $addNss = $_POST['addNss'];
-    $addAdmin = '';
-    if($_POST['addAdmin'] == 1)
-    {
-        $addAdmin = 1;
-    }
-    else
-    {
-        $addAdmin=0;
-    }
-    $modelClass = new modelClass();
-    $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
+// if (isset($_POST['addEmpleado'])) 
+// {
+//     $addUsuario = $_POST['addUsuario'];
+//     $addContrasena = $_POST['addContrasena'];
+//     $addNombre = $_POST['addNombre'];
+//     $addApellidos = $_POST['addApellidos'];
+//     $addTelefono = $_POST['addTelefono'];
+//     $addCorreo = $_POST['addCorreo'];
+//     $addFnacimiento = $_POST['addFnacimiento'];
+//     $addNss = $_POST['addNss'];
+//     $addAdmin = '';
+//     if($_POST['addAdmin'] == 1)
+//     {
+//         $addAdmin = 1;
+//     }
+//     else
+//     {
+//         $addAdmin=0;
+//     }
+//     $modelClass = new modelClass();
+//     $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
 
-}
+// }
 
 if (isset($_POST['modificar'])) 
 {
@@ -59,60 +59,60 @@ if (isset($_POST['borrarEmpleado']))
 
 function formAddEmpleados()
 {
-    $contenido = "<form method='POST' class='contenido-home'>
+    $contenido = "<form method='POST' class='contenido-home' data-toggle='validator'>
     <div class='row'>
     <div class='form-group'>
         <label for='usuario' class='control-label col-md-4'>Usuario</label>
         <div class='col-md-8'>
-            <input id='usuario' name='addUsuario' placeholder='usuario' type='text' required='required' class='form-control'>
+            <input id='addUsuario' name='addUsuario' placeholder='usuario' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
         <div class='col-md-8'>
-            <input id='contrasena' name='addContrasena' type='password' required='required' class='form-control'>
+            <input id='addContrasena' name='addContrasena' type='password' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='nombre' class='control-label col-md-4'>Nombre</label>
         <div class='col-md-8'>
-            <input id='nombre' name='addNombre' placeholder='nombre' type='text' required='required' class='form-control'>
+            <input id='addNombre' name='addNombre' placeholder='nombre' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
         <div class='col-md-8'>
-            <input id='apellidos' name='addApellidos' placeholder='apellidos' type='text' class='form-control'>
+            <input id='addApellidos' name='addApellidos' placeholder='apellidos' type='text' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='telefono' class='control-label col-md-4'>Telefono</label>
         <div class='col-md-8'>
-            <input id='telefono' name='addTelefono' placeholder='658974125' type='number' required='required' class='form-control'>
+            <input id='addTelefono' name='addTelefono' placeholder='658974125' type='number' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='correo' class='control-label col-md-4'>Correo</label>
         <div class='col-md-8'>
-            <input id='correo' name='addCorreo' placeholder='correo@correo.es' type='email' required='required' class='form-control'>
+            <input id='addCorreo' name='addCorreo' placeholder='correo@correo.es' type='email' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
         <div class='col-md-8'>
-            <input id='fnacimiento' name='addFnacimiento' type='date' required='required' class='form-control'>
+            <input id='addFnacimiento' name='addFnacimiento' type='date' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
         <label for='nss' class='control-label col-md-4'>Nº SS</label>
         <div class='col-md-8'>
-            <input id='nss' name='addNss' type='text' required='required' class='form-control'>
+            <input id='addNss' name='addNss' type='text' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
     <label for='admin' class='control-label col-md-4'>Administrador</label> 
     <div class='col-md-8'>
-        <input type='checkbox' name='addAdmin' value='1' checked='checked'>
+        <input type='checkbox' id='addAdmin' name='addAdmin' value='1' checked='checked'>
     </div>
   </div> 
     <div class='form-group'>
