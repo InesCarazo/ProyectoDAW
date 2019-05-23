@@ -41,12 +41,9 @@
 
   /*
    * Nombre: consultaFinalizada
-   * Entrada: respuestaXml: XML
+   * Entrada: respuesta
    * Descripción: Método que recoge el evento
-   *              de la consulta y devuelve la
-   *              respuesta XML. Los datos se 
-   *              añaden a la clase Alumno y 
-   *              se genera la tabla en el HTML.
+   *              y manda los datos a un php.
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta.status);
