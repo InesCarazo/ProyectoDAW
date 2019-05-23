@@ -8,8 +8,6 @@ function init() {
 }
 
 function formContacto() {
-    console.log("heyhey");
-
     event.preventDefault();
     emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
 
@@ -24,16 +22,17 @@ function formContacto() {
         "from_servicio": serviciolimpieza.toString(),
         "from_consulta": comentario.toString()
     }
-    console.log("hey");
-    emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-        }, function(error) {
-            console.log('FAILED...', error);
-        });
-}
-//https://www.smtpjs.com/
 
+    if (nombre != "" || correo != "" || comentario != "") {
+
+        emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+    }
+}
 
 //https://www.emailjs.com/
 //chachachachi.limpieza@gmail.com

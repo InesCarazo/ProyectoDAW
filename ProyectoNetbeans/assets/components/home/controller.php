@@ -12,28 +12,28 @@ require_once './controller-pagos.php';
 
 if (!isset($_SESSION['isLogged'])) 
 {
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url");
+    goLogin();
 }
 elseif ($_SESSION['isLogged'] == false) 
 {
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url");
+    goLogin();
 }
 elseif ($_SESSION['isLogged'] == true) 
 {
     //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['pwdLogueado'];
 }
+function goLogin()
+{
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
+    header("Location: $url");
+}
 
 function cerrarSesion()
 {
     session_destroy();
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url"); 
+    goLogin();
 }
 
 function volverAlHome()
