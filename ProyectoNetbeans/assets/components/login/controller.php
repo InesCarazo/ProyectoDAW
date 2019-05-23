@@ -8,16 +8,21 @@ session_start();
      $_SESSION['isLogged'] = false;
  }
 
+
+ /**
+  * Redireccionar a la pagina home
+  */
+  function goHome() {
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
+    header("Location: $url"); 
+    echo "OK";
+}
+
  if ($_SESSION['isLogged'] == true)
-    {
-        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
-        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
-        header("Location: $url"); 
-        echo "OK";
-    }
-    elseif($_SESSION['isLogged'] == false)
-    {
-    }
+{
+    goHome();   
+}
 
 
 
@@ -32,10 +37,11 @@ if (isset($_POST['login']))
     
 }
 
-/*  Nombre: loginCorrecto
-    Entrada: $usuario: string,
-             $contrasena: string
-    Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
+/**
+ * Nombre: loginCorrecto
+ *   Entrada: $usuario: string,
+ *            $contrasena: string
+ *   Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
 */
 function loginCorrecto($usuario, $contrasena)
 {
@@ -44,6 +50,7 @@ function loginCorrecto($usuario, $contrasena)
     if($result)
     {   
         $_SESSION['isLogged'] = true;
+        goHome();
     }
     else
     {
