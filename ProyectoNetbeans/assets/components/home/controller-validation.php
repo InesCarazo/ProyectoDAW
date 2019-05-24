@@ -2,8 +2,8 @@
 
 require_once './model.php';
 
-//if (!empty($_POST['addUsuario']) || !empty($_POST['addContrasena'])  || !empty($_POST['addNombre'])  || !empty($_POST['addApellidos'])  || !empty($_POST['addTelefono'])  || !empty($_POST['addCorreo']) || !empty($_POST['addFnacimiento'])  || !empty($_POST['addNss'])  || !empty($_POST['addAdmin']))
-//{
+if ($_POST['form'] = "anadir")
+{
     $addUsuario = $_POST['addUsuario'];
 
     $addContrasena = $_POST['addContrasena'];
@@ -24,4 +24,4 @@ require_once './model.php';
         }
     $modelClass = new modelClass();
     $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
-//}
+}
