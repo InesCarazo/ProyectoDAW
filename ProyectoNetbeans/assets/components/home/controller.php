@@ -10,7 +10,9 @@ require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 
-
+$rolArrayEC = Array();
+array_push($rolArrayEC, "EMPLEADO");
+array_push($rolArrayEC, "CLIENTE");
 if (!isset($_SESSION['isLogged'])) 
 {
     goLogin();
@@ -20,7 +22,7 @@ elseif ($_SESSION['isLogged'] == false)
     goLogin();
 }
 //elseif ($_SESSION['isLogged'] == true) 
-elseif (allowed("EMPLEADO", "CLIENTE")) 
+elseif (allowed($rolArrayEC)) 
 {
     //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['pwdLogueado'];
@@ -54,24 +56,29 @@ function contacto()
 
 
 function tipoMenuGestion($tipoGestion){
+    $rolArrayEC = Array();
+    array_push($rolArrayEC, "EMPLEADO");
+    array_push($rolArrayEC, "CLIENTE");
+    $rolArrayC = Array();
+    array_push($rolArrayC, "CLIENTE");
     switch ($tipoGestion) {
         case 'empleados':
-        if (allowed("EMPLEADO")) {
+        if (allowed($rolArrayC)) {
             return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
         }           
             break;
         case 'clientes':
-        if (allowed("EMPLEADO", "CLIENTE")) {
+        if (allowed($rolArrayEC)) {
         return menuClientes("clientes") . formShowClientes() . "</div>";
         }
             break;
         case 'casas':
-        if (allowed("EMPLEADO", "CLIENTE")) {
+        if (allowed($rolArrayEC)) {
         return menuCasas($tipoGestion) . formShowCasas() . "</div>";
         }
             break;
         case 'tareas':
-        if (allowed("EMPLEADO", "CLIENTE")) {
+        if (allowed($rolArrayEC)) {
         return menuTareas($tipoGestion) . formShowTareas() . "</div>";
         }
             break;
@@ -191,7 +198,9 @@ function menuHome(){
         <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
         <ul class='collapse list-unstyled' id='pageSubmenu'>
            ";
-           if(allowed("EMPLEADO")){
+           $rolArray = Array();
+           array_push($rolArray, "EMPLEADO");
+           if(allowed($rolArray)){
             $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
            }
            $contenido.="

@@ -58,7 +58,7 @@ if(!function_exists('goHome')) {
  * De esta forma se pueden ir creando mas roles y controlar los accedos de una forma mas dinamica
  */
 if(!function_exists('allowed_user')) {
-  function allowed(...$rols) {
+  function allowed($rols) {
     if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
       if (isset($_SESSION['userRol'])) {
         $allowed_rol = false;
