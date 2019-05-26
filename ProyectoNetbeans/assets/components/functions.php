@@ -72,13 +72,16 @@ if(!function_exists('allowed_user')) {
         if ($allowed_rol == true) {
           return true;
         } else {
-          goHome();
+          return false;
+          //goHome();
         }
       } else {
-        goHome();
+        return false;
+        //goHome();
       }
     } else {
-      goHome();
+      return false;
+      //goHome();
     }
   }
 }

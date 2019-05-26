@@ -3,6 +3,7 @@
 session_start();
 
 require_once './model.php';
+require_once './../functions.php';
 require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
@@ -18,7 +19,8 @@ elseif ($_SESSION['isLogged'] == false)
 {
     goLogin();
 }
-elseif ($_SESSION['isLogged'] == true) 
+//elseif ($_SESSION['isLogged'] == true) 
+elseif (allowed("EMPLEADO", "CLIENTE")) 
 {
     //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['pwdLogueado'];
@@ -54,17 +56,24 @@ function contacto()
 function tipoMenuGestion($tipoGestion){
     switch ($tipoGestion) {
         case 'empleados':
-           return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
-           
+        if (allowed("EMPLEADO")) {
+            return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
+        }           
             break;
         case 'clientes':
+        if (allowed("EMPLEADO", "CLIENTE")) {
         return menuClientes("clientes") . formShowClientes() . "</div>";
+        }
             break;
         case 'casas':
+        if (allowed("EMPLEADO", "CLIENTE")) {
         return menuCasas($tipoGestion) . formShowCasas() . "</div>";
+        }
             break;
         case 'tareas':
+        if (allowed("EMPLEADO", "CLIENTE")) {
         return menuTareas($tipoGestion) . formShowTareas() . "</div>";
+        }
             break;
     }
 }
@@ -171,4 +180,34 @@ function tipoFormTareas($tipoForm){
             return menuTareas("tareas") . formAddTareas() . "</div>";
             break;
     }
+}
+
+function menuHome(){
+    $contenido="<ul class='list-unstyled components'>
+    <li class='active'>
+        <a href='?home' aria-expanded='false'>Home</a>
+    </li>
+    <li>
+        <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
+        <ul class='collapse list-unstyled' id='pageSubmenu'>
+           ";
+           if(allowed("EMPLEADO")){
+            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
+           }
+           $contenido.="
+            <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
+            <li><a href='?gestion=casas' name='casas'>Casas</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href='?contacto'>Contacto</a>
+    </li>
+    <li>
+        <a href='?cerrarsesion'>Cerrar sesión</a>
+    </li>
+</ul>
+";
+
+    return $contenido;
 }

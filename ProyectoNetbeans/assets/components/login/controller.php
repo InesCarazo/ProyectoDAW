@@ -30,6 +30,7 @@ if (isset($_POST['login']))
 {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
+    
     $_SESSION['userLogueado'] = $usuario;
     $_SESSION['pwdLogueado'] = $contrasena;
     loginCorrecto($usuario, $contrasena);
@@ -49,6 +50,12 @@ function loginCorrecto($usuario, $contrasena)
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {   
+        $result2=$modelClass->buscarUsuario($usuario, $contrasena);
+        print_r($result2);
+       
+        $rol = $result2->getRol();
+
+        $_SESSION['userRol'] = $rol;
         $_SESSION['isLogged'] = true;
         goHome();
     }
