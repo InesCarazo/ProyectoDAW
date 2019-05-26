@@ -31,6 +31,10 @@ function formContacto() {
             }, function(error) {
                 console.log('FAILED...', error);
             });
+
+        nombre.val("");
+        correo.val("");
+        comentario.val("");
     }
 }
 
