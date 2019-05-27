@@ -59,11 +59,11 @@ function tipoMenuGestion($tipoGestion){
     $rolArrayEC = Array();
     array_push($rolArrayEC, "EMPLEADO");
     array_push($rolArrayEC, "CLIENTE");
-    $rolArrayC = Array();
-    array_push($rolArrayC, "CLIENTE");
+    $rolArrayE = Array();
+    array_push($rolArrayE, "EMPLEADO");
     switch ($tipoGestion) {
         case 'empleados':
-        if (allowed($rolArrayC)) {
+        if (allowed($rolArrayE)) {
             return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
         }           
             break;
@@ -99,6 +99,7 @@ function tipoFormEmpleados($tipoForm){
             {
                 $id = $_POST['btnradio'];
                 return menuEmpleados("empleados") . formModifyEmpleados($id) . "</div>";
+                $_SESSION['idEmplSelect'] = $id;
             }
             else
             {
