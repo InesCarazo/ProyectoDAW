@@ -9,7 +9,7 @@
       e.preventDefault();
       console.log("validarNuevoEmpleado");
       var todoCorrecto = false;
-      var errorMessage = "";
+      var errorMes = "";
       var addUsuario = $("#addUsuario").val();
       var addContrasena = $("#addContrasena").val();
       var addNombre = $("#addNombre").val();
@@ -24,32 +24,32 @@
           todoCorrecto = true;
       } else {
           todoCorrecto = false;
-          errorMessage = +"\nEl campo Usuario no es correcto";
+          errorMes += "<li>El campo Usuario no es correcto.</li>";
       }
       if (validarContrasena(addContrasena)) {
           todoCorrecto = true;
       } else {
           todoCorrecto = false;
-          errorMessage = +"\nEl campo Contraseña no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter expecial";
+          errorMes += "<li>El campo Contraseña no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter expecial.</li>";
       }
       if (validarNombre(addNombre)) {
           todoCorrecto = true;
       } else {
           todoCorrecto = false;
-          errorMessage = +"\nEl campo nombre no es correcto, no son válidos los números";
+          errorMes += "<li>El campo nombre no es correcto, no son válidos los números.</li>";
       }
       if (validarEmail(addCorreo)) {
           todoCorrecto = true;
       } else {
           todoCorrecto = false;
-          errorMessage = +"\nEl formato del correo no es correcto";
+          errorMes += "<li>El formato del correo no es correcto.</li>";
       }
       console.log("hey");
-      if (todoCorrecto = true) {
+      if (todoCorrecto == true) {
           consultaAjax();
       } else {
-          console.error(errorMessage);
-          var mesaje = $("#menaje_error").val(errorMessage);
+          console.log(errorMes);
+          $("#mensaje_error").html(errorMes);
       }
   }
 
@@ -116,7 +116,7 @@
       }
   }
 
-  function validarUsuario(usuario) {
+  function validarUsuario(usuario) { //Ok
       var re = /^.{6,}$/;
       if (re.test(usuario)) {
           return true;

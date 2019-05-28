@@ -120,9 +120,10 @@ function formAddEmpleados()
         <button id='addEmpleado' name='addEmpleado' type='submit' class='btn estilo-btn'>Añadir Empleado</button>
         </div>
     </div>
-    <div id='mesaje_error'></div>
+    
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
 return $contenido;
 }
 
