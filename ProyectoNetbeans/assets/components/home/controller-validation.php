@@ -2,7 +2,7 @@
 
 require_once './model.php';
 
-if ($_POST['form'] = "anadir")
+if (isset($_POST['form']) && $_POST['form'] == "anadir")
 {
     $addUsuario = $_POST['addUsuario'];
 
