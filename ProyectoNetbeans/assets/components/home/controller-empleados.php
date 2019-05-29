@@ -144,7 +144,7 @@ function tablaVistaEmpleados(){
             <tbody>"; $model = new modelClass(); $empleados = $model->verEmpleados(); foreach ($empleados as $value) { $tablaHTML.= "
                 <tr>
                     <td>
-                        <input class='radio' type='radio' name='btnradio' value='". $value->getP_Usuario()."' checked>
+                        <input class='checkbox' type='checkbox' name='btnradio' value='". $value->getP_Usuario()."'>
                     </td>
                     <td class='text-center'>" . $value->getNombre() . "</td>
                     <td class='text-center'>" . $value->getApellidos() . "</td>
