@@ -4,17 +4,17 @@ require_once './model.php';
 
 if (isset($_POST['form']) && $_POST['form'] == "anadir")
 {
-    $addUsuario = $_POST['addUsuario'];
+    $addUsuario = $_POST['usuario'];
 
-    $addContrasena = $_POST['addContrasena'];
-    $addNombre = $_POST['addNombre'];
-    $addApellidos = $_POST['addApellidos'];
-    $addTelefono = $_POST['addTelefono'];
-    $addCorreo = $_POST['addCorreo'];
-    $addFnacimiento = $_POST['addFnacimiento'];
-    $addNss = $_POST['addNss'];
+    $addContrasena = $_POST['contrasena'];
+    $addNombre = $_POST['nombre'];
+    $addApellidos = $_POST['apellidos'];
+    $addTelefono = $_POST['telefono'];
+    $addCorreo = $_POST['correo'];
+    $addFnacimiento = $_POST['fnacimiento'];
+    $addNss = $_POST['nss'];
     $addAdmin = '';
-        if($_POST['addAdmin'] == true)
+        if($_POST['admin'] == true)
         {
             $addAdmin = 1;
         }

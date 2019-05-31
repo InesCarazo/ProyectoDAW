@@ -99,7 +99,12 @@ if (isset($_GET['tarea'])) {
     <script type="text/javascript" src="./../../js/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-          //  $('#tablaVista').width("900px");
+            $(':checkbox').on('change',function(){
+                var th = $(this), name = th.attr('name'); 
+                if(th.is(':checked')){
+                $(':checkbox[name="'  + name + '"]').not(th).prop('checked',false);   
+                }
+            });
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');

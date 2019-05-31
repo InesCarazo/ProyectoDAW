@@ -8,60 +8,49 @@
   function validarNuevoEmpleado(e) {
       e.preventDefault();
       console.log("validarNuevoEmpleado");
-      var todoCorrecto = false;
+      var todoCorrecto = true;
       var errorMes = "";
       console.log(errorMes.length);
-      var addUsuario = $("#addUsuario").val();
-      var addContrasena = $("#addContrasena").val();
-      var addNombre = $("#addNombre").val();
-      var addApellidos = $("#addApellidos").val();
-      var addTelefono = $("#addTelefono").val();
-      var addCorreo = $("#addCorreo").val();
-      var addFnacimiento = $("#addFnacimiento").val();
-      var addNss = $("#addNss").val();
-      var addAdmin = $('#addAdmin').is(":checked"); //true - false
+      var valAddUsuario = $("#addUsuario").val();
+      console.log("Antonio: " + valAddUsuario);
+      var valaddContrasena = $("#addContrasena").val();
+      var valaddNombre = $("#addNombre").val();
+      var valaddApellidos = $("#addApellidos").val();
+      var valaddTelefono = $("#addTelefono").val();
+      var valaddCorreo = $("#addCorreo").val();
+      var valaddFnacimiento = $("#addFnacimiento").val();
+      var valaddNss = $("#addNss").val();
+      var valaddAdmin = $('#addAdmin').is(":checked"); //true - false
 
-      if (validarUsuario(addUsuario)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarUsuario(valAddUsuario)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
       }
-      if (validarContrasena(addContrasena)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarContrasena(valaddContrasena)) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter expecial.</li>";
+          errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
       }
-      if (validarNombre(addNombre)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarNombre(valaddNombre)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
       }
-      if (validarApellidos(addApellidos)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarApellidos(valaddApellidos)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
       }
-      if (validarTelefono(addTelefono)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarTelefono(valaddTelefono)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
       }
-      if (validarEmail(addCorreo)) {
-          todoCorrecto = true;
-      } else {
+      if (!validarEmail(valaddCorreo)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
       }
 
-      if (todoCorrecto == true && errorMes.length == 0) {
+      if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax();
+          consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -69,21 +58,21 @@
       }
   }
 
-  function consultaAjax() {
+  function consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin) {
       var opciones = {
           type: "POST",
-          url: "./../controller-validation.php",
+          url: "./controller-validation.php",
           data: {
               form: "anadir",
-              addUsuario: addUsuario,
-              addContrasena: addContrasena,
-              addNombre: addNombre,
-              addApellidos: addApellidos,
-              addTelefono: addTelefono,
-              addCorreo: addCorreo,
-              addFnacimiento: addFnacimiento,
-              addNss: addNss,
-              addAdmin: addAdmin
+              usuario: valAddUsuario,
+              contrasena: valaddContrasena,
+              nombre: valaddNombre,
+              apellidos: valaddApellidos,
+              telefono: valaddTelefono,
+              correo: valaddCorreo,
+              fnacimiento: valaddFnacimiento,
+              nss: valaddNss,
+              admin: valaddAdmin
           }
       };
       console.log(opciones);
@@ -99,7 +88,7 @@
    *              y manda los datos a un php.
    */
   function consultaFinalizada(respuesta) {
-      console.log(respuesta.status);
+      console.log(respuesta);
   }
 
   /*
@@ -150,7 +139,7 @@
       }
   }
 
-  function validarContrasena(contrasena) {
+  function validarContrasena(contrasena) { //Ok
       var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       if (re.test(contrasena)) {
           return true;
@@ -159,8 +148,8 @@
       }
   }
 
-  function validarEmail(email) { //Ok
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  function validarEmail(email) {
+      var re = /^[\w][-._\w]+@[a-z]+\.[a-z]{2,3}$/;
       if (re.test(email)) {
           return true;
       } else {
