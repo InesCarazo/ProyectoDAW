@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2019 a las 14:13:45
+-- Tiempo de generación: 04-06-2019 a las 14:42:18
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -357,14 +357,14 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (1, 'jagima', '0c176616d052eac44a98d77a6c4410a7', 'Jacinto', 'Girasol Margarito', '03372845X', 655224494, 'jagima_thebest@hotmail.com', '2001-04-15', 'CLIENTE'),
 (2, 'mar123', '62377a725ac3474427341e3a52b4e5a8', 'Mari', 'Iborra Ipinta', '77889039E', 658974216, 'chachimari@gmail.com', '1953-02-03', 'CLIENTE'),
 (3, 'johnypower', '62377a725ac3474427341e3a52b4e5a8', 'Johny', 'Mentero Nilavo', '61896605V', 658742136, 'johnypower@outlook.es', '1982-11-13', 'CLIENTE'),
-(4, 'chachiagl', 'amazonbasi', 'Augusta', 'González Linares', '13813137G', 653245865, 'conceptronic@gmail.com', '1938-09-13', 'CLIENTE'),
-(5, 'ignacio1', 'SoyIgnacio', 'Ignacio', 'Fernández Ortiz', '09747806S', 256652623, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
-(6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', '63364524F', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
-(7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', '78352249N', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
-(8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', '15955990Q', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
+(4, 'chachiagl', '926d7ef3d220acd291b5895c4f9e4e49', 'Augusta', 'González Linares', '13813137G', 653245865, 'conceptronic@gmail.com', '1938-09-13', 'CLIENTE'),
+(5, 'ignacio1', 'af64c41386067e2023500874c627558b', 'Ignacio', 'Fernández Ortiz', '09747806S', 256652623, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
+(6, 'Anita', '8fe33c7bfab2a30d86eedf19f2aea2b1', 'Ana', 'Ortega Lavin', '63364524F', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
+(7, 'AndresGF', '87ed04cc02d4c6e07a7d0da2c3afe894', 'Andrés', 'Torres Fernández', '78352249N', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
+(8, 'JoseRoDi', 'dfc2310d4fdcc36e77c8429638738737', 'Josefina', 'Martínez López', '15955990Q', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
 (9, 'Antonio', '3a87cf0eebc42aea944f74aa603e55d6', 'Antonio', 'Sierra', '72276265F', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
 (10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', '74158765A', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO'),
-(12, 'TestCli', '81dc9bdb52d04dc20036dbd8313ed055', 'TestCli', 'TestCli', '12411681F', 123456789, 'TestCli@TestCli.com', '2019-05-08', 'CLIENTE');
+(11, 'TestCli', '81dc9bdb52d04dc20036dbd8313ed055', 'TestCli', 'TestCli', '12411681F', 123456789, 'TestCli@TestCli.com', '2019-05-08', 'CLIENTE');
 
 --
 -- Índices para tablas volcadas
@@ -499,7 +499,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
@@ -541,7 +541,7 @@ ALTER TABLE `tipo_tarea`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
