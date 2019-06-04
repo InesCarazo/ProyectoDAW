@@ -46,7 +46,7 @@ function formAddEmpleados()
     <div class='form-group'>
         <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
         <div class='col-md-8'>
-            <input id='addContrasena' name='addContrasena' type='password' required='required' class='form-control'>
+            <input id='addContrasena' name='addContrasena' placeholder='********' type='password' required='required' class='form-control'>
         </div>
     </div>
     <div class='form-group'>
@@ -59,6 +59,12 @@ function formAddEmpleados()
         <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
         <div class='col-md-8'>
             <input id='addApellidos' name='addApellidos' placeholder='apellidos' type='text' class='form-control'>
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for='dni' class='control-label col-md-4'>Dni</label>
+        <div class='col-md-8'>
+            <input id='addDni' name='addDni' placeholder='00000000A' type='text' class='form-control'>
         </div>
     </div>
     <div class='form-group'>

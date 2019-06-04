@@ -16,6 +16,7 @@
       var valaddContrasena = $("#addContrasena").val();
       var valaddNombre = $("#addNombre").val();
       var valaddApellidos = $("#addApellidos").val();
+      var valaddDni = $("#addDni").val();
       var valaddTelefono = $("#addTelefono").val();
       var valaddCorreo = $("#addCorreo").val();
       var valaddFnacimiento = $("#addFnacimiento").val();
@@ -38,6 +39,10 @@
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
       }
+      if (!validarDni(valaddDni)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
+      }
       if (!validarTelefono(valaddTelefono)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
@@ -50,7 +55,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin);
+          consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddDni, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -58,7 +63,7 @@
       }
   }
 
-  function consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin) {
+  function consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddDni, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin) {
       var opciones = {
           type: "POST",
           url: "./controller-validation.php",
@@ -68,6 +73,7 @@
               contrasena: valaddContrasena,
               nombre: valaddNombre,
               apellidos: valaddApellidos,
+              dni: valaddDni,
               telefono: valaddTelefono,
               correo: valaddCorreo,
               fnacimiento: valaddFnacimiento,
@@ -122,9 +128,35 @@
   }
 
   function validarUsuario(usuario) { //Ok
-      var re = /^.{6,}$/;
+      var re = /^[a-zA-Z0-9]+$/;
       if (re.test(usuario)) {
           return true;
+      } else {
+          return false;
+      }
+  }
+
+  function validarDni(dni) {
+      var numero;
+      var letr;
+      var letra;
+      var expReg = /^\d{8}[A-Z]$/;
+
+      if (expReg.test(dni) === true) {
+          console.log("BUEN FORMATO");
+          numero = dni.substr(0, dni.length - 1);
+          letr = dni.substr(dni.length - 1, 1);
+          numero = numero % 23;
+          letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+          letra = letra.substring(numero, numero + 1);
+
+          if (letra !== letr.toUpperCase()) {
+              return false;
+          } else {
+              console.error("BUENA LETRA");
+              return true;
+
+          }
       } else {
           return false;
       }
@@ -140,7 +172,7 @@
   }
 
   function validarContrasena(contrasena) { //Ok
-      var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      var re = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       if (re.test(contrasena)) {
           return true;
       } else {
@@ -148,7 +180,7 @@
       }
   }
 
-  function validarEmail(email) {
+  function validarEmail(email) { //Ok
       var re = /^[\w][-._\w]+@[a-z]+\.[a-z]{2,3}$/;
       if (re.test(email)) {
           return true;

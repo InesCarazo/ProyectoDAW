@@ -9,6 +9,7 @@ if (isset($_POST['form']) && $_POST['form'] == "anadir")
     $addContrasena = $_POST['contrasena'];
     $addNombre = $_POST['nombre'];
     $addApellidos = $_POST['apellidos'];
+    $addDni = $_POST['dni'];
     $addTelefono = $_POST['telefono'];
     $addCorreo = $_POST['correo'];
     $addFnacimiento = $_POST['fnacimiento'];
@@ -23,5 +24,5 @@ if (isset($_POST['form']) && $_POST['form'] == "anadir")
             $addAdmin = 0;
         }
     $modelClass = new modelClass();
-    $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
+    $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addDni, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
 }

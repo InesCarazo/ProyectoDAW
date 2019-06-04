@@ -52,12 +52,12 @@ class modelClass
         return $empleado;
     }
 
-    function addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin)
+    function addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addDni, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin)
     {
         require_once './../conexion/conexion.php';
         try {
             $conn->beginTransaction();
-            $conn->exec("INSERT INTO usuario(usuario, contrasena, nombre, apellidos, telefono, correo, fechaNacimiento, rol) VALUES ('$addUsuario', MD5('$addContrasena'), '$addNombre', '$addApellidos', $addTelefono, '$addCorreo', '$addFnacimiento', 'EMPLEADO')");
+            $conn->exec("INSERT INTO usuario(usuario, contrasena, nombre, apellidos, dni, telefono, correo, fechaNacimiento, rol) VALUES ('$addUsuario', MD5('$addContrasena'), '$addNombre', '$addApellidos', '$addDni', $addTelefono, '$addCorreo', '$addFnacimiento', 'EMPLEADO')");
             $lastId = $conn->lastInsertId();
             $conn->exec("INSERT INTO empleado(nSS, isAdmin, A_usuario) VALUES ('$addNss', $addAdmin, $lastId)");
             $conn->commit();
