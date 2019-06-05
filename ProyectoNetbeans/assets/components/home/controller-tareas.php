@@ -72,7 +72,7 @@ function tablaVistaTareas()
                 $tablaHTML.= "
                 <tr>
                     <td>
-                        <input class='radio' type='radio' value='" . $value->getP_tipo_tarea() . "' name='btnRadioTarea' checked>
+                        <input class='radio' type='radio' value='" . $value->getP_tipo_tarea() . "' name='btnRadioTarea'>
                     </td>
                     <td class='text-center'>" . $value->getTexto() . "</td>
                     <td class='text-center'>" . $value->getDuracion_h() . "</td>

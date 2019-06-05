@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2019 a las 16:27:53
+-- Tiempo de generación: 04-06-2019 a las 14:42:18
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -190,19 +190,23 @@ INSERT INTO `empleado_cliente_tarea` (`P_empleadoSalaTarea`, `A_empleado`, `A_cl
 (5, 4, 2, 5, NULL, 0, '2018-06-11', 2),
 (6, 1, 2, 2, NULL, 0, '2018-06-16', 1),
 (7, 1, 1, 4, NULL, 0, '2018-06-16', 1),
-(18, 1, 1, 2, NULL, 0, '2018-06-17', 1),
-(19, 1, 2, 2, NULL, 0, '2018-06-17', 1),
-(20, 1, 3, 2, NULL, 0, '2018-06-17', 1),
-(21, 1, 1, 3, 5, 0, '2018-06-18', 1),
-(22, 1, 2, 5, 6, 1, '2018-06-18', 1),
-(23, 1, 3, 3, 7, 0, '2018-06-18', 1),
-(24, 1, 1, 2, 8, 1, '2018-06-18', 1),
-(25, 1, 2, 2, 9, 0, '2018-06-18', 1),
-(26, 1, 3, 7, 10, 0, '2018-06-18', 1),
-(27, 1, 2, 1, 11, 0, '2018-06-17', 1),
-(28, 1, 1, 1, NULL, 0, '2018-06-19', 1),
-(29, 6, 1, 1, 12, 1, '2019-05-08', 2),
-(30, 6, 1, 2, 13, 1, '2019-05-08', 1);
+(8, 1, 1, 2, NULL, 0, '2018-06-17', 1),
+(9, 1, 2, 2, NULL, 0, '2018-06-17', 1),
+(10, 1, 3, 2, NULL, 0, '2018-06-17', 1),
+(11, 1, 1, 3, 5, 0, '2018-06-18', 1),
+(12, 1, 2, 5, 6, 1, '2018-06-18', 1),
+(13, 1, 3, 3, 7, 0, '2018-06-18', 1),
+(14, 1, 1, 2, 8, 1, '2018-06-18', 1),
+(15, 1, 2, 2, 9, 0, '2018-06-18', 1),
+(16, 1, 3, 7, 10, 0, '2018-06-18', 1),
+(17, 1, 2, 1, 11, 0, '2018-06-17', 1),
+(18, 1, 1, 1, NULL, 0, '2018-06-19', 1),
+(19, 6, 1, 1, 12, 1, '2019-05-08', 2),
+(20, 6, 1, 2, 13, 1, '2019-05-08', 1),
+(21, 1, 1, 1, NULL, 0, '2019-05-23', 1),
+(22, 1, 1, 3, NULL, 0, '2019-05-20', 1),
+(23, 1, 3, 2, NULL, 0, '2019-05-21', 1),
+(24, 2, 1, 3, NULL, 0, '2019-05-21', 1);
 
 -- --------------------------------------------------------
 
@@ -338,6 +342,7 @@ CREATE TABLE `usuario` (
   `contrasena` varchar(32) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL,
   `apellidos` varchar(40) COLLATE latin1_spanish_ci NOT NULL,
+  `dni` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `telefono` int(10) NOT NULL,
   `correo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `fechaNacimiento` date NOT NULL,
@@ -348,17 +353,18 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellidos`, `telefono`, `correo`, `fechaNacimiento`, `rol`) VALUES
-(1, 'jagima', '0c176616d052eac44a98d77a6c4410a7', 'Jacinto', 'Girasol Margarito', 655224494, 'jagima_thebest@hotmail.com', '2001-04-15', 'CLIENTE'),
-(2, 'mar123', '62377a725ac3474427341e3a52b4e5a8', 'Mari', 'Iborra Ipinta', 658974216, 'chachimari@gmail.com', '1953-02-03', 'CLIENTE'),
-(3, 'johnypower', '62377a725ac3474427341e3a52b4e5a8', 'Johny', 'Mentero Nilavo', 658742136, 'johnypower@outlook.es', '1982-11-13', 'CLIENTE'),
-(4, 'chachiagl', 'amazonbasi', 'Augusta', 'González Linares', 653245865, 'conceptronic@gmail.com', '1938-09-13', 'CLIENTE'),
-(5, 'ignacio1', 'SoyIgnacio', 'Ignacio', 'Fernández Ortiz', 256652623, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
-(6, 'Anita', 'AnaSoyYo', 'Ana', 'Ortega Lavin', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
-(7, 'AndresGF', 'AnDrEs', 'Andrés', 'Torres Fernández', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
-(8, 'JoseRoDi', 'laJoOficiá', 'Josefina', 'Martínez López', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
-(9, 'Antonio', 'terriblementeFacil', 'Antonio', 'Sierra', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
-(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO');
+INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellidos`, `dni`, `telefono`, `correo`, `fechaNacimiento`, `rol`) VALUES
+(1, 'jagima', '0c176616d052eac44a98d77a6c4410a7', 'Jacinto', 'Girasol Margarito', '03372845X', 655224494, 'jagima_thebest@hotmail.com', '2001-04-15', 'CLIENTE'),
+(2, 'mar123', '62377a725ac3474427341e3a52b4e5a8', 'Mari', 'Iborra Ipinta', '77889039E', 658974216, 'chachimari@gmail.com', '1953-02-03', 'CLIENTE'),
+(3, 'johnypower', '62377a725ac3474427341e3a52b4e5a8', 'Johny', 'Mentero Nilavo', '61896605V', 658742136, 'johnypower@outlook.es', '1982-11-13', 'CLIENTE'),
+(4, 'chachiagl', '926d7ef3d220acd291b5895c4f9e4e49', 'Augusta', 'González Linares', '13813137G', 653245865, 'conceptronic@gmail.com', '1938-09-13', 'CLIENTE'),
+(5, 'ignacio1', 'af64c41386067e2023500874c627558b', 'Ignacio', 'Fernández Ortiz', '09747806S', 256652623, 'ignacio@gmail.com', '1998-02-18', 'EMPLEADO'),
+(6, 'Anita', '8fe33c7bfab2a30d86eedf19f2aea2b1', 'Ana', 'Ortega Lavin', '63364524F', 256565625, 'anacasado@gmail.com', '1997-09-02', 'EMPLEADO'),
+(7, 'AndresGF', '87ed04cc02d4c6e07a7d0da2c3afe894', 'Andrés', 'Torres Fernández', '78352249N', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
+(8, 'JoseRoDi', 'dfc2310d4fdcc36e77c8429638738737', 'Josefina', 'Martínez López', '15955990Q', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
+(9, 'Antonio', '3a87cf0eebc42aea944f74aa603e55d6', 'Antonio', 'Sierra', '72276265F', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
+(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', '74158765A', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO'),
+(11, 'TestCli', '81dc9bdb52d04dc20036dbd8313ed055', 'TestCli', 'TestCli', '12411681F', 123456789, 'TestCli@TestCli.com', '2019-05-08', 'CLIENTE');
 
 --
 -- Índices para tablas volcadas
@@ -493,13 +499,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
 --
 ALTER TABLE `empleado_cliente_tarea`
-  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `P_empleadoSalaTarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_horario`
@@ -535,7 +541,7 @@ ALTER TABLE `tipo_tarea`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

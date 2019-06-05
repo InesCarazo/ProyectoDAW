@@ -127,7 +127,7 @@ function tablaVistaCasas(){
                 $tablaHTML.= "
                 <tr>
                     <td>
-                        <input class='radio' type='radio' value='" . $value->getP_casa() . "' name='btnRadioCasa' checked>
+                        <input class='radio' type='radio' value='" . $value->getP_casa() . "' name='btnRadioCasa'>
                     </td>
                     <td class='text-center'>" . $value->getDireccion() . "</td>
                     <td class='text-center'>" . $value->getCiudad() . "</td>
