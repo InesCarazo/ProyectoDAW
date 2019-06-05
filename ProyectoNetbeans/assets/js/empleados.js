@@ -83,7 +83,7 @@
       var valModifyFnacimiento = $("#modifyFnacimiento").val();
       var valModifyNss = $("#modifyNss").val();
       var valModifyAdmin = $('#modifyAdmin').is(":checked"); //true - false
-
+      console.log("hjgjhghjhhj" + valModifyAdmin);
       if (!validarUsuario(valModifyUsuario)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
@@ -127,7 +127,7 @@
   function consultaAjax(tipoForm, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valNss, valAdmin) {
       var opciones = {
           type: "POST",
-          url: "./controller-validation.php",
+          url: "./../home/controller-validation.php",
           data: {
               form: tipoForm,
               usuario: valUsuario,
@@ -156,7 +156,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      window.location.href = "?empleado=ver";
+      //window.location.href = "?empleado=ver";
   }
 
   /*

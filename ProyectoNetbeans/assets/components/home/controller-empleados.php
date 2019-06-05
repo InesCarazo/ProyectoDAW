@@ -93,6 +93,7 @@ function tablaVistaEmpleados(){
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th class='text-center'>Nombre</th>
                     <th class='text-center'>Apellidos</th>
+                    <th class='text-center'>Dni</th>
                     <th class='text-center'>Telefono</th>
                     <th class='text-center'>Correo</th>
                     <th class='text-center'>Fecha de nacimiento</th>
@@ -105,6 +106,7 @@ function tablaVistaEmpleados(){
                     </td>
                     <td class='text-center'>" . $value->getNombre() . "</td>
                     <td class='text-center'>" . $value->getApellidos() . "</td>
+                    <td class='text-center'>" . $value->getDni() . "</td>
                     <td class='text-center'>" . $value->getTelefono() . "</td>
                     <td class='text-center'>" . $value->getCorreo() . "</td>
                     <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>

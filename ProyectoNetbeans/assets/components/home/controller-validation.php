@@ -39,7 +39,7 @@ if (isset($_POST['form']) && $_POST['form'] == "modificar")
     $modifyFnacimiento = $_POST['fnacimiento'];
     $modifyNss = $_POST['nss'];
     $modifyAdmin = '';
-        if($_POST['admin'] == true)
+        if($_POST['admin'] == "true")
         {
             $modifyAdmin = 1;
         }
