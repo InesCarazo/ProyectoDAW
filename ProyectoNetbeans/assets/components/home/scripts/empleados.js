@@ -88,10 +88,10 @@
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
       }
-      //   if (!validarContrasena(valModifyContrasena)) {
-      //       todoCorrecto = false;
-      //       errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
-      //   }
+      if (!validarContrasena(valModifyContrasena)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
+      }
       if (!validarNombre(valModifyNombre)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
@@ -104,14 +104,14 @@
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
       }
-      //   if (!validarTelefono(valModifyTelefono)) {
-      //       todoCorrecto = false;
-      //       errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
-      //   }
-      //   if (!validarEmail(valModifyCorreo)) {
-      //       todoCorrecto = false;
-      //       errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
-      //   }
+      if (!validarTelefono(valModifyTelefono)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
+      }
+      if (!validarEmail(valModifyCorreo)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
+      }
 
       if (todoCorrecto == true) {
           console.log("hey");
@@ -156,7 +156,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      //window.location.href = "?empleado=ver";
+      window.location.href = "?empleado=ver";
   }
 
   /*
