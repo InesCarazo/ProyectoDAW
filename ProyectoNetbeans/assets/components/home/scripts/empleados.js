@@ -6,6 +6,7 @@
   }
 
   function validarNuevoEmpleado(e) {
+      $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarNuevoEmpleado");
       var todoCorrecto = true;
@@ -95,6 +96,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
+      window.location.href = "?empleado=ver";
   }
 
   /*
@@ -128,7 +130,7 @@
   }
 
   function validarUsuario(usuario) { //Ok
-      var re = /^[a-zA-Z0-9]+$/;
+      var re = /^[a-zA-Z]+[0-9]?/;
       if (re.test(usuario)) {
           return true;
       } else {
