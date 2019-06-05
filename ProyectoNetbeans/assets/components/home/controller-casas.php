@@ -1,24 +1,5 @@
 <?php
 
-// if (isset($_POST['modCasa'])) 
-// {
-//     $id = $_SESSION['idCasaSelect'];
-//     $modifyDireccion = $_POST['modifyDireccion'];
-//     $modifyCiudad = $_POST['modifyCiudad'];
-//     if (isset($_POST['modifyHasForniture'])) 
-//     {
-//         $modifyHasForniture = 1;
-//     }
-//     else
-//     {
-//         $modifyHasForniture  = 0;
-//     }
-//     $modifySice = $_POST['modifySice'];
-    
-//     $modelClass = new modelClass();
-//     $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice);
-// }
-
 if (isset($_POST['borrarCasa'])) 
 {
     $id = $_SESSION['idCasaSelect'];
