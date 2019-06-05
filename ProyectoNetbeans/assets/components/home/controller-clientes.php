@@ -46,7 +46,7 @@ function tablaVistaClientes(){
                 $tablaHTML.= "
         <tr>
             <td>
-                <input class='checkbox' type='checkbox' value='" . $value->getP_Usuario() . "' name='btnRadioCli'>
+                <input class='radio' type='radio' value='" . $value->getP_Usuario() . "' name='btnRadioCli'>
             </td>
             <td class='text-center'>" . $value->getNombre() . "</td>
             <td class='text-center'>" . $value->getApellidos() . "</td>

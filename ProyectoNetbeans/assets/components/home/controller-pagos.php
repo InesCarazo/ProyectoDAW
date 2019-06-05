@@ -138,7 +138,7 @@ function generarTablaHTMLClientes($pagos)
                     $tablaHTML.= "
                         <tr>
                             <td>
-                            <input class='checkbox' type='checkbox' name='btnradioPagosCliente' value='". $value->getP_tarea_realizada()."'>
+                            <input class='radio' type='radio' name='btnradioPagosCliente' value='". $value->getP_tarea_realizada()."'>
                             </td>";
                             $model = new modelClass(); 
                             $tarea = $model->buscarTarea($value->getA_tarea());

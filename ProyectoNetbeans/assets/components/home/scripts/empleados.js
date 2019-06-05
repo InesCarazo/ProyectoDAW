@@ -3,6 +3,7 @@
   function init() {
       console.log("empleados.js");
       $("#addEmpleado").on("click", validarNuevoEmpleado);
+      $("#modEmpleado").on("click", validarModEmpleado);
   }
 
   function validarNuevoEmpleado(e) {
@@ -14,41 +15,41 @@
       console.log(errorMes.length);
       var valAddUsuario = $("#addUsuario").val();
       console.log("Antonio: " + valAddUsuario);
-      var valaddContrasena = $("#addContrasena").val();
-      var valaddNombre = $("#addNombre").val();
-      var valaddApellidos = $("#addApellidos").val();
-      var valaddDni = $("#addDni").val();
-      var valaddTelefono = $("#addTelefono").val();
-      var valaddCorreo = $("#addCorreo").val();
-      var valaddFnacimiento = $("#addFnacimiento").val();
-      var valaddNss = $("#addNss").val();
-      var valaddAdmin = $('#addAdmin').is(":checked"); //true - false
+      var valAddContrasena = $("#addContrasena").val();
+      var valAddNombre = $("#addNombre").val();
+      var valAddApellidos = $("#addApellidos").val();
+      var valAddDni = $("#addDni").val();
+      var valAddTelefono = $("#addTelefono").val();
+      var valAddCorreo = $("#addCorreo").val();
+      var valAddFnacimiento = $("#addFnacimiento").val();
+      var valAddNss = $("#addNss").val();
+      var valAddAdmin = $('#addAdmin').is(":checked"); //true - false
 
       if (!validarUsuario(valAddUsuario)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
       }
-      if (!validarContrasena(valaddContrasena)) {
+      if (!validarContrasena(valAddContrasena)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
       }
-      if (!validarNombre(valaddNombre)) {
+      if (!validarNombre(valAddNombre)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
       }
-      if (!validarApellidos(valaddApellidos)) {
+      if (!validarApellidos(valAddApellidos)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
       }
-      if (!validarDni(valaddDni)) {
+      if (!validarDni(valAddDni)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
       }
-      if (!validarTelefono(valaddTelefono)) {
+      if (!validarTelefono(valAddTelefono)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
       }
-      if (!validarEmail(valaddCorreo)) {
+      if (!validarEmail(valAddCorreo)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
       }
@@ -56,7 +57,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddDni, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin);
+          consultaAjax("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -64,22 +65,81 @@
       }
   }
 
-  function consultaAjax(valAddUsuario, valaddContrasena, valaddNombre, valaddApellidos, valaddDni, valaddTelefono, valaddCorreo, valaddFnacimiento, valaddNss, valaddAdmin) {
+  function validarModEmpleado(e) {
+      $("#mensaje_error_mod").html("");
+      e.preventDefault();
+      console.log("validarNuevoEmpleado");
+      var todoCorrecto = true;
+      var errorMes = "";
+      console.log(errorMes.length);
+      var valModifyUsuario = $("#modifyUsuario").val();
+      console.log("Antonio: " + valModifyUsuario);
+      var valModifyContrasena = $("#modifyContrasena").val();
+      var valModifyNombre = $("#modifyNombre").val();
+      var valModifyApellidos = $("#modifyApellidos").val();
+      var valModifyDni = $("#modifyDni").val();
+      var valModifyTelefono = $("#modifyTelefono").val();
+      var valModifyCorreo = $("#modifyCorreo").val();
+      var valModifyFnacimiento = $("#modifyFnacimiento").val();
+      var valModifyNss = $("#modifyNss").val();
+      var valModifyAdmin = $('#modifyAdmin').is(":checked"); //true - false
+
+      if (!validarUsuario(valModifyUsuario)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
+      }
+      //   if (!validarContrasena(valModifyContrasena)) {
+      //       todoCorrecto = false;
+      //       errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
+      //   }
+      if (!validarNombre(valModifyNombre)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
+      }
+      if (!validarApellidos(valModifyApellidos)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
+      }
+      if (!validarDni(valModifyDni)) {
+          todoCorrecto = false;
+          errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
+      }
+      //   if (!validarTelefono(valModifyTelefono)) {
+      //       todoCorrecto = false;
+      //       errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
+      //   }
+      //   if (!validarEmail(valModifyCorreo)) {
+      //       todoCorrecto = false;
+      //       errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
+      //   }
+
+      if (todoCorrecto == true) {
+          console.log("hey");
+          console.log(errorMes);
+          consultaAjax("modificar", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyNss, valModifyAdmin);
+      } else {
+          console.log("hey hey");
+          console.log(errorMes);
+          $("#mensaje_error_mod").html(errorMes);
+      }
+  }
+
+  function consultaAjax(tipoForm, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valNss, valAdmin) {
       var opciones = {
           type: "POST",
           url: "./controller-validation.php",
           data: {
-              form: "anadir",
-              usuario: valAddUsuario,
-              contrasena: valaddContrasena,
-              nombre: valaddNombre,
-              apellidos: valaddApellidos,
-              dni: valaddDni,
-              telefono: valaddTelefono,
-              correo: valaddCorreo,
-              fnacimiento: valaddFnacimiento,
-              nss: valaddNss,
-              admin: valaddAdmin
+              form: tipoForm,
+              usuario: valUsuario,
+              contrasena: valContrasena,
+              nombre: valNombre,
+              apellidos: valApellidos,
+              dni: valDni,
+              telefono: valTelefono,
+              correo: valCorreo,
+              fnacimiento: valFnacimiento,
+              nss: valNss,
+              admin: valAdmin
           }
       };
       console.log(opciones);
@@ -96,7 +156,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      window.location.href = "?empleado=ver";
+      //window.location.href = "?empleado=ver";
   }
 
   /*
