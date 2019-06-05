@@ -50,3 +50,59 @@ if (isset($_POST['form']) && $_POST['form'] == "modificar")
     $modelClass = new modelClass();
     $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
 }
+
+if (isset($_POST['form']) && $_POST['form'] == "modificarcli")
+{
+    $modifyUsuario = $_POST['usuario'];
+    $modifyContrasena = $_POST['contrasena'];
+    $modifyNombre = $_POST['nombre'];
+    $modifyApellidos = $_POST['apellidos'];
+    $modifyDni = $_POST['dni'];
+    $modifyTelefono = $_POST['telefono'];
+    $modifyCorreo = $_POST['correo'];
+    $modifyFnacimiento = $_POST['fnacimiento'];
+    $modifyPago = $_POST['pago'];
+    $modifyNCuenta = $_POST['ncuenta'];
+    $modelClass = new modelClass();
+    $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
+}
+
+if (isset($_POST['form']) && $_POST['form'] == "anadircasa")
+{
+    $addDireccion = $_POST['direccion'];
+    $addCiudad = $_POST['ciudad'];
+    $addHasForniture = "";
+    if ($_POST['hasForniture'] == "true") 
+    {
+        $addHasForniture = 1;
+    }
+    else
+    {
+        $addHasForniture  = 0;
+    }
+    $addSice = $_POST['sice'];
+    $cliente = $_POST['chooseClient'];
+
+    $modelClass = new modelClass();
+    $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
+}
+
+if (isset($_POST['form']) && $_POST['form'] == "modificarcasa")
+{
+    $id = $_SESSION['idCasaSelect'];
+    $modifyDireccion = $_POST['direccion'];
+    $modifyCiudad = $_POST['ciudad'];
+    if ($_POST['hasForniture'] == "true") 
+    {
+        $modifyHasForniture = 1;
+    }
+    else
+    {
+        $modifyHasForniture  = 0;
+    }
+    $modifySice = $_POST['sice'];
+    $cliente = $_POST['chooseClient'];
+    
+    $modelClass = new modelClass();
+    $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice, $cliente);
+}

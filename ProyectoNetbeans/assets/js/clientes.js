@@ -1,29 +1,25 @@
   $(document).ready(init);
 
   function init() {
-      console.log("empleados.js");
-      $("#addEmpleado").on("click", validarNuevoEmpleado);
-      $("#modEmpleado").on("click", validarModEmpleado);
+      console.log("clientes.js");
+      $("#addCliente").on("click", validarNuevoCliente);
+      $("#modCliente").on("click", validarModCliente);
   }
 
-  function validarNuevoEmpleado(e) {
+  function validarNuevoCliente(e) {
       $("#mensaje_error").html("");
       e.preventDefault();
-      console.log("validarNuevoEmpleado");
+      console.log("validarNuevoCliente");
       var todoCorrecto = true;
       var errorMes = "";
-      console.log(errorMes.length);
       var valAddUsuario = $("#addUsuario").val();
-      console.log("Antonio: " + valAddUsuario);
-      var valAddContrasena = $("#addContrasena").val();
+      var valAddContrasena = $("#addPwd").val();
       var valAddNombre = $("#addNombre").val();
       var valAddApellidos = $("#addApellidos").val();
       var valAddDni = $("#addDni").val();
       var valAddTelefono = $("#addTelefono").val();
       var valAddCorreo = $("#addCorreo").val();
       var valAddFnacimiento = $("#addFnacimiento").val();
-      var valAddNss = $("#addNss").val();
-      var valAddAdmin = $('#addAdmin').is(":checked"); //true - false
 
       if (!validarUsuario(valAddUsuario)) {
           todoCorrecto = false;
@@ -57,7 +53,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
+          consultaAjax("anadircli", "./../sign_in/controller.php", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, "", "");
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -65,15 +61,14 @@
       }
   }
 
-  function validarModEmpleado(e) {
-      $("#mensaje_error_mod").html("");
+  function validarModCliente(e) {
+      $("#mensaje_error").html("");
       e.preventDefault();
-      console.log("validarModEmpleado");
+      console.log("validarModCliente");
       var todoCorrecto = true;
       var errorMes = "";
       console.log(errorMes.length);
       var valModifyUsuario = $("#modifyUsuario").val();
-      console.log("Antonio: " + valModifyUsuario);
       var valModifyContrasena = $("#modifyContrasena").val();
       var valModifyNombre = $("#modifyNombre").val();
       var valModifyApellidos = $("#modifyApellidos").val();
@@ -81,9 +76,8 @@
       var valModifyTelefono = $("#modifyTelefono").val();
       var valModifyCorreo = $("#modifyCorreo").val();
       var valModifyFnacimiento = $("#modifyFnacimiento").val();
-      var valModifyNss = $("#modifyNss").val();
-      var valModifyAdmin = $('#modifyAdmin').is(":checked"); //true - false
-      console.log("hjgjhghjhhj" + valModifyAdmin);
+      var valModifyPago = $("#modifyPago").val();
+      var valModifyNCuenta = $('#modifyNCuenta').val();
       if (!validarUsuario(valModifyUsuario)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
@@ -114,20 +108,17 @@
       }
 
       if (todoCorrecto == true) {
-          console.log("hey");
-          console.log(errorMes);
-          consultaAjax("modificar", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyNss, valModifyAdmin);
+          consultaAjax("modificarcli", "./../home/controller-validation.php", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyPago, valModifyNCuenta);
       } else {
-          console.log("hey hey");
           console.log(errorMes);
-          $("#mensaje_error_mod").html(errorMes);
+          $("#mensaje_error").html(errorMes);
       }
   }
 
-  function consultaAjax(tipoForm, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valNss, valAdmin) {
+  function consultaAjax(tipoForm, url, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valPago, valNCuenta) {
       var opciones = {
           type: "POST",
-          url: "./../home/controller-validation.php",
+          url: url,
           data: {
               form: tipoForm,
               usuario: valUsuario,
@@ -138,8 +129,9 @@
               telefono: valTelefono,
               correo: valCorreo,
               fnacimiento: valFnacimiento,
-              nss: valNss,
-              admin: valAdmin
+              pago: valPago,
+              ncuenta: valNCuenta
+
           }
       };
       console.log(opciones);
@@ -155,8 +147,9 @@
    *              y manda los datos a un php.
    */
   function consultaFinalizada(respuesta) {
+      console.log("hey hey");
       console.log(respuesta);
-      window.location.href = "?empleado=ver";
+      window.location.href = "?casa=ver";
   }
 
   /*
