@@ -1,5 +1,22 @@
 <?php
 
+if (isset($_POST['modCliente'])) 
+{
+    $id = $_SESSION['idCliSelect'];
+    $modifyUsuario = $_POST['modifyUsuario'];
+    $modifyContrasena = $_POST['modifyContrasena'];
+    $modifyNombre = $_POST['modifyNombre'];
+    $modifyApellidos = $_POST['modifyApellidos'];
+    $modifyTelefono = $_POST['modifyTelefono'];
+    $modifyCorreo = $_POST['modifyCorreo'];
+    $modifyFnacimiento = $_POST['modifyFnacimiento'];
+    $modifyPago = $_POST['modifyPago'];
+    $modifyNCuenta = $_POST['modifyNCuenta'];
+    
+    $modelClass = new modelClass();
+    $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
+}
+
 if (isset($_POST['borrarCliente'])) 
 {
     $id = $_SESSION['idCliSelect'];
@@ -16,7 +33,6 @@ function tablaVistaClientes(){
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     <th class='text-center'>Nombre</th>
                     <th class='text-center'>Apellidos</th>
-                    <th class='text-center'>Dni</th>
                     <th class='text-center'>Teléfono</th>
                     <th class='text-center'>Correo</th>
                     <th class='text-center'>Fecha de nacimiento</th>
@@ -30,11 +46,10 @@ function tablaVistaClientes(){
                 $tablaHTML.= "
         <tr>
             <td>
-                <input class='radio' type='radio' value='" . $value->getP_Usuario() . "' name='btnRadioCli'>
+                <input class='radio' type='radio' value='" . $value->getP_Usuario() . "' name='btnRadioCli' checked>
             </td>
             <td class='text-center'>" . $value->getNombre() . "</td>
             <td class='text-center'>" . $value->getApellidos() . "</td>
-            <td class='text-center'>" . $value->getDni() . "</td>
             <td class='text-center'>" . $value->getTelefono() . "</td>
             <td class='text-center'>" . $value->getCorreo() . "</td>
             <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
@@ -77,61 +92,55 @@ function formModifyClientes($id)
         <div class='form-group'>
             <label for='usuario' class='control-label col-md-4'>Usuario</label>
             <div class='col-md-8'>
-                <input id='modifyUsuario' name='modifyUsuario' placeholder='usuario' type='text' value='". $cliente->getUsuario() ."' required='required' class='form-control'>
+                <input id='usuario' name='modifyUsuario' placeholder='usuario' type='text' value='". $cliente->getUsuario() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
             <div class='col-md-8'>
-                <input id='modifyContrasena' name='modifyContrasena' placeholder='***********' type='password'  value='". $cliente->getContrasena() ."' required='required' class='form-control'>
+                <input id='contrasena' name='modifyContrasena' placeholder='***********' type='password'  value='". $cliente->getContrasena() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='nombre' class='control-label col-md-4'>Nombre</label>
             <div class='col-md-8'>
-                <input id='modifyNombre' name='modifyNombre' placeholder='nombre' type='text'  value='". $cliente->getNombre() ."' required='required' class='form-control'>
+                <input id='nombre' name='modifyNombre' placeholder='nombre' type='text'  value='". $cliente->getNombre() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
             <div class='col-md-8'>
-                <input id='modifyApellidos' name='modifyApellidos' placeholder='apellidos' type='text'  value='". $cliente->getNombre() ."' class='form-control'>
+                <input id='apellidos' name='modifyApellidos' placeholder='apellidos' type='text'  value='". $cliente->getNombre() ."' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
-        <label for='dni' class='control-label col-md-4'>Dni</label>
-        <div class='col-md-8'>
-            <input id='modifyDni' name='modifyDni' placeholder='00000000A' type='text' required='required' value='". $cliente->getDni() ."' class='form-control'>
-        </div>
-    </div>
-        <div class='form-group'>
             <label for='telefono' class='control-label col-md-4'>Telefono</label>
             <div class='col-md-8'>
-                <input id='modifyTelefono' name='modifyTelefono' placeholder='658974125' type='tel'  value='". $cliente->getTelefono() ."' required='required' class='form-control'>
+                <input id='telefono' name='modifyTelefono' placeholder='658974125' type='tel'  value='". $cliente->getTelefono() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='correo' class='control-label col-md-4'>Correo</label>
             <div class='col-md-8'>
-                <input id='modifyCorreo' name='modifyCorreo' placeholder='correo@correo.es' type='email'  value='". $cliente->getCorreo() ."' required='required' class='form-control'>
+                <input id='correo' name='modifyCorreo' placeholder='correo@correo.es' type='email'  value='". $cliente->getCorreo() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
             <div class='col-md-8'>
-                <input id='modifyFnacimiento' name='modifyFnacimiento' type='date'  value='".$cliente->getFechaNacimiento() ."' required='required' class='form-control'>
+                <input id='fnacimiento' name='modifyFnacimiento' type='date'  value='". date("d-m-Y", strtotime($cliente->getFechaNacimiento())) ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='pago' class='control-label col-md-4'>Forma de pago</label>
             <div class='col-md-8'>
-                <input id='modifyPago' name='modifyPago' type='text'  value='". $cliente->getFormaPago() ."' required='required' class='form-control'>
+                <input id='pago' name='modifyPago' type='text'  value='". $cliente->getFormaPago() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group'>
             <label for='nCuenta' class='control-label col-md-4'>Nº de cuenta</label>
             <div class='col-md-8'>
-                <input type='text' id='modifyNCuenta' name='modifyNCuenta' value='". $cliente->getnCuenta() ."' required='required' class='form-control'>
+                <input type='text' name='modifyNCuenta' value='". $cliente->getnCuenta() ."'>
             </div>
         </div>
         <div class='form-group'>
@@ -140,8 +149,7 @@ function formModifyClientes($id)
             </div>
         </div>
     </div>
-</form>
-<div id='mensaje_error' class='row'></div>";
+</form>";
     return $contenido;
 }
 

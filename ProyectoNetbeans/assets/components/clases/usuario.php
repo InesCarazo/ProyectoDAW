@@ -5,7 +5,6 @@ class Usuario{
     private $contrasena;
     private $nombre;
     private $apellidos;
-    private $dni;
     private $telefono;
     private $correo;
     private $fechaNacimiento;
@@ -17,7 +16,6 @@ class Usuario{
         $this->contrasena = $row["contrasena"];
         $this->nombre = $row["nombre"];
         $this->apellidos = $row["apellidos"];
-        $this->dni = $row["dni"];
         $this->telefono = $row["telefono"];
         $this->correo = $row["correo"];
         $this->fechaNacimiento = $row["fechaNacimiento"];
@@ -65,14 +63,6 @@ class Usuario{
         return $this->apellidos;
     }
 
-  
-    public function setDni($dni){
-        $this->dni = $dni;
-    }
-    
-    public function getDni(){
-        return $this->dni;
-    }
     public function setTelefono($telefono){
         $this->telefono = $telefono;
     }

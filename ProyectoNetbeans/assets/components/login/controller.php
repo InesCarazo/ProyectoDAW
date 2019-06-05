@@ -2,27 +2,24 @@
 require_once './model.php';
 
 session_start();
-
- if (!isset($_SESSION['isLogged']))
- {
-     $_SESSION['isLogged'] = false;
- }
-
-
- /**
-  * Redireccionar a la pagina home
-  */
-  function goHome() {
+function goHome() {
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
     header("Location: $url"); 
     echo "OK";
 }
 
+/////// comienzo de l controlador
+ if (!isset($_SESSION['isLogged']))
+ {
+    $_SESSION['isLogged'] = false;
+ }
+
  if ($_SESSION['isLogged'] == true)
 {
-    goHome();   
+    goHome();
 }
+    
 
 
 
@@ -30,19 +27,15 @@ if (isset($_POST['login']))
 {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
-    
     $_SESSION['userLogueado'] = $usuario;
     $_SESSION['pwdLogueado'] = $contrasena;
     loginCorrecto($usuario, $contrasena);
-    
-    
 }
 
-/**
- * Nombre: loginCorrecto
- *   Entrada: $usuario: string,
- *            $contrasena: string
- *   Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
+/*  Nombre: loginCorrecto
+    Entrada: $usuario: string,
+             $contrasena: string
+    Descripción: Comprueba si el usuario y la contraseña son correctos. Si son sorrectos se redirecciona al home
 */
 function loginCorrecto($usuario, $contrasena)
 {
@@ -50,12 +43,6 @@ function loginCorrecto($usuario, $contrasena)
     $result=$modelClass->comprobarLogin($usuario, $contrasena);
     if($result)
     {   
-        $result2=$modelClass->buscarUsuario($usuario, $contrasena);
-        print_r($result2);
-       
-        $rol = $result2->getRol();
-
-        $_SESSION['userRol'] = $rol;
         $_SESSION['isLogged'] = true;
         goHome();
     }

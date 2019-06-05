@@ -23,7 +23,7 @@ function generarTablaHTMLEmpleados($pagos)
 {
     $tablaHTML ="<form method='POST' action='?empleado=pagos'>
     <div id='tablaVista' class='row'>
-    <table class='table-bordered table-hover table-responsive contenido-home'>
+    <table class='col-md-12 table-bordered table-hover table-responsive contenido-home'>
                     <thead>
                         <tr>
                             <th></th>
@@ -37,8 +37,8 @@ function generarTablaHTMLEmpleados($pagos)
                     {
                     $tablaHTML.= "
                         <tr>
-                            <td class='text-center'>
-                            <input class='checkbox' type='checkbox' name='btnradioPagos' value='". $value->getP_tarea_realizada()."'>
+                            <td class=''>
+                            <input class='radio' type='radio' name='btnradioPagos' value='". $value->getP_tarea_realizada()."' checked>
                             </td>";
                             $model = new modelClass(); 
                             $tarea = $model->buscarTarea($value->getA_tarea());
@@ -138,7 +138,7 @@ function generarTablaHTMLClientes($pagos)
                     $tablaHTML.= "
                         <tr>
                             <td>
-                            <input class='radio' type='radio' name='btnradioPagosCliente' value='". $value->getP_tarea_realizada()."'>
+                            ". $value->getP_tarea_realizada()."<input class='radio' type='radio' name='btnradioPagosCliente' value='". $value->getP_tarea_realizada()."' checked>
                             </td>";
                             $model = new modelClass(); 
                             $tarea = $model->buscarTarea($value->getA_tarea());

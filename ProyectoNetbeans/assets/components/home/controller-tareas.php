@@ -72,7 +72,7 @@ function tablaVistaTareas()
                 $tablaHTML.= "
                 <tr>
                     <td>
-                        <input class='radio' type='radio' value='" . $value->getP_tipo_tarea() . "' name='btnRadioTarea'>
+                        <input class='radio' type='radio' value='" . $value->getP_tipo_tarea() . "' name='btnRadioTarea' checked>
                     </td>
                     <td class='text-center'>" . $value->getTexto() . "</td>
                     <td class='text-center'>" . $value->getDuracion_h() . "</td>
@@ -343,6 +343,8 @@ if (isset($_POST['programarTarea']))
         $tareas = $modelClass->programarTarea($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
 
     }
+
+    $_SESSION['carrito'] = Array();
 }
 
 function formProgramarTareas()

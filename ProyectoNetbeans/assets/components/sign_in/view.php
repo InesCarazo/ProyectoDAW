@@ -1,5 +1,16 @@
 <?php
 require_once './controller.php';
+
+if (isset($_POST['registro'])) {
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['pwd'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $fnacimiento = $_POST['fnacimiento'];
+    registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,43 +44,44 @@ require_once './controller.php';
         <div class="col-md-8 col-sm-12 col-xs-12  no-margin no-padding">
             <h3 class="text-center text-uppercase">Registro - Nuevo cliente</h3>
             <div class="login-form no-margin no-padding">
-            <div id="mensaje_error" class="row"></div>
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <!-- <h2 class="text-center text-uppercase">SIGN IN - NEW CLIENT</h2> -->
 
                     <div class="form-group">
                         <label for="usuario">Usuario:</label>
-                        <input type="text" class="form-control" id="addUsuario" placeholder="Introduce el usuario" name="usuario" required>
+                        <input type="text" class="form-control" id="usuario" placeholder="Introduce el usuario" name="usuario" required>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Contraseña:</label>
-                        <input type="password" class="form-control" id="addPwd" placeholder="********" name="pwd" required>
+                        <input type="password" class="form-control" id="pwd" placeholder="Introduce la contraseña" name="pwd" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" id="addNombre" placeholder="Introduce el nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre" name="nombre" required>
+
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Apellidos:</label>
-                        <input type="text" class="form-control" id="addApellidos" placeholder="Introduce los apellidos" name="apellidos" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="dni">Dni:</label>
-                        <input type="text" class="form-control" id="addDni" placeholder="00000000A" name="dni" required>
+                        <input type="text" class="form-control" id="apellidos" placeholder="Introduce los apellidos" name="apellidos" required>
+
                     </div>
                     <div class="form-group">
                         <label for="telefono">Telefono:</label>
-                        <input type="number" class="form-control" id="addTelefono" placeholder="Introduce el telefono" name="telefono" required>
+                        <input type="number" class="form-control" id="telefono" placeholder="Introduce el telefono" name="telefono" required>
+
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo:</label>
-                        <input type="email" class="form-control" id="addCorreo" placeholder="Introduce el correo" name="correo" required>
+                        <input type="email" class="form-control" id="correo" placeholder="Introduce el correo" name="correo" required>
+
                     </div>
                     <div class="form-group">
                         <label for="fnacimiento">Fecha de nacimiento:</label>
-                        <input type="date" class="form-control" id="addFnacimiento" name="fnacimiento" required>
+                        <input type="date" class="form-control" id="fnacimiento" name="fnacimiento" required>
+
                     </div>
-                    <button id="addCliente" name="addCliente" type="submit" class="btn btn-black">Registrarse</button>
+                    <button id="boton" name="registro" type="submit" class="btn btn-black">Registrarse</button>
+
                 </form>
             </div>
         </div>
@@ -81,7 +93,6 @@ require_once './controller.php';
     <script src="./../../vendors/jquery/jquery.min.js "></script>
     <!--Boostrap-->
     <script src="./../../vendors/bootstrap/js/bootstrap.min.js "></script>
-    <script type="text/javascript " src="./../../js/clientes.js "></script>
     <!--MainScripts-->
     <script type="text/javascript " src="./../../js/main.js "></script>
 
