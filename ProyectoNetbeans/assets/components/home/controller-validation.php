@@ -53,7 +53,6 @@ if (isset($_POST['form']) && $_POST['form'] == "modificar")
 
 if (isset($_POST['form']) && $_POST['form'] == "modificarcli")
 {
-    $id = $_SESSION['idCliSelect'];
     $modifyUsuario = $_POST['usuario'];
     $modifyContrasena = $_POST['contrasena'];
     $modifyNombre = $_POST['nombre'];
@@ -65,20 +64,45 @@ if (isset($_POST['form']) && $_POST['form'] == "modificarcli")
     $modifyPago = $_POST['pago'];
     $modifyNCuenta = $_POST['ncuenta'];
     $modelClass = new modelClass();
-     $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
+    $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
 }
 
+if (isset($_POST['form']) && $_POST['form'] == "anadircasa")
+{
+    $addDireccion = $_POST['direccion'];
+    $addCiudad = $_POST['ciudad'];
+    $addHasForniture = "";
+    if ($_POST['hasForniture'] == "true") 
+    {
+        $addHasForniture = 1;
+    }
+    else
+    {
+        $addHasForniture  = 0;
+    }
+    $addSice = $_POST['sice'];
+    $cliente = $_POST['chooseClient'];
 
-// if (isset($_POST['form']) && $_POST['form'] == "anadircli")
-// {
-//     require_once './../sign_in/controller.php';
-//     $addUsuario = $_POST['usuario'];
-//     $addContrasena = $_POST['contrasena'];
-//     $addNombre = $_POST['nombre'];
-//     $addApellidos = $_POST['apellidos'];
-//     $addDni = $_POST['dni'];
-//     $addTelefono = $_POST['telefono'];
-//     $addCorreo = $_POST['correo'];
-//     $addFnacimiento = $_POST['fnacimiento'];
-//     registroCliente($addUsuario, $addContrasena, $addNombre, $addApellidos, $addDni, $addTelefono, $addCorreo, $addFnacimiento);
-// }
+    $modelClass = new modelClass();
+    $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
+}
+
+if (isset($_POST['form']) && $_POST['form'] == "modificarcasa")
+{
+    $id = $_SESSION['idCasaSelect'];
+    $modifyDireccion = $_POST['direccion'];
+    $modifyCiudad = $_POST['ciudad'];
+    if ($_POST['hasForniture'] == "true") 
+    {
+        $modifyHasForniture = 1;
+    }
+    else
+    {
+        $modifyHasForniture  = 0;
+    }
+    $modifySice = $_POST['sice'];
+    $cliente = $_POST['chooseClient'];
+    
+    $modelClass = new modelClass();
+    $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice, $cliente);
+}

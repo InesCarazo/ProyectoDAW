@@ -95,16 +95,11 @@ if (isset($_GET['tarea'])) {
     <!-- Validaciones -->
     <script type="text/javascript" src="./../../js/empleados.js"></script>
     <script type="text/javascript" src="./../../js/clientes.js"></script>
+    <script type="text/javascript" src="./../../js/casas.js"></script>
     <!-- Validaciones -->
     <script type="text/javascript" src="./../../js/main.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $(':checkbox').on('change',function(){
-                var th = $(this), name = th.attr('name'); 
-                if(th.is(':checked')){
-                $(':checkbox[name="'  + name + '"]').not(th).prop('checked',false);   
-                }
-            });
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');

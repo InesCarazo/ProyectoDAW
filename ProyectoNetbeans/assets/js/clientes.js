@@ -149,7 +149,7 @@
   function consultaFinalizada(respuesta) {
       console.log("hey hey");
       console.log(respuesta);
-      //window.location.href = "../login/view.php";
+      window.location.href = "?casa=ver";
   }
 
   /*
