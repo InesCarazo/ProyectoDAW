@@ -9,7 +9,7 @@
         }
         
         .no-margin {
-            margin: 0%;
+            padding: 0%;
         }
         /* Barra Top */
         
@@ -207,6 +207,11 @@
             color: white;
         }
         
+        .buscar img {
+            width: 300px;
+            height: 200px;
+        }
+        
         .buscar h3 div {
             width: 505px;
         }
@@ -219,7 +224,7 @@
         }
         
         #servicios img {
-            width: 673px;
+            width: 100%;
             height: auto;
         }
         
@@ -231,6 +236,7 @@
             left: 0;
             right: 0;
             height: auto;
+            width: 100%;
             opacity: 0;
             transition: .5s ease;
             background-color: #f16e94;

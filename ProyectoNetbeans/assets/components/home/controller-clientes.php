@@ -146,7 +146,7 @@ function formModifyClientes($id)
 }
 
 function menuClientes($tipoGestion){
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    $contenido = "<div class=' col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?cliente=ver'>Ver</a></li>

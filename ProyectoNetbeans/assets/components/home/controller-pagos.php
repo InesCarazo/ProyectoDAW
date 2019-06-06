@@ -123,7 +123,7 @@ function generarTablaHTMLClientes($pagos)
 {
     $tablaHTML ="<form method='POST' action='?cliente=pagos'>
     <div id='tablaVista' class='row'>
-                <table class='table-bordered table-hover table-responsive contenido-home'>
+                <table class='col-md-12 table-bordered table-hover table-responsive contenido-home'>
                     <thead>
                         <tr>
                             <th></th>

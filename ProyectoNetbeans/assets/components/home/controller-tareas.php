@@ -54,7 +54,7 @@ function tablaVistaTareas()
 {
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?tarea=modificar'>
-        <table class='row table table-bordered table-hover table-responsive'>
+        <table class='col-md-12 table table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -422,7 +422,7 @@ function formProgramarTareas()
 
 function menuTareas($tipoGestion)
 {
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?tarea=ver'>Ver</a></li>

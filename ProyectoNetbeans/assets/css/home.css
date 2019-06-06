@@ -153,6 +153,7 @@ ul.CTAs a {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+    width: 100%;
 }
 
 #sidebarCollapse {
@@ -225,12 +226,6 @@ ul.CTAs a {
 }
 
 @media(min-width: 769px) {
-    .contenido-home {
-        width: 1000px;
-    }
-    .contenido-tabla {
-        width: 905px;
-    }
     #tablaVista {
         padding-top: 3%;
         padding-left: 6%;
@@ -295,4 +290,10 @@ span#btnTextoSpan {
 
 .no-margin {
     margin: 0%;
+}
+
+.radio {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
