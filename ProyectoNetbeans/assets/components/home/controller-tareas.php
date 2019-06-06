@@ -31,17 +31,17 @@ if (isset($_POST['modTarea']))
     $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
 }
 
-if (isset($_POST['addTarea'])) 
-{
-    $addTexto = $_POST['addTexto'];
-    $addDuracion = $_POST['addDuracion'];
-    $addPrecio = $_POST['addPrecio'];
-    $addComentario = $_POST['addComentarios'];
+// if (isset($_POST['addTarea'])) 
+// {
+//     $addTexto = $_POST['addTexto'];
+//     $addDuracion = $_POST['addDuracion'];
+//     $addPrecio = $_POST['addPrecio'];
+//     $addComentario = $_POST['addComentarios'];
 
-    $modelClass = new modelClass();
-    $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
+//     $modelClass = new modelClass();
+//     $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
 
-}
+// }
 
 if (isset($_POST['borrarTarea'])) 
 {
@@ -172,7 +172,8 @@ function formModifyTareas($id)
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
     return $contenido;
 }
 
@@ -203,25 +204,25 @@ function formAddTareas()
         <div class='form-group row'>
             <label for='texto' class='control-label col-md-4'>Nombre de tarea</label>
              <div class='col-md-8'>
-               <input id='texto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
+               <input id='addTexto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración</label>
             <div class='col-md-8'>
-                <input id='duracion' name='addDuracion' placeholder='1' type='number' required='required' class='form-control'>
+                <input id='addDuracion' name='addDuracion' placeholder='1' type='number' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
-            <label for='precio' class='control-label col-md-4'>precio (€)</label>
+            <label for='precio' class='control-label col-md-4'>Precio (€)</label>
             <div class='col-md-8'>
-                <input id='precio' name='addPrecio' placeholder='10 €' type='text' class='form-control'>
+                <input id='addPrecio' name='addPrecio' placeholder='10 €' type='text' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control'></textarea>
+                <textarea id='addComentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control'></textarea>
             </div>
         </div>
         <div class='form-group row'>
@@ -230,7 +231,8 @@ function formAddTareas()
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
     return $contenido;
 }
 

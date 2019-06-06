@@ -107,3 +107,14 @@ if (isset($_POST['form']) && $_POST['form'] == "modificarcasa")
     $modelClass = new modelClass();
     $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice, $cliente);
 }
+
+if (isset($_POST['form']) && $_POST['form'] == "anadirtarea")
+{
+    $addTexto = $_POST['nombre'];
+    $addDuracion = $_POST['duracion'];
+    $addPrecio = $_POST['precio'];
+    $addComentario = $_POST['comentario'];
+
+    $modelClass = new modelClass();
+    $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
+}
