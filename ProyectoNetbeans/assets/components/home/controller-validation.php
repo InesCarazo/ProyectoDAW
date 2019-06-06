@@ -53,6 +53,7 @@ if (isset($_POST['form']) && $_POST['form'] == "modificar")
 
 if (isset($_POST['form']) && $_POST['form'] == "modificarcli")
 {
+    $id = $_SESSION['idCliSelect'];
     $modifyUsuario = $_POST['usuario'];
     $modifyContrasena = $_POST['contrasena'];
     $modifyNombre = $_POST['nombre'];
