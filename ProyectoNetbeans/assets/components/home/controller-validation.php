@@ -118,3 +118,16 @@ if (isset($_POST['form']) && $_POST['form'] == "anadirtarea")
     $modelClass = new modelClass();
     $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
 }
+
+if (isset($_POST['form']) && $_POST['form'] == "anadirtarea")
+{
+    $id = $_SESSION['idTareaSelect'];
+    $modifyTexto = $_POST['nombre'];
+    $modifyDuracion = $_POST['duracion'];
+    $modifyPrecio = $_POST['precio'];
+    $modifyComentario = $_POST['comentario'];
+    
+    
+    $modelClass = new modelClass();
+    $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
+}

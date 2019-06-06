@@ -3,7 +3,7 @@ $(document).ready(init);
 function init() {
     console.log("tareas.js");
     $("#addTarea").on("click", validarNuevaTarea);
-    // $("#modTarea").on("click", validarModTarea);
+    $("#modTarea").on("click", validarModTarea);
 }
 
 function validarNuevaTarea(e) {
@@ -45,41 +45,44 @@ function validarNuevaTarea(e) {
     }
 }
 
-// function validarModCasa(e) {
-//     $("#mensaje_error").html("");
-//     e.preventDefault();
-//     console.log("validarNuevaCasa");
-//     var todoCorrecto = true;
-//     var errorMes = "";
-//     console.log(errorMes.length);
-//     var valModifyDireccion = $("#modifyDireccion").val();
-//     var valModifyCiudad = $("#modifyCiudad").val();
-//     var valModifyHAsForniture = $('#modifyHasForniture').is(":checked"); //true - false
-//     var valModifySice = $("#modifySice").val();
-//     var valModifyChooseClient = $("#chooseClient").val();
+function validarModTarea(e) {
+    $("#mensaje_error").html("");
+    e.preventDefault();
+    console.log("validarNuevaTarea");
+    var todoCorrecto = true;
+    var errorMes = "";
+    console.log(errorMes.length);
+    var valModifyNombre = $("#chooseTarea").text();
+    var valModifyDuracion = $("#modifyDuracion").val();
+    var valModifyPrecio = $("#modifyPrecio").val();
+    var valModifyComentario = $("#modifyComentarios").val();
 
-//     if (valModifyDireccion.length == 0) {
-//         todoCorrecto = false;
-//         errorMes += "<li style='color:red;'>El campo <b>direccion</b> no es correcto.</li>";
-//     }
-//     if (!validarCiudad(valModifyCiudad)) {
-//         todoCorrecto = false;
-//         errorMes += "<li style='color:red;'>El campo <b>ciudad</b> no es correcto.</li>";
-//     }
-//     if (!validarTamano(valModifySice)) {
-//         todoCorrecto = false;
-//         errorMes += "<li style='color:red;'>El campo <b>tamaño</b> no es correcto.</li>";
-//     }
-//     if (todoCorrecto == true) {
-//         console.log("hey");
-//         console.log(errorMes);
-//         consultaAjaxTareas("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
-//     } else {
-//         console.log("hey hey");
-//         console.log(errorMes);
-//         $("#mensaje_error").html(errorMes);
-//     }
-// }
+    if (!validarTexto(valModifyNombre)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
+    }
+    if (!validarNumeros(valModifyDuracion)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>duración</b> no es correcto.</li>";
+    }
+    if (!validarNumeros(valModifyPrecio)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>precio</b> no es correcto.</li>";
+    }
+    if (!validarTexto(valModifyComentario)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>comentario</b> no es correcto.</li>";
+    }
+    if (todoCorrecto == true) {
+        console.log("hey");
+        console.log(errorMes);
+        consultaAjaxTareas("modificartarea", valAddNombre, valAddDuracion, valAddPrecio, valModifyComentario);
+    } else {
+        console.log("hey hey");
+        console.log(errorMes);
+        $("#mensaje_error").html(errorMes);
+    }
+}
 
 function consultaAjaxTareas(valTipoForm, valNombre, valDuracion, valPrecio, valComentario) {
     var opciones = {

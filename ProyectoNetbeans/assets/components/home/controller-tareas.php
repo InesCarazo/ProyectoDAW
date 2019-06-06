@@ -18,29 +18,17 @@ else
     $_SESSION['carrito'] = Array();
 }
 
-if (isset($_POST['modTarea'])) 
-{
-    $id = $_SESSION['idTareaSelect'];
-    $modifyTexto = $_POST['modifyTexto'];
-    $modifyDuracion = $_POST['modifyDuracion'];
-    $modifyPrecio = $_POST['modifyPrecio'];
-    $modifyComentario = $_POST['modifyComentarios'];
-    
-    
-    $modelClass = new modelClass();
-    $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
-}
-
-// if (isset($_POST['addTarea'])) 
+// if (isset($_POST['modTarea'])) 
 // {
-//     $addTexto = $_POST['addTexto'];
-//     $addDuracion = $_POST['addDuracion'];
-//     $addPrecio = $_POST['addPrecio'];
-//     $addComentario = $_POST['addComentarios'];
-
+//     $id = $_SESSION['idTareaSelect'];
+//     $modifyTexto = $_POST['modifyTexto'];
+//     $modifyDuracion = $_POST['modifyDuracion'];
+//     $modifyPrecio = $_POST['modifyPrecio'];
+//     $modifyComentario = $_POST['modifyComentarios'];
+    
+    
 //     $modelClass = new modelClass();
-//     $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
-
+//     $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
 // }
 
 if (isset($_POST['borrarTarea'])) 
