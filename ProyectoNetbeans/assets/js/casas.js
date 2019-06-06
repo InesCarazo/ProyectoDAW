@@ -34,7 +34,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("anadircasa", valAddDireccion, valAddCiudad, valAddHAsForniture, valAddSice, valAddChooseClient);
+          consultaAjaxCasas("anadircasa", valAddDireccion, valAddCiudad, valAddHAsForniture, valAddSice, valAddChooseClient);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -70,7 +70,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
+          consultaAjaxCasas("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -78,7 +78,7 @@
       }
   }
 
-  function consultaAjax(tipoForm, direccion, ciudad, hasForniture, sice, chooseClient) {
+  function consultaAjaxCasas(tipoForm, direccion, ciudad, hasForniture, sice, chooseClient) {
       var opciones = {
           type: "POST",
           url: "./../home/controller-validation.php",
