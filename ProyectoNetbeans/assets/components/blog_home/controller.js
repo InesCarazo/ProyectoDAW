@@ -31,9 +31,9 @@ function formContacto() {
     }
     console.log("hey");
     emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
-        .then(function(response) {
+        .then(function (response) {
             console.log('SUCCESS!', response.status, response.text);
-        }, function(error) {
+        }, function (error) {
             console.log('FAILED...', error);
         });
 }
@@ -45,22 +45,26 @@ function formContacto() {
 //chachichacha22
 
 function smooth() {
-    console.log("smooth");
-    var elementHome = document.getElementById("home");
-    elementHome.scrollIntoView({ block: "start", behavior: "smooth" });
+    // seleccionar todos los enlaces con ruta del menu principal sin el login
+    $('ul.nav.navbar-nav:not(.navbar-right) a:not(.dropdown-toggle)').each(function (index, enlace) {
 
-    var elementSobreNosotros = document.getElementById("sobrenosotros");
-    elementSobreNosotros.scrollIntoView({ block: "center", behavior: "smooth" });
+        // aniadir el evento de click
+        enlace.addEventListener('click', function (evento) {
+            evento.preventDefault();
 
-    var elementSobreNosotros = document.getElementById("sobrenosotros");
-    elementSobreNosotros.scrollIntoView({ block: "start", behavior: "smooth" });
+            // obtener el atributo de href que hace referencia al bloque sin '#'
+            const seccion_id = $(enlace).attr('href').substring(1);
+            // obtener el elemento del DOM
+            const element = document.getElementById(seccion_id);
 
-    var elementServicios = document.getElementById("servicios");
-    elementServicios.scrollIntoView({ block: "start", behavior: "smooth" });
-
-    var elementContacto = document.getElementById("seccontact");
-    elementContacto.scrollIntoView({ block: "start", behavior: "smooth" });
-
-    var elementFaQ = document.getElementById("faq");
-    elementFaQ.scrollIntoView({ behavior: "smooth" });
+            // revisar que el elemento exista
+            if (element) {
+                // ejecutar la accion de desplazarse hacia el elemento del menu
+                element.scrollIntoView({
+                    block: "start",
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
 }
