@@ -57,7 +57,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
+          consultaAjaxEmpl("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -83,7 +83,6 @@
       var valModifyFnacimiento = $("#modifyFnacimiento").val();
       var valModifyNss = $("#modifyNss").val();
       var valModifyAdmin = $('#modifyAdmin').is(":checked"); //true - false
-      console.log("hjgjhghjhhj" + valModifyAdmin);
       if (!validarUsuario(valModifyUsuario)) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
@@ -116,7 +115,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("modificar", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyNss, valModifyAdmin);
+          consultaAjaxEmpl("modificar", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyNss, valModifyAdmin);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -124,7 +123,7 @@
       }
   }
 
-  function consultaAjax(tipoForm, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valNss, valAdmin) {
+  function consultaAjaxEmpl(tipoForm, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valNss, valAdmin) {
       var opciones = {
           type: "POST",
           url: "./../home/controller-validation.php",

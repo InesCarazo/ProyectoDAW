@@ -53,7 +53,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("anadircli", "./../sign_in/controller.php", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, "", "");
+          consultaAjaxCli("anadircli", "./../sign_in/controller.php", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, "", "");
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -108,14 +108,14 @@
       }
 
       if (todoCorrecto == true) {
-          consultaAjax("modificarcli", "./../home/controller-validation.php", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyPago, valModifyNCuenta);
+          consultaAjaxCli("modificarcli", "./../home/controller-validation.php", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyPago, valModifyNCuenta);
       } else {
           console.log(errorMes);
           $("#mensaje_error").html(errorMes);
       }
   }
 
-  function consultaAjax(tipoForm, url, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valPago, valNCuenta) {
+  function consultaAjaxCli(tipoForm, url, valUsuario, valContrasena, valNombre, valApellidos, valDni, valTelefono, valCorreo, valFnacimiento, valPago, valNCuenta) {
       var opciones = {
           type: "POST",
           url: url,

@@ -34,7 +34,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("anadircasa", valAddDireccion, valAddCiudad, valAddHAsForniture, valAddSice, valAddChooseClient);
+          consultaAjaxCasas("anadircasa", valAddDireccion, valAddCiudad, valAddHAsForniture, valAddSice, valAddChooseClient);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -70,7 +70,7 @@
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjax("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
+          consultaAjaxCasas("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
       } else {
           console.log("hey hey");
           console.log(errorMes);
@@ -78,7 +78,7 @@
       }
   }
 
-  function consultaAjax(tipoForm, direccion, ciudad, hasForniture, sice, chooseClient) {
+  function consultaAjaxCasas(tipoForm, direccion, ciudad, hasForniture, sice, chooseClient) {
       var opciones = {
           type: "POST",
           url: "./../home/controller-validation.php",
@@ -138,71 +138,9 @@
       }
   }
 
-  function validarUsuario(usuario) { //Ok
-      var re = /^[a-zA-Z]+[0-9]?/;
-      if (re.test(usuario)) {
-          return true;
-      } else {
-          return false;
-      }
-  }
-
-  function validarDni(dni) {
-      var numero;
-      var letr;
-      var letra;
-      var expReg = /^\d{8}[A-Z]$/;
-
-      if (expReg.test(dni) === true) {
-          console.log("BUEN FORMATO");
-          numero = dni.substr(0, dni.length - 1);
-          letr = dni.substr(dni.length - 1, 1);
-          numero = numero % 23;
-          letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-          letra = letra.substring(numero, numero + 1);
-
-          if (letra !== letr.toUpperCase()) {
-              return false;
-          } else {
-              console.error("BUENA LETRA");
-              return true;
-
-          }
-      } else {
-          return false;
-      }
-  }
-
-  function validarApellidos(apellidos) { //Ok
-      var re = /^[A-Za-z]+( +[A-Za-z]+)*$/;
-      if (re.test(apellidos)) {
-          return true;
-      } else {
-          return false;
-      }
-  }
-
   function validarCiudad(ciudad) { //Ok
       var re = /^[A-Za-z]+( +[A-Za-z]+)*$/;
       if (re.test(ciudad)) {
-          return true;
-      } else {
-          return false;
-      }
-  }
-
-  function validarEmail(email) { //Ok
-      var re = /^[\w][-._\w]+@[a-z]+\.[a-z]{2,3}$/;
-      if (re.test(email)) {
-          return true;
-      } else {
-          return false;
-      }
-  }
-
-  function validarTelefono(telefono) { //Ok
-      var re = /^[6,9]{1}[0-9]{8}$/;
-      if (re.test(telefono)) {
           return true;
       } else {
           return false;

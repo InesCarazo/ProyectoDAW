@@ -109,6 +109,12 @@ if (isset($_GET['tarea'])) {
     <!--Boostrap-->
     <script src="./../../vendors/bootstrap/js/bootstrap.min.js"></script>
     <!--MainScripts-->
+    <!-- Validaciones -->
+    <script type="text/javascript" src="./../../js/empleados.js"></script>
+    <script type="text/javascript" src="./../../js/clientes.js"></script>
+    <script type="text/javascript" src="./../../js/casas.js"></script>
+    <script type="text/javascript" src="./../../js/tareas.js"></script>
+    <!-- Validaciones -->
     <script type="text/javascript" src="./../../js/main.js"></script>
 </footer>
 
