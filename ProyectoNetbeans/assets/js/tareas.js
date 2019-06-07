@@ -76,7 +76,7 @@ function validarModTarea(e) {
     if (todoCorrecto == true) {
         console.log("hey");
         console.log(errorMes);
-        consultaAjaxTareas("modificartarea", valAddNombre, valAddDuracion, valAddPrecio, valModifyComentario);
+        consultaAjaxTareas("modificartarea", valModifyNombre, valModifyDuracion, valModifyPrecio, valModifyComentario);
     } else {
         console.log("hey hey");
         console.log(errorMes);

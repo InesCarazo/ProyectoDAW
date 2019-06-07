@@ -139,19 +139,19 @@ function formModifyTareas($id)
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración (h)</label>
             <div class='col-md-8'>
-                <input id='duracion' name='modifyDuracion' type='number'  value='". $tarea->getDuracion_h() ."' required='required' class='form-control'>
+                <input id='modifyDuracion' name='modifyDuracion' type='number'  value='". $tarea->getDuracion_h() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='precio' class='control-label col-md-4'>Precio (€)</label>
             <div class='col-md-8'>
-                <input id='precio' name='modifyPrecio' placeholder='10 €' type='text'  value='". $tarea->getPrecio() ."' class='form-control'>
+                <input id='modifyPrecio' name='modifyPrecio' placeholder='10 €' type='text'  value='". $tarea->getPrecio() ."' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='modifyComentarios' type='text' class='form-control'>". $tarea->getComentarios() ."</textarea>
+                <textarea id='modifyComentarios' name='modifyComentarios' type='text' class='form-control'>". $tarea->getComentarios() ."</textarea>
             </div>
         </div>
         <div class='form-group row'>
