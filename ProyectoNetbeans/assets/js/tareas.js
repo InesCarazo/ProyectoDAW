@@ -110,7 +110,7 @@ function consultaAjaxTareas(valTipoForm, valNombre, valDuracion, valPrecio, valC
  */
 function consultaFinalizada(respuesta) {
     console.log(respuesta);
-    //window.location.href = "?tarea=ver";
+    window.location.href = "?tarea=ver";
 }
 
 /*

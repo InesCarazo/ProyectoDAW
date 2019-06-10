@@ -16,11 +16,19 @@
     background-color: #f16e94;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
+.no-padding {
+    padding: 0%;
 }
+
+.no-margin {
+    margin: 0%;
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {}
 
 @media screen and (max-width: 450px) {
     .register-form {
@@ -35,19 +43,21 @@
 }
 
 @media screen and (min-width: 1000px) {
+    .main {
+        float: right;
+    }
     .sidenav {
+        position: fixed;
         height: 100%;
         background-color: #f16e94;
         overflow-x: hidden;
-        padding-top: 20px;
-        position: fixed;
+        padding-top: 5%;
     }
     .sidenav img {
         padding-top: 22%;
     }
     .login-form {
-        margin-top: 40%;
-        margin-left: 20%;
+        margin-top: 20%;
     }
     .register-form {
         margin-top: 20%;
@@ -70,7 +80,7 @@
 }
 
 #registro {
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
 #registro a {

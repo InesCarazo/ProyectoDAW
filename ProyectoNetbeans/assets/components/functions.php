@@ -1,37 +1,4 @@
 <?php
-
-//////////////////////////////
-// CONFIGURACION
-/////////////////////////////
-
-$config = Array(
-  'isLocalServer' => true,  // Indicar si es en local en produccion
-);
-
-//////////////////////////////
-// FUNCIONES
-/////////////////////////////
-
-/**
- * Cargar las urls del proyecto de forma dinamica si es en local o en produccion
- * 
- * @param String $path ruta relativa desde la base url
- */
-if(!function_exists('redirect')) {
-  function redirect($path) {
-    global $config;
-
-    $local_url = 'http://localhost/ProyectoDAW/ProyectoNetbeans/';
-    $server_url = 'http://aglinformatica.es:6080/icarazo/';
-
-    if ($config['isLocalServer'] == true) {
-      return $local_url . $path;
-    } else {
-      return $server_url . $path;
-    }
-  }
-}
-
 /**
  * redireccionamiento hacia la pagina home
  */

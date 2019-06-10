@@ -29,16 +29,18 @@ function formContacto() {
         "from_servicio": serviciolimpieza.toString(),
         "from_consulta": comentario.toString()
     }
-    console.log("hey");
+
+    sendEmail(templateParams);
+}
+
+function sendEmail(templateParams) {
     emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
-        .then(function (response) {
+        .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
-        }, function (error) {
+        }, function(error) {
             console.log('FAILED...', error);
         });
 }
-//https://www.smtpjs.com/
-
 
 //https://www.emailjs.com/
 //chachachachi.limpieza@gmail.com
@@ -46,10 +48,10 @@ function formContacto() {
 
 function smooth() {
     // seleccionar todos los enlaces con ruta del menu principal sin el login
-    $('ul.nav.navbar-nav:not(.navbar-right) a:not(.dropdown-toggle)').each(function (index, enlace) {
+    $('ul.nav.navbar-nav:not(.navbar-right) a:not(.dropdown-toggle)').each(function(index, enlace) {
 
         // aniadir el evento de click
-        enlace.addEventListener('click', function (evento) {
+        enlace.addEventListener('click', function(evento) {
             evento.preventDefault();
 
             // obtener el atributo de href que hace referencia al bloque sin '#'

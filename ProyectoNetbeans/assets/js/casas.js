@@ -105,7 +105,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      //window.location.href = "?casa=ver";
+      window.location.href = "?casa=ver";
   }
 
   /*
