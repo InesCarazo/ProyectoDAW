@@ -18,15 +18,19 @@ body {
     padding-top: 20px;
 }
 
+.no-padding {
+    padding: 0%;
+}
+
+.no-margin {
+    margin: 0%;
+}
+
 .main {
     padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-}
+@media screen and (max-height: 450px) {}
 
 @media screen and (max-width: 450px) {
     .register-form {
@@ -35,20 +39,6 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-    .main {
-        margin-left: 40%;
-    }
-    .sidenav {
-        width: 40%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-    }
-    .login-form {
-        margin-top: 40%;
-        margin-left: 20%;
-    }
     .register-form {
         margin-top: 20%;
     }
@@ -56,18 +46,17 @@ body {
 
 @media screen and (min-width: 1000px) {
     .main {
-        margin-left: 40%;
+        float: right;
     }
     .sidenav {
-        width: 40%;
         position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
+        height: 100%;
+        background-color: #f16e94;
+        overflow-x: hidden;
+        padding-top: 11%;
     }
     .login-form {
-        margin-top: 40%;
-        margin-left: 20%;
+        margin-top: 20%;
     }
     .register-form {
         margin-top: 20%;
@@ -84,17 +73,13 @@ body {
     color: #fff;
 }
 
-.sidenav img {
-    padding-top: 22%;
-}
-
 #boton:hover {
     background-image: linear-gradient(to bottom right, #f16e94, #f3b3c5);
     color: white;
 }
 
 #registro {
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
 #registro a {
