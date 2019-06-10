@@ -1,16 +1,5 @@
 <?php
 require_once './controller.php';
-
-if (isset($_POST['registro'])) {
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['pwd'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
-    $fnacimiento = $_POST['fnacimiento'];
-    registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
-}
 ?>
 <!DOCTYPE html>
 <html>

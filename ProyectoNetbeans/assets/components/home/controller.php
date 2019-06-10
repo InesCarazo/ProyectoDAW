@@ -3,6 +3,7 @@
 session_start();
 
 require_once './model.php';
+require_once './../functions.php';
 require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
@@ -10,30 +11,34 @@ require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 
 
+$rolArrayEC = Array();
+array_push($rolArrayEC, "EMPLEADO");
+array_push($rolArrayEC, "CLIENTE");
 if (!isset($_SESSION['isLogged'])) 
 {
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url");
+    goLogin();
 }
 elseif ($_SESSION['isLogged'] == false) 
 {
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url");
+    goLogin();
 }
-elseif ($_SESSION['isLogged'] == true) 
+//elseif ($_SESSION['isLogged'] == true) 
+elseif (allowed($rolArrayEC)) 
 {
     //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['pwdLogueado'];
+}
+function goLogin()
+{
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
+    header("Location: $url");
 }
 
 function cerrarSesion()
 {
     session_destroy();
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url"); 
+    goLogin();
 }
 
 function volverAlHome()
@@ -51,20 +56,33 @@ function contacto()
 }
 
 
+
 function tipoMenuGestion($tipoGestion){
+    $rolArrayEC = Array();
+    array_push($rolArrayEC, "EMPLEADO");
+    array_push($rolArrayEC, "CLIENTE");
+    $rolArrayE = Array();
+    array_push($rolArrayE, "EMPLEADO");
     switch ($tipoGestion) {
         case 'empleados':
-           return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
-           
+        if (allowed($rolArrayE)) {
+            return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
+        }           
             break;
         case 'clientes':
+        if (allowed($rolArrayEC)) {
         return menuClientes("clientes") . formShowClientes() . "</div>";
+        }
             break;
         case 'casas':
+        if (allowed($rolArrayEC)) {
         return menuCasas($tipoGestion) . formShowCasas() . "</div>";
+        }
             break;
         case 'tareas':
+        if (allowed($rolArrayEC)) {
         return menuTareas($tipoGestion) . formShowTareas() . "</div>";
+        }
             break;
     }
 }
@@ -83,6 +101,7 @@ function tipoFormEmpleados($tipoForm){
             {
                 $id = $_POST['btnradio'];
                 return menuEmpleados("empleados") . formModifyEmpleados($id) . "</div>";
+                $_SESSION['idEmplSelect'] = $id;
             }
             else
             {
@@ -171,4 +190,36 @@ function tipoFormTareas($tipoForm){
             return menuTareas("tareas") . formAddTareas() . "</div>";
             break;
     }
+}
+
+function menuHome(){
+    $contenido="<ul class='list-unstyled components'>
+    <li class='active'>
+        <a href='?home' aria-expanded='false'>Home</a>
+    </li>
+    <li>
+        <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
+        <ul class='collapse list-unstyled' id='pageSubmenu'>
+           ";
+           $rolArray = Array();
+           array_push($rolArray, "EMPLEADO");
+           if(allowed($rolArray)){
+            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
+           }
+           $contenido.="
+            <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
+            <li><a href='?gestion=casas' name='casas'>Casas</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href='?contacto'>Contacto</a>
+    </li>
+    <li>
+        <a href='?cerrarsesion'>Cerrar sesión</a>
+    </li>
+</ul>
+";
+
+    return $contenido;
 }
