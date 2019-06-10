@@ -20,7 +20,7 @@ require_once './controller.php';
 
     <body>
 
-        <div class="sidenav">
+        <div class="sidenav col-md-5 col-sm-12">
         <a href='./../blog_home/blog.html'>
             <img class="center-block" src="./../../images/icono/white/cleaner256.png">
         </a>
@@ -28,7 +28,7 @@ require_once './controller.php';
                 <h2 class="text-center text-uppercase">chacha chachi</h2>
             </div>
         </div>
-        <div class="main">
+        <div class="main col-md-7 col-sm-12">
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="login-form">
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
