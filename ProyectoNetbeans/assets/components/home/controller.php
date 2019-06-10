@@ -3,22 +3,46 @@
 session_start();
 
 require_once './model.php';
+require_once './../functions.php';
 require_once './controller-empleados.php';
 require_once './controller-clientes.php';
 require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
-require_once './../clases/carrito.php';
 
 
-
-function cerrarSesion(){
+$rolArrayEC = Array();
+array_push($rolArrayEC, "EMPLEADO");
+array_push($rolArrayEC, "CLIENTE");
+if (!isset($_SESSION['isLogged'])) 
+{
+    goLogin();
+}
+elseif ($_SESSION['isLogged'] == false) 
+{
+    goLogin();
+}
+//elseif ($_SESSION['isLogged'] == true) 
+elseif (allowed($rolArrayEC)) 
+{
+    //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
+    //echo $_SESSION['pwdLogueado'];
+}
+function goLogin()
+{
     $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/login/view.php';
     //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/login/view.php';
-    header("Location: $url"); 
+    header("Location: $url");
 }
 
-function volverAlHome(){
+function cerrarSesion()
+{
+    session_destroy();
+    goLogin();
+}
+
+function volverAlHome()
+{
     $contenido = "</ul>
     </div>
     </div>
@@ -26,25 +50,39 @@ function volverAlHome(){
     return $contenido;
 }
 
-function contacto(){
+function contacto()
+{
     echo "NOT READY YET";
 }
 
 
+
 function tipoMenuGestion($tipoGestion){
+    $rolArrayEC = Array();
+    array_push($rolArrayEC, "EMPLEADO");
+    array_push($rolArrayEC, "CLIENTE");
+    $rolArrayE = Array();
+    array_push($rolArrayE, "EMPLEADO");
     switch ($tipoGestion) {
         case 'empleados':
-           return menuEmpleados($tipoGestion);
-           
+        if (allowed($rolArrayE)) {
+            return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
+        }           
             break;
         case 'clientes':
-        return menuClientes($tipoGestion);
+        if (allowed($rolArrayEC)) {
+        return menuClientes("clientes") . formShowClientes() . "</div>";
+        }
             break;
         case 'casas':
-        return menuCasas($tipoGestion);
+        if (allowed($rolArrayEC)) {
+        return menuCasas($tipoGestion) . formShowCasas() . "</div>";
+        }
             break;
         case 'tareas':
-        return menuTareas($tipoGestion);
+        if (allowed($rolArrayEC)) {
+        return menuTareas($tipoGestion) . formShowTareas() . "</div>";
+        }
             break;
     }
 }
@@ -63,6 +101,7 @@ function tipoFormEmpleados($tipoForm){
             {
                 $id = $_POST['btnradio'];
                 return menuEmpleados("empleados") . formModifyEmpleados($id) . "</div>";
+                $_SESSION['idEmplSelect'] = $id;
             }
             else
             {
@@ -151,4 +190,36 @@ function tipoFormTareas($tipoForm){
             return menuTareas("tareas") . formAddTareas() . "</div>";
             break;
     }
+}
+
+function menuHome(){
+    $contenido="<ul class='list-unstyled components'>
+    <li class='active'>
+        <a href='?home' aria-expanded='false'>Home</a>
+    </li>
+    <li>
+        <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
+        <ul class='collapse list-unstyled' id='pageSubmenu'>
+           ";
+           $rolArray = Array();
+           array_push($rolArray, "EMPLEADO");
+           if(allowed($rolArray)){
+            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
+           }
+           $contenido.="
+            <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
+            <li><a href='?gestion=casas' name='casas'>Casas</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href='?contacto'>Contacto</a>
+    </li>
+    <li>
+        <a href='?cerrarsesion'>Cerrar sesión</a>
+    </li>
+</ul>
+";
+
+    return $contenido;
 }

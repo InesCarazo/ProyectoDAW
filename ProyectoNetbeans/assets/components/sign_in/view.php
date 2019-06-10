@@ -1,16 +1,5 @@
 <?php
 require_once './controller.php';
-
-if (isset($_POST['registro'])) {
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['pwd'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
-    $fnacimiento = $_POST['fnacimiento'];
-    registroCliente($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento);
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,19 +20,20 @@ if (isset($_POST['registro'])) {
 </head>
 
 <body>
-
-    <div class="sidenav">
+<div class="container-fluid no-padding">
+    <div class="sidenav col-md-5 col-sm-12 col-xs-12">
+    <a href='./../login/view.php'>
         <img class="center-block" src="./../../images/icono/white/cleaner256.png">
+    </a>
         <div class="login-main-text">
             <h2 class="text-center text-uppercase">chacha chachi</h2>
         </div>
     </div>
-    <div class="main no-margin no-padding">
-        <div class="col-md-8 col-sm-12 col-xs-12  no-margin no-padding">
+    <div class="main col-md-7 col-sm-12 col-xs-12">
+        <!-- <div class="no-margin no-padding"> -->
             <h3 class="text-center text-uppercase">Registro - Nuevo cliente</h3>
             <div class="login-form no-margin no-padding">
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <!-- <h2 class="text-center text-uppercase">SIGN IN - NEW CLIENT</h2> -->
 
                     <div class="form-group">
                         <label for="usuario">Usuario:</label>
@@ -79,11 +69,11 @@ if (isset($_POST['registro'])) {
 
                     </div>
                     <button id="boton" name="registro" type="submit" class="btn btn-black">Registrarse</button>
-
                 </form>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
+</div>
 </body>
 
 <footer>
@@ -93,7 +83,7 @@ if (isset($_POST['registro'])) {
     <script src="./../../vendors/bootstrap/js/bootstrap.min.js "></script>
     <!--MainScripts-->
     <script type="text/javascript " src="./../../js/main.js "></script>
-
+    <script type="text/javascript " src="./../../js/clientes.js "></script>
 </footer>
 
 </html>

@@ -1,3 +1,7 @@
+<?php
+
+require_once './controller.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +17,6 @@
     <link rel="stylesheet" href="./../../vendors/bootstrap/css/bootstrap.min.css" />
     <!-- CSS propio que usaremos para personalizar BS -->
     <link rel="stylesheet" type="text/css" href="./../../css/home.css">
-
 </head>
 
 <body>
@@ -24,28 +27,9 @@
                 <img src="./../../images/icono/pink/cleaner128.png">
             </div>
 
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="?home" aria-expanded="false">Home</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Gestión</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                       <li><a href="?gestion=empleados" name="empleados">Empleados</a></li> 
-                        <li><a href="?gestion=clientes" name="clientes">Clientes</a></li>
-                        <li><a href="?gestion=casas" name="casas">Casas</a></li>
-                        <li><a href="?gestion=tareas" name="tareas">Tareas</a></li>
-                        <!-- <li><a href="?gestion=pagos" name="pagos">Pagos</a></li> -->
-                    </ul>
-                </li>
-                <li>
-                    <a href="?contacto">Contacto</a>
-                </li>
-                <li>
-                    <a href="?cerrarsesion">Cerrar sesión</a>
-                </li>
-            </ul>
-
+            <?php
+            echo menuHome();
+            ?>
         </nav>
         <div id='content'>
         
@@ -60,7 +44,6 @@
                 </button>
         </div>
         <?php
-require_once './controller.php';
 
 if (isset($_GET["gestion"]))
  {
@@ -109,15 +92,14 @@ if (isset($_GET['tarea'])) {
     <!--Boostrap-->
     <script src="./../../vendors/bootstrap/js/bootstrap.min.js"></script>
     <!--MainScripts-->
+    <!-- Validaciones -->
+    <script type="text/javascript" src="./../../js/empleados.js"></script>
+    <script type="text/javascript" src="./../../js/clientes.js"></script>
+    <script type="text/javascript" src="./../../js/casas.js"></script>
+    <script type="text/javascript" src="./../../js/tareas.js"></script>
+    <!-- Validaciones -->
     <script type="text/javascript" src="./../../js/main.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-    </script>
+    
 </footer>
 
 </html>

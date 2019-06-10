@@ -1,7 +1,3 @@
-body {
-    font-family: "Lato", sans-serif;
-}
-
 #boton {
     margin-left: 79%;
 }
@@ -11,6 +7,14 @@ body {
     background: #FFF;
 }
 
+.no-padding {
+    padding: 0%;
+}
+
+.no-margin {
+    margin: 0%;
+}
+
 .sidenav {
     height: 100%;
     background-color: #f16e94;
@@ -18,9 +22,11 @@ body {
     padding-top: 20px;
 }
 
+
+/* 
 .main {
     padding: 0px 10px;
-}
+} */
 
 @media screen and (max-height: 450px) {
     .sidenav {
@@ -35,38 +41,33 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-    .main {
+    /* .main {
         margin-left: 40%;
-    }
-    .sidenav {
-        width: 40%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-    }
-    /* .login-form {
-        margin-top: 20%;
-        margin-left: 20%;
     } */
+    .sidenav {
+        height: 100%;
+        background-color: #f16e94;
+        overflow-x: hidden;
+        z-index: 1;
+    }
     .register-form {
         margin-top: 20%;
     }
 }
 
 @media screen and (min-width: 1000px) {
+    .sidenav img {
+        padding-top: 22%;
+    }
     .main {
-        margin-left: 40%;
+        float: right;
     }
     .sidenav {
-        width: 40%;
+        height: 100%;
+        background-color: #f16e94;
+        overflow-x: hidden;
         position: fixed;
         z-index: 1;
-        top: 0;
-        left: 0;
-    }
-    .login-form {
-        margin-left: 20%;
     }
     .register-form {
         margin-top: 20%;
@@ -81,10 +82,6 @@ body {
 .btn-black {
     background-color: #f16e94 !important;
     color: #fff;
-}
-
-.sidenav img {
-    padding-top: 22%;
 }
 
 #boton:hover {

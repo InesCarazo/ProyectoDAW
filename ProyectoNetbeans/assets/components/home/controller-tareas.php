@@ -1,34 +1,35 @@
 <?php
-if (!isset($_SESSION['carrito'])) 
+
+$carrito = Array();
+//$_SESSION['carrito'] = $carrito;
+
+if (isset($_POST['quitarTarea'])) 
 {
-    $carrito = Array();
+    $carrito = quitarTarea($_POST['valorQuitar']);
     $_SESSION['carrito'] = $carrito;
 }
 
-if (isset($_POST['modTarea'])) 
+if (isset($_SESSION['carrito'])) 
 {
-    $id = $_SESSION['idTareaSelect'];
-    $modifyTexto = $_POST['modifyTexto'];
-    $modifyDuracion = $_POST['modifyDuracion'];
-    $modifyPrecio = $_POST['modifyPrecio'];
-    $modifyComentario = $_POST['modifyComentarios'];
-    
-    
-    $modelClass = new modelClass();
-    $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
+     $carrito = $_SESSION['carrito'];
+}
+else
+{
+    $_SESSION['carrito'] = Array();
 }
 
-if (isset($_POST['addTarea'])) 
-{
-    $addTexto = $_POST['addTexto'];
-    $addDuracion = $_POST['addDuracion'];
-    $addPrecio = $_POST['addPrecio'];
-    $addComentario = $_POST['addComentarios'];
-
-    $modelClass = new modelClass();
-    $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
-
-}
+// if (isset($_POST['modTarea'])) 
+// {
+//     $id = $_SESSION['idTareaSelect'];
+//     $modifyTexto = $_POST['modifyTexto'];
+//     $modifyDuracion = $_POST['modifyDuracion'];
+//     $modifyPrecio = $_POST['modifyPrecio'];
+//     $modifyComentario = $_POST['modifyComentarios'];
+    
+    
+//     $modelClass = new modelClass();
+//     $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
+// }
 
 if (isset($_POST['borrarTarea'])) 
 {
@@ -41,7 +42,7 @@ function tablaVistaTareas()
 {
     $tablaHTML= "<div id='tablaVista' class='container-fluid'>
     <form method='POST' action='?tarea=modificar'>
-        <table class='row table table-bordered table-hover table-responsive'>
+        <table class='col-md-12 table table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -138,19 +139,19 @@ function formModifyTareas($id)
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración (h)</label>
             <div class='col-md-8'>
-                <input id='duracion' name='modifyDuracion' type='number'  value='". $tarea->getDuracion_h() ."' required='required' class='form-control'>
+                <input id='modifyDuracion' name='modifyDuracion' type='number'  value='". $tarea->getDuracion_h() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='precio' class='control-label col-md-4'>Precio (€)</label>
             <div class='col-md-8'>
-                <input id='precio' name='modifyPrecio' placeholder='10 €' type='text'  value='". $tarea->getPrecio() ."' class='form-control'>
+                <input id='modifyPrecio' name='modifyPrecio' placeholder='10 €' type='text'  value='". $tarea->getPrecio() ."' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='modifyComentarios' type='text' class='form-control'>". $tarea->getComentarios() ."</textarea>
+                <textarea id='modifyComentarios' name='modifyComentarios' type='text' class='form-control'>". $tarea->getComentarios() ."</textarea>
             </div>
         </div>
         <div class='form-group row'>
@@ -159,7 +160,8 @@ function formModifyTareas($id)
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
     return $contenido;
 }
 
@@ -190,25 +192,25 @@ function formAddTareas()
         <div class='form-group row'>
             <label for='texto' class='control-label col-md-4'>Nombre de tarea</label>
              <div class='col-md-8'>
-               <input id='texto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
+               <input id='addTexto' name='addTexto' placeholder='Ej: Barrer el suelo' type='text' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='duracion' class='control-label col-md-4'>Duración</label>
             <div class='col-md-8'>
-                <input id='duracion' name='addDuracion' placeholder='1' type='number' required='required' class='form-control'>
+                <input id='addDuracion' name='addDuracion' placeholder='1' type='number' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
-            <label for='precio' class='control-label col-md-4'>precio (€)</label>
+            <label for='precio' class='control-label col-md-4'>Precio (€)</label>
             <div class='col-md-8'>
-                <input id='precio' name='addPrecio' placeholder='10 €' type='text' class='form-control'>
+                <input id='addPrecio' name='addPrecio' placeholder='10 €' type='text' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='Comentarios' class='control-label col-md-4'>Comentario</label>
             <div class='col-md-8'>
-                <textarea id='Comentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control'></textarea>
+                <textarea id='addComentarios' name='addComentarios' placeholder='Escribe aquí tus comentarios' type='text' class='form-control'></textarea>
             </div>
         </div>
         <div class='form-group row'>
@@ -217,7 +219,8 @@ function formAddTareas()
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
     return $contenido;
 }
 
@@ -233,6 +236,8 @@ function generarSelectTareasProg()
                 foreach ($tareas as $key => $value2)
                 {
                         $contenido.= "<option id='chooseTareaProg' name='chooseTareaProg' class='form-control' value='" . $value2->getP_tarea() . "'>" .$value2->getTexto() ."</option>";
+                        $_SESSION['duracionTareaProg'] = $value2->getDuracion_h();
+                        
                 }
             $contenido.="
                 </select>
@@ -277,12 +282,67 @@ function generarSelectEmpleadosProg(){
     return $contenido;
 }
 
+function addTask($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h) 
+{
+    $carr = array();
+    array_push($carr, $idEmpleado);
+    array_push($carr, $idCliente);
+    array_push($carr, $idTarea);
+    array_push($carr, $fecha);
+    array_push($carr, $duracion_h);
+    return $carr;
+
+}
+
+function listTaskAdded()
+{
+    $tablaHTML="";
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+            $modelClass = new modelClass(); 
+            $tareas = $modelClass->buscarTarea($value[2]);
+            $tablaHTML.="<div class='row'><form action='?tarea=programar' method='POST'>";
+            $tablaHTML.= $tareas->getTexto() ."(". date("d-m-Y", strtotime($value[3])) .") <button id='btnEnlace' type='submit' name='quitarTarea' class='btn btn-default'><!--<img src='./../../images/delete/bin_2/bin2_32.png'>--><!--<img src='./../../images/delete/bin_1/bin1_24.png'>--><img src='./../../images/delete/cart/cart_32.png'></button>
+            <input type='hidden' name='valorQuitar' value='". $tareas->getP_tipo_tarea() ."'>";
+            $tablaHTML.= "</form></div>";
+    }
+    
+return $tablaHTML;
+}
+
+function quitarTarea($id) 
+{
+    $carrito = $_SESSION['carrito'];
+    unset($carrito[array_search($id, $carrito)]);
+    return $carrito;
+}
+
+if (isset($_POST['programarTarea'])) 
+{
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+        $idEmpleado = $value[0]; 
+        $idCliente = $value[1];
+        $idTarea = $value[2];
+        $fecha = $value[3];;
+        $duracion_h =  $value[4];
+
+        $modelClass = new modelClass(); 
+        $tareas = $modelClass->programarTarea($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+
+    }
+
+    $_SESSION['carrito'] = Array();
+}
+
 function formProgramarTareas()
 {
-    $contenido = "<form method='POST' action='?tarea=programar' class='contenido-home'>
-    <div class='col-md-6'>
+    $contenido = "
+    <div class='col-md-6'><form method='POST' action='?tarea=programar'>
         <div class='form-group row'>
-            <label class='col-md-4 col-form-label' for='progTarea'>Tareas</label>
+            <label class='col-md-4 col-form-label'>Tareas</label>
            ". generarSelectTareasProg() ."
         </div>
         <div class='form-group row'>
@@ -311,22 +371,42 @@ function formProgramarTareas()
                 </button>
             </div>
         </div>
+        </form>
     </div>
-    </form>
-    <div class='col-md-6'>
+    
+    <div class='col-md-6'>";
+
+    if (isset($_POST['progAddTarea'])) 
+    {
+        $idEmpleado = $_POST['chooseEmpleadoProg']; 
+        $idCliente = $_POST['chooseClientProg'];
+        $idTarea = $_POST['chooseTareaProg'];
+        $fecha = $_POST['progfecha'];
+        $duracion_h =  $_SESSION['duracionTareaProg'];
+        
+        $carrito = $_SESSION['carrito'];
+        $carr = addTask($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+        array_push($carrito, $carr);
+        $_SESSION['carrito'] = $carrito;
+    }
+    $contenido.="
         <div class='form-group row'>
-            <label for='duracion' class='control-label col-md-12'>DIV 1 Nº tareas y Duración</label>
+            <label for='duracion' class='control-label col-md-12'>Nº tareas:" . count($_SESSION['carrito'])."</label>
         </div>
         <div class='form-group row'>
             <div id='carritoTareas' name='carritoTareas' class='col-md-12'>
                <h3>Lista de tareas añadidas</h3>
+               " . listTaskAdded() . "
             </div>
-            <div class='col-md-offset-8 col-md-4 form-group'>
-                <button id='progTarea' name='progTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+            <div class='col-md-12 form-group'>
+            <form method='POST' action='?tarea=programar'>
+                <button id='progTarea' name='programarTarea' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+                </form>
             </div>
 
         </div>
-    </div
+        
+    </div>
 ";
     return $contenido;
 }
@@ -334,7 +414,7 @@ function formProgramarTareas()
 
 function menuTareas($tipoGestion)
 {
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?tarea=ver'>Ver</a></li>

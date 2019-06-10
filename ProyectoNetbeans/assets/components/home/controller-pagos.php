@@ -23,7 +23,7 @@ function generarTablaHTMLEmpleados($pagos)
 {
     $tablaHTML ="<form method='POST' action='?empleado=pagos'>
     <div id='tablaVista' class='row'>
-    <table class='table-bordered table-hover table-responsive contenido-home'>
+    <table class='col-md-12 table-bordered table-hover table-responsive contenido-home'>
                     <thead>
                         <tr>
                             <th></th>
@@ -37,7 +37,7 @@ function generarTablaHTMLEmpleados($pagos)
                     {
                     $tablaHTML.= "
                         <tr>
-                            <td class='text-center'>
+                            <td class=''>
                             <input class='radio' type='radio' name='btnradioPagos' value='". $value->getP_tarea_realizada()."' checked>
                             </td>";
                             $model = new modelClass(); 
@@ -123,7 +123,7 @@ function generarTablaHTMLClientes($pagos)
 {
     $tablaHTML ="<form method='POST' action='?cliente=pagos'>
     <div id='tablaVista' class='row'>
-                <table class='table-bordered table-hover table-responsive contenido-home'>
+                <table class='col-md-12 table-bordered table-hover table-responsive contenido-home'>
                     <thead>
                         <tr>
                             <th></th>

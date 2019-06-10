@@ -128,7 +128,7 @@ return $contenido;
 function tablaVistaEmpleados(){
     $tablaHTML= "<form method='POST' action='?empleado=modificar'>
     <div id='tablaVista' class='row'>
-        <table class='row table-bordered table-hover table-responsive'>
+        <table class='col-md-12 table-bordered table-hover table-responsive'>
             <thead>
                 <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -149,7 +149,7 @@ function tablaVistaEmpleados(){
                     <td class='text-center'>" . $value->getTelefono() . "</td>
                     <td class='text-center'>" . $value->getCorreo() . "</td>
                     <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
-                </tr>"; } $tablaHTML.= "</tbody>
+                </tr>"; $_SESSION['idEmplSelect']= $value->getP_Usuario();} $tablaHTML.= "</tbody>
         </table>
         <div class='col-md-6'>
             <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
@@ -256,7 +256,7 @@ return $contenido;
 }
 
 function menuEmpleados($tipoGestion){
-    $contenido = "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
               
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>

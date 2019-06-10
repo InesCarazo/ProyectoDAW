@@ -109,18 +109,17 @@
         /*CONTACTO*/
         
         #seccontact {
-            padding-top: 11%;
-            padding-bottom: 15%;
+            padding-top: 9%;
         }
         
-        #contacto {
+        .contacto {
             background-color: #fabada93;
         }
         
-        #contacto input[type=text],
-        #contacto input[type=email],
-        #contacto select,
-        #contacto textarea {
+        .contacto input[type=text],
+        .contacto input[type=email],
+        .contacto select,
+        .contacto textarea {
             width: 50%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -131,7 +130,7 @@
             resize: vertical;
         }
         
-        #contacto input[type=submit] {
+        .contacto input[type=submit] {
             background-color: white;
             color: #f16e94;
             padding: 12px 20px;
@@ -142,24 +141,24 @@
             margin-left: 59%;
         }
         
-        #contacto input[type=submit]:hover {
+        .contacto input[type=submit]:hover {
             background-color: #f16e94;
             color: white;
         }
         
-        #contacto .contenedor {
+        .contacto .contenedor {
             border-radius: 5px;
             padding: 2%;
         }
         
-        #contacto #map-container-google {
+        .contacto #map-container-google {
             padding-top: 2%;
             padding-left: 5%;
             padding-right: 5%;
             height: 400px;
         }
         
-        #contacto #map-container-google iframe {
+        .contacto #map-container-google iframe {
             width: 100%;
             height: 70%;
         }
@@ -167,12 +166,11 @@
         /* FAQS */
         
         #faq {
-            padding-top: 12%;
-            padding-bottom: 15%;
+            padding-top: 6%;
         }
         
         #faq h4 {
-            padding-top: 2%;
+            çpadding-top: 2%;
         }
         
         #faq p {
@@ -183,8 +181,7 @@
         
         #footer {
             background-color: #2E2E2E;
-            padding-top: 3%;
-            margin-top: 5%;
+            margin-top: 2%;
         }
         
         .copyright {
@@ -219,13 +216,13 @@
         /* SERVICIOS */
         
         #servicios {
-            padding-top: 12%;
-            padding-bottom: 10%;
+            padding-top: 6%;
+            /* padding-bottom: 10%; */
         }
         
         #servicios img {
-            width: 680px;
-            height: 446px;
+            width: 100%;
+            height: auto;
         }
         
         .overlay1,
@@ -236,7 +233,7 @@
             left: 0;
             right: 0;
             height: auto;
-            width: 680px;
+            width: 100%;
             opacity: 0;
             transition: .5s ease;
             background-color: #f16e94;
@@ -259,11 +256,10 @@
         }
         /* SERVICIOS */
         /* SOBRE NOSOTROS */
-        
-        #sobrenosotros {
-            padding-top: 5%;
-            padding-bottom: 15%;
-        }
+        /* #sobrenosotros {
+             padding-top: 5%;
+            padding-bottom: 15%; 
+        }*/
         
         #sntexto {
             padding-top: 13%;

@@ -1,5 +1,16 @@
 <?php
-class modelClass{
+class modelClass
+{
+    /*  Nombre: registro
+        Entrada: $usuario: string,
+                 $contrasena: string, 
+                 $nombre: string, 
+                 $apellidos: string,
+                 $telefono: number, 
+                 $correo: string, 
+                 $fnacimiento: string
+        Descripción: Inserta los datos del formulario e la base de datos
+*/
     function registro($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento) 
     {
         require_once './../conexion/conexion.php';

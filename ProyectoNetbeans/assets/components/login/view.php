@@ -4,7 +4,6 @@ require_once './controller.php';
 <!DOCTYPE html>
 <html>
     <!-- Inés Carazo Núñez -->
-
     <head>
         <title>Login</title>
         <meta charset="UTF-8">
@@ -20,15 +19,17 @@ require_once './controller.php';
     </head>
 
     <body>
-
-        <div class="sidenav">
+<div class="container-fluid no-padding">
+        <div class="sidenav col-md-5 col-sm-12 col-xs-12">
+        <a href='./../blog_home/blog.html'>
             <img class="center-block" src="./../../images/icono/white/cleaner256.png">
+        </a>
             <div class="login-main-text">
                 <h2 class="text-center text-uppercase">chacha chachi</h2>
             </div>
         </div>
-        <div class="main">
-            <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="main col-md-7 col-sm-12 col-xs-12">
+            
                 <div class="login-form">
                     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <h2 class="text-center text-uppercase">login</h2>
@@ -45,8 +46,9 @@ require_once './controller.php';
                     </form>
                     <h4 id="registro" class="text-center">¿Aún no eres cliente? <a href="./../sign_in/view.php">REGÍSTRATE</a></h4>
                 </div>
-            </div>
+           
         </div>
+</div>
     </body>
 
     <footer>
