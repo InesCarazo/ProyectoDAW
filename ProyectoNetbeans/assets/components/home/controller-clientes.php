@@ -1,21 +1,21 @@
 <?php
 
-if (isset($_POST['modCliente'])) 
-{
-    $id = $_SESSION['idCliSelect'];
-    $modifyUsuario = $_POST['modifyUsuario'];
-    $modifyContrasena = $_POST['modifyContrasena'];
-    $modifyNombre = $_POST['modifyNombre'];
-    $modifyApellidos = $_POST['modifyApellidos'];
-    $modifyTelefono = $_POST['modifyTelefono'];
-    $modifyCorreo = $_POST['modifyCorreo'];
-    $modifyFnacimiento = $_POST['modifyFnacimiento'];
-    $modifyPago = $_POST['modifyPago'];
-    $modifyNCuenta = $_POST['modifyNCuenta'];
+// if (isset($_POST['modCliente'])) 
+// {
+//     $id = $_SESSION['idCliSelect'];
+//     $modifyUsuario = $_POST['modifyUsuario'];
+//     $modifyContrasena = $_POST['modifyContrasena'];
+//     $modifyNombre = $_POST['modifyNombre'];
+//     $modifyApellidos = $_POST['modifyApellidos'];
+//     $modifyTelefono = $_POST['modifyTelefono'];
+//     $modifyCorreo = $_POST['modifyCorreo'];
+//     $modifyFnacimiento = $_POST['modifyFnacimiento'];
+//     $modifyPago = $_POST['modifyPago'];
+//     $modifyNCuenta = $_POST['modifyNCuenta'];
     
-    $modelClass = new modelClass();
-    $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
-}
+//     $modelClass = new modelClass();
+//     $modelClass->modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta);
+// }
 
 if (isset($_POST['borrarCliente'])) 
 {

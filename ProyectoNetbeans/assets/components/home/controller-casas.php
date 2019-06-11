@@ -1,43 +1,43 @@
 <?php
 
-if (isset($_POST['modCasa'])) 
-{
-    $id = $_SESSION['idCasaSelect'];
-    $modifyDireccion = $_POST['modifyDireccion'];
-    $modifyCiudad = $_POST['modifyCiudad'];
-    if (isset($_POST['modifyHasForniture'])) 
-    {
-        $modifyHasForniture = 1;
-    }
-    else
-    {
-        $modifyHasForniture  = 0;
-    }
-    $modifySice = $_POST['modifySice'];
+// if (isset($_POST['modCasa'])) 
+// {
+//     $id = $_SESSION['idCasaSelect'];
+//     $modifyDireccion = $_POST['modifyDireccion'];
+//     $modifyCiudad = $_POST['modifyCiudad'];
+//     if (isset($_POST['modifyHasForniture'])) 
+//     {
+//         $modifyHasForniture = 1;
+//     }
+//     else
+//     {
+//         $modifyHasForniture  = 0;
+//     }
+//     $modifySice = $_POST['modifySice'];
     
-    $modelClass = new modelClass();
-    $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice);
-}
+//     $modelClass = new modelClass();
+//     $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice);
+// }
 
-if (isset($_POST['addCasa'])) 
-{
-    $addDireccion = $_POST['addDireccion'];
-    $addCiudad = $_POST['addCiudad'];
-    if (isset($_POST['addHasForniture'])) 
-    {
-        $addHasForniture = 1;
-    }
-    else
-    {
-        $addHasForniture  = 0;
-    }
-    $addSice = $_POST['addSice'];
-    $cliente = $_POST['chooseClient'];
+// if (isset($_POST['addCasa'])) 
+// {
+//     $addDireccion = $_POST['addDireccion'];
+//     $addCiudad = $_POST['addCiudad'];
+//     if (isset($_POST['addHasForniture'])) 
+//     {
+//         $addHasForniture = 1;
+//     }
+//     else
+//     {
+//         $addHasForniture  = 0;
+//     }
+//     $addSice = $_POST['addSice'];
+//     $cliente = $_POST['chooseClient'];
 
-    $modelClass = new modelClass();
-    $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
+//     $modelClass = new modelClass();
+//     $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
 
-}
+// }
 
 if (isset($_POST['borrarCasa'])) 
 {

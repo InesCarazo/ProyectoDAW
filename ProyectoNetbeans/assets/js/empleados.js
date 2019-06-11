@@ -14,7 +14,6 @@
       var errorMes = "";
       console.log(errorMes.length);
       var valAddUsuario = $("#addUsuario").val();
-      console.log("Antonio: " + valAddUsuario);
       var valAddContrasena = $("#addContrasena").val();
       var valAddNombre = $("#addNombre").val();
       var valAddApellidos = $("#addApellidos").val();

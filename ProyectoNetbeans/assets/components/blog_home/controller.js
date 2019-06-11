@@ -9,9 +9,12 @@ function init() {
     $("#enviar").on("click", formContacto);
 }
 
-function formContacto() {
+function formContacto(e) {
     console.log("heyhey");
-
+    $("#mensaje_error").html("");
+    e.preventDefault();
+    var todoCorrecto = true;
+    var errorMes = "";
     event.preventDefault();
     emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
 
@@ -21,6 +24,26 @@ function formContacto() {
     var correo = $("#mail").val();
     var serviciolimpieza = $("#serviciolimpieza option:selected").text();
     var comentario = $("#comentario").val();
+
+
+    if (!validarNombre(valAddNombre)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
+    }
+    if (!validarEmail(valAddCorreo)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
+    }
+
+    if (todoCorrecto == true) {
+        console.log("hey");
+        console.log(errorMes);
+        consultaAjaxEmpl("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
+    } else {
+        console.log("hey hey");
+        console.log(errorMes);
+        $("#mensaje_error").html(errorMes);
+    }
     var templateParams = {
         "from_name": nombre.toString(),
         "numhid": numhid.toString(),
@@ -69,4 +92,22 @@ function smooth() {
             }
         });
     });
+}
+
+function validarEmail(email) { //Ok
+    var re = /^[\w][-._\w]+@[a-z]+\.[a-z]{2,3}$/;
+    if (re.test(email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function validarNombre(nombre) { //Ok
+    var re = /^[A-Za-z]+( +[A-Za-z]+)*$/;
+    if (re.test(nombre)) {
+        return true;
+    } else {
+        return false;
+    }
 }

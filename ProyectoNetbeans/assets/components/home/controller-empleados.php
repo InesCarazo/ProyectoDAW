@@ -2,53 +2,53 @@
 require_once './model.php';
 
 
-if (isset($_POST['addEmpleado'])) 
-{
-    $addUsuario = $_POST['addUsuario'];
-    $addContrasena = $_POST['addContrasena'];
-    $addNombre = $_POST['addNombre'];
-    $addApellidos = $_POST['addApellidos'];
-    $addTelefono = $_POST['addTelefono'];
-    $addCorreo = $_POST['addCorreo'];
-    $addFnacimiento = $_POST['addFnacimiento'];
-    $addNss = $_POST['addNss'];
-    $addAdmin = '';
-    if($_POST['addAdmin'] == 1)
-    {
-        $addAdmin = 1;
-    }
-    else
-    {
-        $addAdmin=0;
-    }
-    $modelClass = new modelClass();
-    $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
+// if (isset($_POST['addEmpleado'])) 
+// {
+//     $addUsuario = $_POST['addUsuario'];
+//     $addContrasena = $_POST['addContrasena'];
+//     $addNombre = $_POST['addNombre'];
+//     $addApellidos = $_POST['addApellidos'];
+//     $addTelefono = $_POST['addTelefono'];
+//     $addCorreo = $_POST['addCorreo'];
+//     $addFnacimiento = $_POST['addFnacimiento'];
+//     $addNss = $_POST['addNss'];
+//     $addAdmin = '';
+//     if($_POST['addAdmin'] == 1)
+//     {
+//         $addAdmin = 1;
+//     }
+//     else
+//     {
+//         $addAdmin=0;
+//     }
+//     $modelClass = new modelClass();
+//     $modelClass->addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin);
 
-}
+// }
 
-if (isset($_POST['modificar'])) 
-{
-    $id = $_SESSION['idEmplSelect'];
-    $modifyUsuario = $_POST['modifyUsuario'];
-    $modifyContrasena = $_POST['modifyContrasena'];
-    $modifyNombre = $_POST['modifyNombre'];
-    $modifyApellidos = $_POST['modifyApellidos'];
-    $modifyTelefono = $_POST['modifyTelefono'];
-    $modifyCorreo = $_POST['modifyCorreo'];
-    $modifyFnacimiento = $_POST['modifyFnacimiento'];
-    $modifyNss = $_POST['modifyNss'];
-    $modifyAdmin= 0;
-    if (isset($_POST['modifyAdmin']) && $_POST['modifyAdmin'])
-    {
-        $modifyAdmin = 1;
-    }
-    else 
-    {
-        $modifyAdmin=0;
-    }
-    $modelClass = new modelClass();
-    $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
-}
+// if (isset($_POST['modificar'])) 
+// {
+//     $id = $_SESSION['idEmplSelect'];
+//     $modifyUsuario = $_POST['modifyUsuario'];
+//     $modifyContrasena = $_POST['modifyContrasena'];
+//     $modifyNombre = $_POST['modifyNombre'];
+//     $modifyApellidos = $_POST['modifyApellidos'];
+//     $modifyTelefono = $_POST['modifyTelefono'];
+//     $modifyCorreo = $_POST['modifyCorreo'];
+//     $modifyFnacimiento = $_POST['modifyFnacimiento'];
+//     $modifyNss = $_POST['modifyNss'];
+//     $modifyAdmin= 0;
+//     if (isset($_POST['modifyAdmin']) && $_POST['modifyAdmin'])
+//     {
+//         $modifyAdmin = 1;
+//     }
+//     else 
+//     {
+//         $modifyAdmin=0;
+//     }
+//     $modelClass = new modelClass();
+//     $modelClass->modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin);
+// }
 
 if (isset($_POST['borrarEmpleado'])) 
 {
