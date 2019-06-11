@@ -78,6 +78,10 @@ if (isset($_GET['tarea'])) {
     $tipoForm = $_GET['tarea'];
     echo tipoFormTareas($tipoForm);
 }
+if (isset($_GET['perfil'])){
+    $tipoForm = $_GET['perfil'];
+    echo tipoFormPerfil($tipoForm);
+}
 ?>
 
 

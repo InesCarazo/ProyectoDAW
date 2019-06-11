@@ -9,6 +9,7 @@ require_once './controller-clientes.php';
 require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
+require_once './controller-perfil.php';
 
 
 $rolArrayECA = Array();
@@ -25,7 +26,6 @@ elseif ($_SESSION['isLogged'] == false)
 } 
 elseif (allowed($rolArrayECA)) 
 {
-    //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['userRol'];
 }
 function goLogin()
@@ -58,6 +58,10 @@ function contacto()
 
 
 function tipoMenuGestion($tipoGestion){
+    $rolArrayE = Array();
+    array_push($rolArrayE, "EMPLEADO");
+    $rolArrayC = Array();
+    array_push($rolArrayC, "CLIENTE");
     $rolArrayEC = Array();
     array_push($rolArrayEC, "EMPLEADO");
     array_push($rolArrayEC, "CLIENTE");
@@ -83,6 +87,18 @@ function tipoMenuGestion($tipoGestion){
         case 'tareas':
         if (allowed($rolArrayEC)) {
         return menuTareas($tipoGestion) . formShowTareas() . "</div>";
+        }
+            break;
+        case 'per_empleado':
+        if (allowed($rolArrayE)) {
+            $id = $_SESSION['userID'];
+        return menuPerfilEmpl($_SESSION['userLogueado']) . formShowPerfilEmpl($id) . "</div>";
+        }
+            break;
+        case 'per_cliente':
+        if (allowed($rolArrayC)) {
+            $id = $_SESSION['userID'];
+        return menuPerfilCli($_SESSION['userLogueado']) . formShowPerfilCli($id) . "</div>";
         }
             break;
     }
@@ -167,14 +183,27 @@ function tipoFormCasas($tipoForm){
 }
 
 function tipoFormTareas($tipoForm){
+        $rolArrayC = Array();
+        array_push($rolArrayC, "CLIENTE");
+        $rolArrayA = Array();
+        array_push($rolArrayA, "ADMIN");
+        $rolArrayAC = Array();
+        array_push($rolArrayAC, "ADMIN");
+        array_push($rolArrayAC, "CLIENTE");
     switch ($tipoForm) {
         case 'ver':
+        if(allowed($rolArrayC)){
            return menuTareas("tareas") . formShowTareas() . "</div>";
+        }
             break;
+           
         case 'programar':
+        if(allowed($rolArrayAC)){
             return menuTareas("tareas") . formProgramarTareas() . "</div>";
+        }
             break;
         case 'modificar':
+            if(allowed($rolArrayC)){
             if (isset($_POST['btnRadioTarea'])) 
             {
                 $id = $_POST['btnRadioTarea'];
@@ -185,7 +214,7 @@ function tipoFormTareas($tipoForm){
                 $message = "Tienes que seleccionar una tarea para poder editar";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
-           
+        }
             break;
         case 'anadir':
             return menuTareas("tareas") . formAddTareas() . "</div>";
@@ -193,29 +222,53 @@ function tipoFormTareas($tipoForm){
     }
 }
 
+function tipoFormPerfil(){
+    switch ($tipoForm) {
+        case 'cliente':
+        //return menuTareas("tareas") . formProgramarTareas() . "</div>";
+    break;
+    case 'empleado':
+    break;
+    }
+}
+
 function menuHome(){
     $contenido="<ul class='list-unstyled components'>
-    <li class='active'>
+    <li>
         <a href='?home' aria-expanded='false'>Home</a>
     </li>
-    <li>
-        <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
-        <ul class='collapse list-unstyled' id='pageSubmenu'>
+    
            ";
-           $rolArray = Array();
-           array_push($rolArray, "ADMIN");
-           if(allowed($rolArray)){
-            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
-           }
-           $contenido.="
+           $rolArrayA = Array();
+           array_push($rolArrayA, "ADMIN");
+           if(allowed($rolArrayA)){
+            $contenido.="<li>
+            <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
+            <ul class='collapse list-unstyled' id='pageSubmenu'>
+            <li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> 
             <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
             <li><a href='?gestion=casas' name='casas'>Casas</a></li>
             <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
-        </ul>
-    </li>
-    <li>
+            </ul>    
+            </li>";
+        }
+        $rolArrayE = Array();
+           array_push($rolArrayE, "EMPLEADO");
+           if(allowed($rolArrayE)){
+            $contenido.="<li><a href='?gestion=per_empleado' name='empleado'>Mi perfil</a></li> ";
+        }
+        $rolArrayC = Array();
+           array_push($rolArrayC, "CLIENTE");
+           if(allowed($rolArrayC)){
+            $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Mi perfil</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>";
+        }
+        $contenido.="
+            
+    
+    <!--<li>
         <a href='?contacto'>Contacto</a>
-    </li>
+    </li>-->
     <li>
         <a href='?cerrarsesion'>Cerrar sesión</a>
     </li>

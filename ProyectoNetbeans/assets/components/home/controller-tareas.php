@@ -18,19 +18,6 @@ else
     $_SESSION['carrito'] = Array();
 }
 
-// if (isset($_POST['modTarea'])) 
-// {
-//     $id = $_SESSION['idTareaSelect'];
-//     $modifyTexto = $_POST['modifyTexto'];
-//     $modifyDuracion = $_POST['modifyDuracion'];
-//     $modifyPrecio = $_POST['modifyPrecio'];
-//     $modifyComentario = $_POST['modifyComentarios'];
-    
-    
-//     $modelClass = new modelClass();
-//     $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
-// }
-
 if (isset($_POST['borrarTarea'])) 
 {
     $id = $_SESSION['idTareaSelect'];
@@ -414,12 +401,25 @@ function formProgramarTareas()
 
 function menuTareas($tipoGestion)
 {
+        $rolArrayA = Array();
+        array_push($rolArrayA, "ADMIN");
+        $rolArrayC = Array();
+        array_push($rolArrayC, "CLIENTE");
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
+        ";
+        if(allowed($rolArrayA)){
+        $contenido.="
         <li><a href='?tarea=ver'>Ver</a></li>
         <li><a href='?tarea=programar'>Programar</a></li>
-        <li><a href='?tarea=anadir'>Añadir</a></li>
+        <li><a href='?tarea=anadir'>Añadir</a></li>";
+        }
+        if(allowed($rolArrayC)){
+            $contenido.="
+        <li><a href='?tarea=programar'>Programar</a></li>";
+        }
+        $contenido .="
     </ul>
 </div>
 </div>

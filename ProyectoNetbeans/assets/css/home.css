@@ -297,3 +297,8 @@ span#btnTextoSpan {
 #mensaje_error {
     color: red;
 }
+
+.components li:hover {
+    color: #fff;
+    background: #f16e94;
+}

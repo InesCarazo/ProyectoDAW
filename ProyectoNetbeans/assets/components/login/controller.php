@@ -52,7 +52,7 @@ function loginCorrecto($usuario, $contrasena)
     {   
         $result2=$modelClass->buscarUsuario($usuario, $contrasena);
         print_r($result2);
-       
+        $_SESSION['userID'] = $result2->getP_Usuario();
         $rol = $result2->getRol();
 if ($rol == "EMPLEADO") {
         $result3=$modelClass->buscarEmpleado($result2->getP_Usuario());
