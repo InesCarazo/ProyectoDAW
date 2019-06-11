@@ -92,13 +92,13 @@ function tipoMenuGestion($tipoGestion){
         case 'per_empleado':
         if (allowed($rolArrayE)) {
             $id = $_SESSION['userID'];
-            echo "<h1>$id</h1>";
         return menuPerfilEmpl($_SESSION['userLogueado']) . formShowPerfilEmpl($id) . "</div>";
         }
             break;
         case 'per_cliente':
         if (allowed($rolArrayC)) {
-        return menuPerfilCli($_SESSION['userLogueado']) . formShowTareas() . "</div>";
+            $id = $_SESSION['userID'];
+        return menuPerfilCli($_SESSION['userLogueado']) . formShowPerfilCli($id) . "</div>";
         }
             break;
     }
@@ -183,14 +183,27 @@ function tipoFormCasas($tipoForm){
 }
 
 function tipoFormTareas($tipoForm){
+        $rolArrayC = Array();
+        array_push($rolArrayC, "CLIENTE");
+        $rolArrayA = Array();
+        array_push($rolArrayA, "ADMIN");
+        $rolArrayAC = Array();
+        array_push($rolArrayAC, "ADMIN");
+        array_push($rolArrayAC, "CLIENTE");
     switch ($tipoForm) {
         case 'ver':
+        if(allowed($rolArrayC)){
            return menuTareas("tareas") . formShowTareas() . "</div>";
+        }
             break;
+           
         case 'programar':
+        if(allowed($rolArrayAC)){
             return menuTareas("tareas") . formProgramarTareas() . "</div>";
+        }
             break;
         case 'modificar':
+            if(allowed($rolArrayC)){
             if (isset($_POST['btnRadioTarea'])) 
             {
                 $id = $_POST['btnRadioTarea'];
@@ -201,7 +214,7 @@ function tipoFormTareas($tipoForm){
                 $message = "Tienes que seleccionar una tarea para poder editar";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
-           
+        }
             break;
         case 'anadir':
             return menuTareas("tareas") . formAddTareas() . "</div>";
@@ -209,40 +222,53 @@ function tipoFormTareas($tipoForm){
     }
 }
 
+function tipoFormPerfil(){
+    switch ($tipoForm) {
+        case 'cliente':
+        //return menuTareas("tareas") . formProgramarTareas() . "</div>";
+    break;
+    case 'empleado':
+    break;
+    }
+}
+
 function menuHome(){
     $contenido="<ul class='list-unstyled components'>
-    <li class='active'>
+    <li>
         <a href='?home' aria-expanded='false'>Home</a>
     </li>
-    <li>
-        <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
-        <ul class='collapse list-unstyled' id='pageSubmenu'>
+    
            ";
            $rolArrayA = Array();
            array_push($rolArrayA, "ADMIN");
            if(allowed($rolArrayA)){
-            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> 
+            $contenido.="<li>
+            <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
+            <ul class='collapse list-unstyled' id='pageSubmenu'>
+            <li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> 
             <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
             <li><a href='?gestion=casas' name='casas'>Casas</a></li>
-            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>";
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
+            </ul>    
+            </li>";
         }
         $rolArrayE = Array();
            array_push($rolArrayE, "EMPLEADO");
            if(allowed($rolArrayE)){
-            $contenido.="<li><a href='?gestion=per_empleado' name='empleado'>Perfil</a></li> ";
+            $contenido.="<li><a href='?gestion=per_empleado' name='empleado'>Mi perfil</a></li> ";
         }
         $rolArrayC = Array();
            array_push($rolArrayC, "CLIENTE");
            if(allowed($rolArrayC)){
-            $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Perfil</a></li> ";
+            $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Mi perfil</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>";
         }
         $contenido.="
             
-        </ul>
-    </li>
-    <li>
+    
+    <!--<li>
         <a href='?contacto'>Contacto</a>
-    </li>
+    </li>-->
     <li>
         <a href='?cerrarsesion'>Cerrar sesión</a>
     </li>
