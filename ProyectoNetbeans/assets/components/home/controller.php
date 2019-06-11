@@ -65,13 +65,13 @@ function tipoMenuGestion($tipoGestion){
     $rolArrayA = Array();
     array_push($rolArrayA, "ADMIN");
     switch ($tipoGestion) {
-        case 'empleados':
+        case 'empleados'://Crear interfaz para gestionar el empleado que no es admin
         if (allowed($rolArrayA)) {
             return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
         }           
             break;
-        case 'clientes':
-        if (allowed($rolArrayEC)) {
+        case 'clientes'://Crear interfaz para gestionar el cliente
+        if (allowed($rolArrayA)) {
         return menuClientes("clientes") . formShowClientes() . "</div>";
         }
             break;
