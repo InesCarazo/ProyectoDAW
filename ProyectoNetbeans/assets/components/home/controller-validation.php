@@ -119,7 +119,7 @@ if (isset($_POST['form']) && $_POST['form'] == "anadirtarea")
     $modelClass->addTarea($addTexto, $addDuracion, $addPrecio, $addComentario);
 }
 
-if (isset($_POST['form']) && $_POST['form'] == "anadirtarea")
+if (isset($_POST['form']) && $_POST['form'] == "modificartarea")
 {
     $id = $_SESSION['idTareaSelect'];
     $modifyTexto = $_POST['nombre'];

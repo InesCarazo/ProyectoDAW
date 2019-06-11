@@ -154,7 +154,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      window.location.href = "?empleado=ver";
+      //window.location.href = "?empleado=ver";
   }
 
   /*
