@@ -54,9 +54,22 @@ function loginCorrecto($usuario, $contrasena)
         print_r($result2);
        
         $rol = $result2->getRol();
-
+if ($rol == "EMPLEADO") {
+        $result3=$modelClass->buscarEmpleado($result2->getP_Usuario());
+        if ($result3->getIsAdmin() ==1) {
+            $_SESSION['userRol'] = "ADMIN";
+            $_SESSION['isLogged'] = true;
+        }
+        else
+        {
+            $_SESSION['userRol'] = $rol;
+            $_SESSION['isLogged'] = true;
+        }
+}
+else{
         $_SESSION['userRol'] = $rol;
         $_SESSION['isLogged'] = true;
+}
         goHome();
     }
     else
