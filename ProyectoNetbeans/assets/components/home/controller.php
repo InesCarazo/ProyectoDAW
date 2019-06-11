@@ -9,6 +9,7 @@ require_once './controller-clientes.php';
 require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
+require_once './controller-perfil.php';
 
 
 $rolArrayECA = Array();
@@ -25,7 +26,6 @@ elseif ($_SESSION['isLogged'] == false)
 } 
 elseif (allowed($rolArrayECA)) 
 {
-    //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
     //echo $_SESSION['userRol'];
 }
 function goLogin()
@@ -58,6 +58,10 @@ function contacto()
 
 
 function tipoMenuGestion($tipoGestion){
+    $rolArrayE = Array();
+    array_push($rolArrayE, "EMPLEADO");
+    $rolArrayC = Array();
+    array_push($rolArrayC, "CLIENTE");
     $rolArrayEC = Array();
     array_push($rolArrayEC, "EMPLEADO");
     array_push($rolArrayEC, "CLIENTE");
@@ -83,6 +87,18 @@ function tipoMenuGestion($tipoGestion){
         case 'tareas':
         if (allowed($rolArrayEC)) {
         return menuTareas($tipoGestion) . formShowTareas() . "</div>";
+        }
+            break;
+        case 'per_empleado':
+        if (allowed($rolArrayE)) {
+            $id = $_SESSION['userID'];
+            echo "<h1>$id</h1>";
+        return menuPerfilEmpl($_SESSION['userLogueado']) . formShowPerfilEmpl($id) . "</div>";
+        }
+            break;
+        case 'per_cliente':
+        if (allowed($rolArrayC)) {
+        return menuPerfilCli($_SESSION['userLogueado']) . formShowTareas() . "</div>";
         }
             break;
     }
@@ -202,15 +218,26 @@ function menuHome(){
         <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
         <ul class='collapse list-unstyled' id='pageSubmenu'>
            ";
-           $rolArray = Array();
-           array_push($rolArray, "ADMIN");
-           if(allowed($rolArray)){
-            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
-           }
-           $contenido.="
+           $rolArrayA = Array();
+           array_push($rolArrayA, "ADMIN");
+           if(allowed($rolArrayA)){
+            $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> 
             <li><a href='?gestion=clientes' name='clientes'>Clientes</a></li>
             <li><a href='?gestion=casas' name='casas'>Casas</a></li>
-            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>
+            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>";
+        }
+        $rolArrayE = Array();
+           array_push($rolArrayE, "EMPLEADO");
+           if(allowed($rolArrayE)){
+            $contenido.="<li><a href='?gestion=per_empleado' name='empleado'>Perfil</a></li> ";
+        }
+        $rolArrayC = Array();
+           array_push($rolArrayC, "CLIENTE");
+           if(allowed($rolArrayC)){
+            $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Perfil</a></li> ";
+        }
+        $contenido.="
+            
         </ul>
     </li>
     <li>

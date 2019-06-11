@@ -18,19 +18,6 @@ else
     $_SESSION['carrito'] = Array();
 }
 
-// if (isset($_POST['modTarea'])) 
-// {
-//     $id = $_SESSION['idTareaSelect'];
-//     $modifyTexto = $_POST['modifyTexto'];
-//     $modifyDuracion = $_POST['modifyDuracion'];
-//     $modifyPrecio = $_POST['modifyPrecio'];
-//     $modifyComentario = $_POST['modifyComentarios'];
-    
-    
-//     $modelClass = new modelClass();
-//     $modelClass->modifyTarea($id, $modifyTexto, $modifyDuracion, $modifyPrecio, $modifyComentario);
-// }
-
 if (isset($_POST['borrarTarea'])) 
 {
     $id = $_SESSION['idTareaSelect'];

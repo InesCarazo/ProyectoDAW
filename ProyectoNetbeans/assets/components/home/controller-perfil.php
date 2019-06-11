@@ -1,0 +1,132 @@
+<?php
+
+
+
+function menuPerfilEmpl($user)
+{
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+        <li><a>". strtoupper($user) ."</a></li>
+        <li><a href='?perfil=empleado'>Perfil</a></li>
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+function formShowPerfilEmpl($id)
+{
+    $contenido = "".formPerfilEmpleados($id)."";
+    return $contenido;
+}
+
+function formPerfilEmpleados($id){
+    $model2 = new modelClass();
+    $empleado = $model2->buscarEmpleado($id);
+    // $_SESSION['id_mod_empl'] = $id;
+    $contenido = "<form method='POST' action='?gestion=empleados' class='contenido-home'>
+        <div class='row'>
+        <div class='form-group'>
+            <label for='id' class='control-label col-md-4'>Id</label>
+            <label type='text' id='modifyId' name='modifyId' class='col-md-8 control-label'>$id</label>
+        </div>
+        <div class='form-group'>
+            <label for='usuario' class='control-label col-md-4'>Usuario</label>
+            <div class='col-md-8'>
+                <input id='modifyUsuario' name='modifyUsuario' placeholder='usuario' type='text' required='required' value='". $empleado->getUsuario() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='contrasena' class='control-label col-md-4'>Contraseña</label>
+            <div class='col-md-8'>
+                <input id='modifyContrasena' name='modifyContrasena' type='password' required='required' value='". $empleado->getContrasena() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='nombre' class='control-label col-md-4'>Nombre</label>
+            <div class='col-md-8'>
+                <input id='modifyNombre' name='modifyNombre' placeholder='nombre' type='text' required='required' value='". $empleado->getNombre() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='apellidos' class='control-label col-md-4'>Apellidos</label>
+            <div class='col-md-8'>
+                <input id='modifyApellidos' name='modifyApellidos' placeholder='apellidos' type='text' value='". $empleado->getApellidos() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+        <label for='dni' class='control-label col-md-4'>Dni</label>
+        <div class='col-md-8'>
+            <input id='modifyDni' name='modifyDni' placeholder='00000000A' type='text' required='required' value='". $empleado->getDni() ."' class='form-control'>
+        </div>
+    </div>
+        <div class='form-group'>
+            <label for='telefono' class='control-label col-md-4'>Telefono</label>
+            <div class='col-md-8'>
+                <input id='modifyTelefono' name='modifyTelefono' placeholder='658974125' type='number' required='required' value='". $empleado->getTelefono() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='correo' class='control-label col-md-4'>Correo</label>
+            <div class='col-md-8'>
+                <input id='modifyCorreo' name='modifyCorreo' placeholder='correo@correo.es' type='email' required='required' value='". $empleado->getCorreo() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='fnacimiento' class='control-label col-md-4'>Fecha Nacimiento</label>
+            <div class='col-md-8'>
+                <input id='modifyFnacimiento' name='modifyFnacimiento' type='date' required='required' value='".$empleado->getFechaNacimiento() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='nss' class='control-label col-md-4'>Nº SS</label>
+            <div class='col-md-8'>
+                <input id='modifyNss' name='modifyNss' type='text' required='required' value='". $empleado->getnSS() ."' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group'>
+        <label for='admin' class='control-label col-md-4'>Administrador</label> 
+        <div class='col-md-8'> "; 
+
+    if ($empleado->getIsAdmin() == 1) 
+    {
+        $contenido.= "<input type='checkbox' id='modifyAdmin' name='modifyAdmin' checked>";   
+    }
+    else
+    {
+        $contenido.= "<input type='checkbox' id='modifyAdmin' name='modifyAdmin'>"; 
+    }
+    $contenido.="</div>
+  </div> 
+    <div class='form-group'>
+        <div class='col-md-offset-9 col-md-3''>
+        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
+        </div>
+    </div>
+    </div>
+</form>
+<div id='mensaje_error' class='col-md-12'></div>";
+return $contenido;
+}
+
+function menuPerfilCli($user)
+{
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+        <li><a>". strtoupper($user) ."</a></li>
+        <li><a href='?perfil=cliente'>Perfil</a></li>
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+function formShowPerfilCli()
+{
+    // $contenido = "" . 
+    // tablaVistaTareas()
+    //  . "";
+    // return $contenido;
+}
