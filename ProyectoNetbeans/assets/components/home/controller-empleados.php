@@ -121,7 +121,8 @@ function formAddEmpleados()
         </div>
     </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
 return $contenido;
 }
 
@@ -251,7 +252,8 @@ function formModifyEmpleados($id){
         </div>
     </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error'></div>";
 return $contenido;
 }
 
