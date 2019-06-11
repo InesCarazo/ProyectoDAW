@@ -1,44 +1,5 @@
 <?php
 
-// if (isset($_POST['modCasa'])) 
-// {
-//     $id = $_SESSION['idCasaSelect'];
-//     $modifyDireccion = $_POST['modifyDireccion'];
-//     $modifyCiudad = $_POST['modifyCiudad'];
-//     if (isset($_POST['modifyHasForniture'])) 
-//     {
-//         $modifyHasForniture = 1;
-//     }
-//     else
-//     {
-//         $modifyHasForniture  = 0;
-//     }
-//     $modifySice = $_POST['modifySice'];
-    
-//     $modelClass = new modelClass();
-//     $modelClass->modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice);
-// }
-
-// if (isset($_POST['addCasa'])) 
-// {
-//     $addDireccion = $_POST['addDireccion'];
-//     $addCiudad = $_POST['addCiudad'];
-//     if (isset($_POST['addHasForniture'])) 
-//     {
-//         $addHasForniture = 1;
-//     }
-//     else
-//     {
-//         $addHasForniture  = 0;
-//     }
-//     $addSice = $_POST['addSice'];
-//     $cliente = $_POST['chooseClient'];
-
-//     $modelClass = new modelClass();
-//     $modelClass->addCasa($addDireccion, $addCiudad, $addHasForniture, $addSice, $cliente);
-
-// }
-
 if (isset($_POST['borrarCasa'])) 
 {
     $id = $_SESSION['idCasaSelect'];
@@ -74,25 +35,25 @@ function formAddCasas(){
         <div class='form-group row'>
             <label for='direccion' class='control-label col-md-4'>Dirección</label>
             <div class='col-md-8'>
-                <input id='direccion' name='addDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' required='required' class='form-control'>
+                <input id='addDireccion' name='addDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='ciudad' class='control-label col-md-4'>Ciudad</label>
             <div class='col-md-8'>
-                <input id='ciudad' name='addCiudad' placeholder='Ej: Madrid' type='text' required='required' class='form-control'>
+                <input id='addCiudad' name='addCiudad' placeholder='Ej: Madrid' type='text' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='hasForniture' class='control-label col-md-4'>Electrodomésticos</label>
             <div class='col-md-8'>
-                <input type='checkbox' id='hasForniture' name='addHasForniture' class='checkbox checkbox-inline form-control-static'>
+                <input type='checkbox' id='addHasForniture' name='addHasForniture' class='checkbox checkbox-inline form-control-static'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='sice' class='control-label col-md-4'>Tamaño (m<sup>2</sup>)</label>
             <div class='col-md-8'>
-                <input id='sice' name='addSice' placeholder='Ej: 220' type='text' class='form-control'>
+                <input id='addSice' name='addSice' placeholder='Ej: 220' type='text' class='form-control'>
             </div>
         </div>".generarSelectClientesAdd().
         "
@@ -102,7 +63,8 @@ function formAddCasas(){
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error' class='row'></div>";
     return $contenido;
 }
 
@@ -127,7 +89,7 @@ function tablaVistaCasas(){
                 $tablaHTML.= "
                 <tr>
                     <td>
-                        <input class='radio' type='radio' value='" . $value->getP_casa() . "' name='btnRadioCasa' checked>
+                        <input class='radio' type='radio' value='" . $value->getP_casa() . "' name='btnRadioCasa'>
                     </td>
                     <td class='text-center'>" . $value->getDireccion() . "</td>
                     <td class='text-center'>" . $value->getCiudad() . "</td>
@@ -178,15 +140,15 @@ function generarSelectClientesModify($idClienteSelected)
     <div class='form-group row'>
     <label for='chooseClient' class='control-label col-md-4'>Cliente</label>
         <div class='col-md-8'>
-            <select name='chooseClient' class='form-control'>";
+            <select id='chooseClient' name='chooseClient' class='form-control'>";
             foreach ($clientes as $key => $value2)
             {
                 if ($idClienteSelected == $value2->getP_cliente()) {
-                    $contenido.= "<option id='chooseClient' name='modifychooseClient' class='form-control' selected>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                    $contenido.= "<option name='modifychooseClient' class='form-control' value='" . $value2->getP_cliente() . "' selected>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
                 }
                     else
                 {
-                    $contenido.= "<option id='chooseClient' name='modifychooseClient' class='form-control'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
+                    $contenido.= "<option name='modifychooseClient' class='form-control' value='" . $value2->getP_cliente() . "'>" .$value2->getApellidos() .", " .$value2->getNombre() ."</option>";
                 }
             }
                 $contenido.="
@@ -210,13 +172,13 @@ function formModifyCasas($id){
         <div class='form-group row'>
             <label for='direccion' class='control-label col-md-4'>Dirección</label>
             <div class='col-md-8'>
-                <input id='direccion' name='modifyDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' value='". $casa->getDireccion() ."' required='required' class='form-control'>
+                <input id='modifyDireccion' name='modifyDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' value='". $casa->getDireccion() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
             <label for='ciudad' class='control-label col-md-4'>Ciudad</label>
             <div class='col-md-8'>
-                <input id='ciudad' name='modifyCiudad' placeholder='Ej: Madrid' type='text'  value='". $casa->getCiudad() ."' required='required' class='form-control'>
+                <input id='modifyCiudad' name='modifyCiudad' placeholder='Ej: Madrid' type='text'  value='". $casa->getCiudad() ."' required='required' class='form-control'>
             </div>
         </div>
         <div class='form-group row'>
@@ -224,10 +186,10 @@ function formModifyCasas($id){
             <div class='col-md-8'>";
                 if ($casa->getHasFurniture() == 1) 
                 {
-                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='1' class='checkbox form-control-static' checked>";
+                    $contenido.= "<input type='checkbox' id='modifyHasForniture' name='modifyHasForniture' value='1' class='checkbox form-control-static' checked>";
                 }
                 else{
-                    $contenido.= "<input type='checkbox' id='hasForniture' name='modifyHasForniture' value='0' class='checkbox checkbox-inline form-control-static'>";
+                    $contenido.= "<input type='checkbox' id='modifyHasForniture' name='modifyHasForniture' value='0' class='checkbox checkbox-inline form-control-static'>";
                 }
                 $contenido.="
             </div>
@@ -235,7 +197,7 @@ function formModifyCasas($id){
         <div class='form-group row'>
             <label for='sice' class='control-label col-md-4'>Tamaño (m<sup>2</sup>)</label>
             <div class='col-md-8'>
-                <input id='sice' name='modifySice' placeholder='sice' type='text'  value='". $casa->getSice() ."' class='form-control'>
+                <input id='modifySice' name='modifySice' placeholder='sice' type='text'  value='". $casa->getSice() ."' class='form-control'>
             </div>
         </div>". generarSelectClientesModify($casa->getA_cliente()) .
         "
@@ -245,7 +207,8 @@ function formModifyCasas($id){
             </div>
         </div>
     </div>
-</form>";
+</form>
+<div id='mensaje_error' class='row'></div>";
     return $contenido;
 }
 
@@ -255,8 +218,6 @@ function menuCasas($tipoGestion){
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?casa=ver'>Ver</a></li>
         <li><a href='?casa=anadir'>Añadir</a></li> 
-        <!--<li><a href='?casa=casa-cliente'>Casa-Cliente</a></li>       
-        <li><a href='?casa=modificar'>Modificar</a></li>-->
     </ul>
 </div>
 </div>

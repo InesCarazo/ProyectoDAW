@@ -11,9 +11,10 @@ require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 
 
-$rolArrayEC = Array();
-array_push($rolArrayEC, "EMPLEADO");
-array_push($rolArrayEC, "CLIENTE");
+$rolArrayECA = Array();
+array_push($rolArrayECA, "EMPLEADO");
+array_push($rolArrayECA, "CLIENTE");
+array_push($rolArrayECA, "ADMIN");
 if (!isset($_SESSION['isLogged'])) 
 {
     goLogin();
@@ -21,12 +22,11 @@ if (!isset($_SESSION['isLogged']))
 elseif ($_SESSION['isLogged'] == false) 
 {
     goLogin();
-}
-//elseif ($_SESSION['isLogged'] == true) 
-elseif (allowed($rolArrayEC)) 
+} 
+elseif (allowed($rolArrayECA)) 
 {
     //echo "<h3>" . $_SESSION['userLogueado'] ."</h3>" ;
-    //echo $_SESSION['pwdLogueado'];
+    //echo $_SESSION['userRol'];
 }
 function goLogin()
 {
@@ -61,16 +61,17 @@ function tipoMenuGestion($tipoGestion){
     $rolArrayEC = Array();
     array_push($rolArrayEC, "EMPLEADO");
     array_push($rolArrayEC, "CLIENTE");
-    $rolArrayE = Array();
-    array_push($rolArrayE, "EMPLEADO");
+    array_push($rolArrayEC, "ADMIN");
+    $rolArrayA = Array();
+    array_push($rolArrayA, "ADMIN");
     switch ($tipoGestion) {
-        case 'empleados':
-        if (allowed($rolArrayE)) {
+        case 'empleados'://Crear interfaz para gestionar el empleado que no es admin
+        if (allowed($rolArrayA)) {
             return menuEmpleados("empleados") . formShowEmpleados() . "</div>";
         }           
             break;
-        case 'clientes':
-        if (allowed($rolArrayEC)) {
+        case 'clientes'://Crear interfaz para gestionar el cliente
+        if (allowed($rolArrayA)) {
         return menuClientes("clientes") . formShowClientes() . "</div>";
         }
             break;
@@ -202,7 +203,7 @@ function menuHome(){
         <ul class='collapse list-unstyled' id='pageSubmenu'>
            ";
            $rolArray = Array();
-           array_push($rolArray, "EMPLEADO");
+           array_push($rolArray, "ADMIN");
            if(allowed($rolArray)){
             $contenido.="<li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> ";
            }

@@ -52,12 +52,12 @@ class modelClass
         return $empleado;
     }
 
-    function addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin)
+    function addEmpleado($addUsuario, $addContrasena, $addNombre, $addApellidos, $addDni, $addTelefono, $addCorreo, $addFnacimiento, $addNss, $addAdmin)
     {
         require_once './../conexion/conexion.php';
         try {
             $conn->beginTransaction();
-            $conn->exec("INSERT INTO usuario(usuario, contrasena, nombre, apellidos, telefono, correo, fechaNacimiento, rol) VALUES ('$addUsuario', MD5('$addContrasena'), '$addNombre', '$addApellidos', $addTelefono, '$addCorreo', '$addFnacimiento', 'EMPLEADO')");
+            $conn->exec("INSERT INTO usuario(usuario, contrasena, nombre, apellidos, dni, telefono, correo, fechaNacimiento, rol) VALUES ('$addUsuario', MD5('$addContrasena'), '$addNombre', '$addApellidos', '$addDni', $addTelefono, '$addCorreo', '$addFnacimiento', 'EMPLEADO')");
             $lastId = $conn->lastInsertId();
             $conn->exec("INSERT INTO empleado(nSS, isAdmin, A_usuario) VALUES ('$addNss', $addAdmin, $lastId)");
             $conn->commit();
@@ -67,12 +67,12 @@ class modelClass
         }
     }
 
-    function modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin)
+    function modifyEmpleado($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyNss, $modifyAdmin)
     {
         require_once './../conexion/conexion.php';
         try {
             $conn->beginTransaction();
-            $sql1 = "UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'";
+            $sql1 = "UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',dni='$modifyDni',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='EMPLEADO'";
             $sql2 = "UPDATE empleado e SET e.nSS='$modifyNss',e.isAdmin=$modifyAdmin WHERE e.A_usuario=$id";
             $conn->exec($sql1);
             $conn->exec($sql2);
@@ -82,7 +82,6 @@ class modelClass
             echo "Fallo: " . $e->getMessage();
         }
     }
-
     function deleteEmpleado($id)
     {
         require_once './../conexion/conexion.php';
@@ -143,13 +142,13 @@ class modelClass
         return $cliente;
     }
 
-    function modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta)
+    function modifyCliente($id, $modifyUsuario, $modifyContrasena, $modifyNombre, $modifyApellidos, $modifyDni, $modifyTelefono, $modifyCorreo, $modifyFnacimiento, $modifyPago, $modifyNCuenta)
     {
         require_once './../conexion/conexion.php';
         try {
             $conn->beginTransaction();
-            $conn->exec("UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='CLIENTE'");
-            $conn->exec("UPDATE cliente c SET c.formaPago='$modifyPago', c.nCuenta=$modifyNCuenta WHERE c.nCuenta=$id");
+            $conn->exec("UPDATE usuario u SET usuario='$modifyUsuario',contrasena=MD5('$modifyContrasena'),nombre='$modifyNombre',apellidos='$modifyApellidos', dni='$modifyDni',telefono=$modifyTelefono,correo='$modifyCorreo',fechaNacimiento='$modifyFnacimiento' WHERE u.P_Usuario=$id AND u.rol='CLIENTE'");
+            $conn->exec("UPDATE cliente c SET c.formaPago='$modifyPago', c.nCuenta=$modifyNCuenta WHERE c.A_usuario=$id");
             $conn->commit();
         } catch (Exception $e) {
             $conn->rollBack();

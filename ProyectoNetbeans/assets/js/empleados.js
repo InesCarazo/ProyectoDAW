@@ -65,7 +65,7 @@
   }
 
   function validarModEmpleado(e) {
-      $("#mensaje_error_mod").html("");
+      $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarModEmpleado");
       var todoCorrecto = true;
@@ -118,7 +118,7 @@
       } else {
           console.log("hey hey");
           console.log(errorMes);
-          $("#mensaje_error_mod").html(errorMes);
+          $("#mensaje_error").html(errorMes);
       }
   }
 
@@ -154,7 +154,7 @@
    */
   function consultaFinalizada(respuesta) {
       console.log(respuesta);
-      window.location.href = "?empleado=ver";
+      //window.location.href = "?empleado=ver";
   }
 
   /*
