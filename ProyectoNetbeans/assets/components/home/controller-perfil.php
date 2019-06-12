@@ -211,3 +211,70 @@ function formPerfilClientes($id)
 <div id='mensaje_error' class='row'></div>";
     return $contenido;
 }
+
+
+function formModifyCasa($id){
+    //$_SESSION['idCasaSelect']= $id;
+    $model = new modelClass();
+    $casa = $model->buscarCasa($id);
+    $contenido = "<form method='POST' action='?gestion=casas' class='contenido-home'>
+    <div>
+        <div class='form-group row'>
+            <label for='id' class='control-label col-md-4'>Id</label>
+            <label type='text' id='id' name='modifyId' class='col-md-8 control-label'>$id</label>
+        </div>
+        <div class='form-group row'>
+            <label for='direccion' class='control-label col-md-4'>Dirección</label>
+            <div class='col-md-8'>
+                <input id='modifyDireccion' name='modifyDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' value='". $casa->getDireccion() ."' required='required' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='ciudad' class='control-label col-md-4'>Ciudad</label>
+            <div class='col-md-8'>
+                <input id='modifyCiudad' name='modifyCiudad' placeholder='Ej: Madrid' type='text'  value='". $casa->getCiudad() ."' required='required' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='hasForniture' class='control-label col-md-4'>Electrodomésticos</label>
+            <div class='col-md-8'>";
+                if ($casa->getHasFurniture() == 1) 
+                {
+                    $contenido.= "<input type='checkbox' id='modifyHasForniture' name='modifyHasForniture' value='1' class='checkbox form-control-static' checked>";
+                }
+                else{
+                    $contenido.= "<input type='checkbox' id='modifyHasForniture' name='modifyHasForniture' value='0' class='checkbox checkbox-inline form-control-static'>";
+                }
+                $contenido.="
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='sice' class='control-label col-md-4'>Tamaño (m<sup>2</sup>)</label>
+            <div class='col-md-8'>
+                <input id='modifySice' name='modifySice' placeholder='sice' type='text'  value='". $casa->getSice() ."' class='form-control'>
+            </div>
+        </div>". generarSelectClientesModify($casa->getA_cliente()) .
+        "
+        <div class='form-group row'>
+            <div class='col-md-offset-9 col-md-3'>
+                <button id='modCasa' name='modCasa' type='submit' class='btn estilo-btn'>Modificar Casa</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div id='mensaje_error' class='row'></div>";
+    return $contenido;
+}
+
+function menuCasa($tipoGestion){
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+        <li><a>". strtoupper($tipoGestion) ."</a></li>
+        <li><a href='?casa=vercli'>Ver</a></li>
+        <li><a href='?casa=anadircli'>Añadir</a></li> 
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
