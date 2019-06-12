@@ -34,9 +34,13 @@ function formContacto(e) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
     }
-    if (comentario.length = 0) {
+    if (serviciolimpieza == "Eliga un servicio de limpieza") {
         todoCorrecto = false;
-        errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
+        errorMes += "<li style='color:red;'>Elija un <b>servicio de limpieza</b> válido.</li>";
+    }
+    if (comentario.length == 0) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>comentario</b> no es correcto.</li>";
     }
 
     if (todoCorrecto == true) {
@@ -44,7 +48,7 @@ function formContacto(e) {
         emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
         var templateParams = {
             "from_name": nombre.toString(),
-            "numhid": numhid.toString(),
+            "numhid": numhid,
             "to_name": "Chacha Chachi management",
             "from_email": correo.toString(),
             "from_servicio": serviciolimpieza.toString(),
