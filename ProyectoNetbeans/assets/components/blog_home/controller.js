@@ -16,7 +16,7 @@ function formContacto(e) {
     var todoCorrecto = true;
     var errorMes = "";
     event.preventDefault();
-    emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
+
 
     $("numhid").val(Math.random() * 100000 | 0);
     var numhid = $("numhid").val();
@@ -26,43 +26,48 @@ function formContacto(e) {
     var comentario = $("#comentario").val();
 
 
-    if (!validarNombre(valAddNombre)) {
+    if (!validarNombre(nombre)) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
     }
-    if (!validarEmail(valAddCorreo)) {
+    if (!validarEmail(correo)) {
+        todoCorrecto = false;
+        errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
+    }
+    if (comentario.length = 0) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
     }
 
     if (todoCorrecto == true) {
         console.log("hey");
-        console.log(errorMes);
-        consultaAjaxEmpl("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
+        emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
+        var templateParams = {
+            "from_name": nombre.toString(),
+            "numhid": numhid.toString(),
+            "to_name": "Chacha Chachi management",
+            "from_email": correo.toString(),
+            "from_servicio": serviciolimpieza.toString(),
+            "from_consulta": comentario.toString()
+        }
+
+        emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
     } else {
         console.log("hey hey");
         console.log(errorMes);
         $("#mensaje_error").html(errorMes);
     }
-    var templateParams = {
-        "from_name": nombre.toString(),
-        "numhid": numhid.toString(),
-        "to_name": "Chacha Chachi management",
-        "from_email": correo.toString(),
-        "from_servicio": serviciolimpieza.toString(),
-        "from_consulta": comentario.toString()
-    }
 
-    sendEmail(templateParams);
 }
 
 function sendEmail(templateParams) {
-    emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-        }, function(error) {
-            console.log('FAILED...', error);
-        });
+
+
 }
 
 //https://www.emailjs.com/
