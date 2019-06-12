@@ -222,10 +222,13 @@ function tipoFormTareas($tipoForm){
     }
 }
 
-function tipoFormPerfil(){
+function tipoFormPerfil($tipoForm){
     switch ($tipoForm) {
-        case 'cliente':
-        //return menuTareas("tareas") . formProgramarTareas() . "</div>";
+        case 'tarea':
+        return menuTareas("tareas") . formProgramarTareas() . "</div>";
+    break;
+    case 'casa':
+        return menuCasa("casa") . formModifyCasa(1) . "</div>";
     break;
     case 'empleado':
     break;
@@ -234,7 +237,7 @@ function tipoFormPerfil(){
 
 function menuHome(){
     $contenido="<ul class='list-unstyled components'>
-    <li>
+    <li class='active'>
         <a href='?home' aria-expanded='false'>Home</a>
     </li>
     
@@ -261,7 +264,8 @@ function menuHome(){
            array_push($rolArrayC, "CLIENTE");
            if(allowed($rolArrayC)){
             $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Mi perfil</a></li>
-            <li><a href='?gestion=tareas' name='tareas'>Tareas</a></li>";
+            <li><a href='?perfil=casa' name='casas'>Casas</a></li>
+            <li><a href='?perfil=tarea' name='tareas'>Tareas</a></li>";
         }
         $contenido.="
             

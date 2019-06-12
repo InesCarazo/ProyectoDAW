@@ -37,7 +37,14 @@
             padding-top: 70px;
         }
     </style>
-
+    <!-- Mail -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_LWAg91CjwoMDU7dVZq5Qx");
+        })();
+    </script>
+    <!-- Mail -->
 </head>
 
 
@@ -102,7 +109,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a id="login" href="./../login/view.php">
+                    <a id="login" target="blank" href="./../login/view.php">
                         <img src="./../../images/icono/login/login64.png">
                     </a>
                 </li>
@@ -161,7 +168,6 @@
 
     <!-- SECCION sobre nosotros -->
     <section id="sobrenosotros" class="container-fluid no-margin no-padding">
-        <!-- <div class="row"> -->
         <img src="./../../images/sobrenosotros/mitadsofa.jpg" class="col-md-6 col-sm-6 col-xs-12 no-padding img-responsive">
         <div id="sntexto" class="col-md-6 col-sm-6 col-xs-12">
             <h2 class="text-center text-uppercase">SERVICIOS DE <span class="chachi">CHACHI</span>LIMPIEZA</h2>
@@ -170,7 +176,6 @@
             <p>Imagínese volver a casa después de un largo día a un lugar limpio, ordenado y acogedor. Chacha Chachi está aquí para hacer ese sueño realidad. Como una empresa líder en la industria que ha brindado servicios confiables de limpieza de la casa
                 desde 2018, Sabemos que tus necesidades son únicas. Por eso nos tomamos el tiempo de ofrecer servicios que se ajustan a su presupuesto, sus preferencias de limpieza y su ocupado estilo de vida.</p>
         </div>
-        <!-- </div> -->
     </section>
     <!-- SECCION sobre nosotros -->
 

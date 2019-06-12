@@ -255,33 +255,30 @@
         }
         /* SERVICIOS */
         /* SOBRE NOSOTROS */
-        /* #sobrenosotros {
-             padding-top: 5%;
-            padding-bottom: 15%; 
-        }*/
-        
-        #sntexto {
-            padding-top: 13%;
-        }
-        
-        #sntexto h2 {
-            padding-left: 5%;
-        }
-        
-        #sntexto h3 {
-            padding-top: 4%;
-            /* padding-left: 5%; */
-            color: #f16e938f;
-            font-weight: lighter;
-        }
-        
-        #sntexto p {
-            padding-left: 12%;
-            padding-right: 5%;
-            padding-top: 4%;
-        }
-        /* SOBRE NOSOTROS */
         
         .chachi {
             color: #f16e94;
         }
+        
+        @media (max-width: 768px) {}
+        
+        @media(min-width: 769px) {
+            #sntexto {
+                padding-top: 13%;
+            }
+            #sntexto h2 {
+                padding-left: 5%;
+            }
+            #sntexto p {
+                padding-left: 12%;
+                padding-right: 5%;
+                padding-top: 4%;
+            }
+            #sntexto h3 {
+                padding-top: 4%;
+                /* padding-left: 5%; */
+                color: #f16e938f;
+                font-weight: lighter;
+            }
+        }
+        /* SOBRE NOSOTROS */
