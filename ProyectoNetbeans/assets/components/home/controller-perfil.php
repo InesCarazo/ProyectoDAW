@@ -7,7 +7,7 @@ function menuPerfilEmpl($user)
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($user) ."</a></li>
-        <li><a href='?perfil=empleado'>Mi perfil</a></li>
+        <li><a href='?gestion=per_empleado'>Mi perfil</a></li>
     </ul>
 </div>
 </div>
@@ -99,7 +99,7 @@ function formPerfilEmpleados($id){
     $contenido.="</div>
   </div> 
     <div class='form-group'>
-        <div class='col-md-offset-9 col-md-3''>
+        <div class='col-md-offset-10 col-md-2'>
         <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar</button>
         </div>
     </div>
@@ -114,7 +114,7 @@ function menuPerfilCli($user)
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($user) ."</a></li>
-        <li><a href='?perfil=cliente'>Perfil</a></li>
+        <li><a href='?gestion=per_cliente'>Perfil</a></li>
     </ul>
 </div>
 </div>
@@ -213,7 +213,7 @@ function formPerfilClientes($id)
 }
 
 
-function formModifyCasa($id){
+function formModifyCasaPerfil($id){
     //$_SESSION['idCasaSelect']= $id;
     $model = new modelClass();
     $casa = $model->buscarCasa($id);
@@ -266,12 +266,59 @@ function formModifyCasa($id){
     return $contenido;
 }
 
-function menuCasa($tipoGestion){
+function menuCasaPerfil($tipoGestion){
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($tipoGestion) ."</a></li>
         <li><a href='?casa=vercli'>Ver</a></li>
         <li><a href='?casa=anadircli'>Añadir</a></li> 
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+function menuHomeEmpleado($userName){
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'> 
+    <li><a>". strtoupper($userName) ."</a></li>
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+function menuHomeAdmin($userName){
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+    <li><a>". strtoupper($userName) ."</a></li>
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+function menuHomeCliente($userName){
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+    <li><a>". strtoupper($userName) ."</a></li>
+    </ul>
+</div>
+</div>
+</nav>";
+    return $contenido;
+}
+
+
+function menuCasasCliente($userName){
+    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+    <ul class='nav navbar-nav navbar-right'>
+        <li><a>". strtoupper($userName) ."</a></li>
+        <li><a href='?casa=ver'>Ver</a></li>
+        <li><a href='?casa=anadir'>Añadir</a></li> 
     </ul>
 </div>
 </div>

@@ -60,7 +60,9 @@ if (isset($_GET["cerrarsesion"]))
 }
 if (isset($_GET["home"]))
 {
-    volverAlHome();
+    //volverAlHome();
+    $tipoForm = $_GET['home'];
+    echo tipoFormHome($tipoForm);
 }
 if (isset($_GET['empleado'])) {
     $tipoForm = $_GET['empleado'];
