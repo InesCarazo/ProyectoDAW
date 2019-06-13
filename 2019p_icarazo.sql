@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2019 a las 14:42:18
+-- Tiempo de generación: 13-06-2019 a las 14:42:07
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.1.27
 
@@ -111,7 +111,8 @@ INSERT INTO `casa` (`P_casa`, `sice`, `direccion`, `ciudad`, `hasFurniture`, `A_
 (3, 190, 'Calle Bolero, 80', 'Santander', 1, 3),
 (4, 200, 'Paseo Tinamús, 267 2ºE', 'Bilbao', 0, 4),
 (5, 210, 'Avenida Pintor Sorolla, 125 4ºG', 'Málaga', 1, 4),
-(9, 220, 'Calle Altamirano, 8 4ºC', 'Madrid', 1, 1);
+(9, 220, 'Calle Altamirano, 8 4ºC', 'Madrid', 1, 1),
+(10, 111, 'Paseo Tinamús, 267 2ºE', 'Madrid', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,8 @@ INSERT INTO `cliente` (`P_cliente`, `formaPago`, `nCuenta`, `A_usuario`) VALUES
 (1, 'TARJETA', '', 1),
 (2, 'BANCO', '', 2),
 (3, 'TARJETA', '', 3),
-(4, 'BANCO', '', 4);
+(4, 'BANCO', '', 4),
+(5, 'TARJETA', '3453536', 11);
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,8 @@ INSERT INTO `empleado` (`P_empleado`, `nss`, `isAdmin`, `A_usuario`) VALUES
 (3, '777888999', 0, 7),
 (4, '111555999', 0, 8),
 (5, '333555777', 1, 9),
-(6, '2354254', 1, 10);
+(6, '2354254', 1, 10),
+(7, '11111111', 0, 12);
 
 -- --------------------------------------------------------
 
@@ -268,9 +271,7 @@ INSERT INTO `tarea` (`P_tarea`, `duracion_h`, `comentarios`, `precio`, `A_tipo_t
 (4, 1, '', 10, 4),
 (5, 2, '', 20, 5),
 (6, 2, '', 25, 6),
-(7, 1, '', 25, 7),
-(8, 1, '', 10, 8),
-(9, 1, '', 15, 9);
+(7, 1, '', 25, 7);
 
 -- --------------------------------------------------------
 
@@ -326,9 +327,7 @@ INSERT INTO `tipo_tarea` (`P_tipo_tarea`, `texto`) VALUES
 (4, 'Lavar los platos'),
 (5, 'Quitar el polvo'),
 (6, 'Hacer la colada'),
-(7, 'Limpiar el baño'),
-(8, 'Tender la ropa'),
-(9, 'Planchar la ropa');
+(7, 'Limpiar el baño');
 
 -- --------------------------------------------------------
 
@@ -363,8 +362,9 @@ INSERT INTO `usuario` (`P_Usuario`, `usuario`, `contrasena`, `nombre`, `apellido
 (7, 'AndresGF', '87ed04cc02d4c6e07a7d0da2c3afe894', 'Andrés', 'Torres Fernández', '78352249N', 654156456, 'andresgf@gmail.com', '1993-02-15', 'EMPLEADO'),
 (8, 'JoseRoDi', 'dfc2310d4fdcc36e77c8429638738737', 'Josefina', 'Martínez López', '15955990Q', 54641646, 'thejoseoficial@gmail.com', '1998-04-22', 'EMPLEADO'),
 (9, 'Antonio', '3a87cf0eebc42aea944f74aa603e55d6', 'Antonio', 'Sierra', '72276265F', 255664654, 'antoniosierra@gmail.com', '1980-05-08', 'EMPLEADO'),
-(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', '74158765A', 11122233, 'test@test.es', '2019-03-01', 'EMPLEADO'),
-(11, 'TestCli', '81dc9bdb52d04dc20036dbd8313ed055', 'TestCli', 'TestCli', '12411681F', 123456789, 'TestCli@TestCli.com', '2019-05-08', 'CLIENTE');
+(10, '1234', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', '74158765A', 680128680, 'test@test.es', '2019-03-01', 'EMPLEADO'),
+(11, 'TestCli', '81dc9bdb52d04dc20036dbd8313ed055', 'Test', 'Test', '72104925V', 680128680, 'test@correo.es', '1998-04-22', 'CLIENTE'),
+(12, '123456', 'e10adc3949ba59abbe56e057f20f883e', '123456', '123456', '72104925V', 680128680, 'inescnunez@gmail.com', '2019-06-02', 'EMPLEADO');
 
 --
 -- Índices para tablas volcadas
@@ -487,19 +487,19 @@ ALTER TABLE `beacon`
 -- AUTO_INCREMENT de la tabla `casa`
 --
 ALTER TABLE `casa`
-  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `P_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado_cliente_tarea`
@@ -523,7 +523,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea_realizada`
@@ -535,13 +535,13 @@ ALTER TABLE `tarea_realizada`
 -- AUTO_INCREMENT de la tabla `tipo_tarea`
 --
 ALTER TABLE `tipo_tarea`
-  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `P_tipo_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `P_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

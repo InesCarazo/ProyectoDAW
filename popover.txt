@@ -1,0 +1,4 @@
+https://www.w3schools.com/bootstrap/bootstrap_ref_js_popover.asp
+
+$('.input').popover({title: "Header", content: "Blabla", placement: "bottom"}); 
+$('.input').css("border", "2px solid red");
