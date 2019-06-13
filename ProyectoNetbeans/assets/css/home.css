@@ -173,7 +173,8 @@ ul.CTAs a {
 }
 
 #sidebarCollapse span:first-of-type {
-    transform: rotate(45deg) translate(2px, 2px);
+    transform: rotate(-36deg) translate(2px, -4px);
+    /* transform: rotate(45deg) translate(2px, 2px); */
 }
 
 #sidebarCollapse span:nth-of-type(2) {
@@ -181,7 +182,8 @@ ul.CTAs a {
 }
 
 #sidebarCollapse span:last-of-type {
-    transform: rotate(-45deg) translate(1px, -1px);
+    transform: rotate(42deg) translate(2px, 4px);
+    /* transform: rotate(-45deg) translate(1px, -1px); */
 }
 
 #sidebarCollapse.active span {
