@@ -300,9 +300,11 @@ span#btnTextoSpan {
     color: red;
 }
 
+#btnDiv {
+    margin-top: 1%;
+    margin-left: 1%;
+}
 
-/* 
-.components li:hover {
-    color: #fff;
-    background: #f16e94;
-} */
+#modificarEmpleado {
+    margin-right: 2%;
+}

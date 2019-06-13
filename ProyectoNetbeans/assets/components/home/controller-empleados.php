@@ -73,7 +73,7 @@ function formAddEmpleados()
     </div>
   </div> 
     <div class='form-group'>
-        <div class='col-md-offset-9 col-md-3' '>
+        <div class='col-md-offset-10 col-md-2'>
         <button id='addEmpleado' name='addEmpleado' type='submit' class='btn estilo-btn'>Añadir Empleado</button>
         </div>
     </div>
@@ -112,15 +112,15 @@ function tablaVistaEmpleados(){
                     <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
                 </tr>"; $_SESSION['idEmplSelect']= $value->getP_Usuario();} $tablaHTML.= "</tbody>
         </table>
-        <div class='col-md-6'>
-            <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
-        </div>
-</form>
-<div class='col-md-6'>
-    <form method='POST' action='?empleado=ver'>
-        <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
-    </form>
-
+        <div id='btnDiv' class='col-md-2 no-padding'>
+                <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn no-padding estilo-btn col-md-6'>Modificar</button>
+           
+    
+        
+            <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn no-padding col-md-6'>Borrar</button>
+        
+    
+    
 </div>
 </div>";
 return $tablaHTML;
