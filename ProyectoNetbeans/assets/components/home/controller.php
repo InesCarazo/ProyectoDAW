@@ -160,8 +160,14 @@ function tipoFormCasas($tipoForm){
         case 'ver':
            return menuCasas("casas") . formShowCasas() . "</div>";
             break;
+        case 'vercasacli':
+        return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
+            break;
         case 'anadir':
             return menuCasas("casas") . formAddCasas() . "</div>";
+            break;
+        case 'anadircasacli':
+            return menuCasaPerfil($_SESSION['userLogueado']) . formAddCasas() . "</div>";
             break;
         case 'modificar':
             if (isset($_POST['btnRadioCasa'])) 
@@ -174,7 +180,6 @@ function tipoFormCasas($tipoForm){
                 $message = "Tienes que seleccionar una casa para poder editar";
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }
-           
             break;
         case 'casa-cliente':
             return menuCasas("casas") . formCasaCliente($tipoForm) . "</div>";
@@ -228,24 +233,40 @@ function tipoFormPerfil($tipoForm){
         return menuTareas("tareas") . formProgramarTareas() . "</div>";
     break;
     case 'casa':
-        return menuCasa("casa") . formModifyCasa(1) . "</div>";
+    return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
     break;
     case 'empleado':
     break;
     }
 }
 
+function tipoFormHome($tipoForm){
+    switch ($tipoForm) {
+        case 'admin':
+        return menuHomeAdmin($_SESSION['userLogueado']) . "</div>";
+        //    return menuEmpleados("empleados") . formAddEmpleados() . "</div>";
+            break;
+        case 'empleado':
+        return menuHomeEmpleado($_SESSION['userLogueado']) . "</div>";
+        // return menuHomeEmpleado() . formShowEmpleados() . "</div>";
+            break;
+        case 'cliente':
+        return menuHomeCliente($_SESSION['userLogueado']) . "</div>";
+        // return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";
+            break; 
+    }
+}
+
 function menuHome(){
     $contenido="<ul class='list-unstyled components'>
-    <li class='active'>
-        <a href='?home' aria-expanded='false'>Home</a>
-    </li>
-    
            ";
            $rolArrayA = Array();
            array_push($rolArrayA, "ADMIN");
            if(allowed($rolArrayA)){
-            $contenido.="<li>
+            $contenido.="
+            <li class='active'>
+            <a href='?home=admin' aria-expanded='false'>Home</a>
+        </li><li>
             <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>Gestión</a>
             <ul class='collapse list-unstyled' id='pageSubmenu'>
             <li><a href='?gestion=empleados' name='empleados'>Empleados</a></li> 
@@ -258,12 +279,17 @@ function menuHome(){
         $rolArrayE = Array();
            array_push($rolArrayE, "EMPLEADO");
            if(allowed($rolArrayE)){
-            $contenido.="<li><a href='?gestion=per_empleado' name='empleado'>Mi perfil</a></li> ";
+            $contenido.="
+            <li class='active'>
+            <a href='?home=empleado' aria-expanded='false'>Home</a>
+        </li><li><a href='?gestion=per_empleado' name='empleado'>Mi perfil</a></li> ";
         }
         $rolArrayC = Array();
            array_push($rolArrayC, "CLIENTE");
            if(allowed($rolArrayC)){
-            $contenido.="<li><a href='?gestion=per_cliente' name='cliente'>Mi perfil</a></li>
+            $contenido.=" <li class='active'>
+            <a href='?home=cliente' aria-expanded='false'>Home</a>
+        </li><li><a href='?gestion=per_cliente' name='cliente'>Mi perfil</a></li>
             <li><a href='?perfil=casa' name='casas'>Casas</a></li>
             <li><a href='?perfil=tarea' name='tareas'>Tareas</a></li>";
         }

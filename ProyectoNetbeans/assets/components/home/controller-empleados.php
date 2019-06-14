@@ -112,12 +112,9 @@ function tablaVistaEmpleados(){
                     <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
                 </tr>"; $_SESSION['idEmplSelect']= $value->getP_Usuario();} $tablaHTML.= "</tbody>
         </table>
-        <div id='btnDiv' class='col-md-2 no-padding'>
-                <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn no-padding estilo-btn col-md-6'>Modificar</button>
-           
-    
-        
-            <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn no-padding col-md-6'>Borrar</button>
+        <div id='btnDiv' class='col-md-3 no-padding'>
+                <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn no-padding estilo-btn col-md-4'>Modificar</button>
+            <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn no-padding col-md-3'>Borrar</button>
         
     
     
