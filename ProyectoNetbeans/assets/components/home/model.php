@@ -202,7 +202,7 @@ class modelClass
     function buscarCasa($id)
     {
          //require_once './../conexion/conexion.php';
-         try {
+        try {
             $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
             $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
             // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
@@ -223,6 +223,32 @@ class modelClass
             $resultado = $stmt->fetch();
         }
         return $casa;
+    }
+
+    function buscarCasaPerfil($id)
+    {
+         //require_once './../conexion/conexion.php';
+        try {
+            $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+            $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+            // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo $e->getCode();
+            echo 'Error en la conexión: ' . $e->getMessage();
+            exit();
+        }
+        $stmt = $conn->prepare("SELECT * FROM casa c, cliente cli WHERE c.A_cliente = cli.P_cliente AND cli.A_usuario=$id");
+        $stmt->execute();
+        $casas = array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) {
+            $ca = new Casa($resultado);
+            array_push($casas, $ca);
+            $resultado = $stmt->fetch();
+        }
+        return $casas;
     }
 
     function modifyCasa($id, $modifyDireccion, $modifyCiudad, $modifyHasForniture, $modifySice)

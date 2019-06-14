@@ -161,13 +161,13 @@ function tipoFormCasas($tipoForm){
            return menuCasas("casas") . formShowCasas() . "</div>";
             break;
         case 'vercasacli':
-            return menuCasasCli($_SESSION['userLogueado']) . formShowCasas() . "</div>";
+        return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
             break;
         case 'anadir':
             return menuCasas("casas") . formAddCasas() . "</div>";
             break;
         case 'anadircasacli':
-            return menuCasas("casas") . formAddCasas() . "</div>";
+            return menuCasaPerfil($_SESSION['userLogueado']) . formAddCasas() . "</div>";
             break;
         case 'modificar':
             if (isset($_POST['btnRadioCasa'])) 
@@ -233,7 +233,7 @@ function tipoFormPerfil($tipoForm){
         return menuTareas("tareas") . formProgramarTareas() . "</div>";
     break;
     case 'casa':
-        return menuCasaPerfil($_SESSION['userLogueado']) . formModifyCasaPerfil($_SESSION['userID']) . "</div>";
+    return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
     break;
     case 'empleado':
     break;
