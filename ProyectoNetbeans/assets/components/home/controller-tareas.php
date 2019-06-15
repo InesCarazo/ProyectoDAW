@@ -417,7 +417,7 @@ function menuTareas($tipoGestion)
         }
         if(allowed($rolArrayC)){
             $contenido.="
-        <li><a href='?tarea=programar'>Programar</a></li>";
+        <li><a href='?tarea=programar_cli'>Programar</a></li>";
         }
         $contenido .="
     </ul>

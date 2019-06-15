@@ -308,3 +308,20 @@ span#btnTextoSpan {
 #modificarEmpleado {
     margin-right: 2%;
 }
+
+.datos {
+    border: 1px solid #f16e94;
+    padding-left: 3%;
+}
+
+.datos ul li {
+    list-style-type: none;
+}
+
+.chachi {
+    color: #f16e94;
+}
+
+.cont {
+    margin-bottom: 6%;
+}

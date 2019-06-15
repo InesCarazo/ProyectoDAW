@@ -13,8 +13,18 @@ session_start();
   * Redireccionar a la pagina home
   */
   function goHome() {
-    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php';
-    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php';
+      if($_SESSION['userRol'] == "CLIENTE"){
+    $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php?home=cliente';
+    //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php?home=cliente';
+    }
+    else if($_SESSION['userRol'] == "EMPLEADO"){
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php?home=empleado';
+        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php?home=empleado';
+    }
+    else if($_SESSION['userRol'] == "ADMIN"){
+        $url= 'http://localhost/ProyectoDAW/ProyectoNetbeans/assets/components/home/view.php?home=admin';
+        //$url= 'http://aglinformatica.es:6080/icarazo/assets/components/home/view.php?home=admin';
+    }
     header("Location: $url"); 
     echo "OK";
 }

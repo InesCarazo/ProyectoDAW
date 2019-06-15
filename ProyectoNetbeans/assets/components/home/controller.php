@@ -10,6 +10,7 @@ require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 require_once './controller-perfil.php';
+require_once './controller-home.php';
 
 
 $rolArrayECA = Array();
@@ -203,9 +204,10 @@ function tipoFormTareas($tipoForm){
             break;
            
         case 'programar':
-        if(allowed($rolArrayAC)){
             return menuTareas("tareas") . formProgramarTareas() . "</div>";
-        }
+            break;
+            case 'programar_cli':
+            return menuTareas("tareas") . formProgramarTareasCli($_SESSION['userID']) . "</div>";
             break;
         case 'modificar':
             if(allowed($rolArrayC)){
@@ -230,7 +232,7 @@ function tipoFormTareas($tipoForm){
 function tipoFormPerfil($tipoForm){
     switch ($tipoForm) {
         case 'tarea':
-        return menuTareas("tareas") . formProgramarTareas() . "</div>";
+        return menuTareas("tareas") . formProgramarTareasCli($_SESSION['userID']) . "</div>";
     break;
     case 'casa':
     return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
@@ -243,16 +245,15 @@ function tipoFormPerfil($tipoForm){
 function tipoFormHome($tipoForm){
     switch ($tipoForm) {
         case 'admin':
-        return menuHomeAdmin($_SESSION['userLogueado']) . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosAdmin($_SESSION['userID']) ."</div>";
         //    return menuEmpleados("empleados") . formAddEmpleados() . "</div>";
             break;
         case 'empleado':
-        return menuHomeEmpleado($_SESSION['userLogueado']) . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosEmpl($_SESSION['userID']) ."</div>";
         // return menuHomeEmpleado() . formShowEmpleados() . "</div>";
             break;
         case 'cliente':
-        return menuHomeCliente($_SESSION['userLogueado']) . "</div>";
-        // return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosCli($_SESSION['userID']) ."</div>";
             break; 
     }
 }
