@@ -30,7 +30,7 @@ function generarSelectClientesAdd(){
 }
 
 function formAddCasas(){
-    $contenido = "<form method='POST' action='?gestion=casas' class='contenido-home'>
+    $contenido = "<form method='POST' action='?gestion=casas'>
     <div>
         <div class='form-group row'>
             <label for='direccion' class='control-label col-md-4'>Dirección</label>

@@ -49,6 +49,61 @@ function datosEmpl($id){
     return $contenido;
 }
 
+function datosAdmin($id){
+    $model = new modelClass();
+    $countEmpl = $model->homeAdminCount("EMPLEADO");
+    // print_r($countEmpl);
+    foreach ($countEmpl as $value) {
+    
+    $contenido = "<div class='cont col-md-6 col-sm-6 col-xs-12'><h2 class='text-center'>Empleados: " . $value["cont"] . "</h2></div>";
+}
+$model = new modelClass();
+    $countCli = $model->homeAdminCount("CLIENTE");
+    // print_r($countCli);
+    foreach ($countCli as $value) {
+    $contenido .= "<div class='cont col-md-6 col-sm-6 col-xs-12'><h2 class='text-center'>Clientes: " . $value["cont"] . "</h2></div>";
+    }
+    $model = new modelClass();
+    $cli = $model->buscarEmpleado($id); 
+    $idempl = $cli->getP_empleado();
+    $contenido .= "<h1 class='text-center chachi'>PRÓXIMAS TAREAS PROGRAMADAS</h1>";
+    $model = new modelClass();
+    $datosEmpl = $model->homeDatosAdminDia($idempl); 
+    //  print_r($datosEmpl);
+    $contenido .= "<div class='col-md-6 col-sm-6 col-xs-12'><h2 class='text-center'>Hoy (" . date("d-m-Y", strtotime(date('Y/m/d'))) . ")</h2>";
+    foreach ($datosEmpl as $value) {
+       $contenido.= "<div class='datos col-md-12 col-sm-12 col-xs-12'><ul>";
+    foreach ($value as $value2) {
+        // print_r($value2);
+        
+        $contenido.= "<li><h2>Tarea: " . $value2["texto"] . "</h2></li>";
+        $contenido.= "<li><h2>Fecha: " . date("d-m-Y", strtotime($value2["fecha"])) . "</h2></li>";
+        $contenido.= "<li><h2>Estimación (h):" . $value2["duracion_h"] . "</h2></li>";
+        $contenido.= "<li><h3>Dirección:" . $value2["direccion"] . " (" . $value2["ciudad"] . ")</h3></li>";
+    }
+    $contenido.= "</ul></div>";
+}
+$contenido .= "</div>";
+
+$model = new modelClass();
+    $datosAdmin = $model->homeDatosAdmin($idempl);
+    $contenido .= "<div class='col-md-6 col-sm-6 col-xs-12'><h2 class='text-center'>Próxima semana</h2>";
+foreach ($datosAdmin as $value) {
+    $contenido.= "<div class='datos col-md-12 col-sm-12 col-xs-12'><ul>";
+ foreach ($value as $value2) {
+    //  print_r($value2);
+     
+     $contenido.= "<li><h2>Tarea: " . $value2["texto"] . "</h2></li>";
+     $contenido.= "<li><h2>Fecha: " . date("d-m-Y", strtotime($value2["fecha"])) . "</h2></li>";
+     $contenido.= "<li><h2>Estimación (h):" . $value2["duracion_h"] . "</h2></li>";
+     $contenido.= "<li><h3>Dirección:" . $value2["direccion"] . " (" . $value2["ciudad"] . ")</h3></li>";
+ }
+ $contenido.= "</ul></div>";
+}
+$contenido .= "</div>";
+    return $contenido;
+}
+
 function menuHomeUsers($userNames){
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
