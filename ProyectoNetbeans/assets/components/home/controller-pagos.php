@@ -54,7 +54,7 @@ function generarTablaHTMLEmpleados($pagos)
                     </tbody>
                 </table>
                 <div class='col-md-'>
-                    <button id='pagarEmpleado' name='pagarEmpleado' type='submit' class='btn estilo-btn modBorr center-block'>Pagar</button>
+                    <button id='pagarEmpleado' name='pagarEmpleado' type='submit' class='btn estilo-btn btn-pagos-empl'>Pagar</button>
                 </div>
                 </div>
             </form>";
@@ -74,7 +74,7 @@ function menuPagosEmpleados()
         </div>
         <div class='form-group'>
         <div class='col-md-12'>
-        <button  id='searchPagos'  name='searchPagos' type='submit' class='btn estilo-btn center-block'>Buscar</button>
+        <button  id='searchPagos'  name='searchPagos' type='submit' class='btn estilo-btn btn-pagos-empl'>Buscar</button>
         </div>
     </div>
     </form>

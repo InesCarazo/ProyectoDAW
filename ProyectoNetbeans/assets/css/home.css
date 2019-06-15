@@ -325,3 +325,20 @@ span#btnTextoSpan {
 .cont {
     margin-bottom: 6%;
 }
+
+.btn-pagos-empl-l {
+    float: left;
+    margin-top: 2%;
+}
+
+.btn-pagos-empl {
+    float: right;
+    margin-top: 2%;
+}
+
+#modificarEmpleado,
+#modificarCliente,
+#modificarCasa,
+#modificarTarea {
+    margin-right: 4%;
+}

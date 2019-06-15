@@ -1,5 +1,5 @@
 #boton {
-    margin-left: 79%;
+    float: right;
 }
 
 .main-head {
@@ -28,7 +28,8 @@
     padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {}
+
+/* @media screen and (max-height: 450px) {} */
 
 @media screen and (max-width: 450px) {
     .register-form {

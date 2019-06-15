@@ -54,17 +54,13 @@ function tablaVistaTareas()
                     <td class='text-center'>" . $value->getPrecio() . "</td>
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
-        <div class='col-md-6'>
-                <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
-            </div>
+        <div id='btnDiv' class='col-md-3'>
+    <button id='modificarTarea' name='modificarTarea' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Modificar</button>
     </form>
-    <div class='col-md-6'>
-        <form method='POST' action='?tarea=ver'>
-            <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
-        </form>
-    
-    </div>
-    </div>";
+    <form method='POST' action='?tarea=ver'>
+        <button id='borrarTarea' name='borrarTarea' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Borrar</button>
+    </form>
+</div>";
 return $tablaHTML;
 }
 

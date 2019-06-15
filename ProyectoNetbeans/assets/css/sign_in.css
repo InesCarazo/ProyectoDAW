@@ -57,7 +57,7 @@
 
 @media screen and (min-width: 1000px) {
     .sidenav img {
-        padding-top: 22%;
+        padding-top: 32%;
     }
     .main {
         float: right;
@@ -95,4 +95,8 @@
 
 #registro a {
     color: #f16e94;
+}
+
+#addCliente {
+    float: right;
 }

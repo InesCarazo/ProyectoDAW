@@ -37,6 +37,7 @@ require_once './controller.php';
                     <div class="form-group">
                         <label for="usuario">Usuario:</label>
                         <input type="text" class="form-control" id="addUsuario" placeholder="Introduce el usuario" name="usuario" required>
+                        <div class="text-danger" id="error-user"></div>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Contraseña:</label>
@@ -66,7 +67,8 @@ require_once './controller.php';
                         <label for="fnacimiento">Fecha de nacimiento:</label>
                         <input type="date" class="form-control" id="addFnacimiento" name="fnacimiento" required>
                     </div>
-                    <button id="addCliente" name="addCliente" type="submit" class="btn btn-black">Registrarse</button>
+                    <button id="addCliente" name="addCliente" data-toggle="popover" title="Popover title" 
+        data-content="And here's some amazing content. It's very engaging. Right?" type="submit" class="btn btn-black">Registrarse</button>
                 </form>
         </div>
     </div>
