@@ -314,6 +314,10 @@ span#btnTextoSpan {
     padding-left: 3%;
 }
 
+.datos ul li {
+    list-style-type: none;
+}
+
 .chachi {
     color: #f16e94;
 }

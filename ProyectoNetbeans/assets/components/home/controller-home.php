@@ -1,9 +1,13 @@
 <?php
 
 function datosCli($id){
+   
+    $model = new modelClass();
+    $cli = $model->buscarCliente($id); 
+    $idcli = $cli->getP_cliente();
     $contenido = "<h1 class='text-center chachi'>TAREAS PROGRAMADAS</h1>";
     $model = new modelClass();
-    $datosCli = $model->homeDatosCliente(3); 
+    $datosCli = $model->homeDatosCliente($idcli); 
     //  print_r($datosCli);
     foreach ($datosCli as $value) {
        $contenido.= "<div class='datos col-md-6 col-sm-6 col-xs-12'><ul>";
