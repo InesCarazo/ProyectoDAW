@@ -10,6 +10,7 @@ require_once './controller-casas.php';
 require_once './controller-tareas.php';
 require_once './controller-pagos.php';
 require_once './controller-perfil.php';
+require_once './controller-home.php';
 
 
 $rolArrayECA = Array();
@@ -251,7 +252,7 @@ function tipoFormHome($tipoForm){
         // return menuHomeEmpleado() . formShowEmpleados() . "</div>";
             break;
         case 'cliente':
-        return menuHomeCliente($_SESSION['userLogueado']) . "</div>";
+        return menuHomeCliente($_SESSION['userLogueado']) . datosCli($_SESSION['userID']) ."</div>";
         // return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";
             break; 
     }

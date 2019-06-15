@@ -282,3 +282,8 @@
             }
         }
         /* SOBRE NOSOTROS */
+        
+        .panel-heading a {
+            text-decoration: none !important;
+            color: black;
+        }

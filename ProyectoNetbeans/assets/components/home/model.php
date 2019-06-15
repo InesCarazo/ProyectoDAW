@@ -472,4 +472,27 @@ class modelClass
 
     //PAGOS
 
+    //HOME
+
+    function homeDatosCliente($id)
+    {
+        require_once './../conexion/conexion.php';
+        $sql = "SELECT ti.texto, ect.fecha, ect.duracion_h FROM empleado_cliente_tarea ect, cliente c, tarea t, tipo_tarea ti, casa ca, usuario u WHERE ca.A_cliente = c.P_cliente AND ect.A_cliente = c.P_cliente AND ect.A_tarea = t.P_tarea AND t.A_tipo_tarea = ti.P_tipo_tarea AND u.P_Usuario = c.A_usuario AND c.P_cliente=$id AND ect.A_realizada IS NULL";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $datos = array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) {
+            $dato = array();
+            array_push($dato, $resultado);
+            array_push($datos, $dato);
+            $resultado = $stmt->fetch();
+        }
+        return $datos;
+    }
+
+
+    //HOME
+
 }

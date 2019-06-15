@@ -298,17 +298,6 @@ function menuHomeAdmin($userName){
     return $contenido;
 }
 
-function menuHomeCliente($userName){
-    $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-    <ul class='nav navbar-nav navbar-right'>
-    <li><a>". strtoupper($userName) ."</a></li>
-    </ul>
-</div>
-</div>
-</nav>";
-    return $contenido;
-}
-
 
 function menuCasasCliente($userName){
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
