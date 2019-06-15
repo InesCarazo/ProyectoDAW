@@ -373,3 +373,84 @@ function formShowCasasPerfil($userName){
      . "";
     return $contenido;
 }
+
+function formProgramarTareasCli($iduser)
+{
+    $contenido = "
+    <div class='col-md-6'><form method='POST' action='?tarea=programar_cli'>
+        <div class='form-group row'>
+            <label class='col-md-4 col-form-label'>Tareas</label>
+           ". generarSelectTareasProg() ."
+        </div>
+        <div class='form-group row'>
+            <label for='fecha' class='control-label col-md-4'>Fecha</label>
+            <div class='col-md-8'>
+                <input id='fecha' name='progfecha' type='date' required='required' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <div class='col-md-offset-8 col-md-4'>
+                <button id='progAddTareaCli' name='progAddTareaCli' type='submit' class='btn estilo-btn no-margin no-padding'>
+                <span id='btnTextoSpan' class='col-md-6 text-center'>Añadir</span>
+                    <img src='./../../images/add/add32.png' class='img-responsive col-md-6'>
+                </button>
+            </div>
+        </div>
+        </form>
+    </div>
+    
+    <div class='col-md-6'>";
+
+    if (isset($_POST['progAddTareaCli'])) 
+    {
+        $idEmpleado = 2; 
+        $idCliente = $iduser;
+        $idTarea = $_POST['chooseTareaProg'];
+        $fecha = $_POST['progfecha'];
+        $duracion_h =  $_SESSION['duracionTareaProg'];
+        
+        $carrito = $_SESSION['carrito'];
+        $carr = addTask($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+        array_push($carrito, $carr);
+        $_SESSION['carrito'] = $carrito;
+    }
+    $contenido.="
+        <div class='form-group row'>
+            <label for='duracion' class='control-label col-md-12'>Nº tareas:" . count($_SESSION['carrito'])."</label>
+        </div>
+        <div class='form-group row'>
+            <div id='carritoTareas' name='carritoTareas' class='col-md-12'>
+               <h3>Lista de tareas añadidas</h3>
+               " . listTaskAdded() . "
+            </div>
+            <div class='col-md-12 form-group'>
+            <form method='POST' action='?tarea=programar_cli'>
+                <button id='programarTareaCli' name='programarTareaCli' type='submit' class='btn estilo-btn'>Programar Tarea</button>
+                </form>
+            </div>
+
+        </div>
+        
+    </div>
+";
+    return $contenido;
+}
+
+if (isset($_POST['programarTareaCli'])) 
+{
+    $carrito = $_SESSION['carrito'];
+    foreach ($carrito as $key => $value) 
+    {
+        $idEmpleado = 2; 
+        $idCliente = 11;
+        $idTarea = $value[2];
+        $fecha = $value[3];;
+        $duracion_h =  $value[4];
+
+        $modelClass = new modelClass(); 
+        $tareas = $modelClass->programarTarea($idEmpleado, $idCliente, $idTarea, $fecha, $duracion_h);
+
+    }
+
+    $_SESSION['carrito'] = Array();
+}

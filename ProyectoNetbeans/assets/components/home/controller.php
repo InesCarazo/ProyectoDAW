@@ -204,9 +204,10 @@ function tipoFormTareas($tipoForm){
             break;
            
         case 'programar':
-        if(allowed($rolArrayAC)){
             return menuTareas("tareas") . formProgramarTareas() . "</div>";
-        }
+            break;
+            case 'programar_cli':
+            return menuTareas("tareas") . formProgramarTareasCli($_SESSION['userID']) . "</div>";
             break;
         case 'modificar':
             if(allowed($rolArrayC)){
@@ -231,7 +232,7 @@ function tipoFormTareas($tipoForm){
 function tipoFormPerfil($tipoForm){
     switch ($tipoForm) {
         case 'tarea':
-        return menuTareas("tareas") . formProgramarTareas() . "</div>";
+        return menuTareas("tareas") . formProgramarTareasCli($_SESSION['userID']) . "</div>";
     break;
     case 'casa':
     return menuCasaPerfil($_SESSION['userLogueado']) . formShowCasasPerfil($_SESSION['userID']) . "</div>";
