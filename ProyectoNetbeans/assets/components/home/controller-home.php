@@ -5,7 +5,7 @@ function datosCli($id){
     $model = new modelClass();
     $cli = $model->buscarCliente($id); 
     $idcli = $cli->getP_cliente();
-    $contenido = "<h1 class='text-center chachi'>TAREAS PROGRAMADAS</h1>";
+    $contenido = "<h1 class='text-center chachi'>TAREAS PENDIENTES</h1>";
     $model = new modelClass();
     $datosCli = $model->homeDatosCliente($idcli); 
     //  print_r($datosCli);

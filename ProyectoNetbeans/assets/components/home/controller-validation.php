@@ -28,7 +28,10 @@ if (isset($_POST['form']) && $_POST['form'] == "anadir")
 
 if (isset($_POST['form']) && $_POST['form'] == "modificar") 
 {
-    $id = $_SESSION['idEmplSelect'];
+    $id = $_SESSION['userID'];
+    if (isset($_SESSION['userID'])) {
+        $id= $_SESSION['userID'];
+    }
     $modifyUsuario = $_POST['usuario'];
     $modifyContrasena = $_POST['contrasena'];
     $modifyNombre = $_POST['nombre'];
