@@ -502,6 +502,34 @@ class modelClass
         return $datos;
     }
 
+    function homeDatosEmpleado($id)
+    {
+         //require_once './../conexion/conexion.php';
+         try {
+            $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+            $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'root', '', $opciones);
+            // $conn = new PDO('mysql:host=localhost;dbname=2019p_icarazo', 'icarazo', 'Ic_538', $opciones);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo $e->getCode();
+            echo 'Error en la conexión: ' . $e->getMessage();
+            exit();
+        }
+        $sql = "SELECT ti.texto, ect.fecha, ect.duracion_h, ca.direccion, ca.ciudad  FROM empleado_cliente_tarea ect, cliente c, empleado e, tarea t, tipo_tarea ti, casa ca, usuario u WHERE ca.A_cliente = c.P_cliente AND ect.A_cliente = c.P_cliente AND ect.A_empleado = e.P_empleado AND ect.A_tarea = t.P_tarea AND t.A_tipo_tarea = ti.P_tipo_tarea AND u.P_Usuario = e.A_usuario AND e.P_empleado=$id AND ect.A_realizada IS NULL";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $datos = array();
+        $resultado = $stmt->fetch();
+
+        while ($resultado != null) {
+            $dato = array();
+            array_push($dato, $resultado);
+            array_push($datos, $dato);
+            $resultado = $stmt->fetch();
+        }
+        return $datos;
+    }
+
 
     //HOME
 

@@ -245,16 +245,15 @@ function tipoFormPerfil($tipoForm){
 function tipoFormHome($tipoForm){
     switch ($tipoForm) {
         case 'admin':
-        return menuHomeAdmin($_SESSION['userLogueado']) . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosAdmin($_SESSION['userID']) ."</div>";
         //    return menuEmpleados("empleados") . formAddEmpleados() . "</div>";
             break;
         case 'empleado':
-        return menuHomeEmpleado($_SESSION['userLogueado']) . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosEmpl($_SESSION['userID']) ."</div>";
         // return menuHomeEmpleado() . formShowEmpleados() . "</div>";
             break;
         case 'cliente':
-        return menuHomeCliente($_SESSION['userLogueado']) . datosCli($_SESSION['userID']) ."</div>";
-        // return menuEmpleados("empleados") .  menuPagosEmpleados() . "</div>";
+        return menuHomeUsers($_SESSION['userLogueado']) . datosCli($_SESSION['userID']) ."</div>";
             break; 
     }
 }
