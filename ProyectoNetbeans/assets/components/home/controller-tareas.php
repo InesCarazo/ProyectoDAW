@@ -198,7 +198,7 @@ function formAddTareas()
         </div>
         <div class='form-group row'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='addTarea' name='addTarea' type='submit' class='btn estilo-btn'>Añadir Tarea</button>
+                <button id='addTarea' name='addTarea' type='submit' class='btn estilo-btn btn-pagos-empl'>Añadir Tarea</button>
             </div>
         </div>
     </div>
