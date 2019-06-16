@@ -151,11 +151,11 @@ function validarNuevoCliente(e) {
 
 function validarModCliente(e) {
     e.preventDefault();
-    $("#mensaje_error").html("");
+    // $("#mensaje_error").html("");
     console.log("validarModCliente");
     var todoCorrecto = true;
     // var errorMes = "";
-    console.log(errorMes.length);
+    // console.log(errorMes.length);
     var valModifyUsuario = $("#modifyUsuario");
     var valModifyContrasena = $("#modifyContrasena");
     var valModifyNombre = $("#modifyNombre");
