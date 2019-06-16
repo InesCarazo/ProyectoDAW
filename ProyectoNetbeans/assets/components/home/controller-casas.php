@@ -199,7 +199,7 @@ function formModifyCasas($id){
         "
         <div class='form-group row'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='modCasa' name='modCasa' type='submit' class='btn estilo-btn'>Modificar Casa</button>
+                <button id='modCasa' name='modCasa' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar Casa</button>
             </div>
         </div>
     </div>

@@ -139,7 +139,7 @@ function formModifyTareas($id)
         </div>
         <div class='form-group row'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='modTarea' name='modTarea' type='submit' class='btn estilo-btn'>Modificar Tarea</button>
+                <button id='modTarea' name='modTarea' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar Tarea</button>
             </div>
         </div>
     </div>

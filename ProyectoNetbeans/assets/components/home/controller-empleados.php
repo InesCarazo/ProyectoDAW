@@ -212,7 +212,7 @@ function formModifyEmpleados($id){
   </div> 
     <div class='form-group'>
         <div class='col-md-offset-9 col-md-3''>
-        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar Empleado</button>
+        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar Empleado</button>
         </div>
     </div>
     </div>

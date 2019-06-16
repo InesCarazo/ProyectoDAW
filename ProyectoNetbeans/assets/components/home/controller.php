@@ -210,7 +210,7 @@ function tipoFormTareas($tipoForm){
             return menuTareas("tareas") . formProgramarTareasCli($_SESSION['userID']) . "</div>";
             break;
         case 'modificar':
-            if(allowed($rolArrayC)){
+            if(allowed($rolArrayA)){
             if (isset($_POST['btnRadioTarea'])) 
             {
                 $id = $_POST['btnRadioTarea'];
