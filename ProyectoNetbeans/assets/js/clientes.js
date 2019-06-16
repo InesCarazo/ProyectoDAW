@@ -6,47 +6,95 @@ function init() {
     $("#modCliente").on("click", validarModCliente);
 }
 
+function toggleErrorClass(el, remove = false) {
+    var errorClass = 'has-error';
+
+    el = el.closest('.form-group');
+    console.log(el)
+    if (el.length) {
+        if (remove === false) {
+            el.addClass(errorClass);
+        } else {
+            el.removeClass(errorClass);
+        }
+    }
+}
+
+function generatePopover(el, title, content) {
+    // segundos para cerrar el popover
+    var secons_to_hide = 2;
+
+    // crear y abrir el popover de error al validar
+    var pop = el.popover({
+        title: title || 'mi titulo',
+        content: content || 'El campo <b>usuario</b> no es correcto.',
+        html: true,
+        placement: 'auto',
+        delay: { "show": 500, "hide": 100 },
+        trigger: 'auto'
+    }).popover('show');
+
+    // cerrar automatico
+    setTimeout(function() {
+        pop.popover('destroy');
+    }, secons_to_hide * 1000);
+
+    // poner la clase de error al grupo del formulario
+    toggleErrorClass(el);
+}
+
 function validarNuevoCliente(e) {
     $("#mensaje_error").html("");
     e.preventDefault();
     console.log("validarNuevoCliente");
+
     var todoCorrecto = true;
     var errorMes = "";
-    var valAddUsuario = $("#addUsuario").val();
-    var valAddContrasena = $("#addPwd").val();
-    var valAddNombre = $("#addNombre").val();
-    var valAddApellidos = $("#addApellidos").val();
-    var valAddDni = $("#addDni").val();
-    var valAddTelefono = $("#addTelefono").val();
-    var valAddCorreo = $("#addCorreo").val();
-    var valAddFnacimiento = $("#addFnacimiento").val();
+    var valAddUsuario = $("#addUsuario");
+    var valAddContrasena = $("#addPwd");
+    var valAddNombre = $("#addNombre");
+    var valAddApellidos = $("#addApellidos");
+    var valAddDni = $("#addDni");
+    var valAddTelefono = $("#addTelefono");
+    var valAddCorreo = $("#addCorreo");
+    var valAddFnacimiento = $("#addFnacimiento");
 
-    if (!validarUsuario(valAddUsuario)) {
+    if (!validarUsuario(valAddUsuario.val())) {
         todoCorrecto = false;
         // errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
-        $("#error-user").text("El campo usuario no es correcto.");
+        // $("#error-user").text("El campo usuario no es correcto.");
+
+        // Ejemplo de como llamarlo
+        generatePopover(
+            valAddUsuario,
+            'Error',
+            'El usuario introducodo no es valido'
+        )
+    } else {
+        toggleErrorClass(valAddUsuario, true);
     }
-    if (!validarContrasena(valAddContrasena)) {
+
+    if (!validarContrasena(valAddContrasena.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
     }
-    if (!validarNombre(valAddNombre)) {
+    if (!validarNombre(valAddNombre.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
     }
-    if (!validarApellidos(valAddApellidos)) {
+    if (!validarApellidos(valAddApellidos.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
     }
-    if (!validarDni(valAddDni)) {
+    if (!validarDni(valAddDni.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
     }
-    if (!validarTelefono(valAddTelefono)) {
+    if (!validarTelefono(valAddTelefono.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
     }
-    if (!validarEmail(valAddCorreo)) {
+    if (!validarEmail(valAddCorreo.val())) {
         todoCorrecto = false;
         errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
     }
@@ -63,8 +111,8 @@ function validarNuevoCliente(e) {
 }
 
 function validarModCliente(e) {
-    $("#mensaje_error").html("");
     e.preventDefault();
+    $("#mensaje_error").html("");
     console.log("validarModCliente");
     var todoCorrecto = true;
     var errorMes = "";
