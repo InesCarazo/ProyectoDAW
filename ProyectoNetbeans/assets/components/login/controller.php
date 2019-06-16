@@ -86,7 +86,13 @@ else{
     {
         $_SESSION['isLogged'] = false;
         $message = "Login incorrecto";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script type='text/javascript'>
+        generatePopover(
+            $('#boton'),
+            'Error',
+            'Login incorrecto'
+        )
+        </script>";
     }
 }
 

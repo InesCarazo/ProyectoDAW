@@ -132,12 +132,11 @@ function formModifyClientes($id)
         </div>
         <div class='form-group'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='modCliente' name='modCliente' type='submit' class='btn estilo-btn'>Modificar Cliente</button>
+                <button id='modCliente' name='modCliente' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar Cliente</button>
             </div>
         </div>
     </div>
-</form>
-<div id='mensaje_error' class='row'></div>";
+</form>";
     return $contenido;
 }
 
