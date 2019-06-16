@@ -23,7 +23,8 @@ function validarNuevoCliente(e) {
 
     if (!validarUsuario(valAddUsuario)) {
         todoCorrecto = false;
-        errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
+        // errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
+        $("#error-user").text("El campo usuario no es correcto.");
     }
     if (!validarContrasena(valAddContrasena)) {
         todoCorrecto = false;

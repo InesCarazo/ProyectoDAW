@@ -85,7 +85,8 @@ return $contenido;
 }
 
 function tablaVistaEmpleados(){
-    $tablaHTML= "<form method='POST' action='?empleado=modificar'>
+    $tablaHTML= "
+    <form method='POST' action='?empleado=modificar'>
     <div id='tablaVista' class='row'>
         <table class='col-md-12 table-bordered table-hover table-responsive'>
             <thead>
@@ -112,14 +113,14 @@ function tablaVistaEmpleados(){
                     <td class='text-center'>" . date("d-m-Y", strtotime($value->getFechaNacimiento())) . "</td>
                 </tr>"; $_SESSION['idEmplSelect']= $value->getP_Usuario();} $tablaHTML.= "</tbody>
         </table>
-        <div id='btnDiv' class='col-md-3 no-padding'>
-                <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn no-padding estilo-btn col-md-4'>Modificar</button>
-            <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn no-padding col-md-3'>Borrar</button>
-        
-    
-    
+        <div id='btnDiv' class='col-md-3'>
+    <button id='modificarEmpleado' name='modificarEmpleado' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Modificar</button>
+    </form>
+        <form method='POST ' action='?empleado=ver'>
+            <button id='borrarEmpleado' name='borrarEmpleado' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Borrar</button>
+        </form>
 </div>
-</div>";
+";
 return $tablaHTML;
 }
 

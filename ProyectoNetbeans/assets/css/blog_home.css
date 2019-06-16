@@ -287,3 +287,14 @@
             text-decoration: none !important;
             color: black;
         }
+        
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+            background-color: white;
+        }
+        
+        .affix+.container-fluid {
+            padding-top: 70px;
+        }

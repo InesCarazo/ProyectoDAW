@@ -108,16 +108,12 @@ function tablaVistaCasas(){
                     <td class='text-center'>" . $value->getSice() . "</td>
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
-        <div class='col-md-6'>
-                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
-        </div>
-    </form>
-    <div class='col-md-6'>
-        <form method='POST' action='?casa=ver'>
-            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
+        <div id='btnDiv' class='col-md-3'>
+        <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Modificar</button>
         </form>
-    
-    </div>
+            <form method='POST' action='?casa=ver'>
+                <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Borrar</button>
+            </form>
     </div>";
 return $tablaHTML;
 }

@@ -42,17 +42,13 @@ function tablaVistaClientes(){
     }
     $tablaHTML.= "</tbody>
     </table>
-    <div class='col-md-6'>
-            <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
-        </div>
-</form>
-<div class='col-md-6'>
-    <form method='POST' action='?cliente=ver'>
-        <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
-    </form>
-
-</div>
-</div>";
+    <div id='btnDiv' class='col-md-3'>
+        <button id='modificarCliente' name='modificarCliente' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Modificar</button>
+        </form>
+            <form method='POST ' action='?cliente=ver'>
+                <button id='borrarCliente' name='borrarCliente' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Borrar</button>
+            </form>
+    </div>";
 return $tablaHTML;
 }
 
