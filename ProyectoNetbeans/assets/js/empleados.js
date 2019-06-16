@@ -6,115 +6,250 @@
       $("#modEmpleado").on("click", validarModEmpleado);
   }
 
+  
+function toggleErrorClass(el, remove = false) {
+    var errorClass = 'has-error';
+
+    el = el.closest('.form-group');
+    console.log(el)
+    if (el.length) {
+        if (remove === false) {
+            el.addClass(errorClass);
+        } else {
+            el.removeClass(errorClass);
+        }
+    }
+}
+
+function generatePopover(el, title, content) {
+    // segundos para cerrar el popover
+    var secons_to_hide = 2;
+
+    // crear y abrir el popover de error al validar
+    var pop = el.popover({
+        title: title || 'mi titulo',
+        content: content || 'El campo <b>usuario</b> no es correcto.',
+        html: true,
+        placement: 'auto',
+        delay: { "show": 500, "hide": 100 },
+        trigger: 'auto'
+    }).popover('show');
+
+    // cerrar automatico
+    setTimeout(function() {
+        pop.popover('destroy');
+    }, secons_to_hide * 1000);
+
+    // poner la clase de error al grupo del formulario
+    toggleErrorClass(el);
+}
+
   function validarNuevoEmpleado(e) {
-      $("#mensaje_error").html("");
+    //   $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarNuevoEmpleado");
       var todoCorrecto = true;
-      var errorMes = "";
-      console.log(errorMes.length);
-      var valAddUsuario = $("#addUsuario").val();
-      var valAddContrasena = $("#addContrasena").val();
-      var valAddNombre = $("#addNombre").val();
-      var valAddApellidos = $("#addApellidos").val();
-      var valAddDni = $("#addDni").val();
-      var valAddTelefono = $("#addTelefono").val();
-      var valAddCorreo = $("#addCorreo").val();
-      var valAddFnacimiento = $("#addFnacimiento").val();
-      var valAddNss = $("#addNss").val();
-      var valAddAdmin = $('#addAdmin').is(":checked"); //true - false
+    //   var errorMes = "";
+    //   console.log(errorMes.length);
+      var valAddUsuario = $("#addUsuario");
+      var valAddContrasena = $("#addContrasena");
+      var valAddNombre = $("#addNombre");
+      var valAddApellidos = $("#addApellidos");
+      var valAddDni = $("#addDni");
+      var valAddTelefono = $("#addTelefono");
+      var valAddCorreo = $("#addCorreo");
+      var valAddFnacimiento = $("#addFnacimiento");
+      var valAddNss = $("#addNss");
+      var valAddAdmin = $('#addAdmin'); //true - false
 
-      if (!validarUsuario(valAddUsuario)) {
+      if (!validarUsuario(valAddUsuario.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
-      }
-      if (!validarContrasena(valAddContrasena)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
+          generatePopover(
+            valAddUsuario,
+            'Error',
+            'El campo usuario no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddUsuario, true);
+    }
+      if (!validarContrasena(valAddContrasena.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
-      }
-      if (!validarNombre(valAddNombre)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
+          generatePopover(
+            valAddContrasena,
+            'Error',
+            'El campo contraseña no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.'
+        )
+    } else {
+        toggleErrorClass(valAddContrasena, true);
+    }
+      if (!validarNombre(valAddNombre.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
-      }
-      if (!validarApellidos(valAddApellidos)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
+          generatePopover(
+            valAddNombre,
+            'Error',
+            'El campo nombre no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddNombre, true);
+    }
+      if (!validarApellidos(valAddApellidos.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
-      }
-      if (!validarDni(valAddDni)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
+          generatePopover(
+            valAddApellidos,
+            'Error',
+            'El campo apellidos no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddApellidos, true);
+    }
+      if (!validarDni(valAddDni.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
-      }
-      if (!validarTelefono(valAddTelefono)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
+          generatePopover(
+            valAddDni,
+            'Error',
+            'El campo dni no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddDni, true);
+    }
+      if (!validarTelefono(valAddTelefono.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
-      }
-      if (!validarEmail(valAddCorreo)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
+          generatePopover(
+            valAddTelefono,
+            'Error',
+            'El campo telefono no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddTelefono, true);
+    }
+      if (!validarEmail(valAddCorreo.val())) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
-      }
-
+          generatePopover(
+            valAddCorreo,
+            'Error',
+            'El campo correo no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddCorreo, true);
+    }
       if (todoCorrecto == true) {
-          console.log("hey");
-          console.log(errorMes);
-          consultaAjaxEmpl("anadir", valAddUsuario, valAddContrasena, valAddNombre, valAddApellidos, valAddDni, valAddTelefono, valAddCorreo, valAddFnacimiento, valAddNss, valAddAdmin);
+        //   console.log("hey");
+        //   console.log(errorMes);
+          consultaAjaxEmpl("anadir", valAddUsuario.val(), valAddContrasena.val(), valAddNombre.val(), valAddApellidos.val(), valAddDni.val(), valAddTelefono.val(), valAddCorreo.val(), valAddFnacimiento.val(), valAddNss.val(), valAddAdmin.is(":checked"));
       } else {
-          console.log("hey hey");
-          console.log(errorMes);
-          $("#mensaje_error").html(errorMes);
+        //   console.log("hey hey");
+        //   console.log(errorMes);
+        //   $("#mensaje_error").html(errorMes);
       }
   }
 
   function validarModEmpleado(e) {
-      $("#mensaje_error").html("");
+    //   $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarModEmpleado");
       var todoCorrecto = true;
-      var errorMes = "";
-      console.log(errorMes.length);
-      var valModifyUsuario = $("#modifyUsuario").val();
+    //   var errorMes = "";
+    //   console.log(errorMes.length);
+      var valModifyUsuario = $("#modifyUsuario");
       console.log("Antonio: " + valModifyUsuario);
-      var valModifyContrasena = $("#modifyContrasena").val();
-      var valModifyNombre = $("#modifyNombre").val();
-      var valModifyApellidos = $("#modifyApellidos").val();
-      var valModifyDni = $("#modifyDni").val();
-      var valModifyTelefono = $("#modifyTelefono").val();
-      var valModifyCorreo = $("#modifyCorreo").val();
-      var valModifyFnacimiento = $("#modifyFnacimiento").val();
-      var valModifyNss = $("#modifyNss").val();
-      var valModifyAdmin = $('#modifyAdmin').is(":checked"); //true - false
-      if (!validarUsuario(valModifyUsuario)) {
+      var valModifyContrasena = $("#modifyContrasena");
+      var valModifyNombre = $("#modifyNombre");
+      var valModifyApellidos = $("#modifyApellidos");
+      var valModifyDni = $("#modifyDni");
+      var valModifyTelefono = $("#modifyTelefono");
+      var valModifyCorreo = $("#modifyCorreo");
+      var valModifyFnacimiento = $("#modifyFnacimiento");
+      var valModifyNss = $("#modifyNss");
+      var valModifyAdmin = $('#modifyAdmin'); //true - false
+      if (!validarUsuario(valModifyUsuario.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
-      }
-      if (!validarContrasena(valModifyContrasena)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
+          generatePopover(
+            valModifyUsuario,
+            'Error',
+            'El campo usuario no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyUsuario, true);
+    }
+      if (!validarContrasena(valModifyContrasena.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
-      }
-      if (!validarNombre(valModifyNombre)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
+          generatePopover(
+            valModifyContrasena,
+            'Error',
+            'El campo contraseña no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.'
+        )
+    } else {
+        toggleErrorClass(valModifyContrasena, true);
+    }
+      if (!validarNombre(valModifyNombre.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
-      }
-      if (!validarApellidos(valModifyApellidos)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
+          generatePopover(
+            valModifyNombre,
+            'Error',
+            'El campo usuario no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyNombre, true);
+    }
+      if (!validarApellidos(valModifyApellidos.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
-      }
-      if (!validarDni(valModifyDni)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
+          generatePopover(
+            valModifyApellidos,
+            'Error',
+            'El campo apellidos no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyApellidos, true);
+    }
+      if (!validarDni(valModifyDni.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
-      }
-      if (!validarTelefono(valModifyTelefono)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
+          generatePopover(
+            valModifyDni,
+            'Error',
+            'El campo apellidos no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyDni, true);
+    }
+      if (!validarTelefono(valModifyTelefono.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
-      }
-      if (!validarEmail(valModifyCorreo)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
+          generatePopover(
+            valModifyTelefono,
+            'Error',
+            'El campo telefono no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyTelefono, true);
+    }
+      if (!validarEmail(valModifyCorreo.val())) {
           todoCorrecto = false;
           errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
-      }
+          generatePopover(
+            valModifyCorreo,
+            'Error',
+            'El campo correo no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valModifyCorreo, true);
+    }
 
       if (todoCorrecto == true) {
           console.log("hey");
           console.log(errorMes);
-          consultaAjaxEmpl("modificar", valModifyUsuario, valModifyContrasena, valModifyNombre, valModifyApellidos, valModifyDni, valModifyTelefono, valModifyCorreo, valModifyFnacimiento, valModifyNss, valModifyAdmin);
+          consultaAjaxEmpl("modificar", valModifyUsuario.val(), valModifyContrasena.val(), valModifyNombre.val(), valModifyApellidos.val(), valModifyDni.val(), valModifyTelefono.val(), valModifyCorreo.val(), valModifyFnacimiento.val(), valModifyNss.val(), valModifyAdmin.is(":checked"));
       } else {
           console.log("hey hey");
           console.log(errorMes);

@@ -5,40 +5,98 @@
       $("#addCasa").on("click", validarNuevaCasa);
       $("#modCasa").on("click", validarModCasa);
   }
+  
+function toggleErrorClass(el, remove = false) {
+    var errorClass = 'has-error';
+
+    el = el.closest('.form-group');
+    console.log(el)
+    if (el.length) {
+        if (remove === false) {
+            el.addClass(errorClass);
+        } else {
+            el.removeClass(errorClass);
+        }
+    }
+}
+
+function generatePopover(el, title, content) {
+    // segundos para cerrar el popover
+    var secons_to_hide = 2;
+
+    // crear y abrir el popover de error al validar
+    var pop = el.popover({
+        title: title || 'mi titulo',
+        content: content || 'El campo <b>usuario</b> no es correcto.',
+        html: true,
+        placement: 'auto',
+        delay: { "show": 500, "hide": 100 },
+        trigger: 'auto'
+    }).popover('show');
+
+    // cerrar automatico
+    setTimeout(function() {
+        pop.popover('destroy');
+    }, secons_to_hide * 1000);
+
+    // poner la clase de error al grupo del formulario
+    toggleErrorClass(el);
+}
 
   function validarNuevaCasa(e) {
-      $("#mensaje_error").html("");
+    //   $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarNuevaCasa");
       var todoCorrecto = true;
-      var errorMes = "";
+    //   var errorMes = "";
       console.log(errorMes.length);
-      var valAddDireccion = $("#addDireccion").val();
-      var valAddCiudad = $("#addCiudad").val();
-      var valAddHAsForniture = $('#addHasForniture').is(":checked"); //true - false
-      var valAddSice = $("#addSice").val();
-      var valAddChooseClient = $("#chooseClient").val();
+      var valAddDireccion = $("#addDireccion");
+      var valAddCiudad = $("#addCiudad");
+      var valAddHAsForniture = $('#addHasForniture'); //true - false
+      var valAddSice = $("#addSice");
+      var valAddChooseClient = $("#chooseClient");
 
       if (valAddDireccion.length == 0) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>direccion</b> no es correcto.</li>";
-      }
-      if (!validarCiudad(valAddCiudad)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>direccion</b> no es correcto.</li>";
+          generatePopover(
+            valAddDireccion,
+            'Error',
+            'El campo direccion no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddDireccion, true);
+    }
+      if (!validarCiudad(valAddCiudad.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>ciudad</b> no es correcto.</li>";
-      }
-      if (!validarTamano(valAddSice)) {
+        //   errorMes += "<li style='color:red;'>El campo <b>ciudad</b> no es correcto.</li>";
+          generatePopover(
+            valAddCiudad,
+            'Error',
+            'El campo ciudad no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddCiudad, true);
+    }
+      if (!validarTamano(valAddSice.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>tamaño</b> no es correcto.</li>";
-      }
+        //   errorMes += "<li style='color:red;'>El campo <b>tamaño</b> no es correcto.</li>";
+          generatePopover(
+            valAddSice,
+            'Error',
+            'El campo tamaño no es correcto.'
+        )
+    } else {
+        toggleErrorClass(valAddSice, true);
+    }
       if (todoCorrecto == true) {
-          console.log("hey");
-          console.log(errorMes);
-          consultaAjaxCasas("anadircasa", valAddDireccion, valAddCiudad, valAddHAsForniture, valAddSice, valAddChooseClient);
+        //   console.log("hey");
+        //   console.log(errorMes);
+          consultaAjaxCasas("anadircasa", valAddDireccion.val(), valAddCiudad.val(), valAddHAsForniture.is(":checked"), valAddSice.val(), valAddChooseClient.val());
       } else {
-          console.log("hey hey");
-          console.log(errorMes);
-          $("#mensaje_error").html(errorMes);
+        //   console.log("hey hey");
+        //   console.log(errorMes);
+        //   $("#mensaje_error").html(errorMes);
       }
   }
 
