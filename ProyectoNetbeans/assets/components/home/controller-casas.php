@@ -59,7 +59,7 @@ function formAddCasas(){
         "
         <div class='form-group row'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='addCasa' name='addCasa' type='submit' class='btn estilo-btn'>Añadir Casa</button>
+                <button id='addCasa' name='addCasa' type='submit' class='btn estilo-btn btn-pagos-empl'>Añadir Casa</button>
             </div>
         </div>
     </div>

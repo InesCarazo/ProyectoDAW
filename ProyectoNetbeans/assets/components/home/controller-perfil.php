@@ -98,7 +98,7 @@ function formPerfilEmpleados($id){
   </div> 
     <div class='form-group'>
         <div class='col-md-offset-10 col-md-2'>
-        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn'>Modificar</button>
+        <button  id='modEmpleado'  name='modificar' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar</button>
         </div>
     </div>
     </div>
@@ -201,7 +201,7 @@ function formPerfilClientes($id)
         </div>
         <div class='form-group'>
             <div class='col-md-offset-9 col-md-3'>
-                <button id='modCliente' name='modCliente' type='submit' class='btn estilo-btn'>Modificar</button>
+                <button id='modCliente' name='modCliente' type='submit' class='btn estilo-btn btn-pagos-empl'>Modificar</button>
             </div>
         </div>
     </div>
@@ -353,17 +353,13 @@ function tablaVistaCasasPerfil($userName){
                     <td class='text-center'>" . $value->getSice() . "</td>
                 </tr>"; } $tablaHTML.= "</tbody>
         </table>
-        <div class='col-md-6'>
-                <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Modificar</button>
-        </div>
+        <div id='btnDiv' class='col-md-3'>
+    <button id='modificarCasa' name='modificarCasa' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Modificar</button>
     </form>
-    <div class='col-md-6'>
         <form method='POST' action='?casa=ver'>
-            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn modBorr center-block'>Borrar</button>
+            <button id='borrarCasa' name='borrarCasa' type='submit' class='btn estilo-btn btn-pagos-empl-l'>Borrar</button>
         </form>
-    
-    </div>
-    </div>";
+</div>";
 return $tablaHTML;
 }
 
