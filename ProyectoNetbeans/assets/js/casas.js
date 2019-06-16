@@ -49,7 +49,7 @@ function generatePopover(el, title, content) {
       console.log("validarNuevaCasa");
       var todoCorrecto = true;
     //   var errorMes = "";
-      console.log(errorMes.length);
+    //   console.log(errorMes.length);
       var valAddDireccion = $("#addDireccion");
       var valAddCiudad = $("#addCiudad");
       var valAddHAsForniture = $('#addHasForniture'); //true - false
