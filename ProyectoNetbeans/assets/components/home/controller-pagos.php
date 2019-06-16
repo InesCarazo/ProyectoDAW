@@ -53,7 +53,7 @@ function generarTablaHTMLEmpleados($pagos)
                     $tablaHTML.="
                     </tbody>
                 </table>
-                <div class='col-md-'>
+                <div class='col-md-12'>
                     <button id='pagarEmpleado' name='pagarEmpleado' type='submit' class='btn estilo-btn btn-pagos-empl'>Pagar</button>
                 </div>
                 </div>
@@ -153,8 +153,8 @@ function generarTablaHTMLClientes($pagos)
                     $tablaHTML.="
                     </tbody>
                 </table>
-                <div class='col-md-'>
-                    <button id='pagarCliente' name='pagarCliente' type='submit' class='btn estilo-btn modBorr center-block'>Pagar</button>
+                <div class='col-md-12'>
+                    <button id='pagarCliente' name='pagarCliente' type='submit' class='btn estilo-btn  btn-pagos-empl'>Pagar</button>
                 </div>
                 </div>
             </form>";
@@ -191,7 +191,7 @@ function menuPagosClientes()
         
         <div class='form-group'>
             <div class='col-md-12'>
-                <button  id='searchPagosCliente'  name='searchPagosCliente' type='submit' class='btn estilo-btn center-block'>Buscar</button>
+                <button  id='searchPagosCliente'  name='searchPagosCliente' type='submit' class='btn estilo-btn  btn-pagos-empl'>Buscar</button>
             </div>
         </div>
     </form>

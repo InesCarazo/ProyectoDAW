@@ -198,7 +198,7 @@ function tipoFormTareas($tipoForm){
         array_push($rolArrayAC, "CLIENTE");
     switch ($tipoForm) {
         case 'ver':
-        if(allowed($rolArrayC)){
+        if(allowed($rolArrayA)){
            return menuTareas("tareas") . formShowTareas() . "</div>";
         }
             break;
