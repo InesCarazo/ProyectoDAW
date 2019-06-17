@@ -5,134 +5,135 @@
       $("#addCasa").on("click", validarNuevaCasa);
       $("#modCasa").on("click", validarModCasa);
   }
-  
-function toggleErrorClass(el, remove = false) {
-    var errorClass = 'has-error';
 
-    el = el.closest('.form-group');
-    console.log(el)
-    if (el.length) {
-        if (remove === false) {
-            el.addClass(errorClass);
-        } else {
-            el.removeClass(errorClass);
-        }
-    }
-}
+  function toggleErrorClass(el, remove = false) {
+      var errorClass = 'has-error';
 
-function generatePopover(el, title, content) {
-    // segundos para cerrar el popover
-    var secons_to_hide = 2;
+      el = el.closest('.form-group');
+      console.log(el)
+      if (el.length) {
+          if (remove === false) {
+              el.addClass(errorClass);
+          } else {
+              el.removeClass(errorClass);
+          }
+      }
+  }
 
-    // crear y abrir el popover de error al validar
-    var pop = el.popover({
-        title: title || 'mi titulo',
-        content: content || 'El campo <b>usuario</b> no es correcto.',
-        html: true,
-        placement: 'auto',
-        delay: { "show": 500, "hide": 100 },
-        trigger: 'auto'
-    }).popover('show');
+  function generatePopover(el, title, content) {
+      // segundos para cerrar el popover
+      var secons_to_hide = 2;
 
-    // cerrar automatico
-    setTimeout(function() {
-        pop.popover('destroy');
-    }, secons_to_hide * 1000);
+      // crear y abrir el popover de error al validar
+      var pop = el.popover({
+          title: title || 'mi titulo',
+          content: content || 'El campo <b>usuario</b> no es correcto.',
+          html: true,
+          placement: 'auto',
+          delay: { "show": 500, "hide": 100 },
+          trigger: 'auto'
+      }).popover('show');
 
-    // poner la clase de error al grupo del formulario
-    toggleErrorClass(el);
-}
+      // cerrar automatico
+      setTimeout(function() {
+          pop.popover('destroy');
+      }, secons_to_hide * 1000);
+
+      // poner la clase de error al grupo del formulario
+      toggleErrorClass(el);
+  }
 
   function validarNuevaCasa(e) {
-    //   $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarNuevaCasa");
       var todoCorrecto = true;
-    //   var errorMes = "";
-    //   console.log(errorMes.length);
+      //   var errorMes = "";
+      //   console.log(errorMes.length);
       var valAddDireccion = $("#addDireccion");
       var valAddCiudad = $("#addCiudad");
       var valAddHAsForniture = $('#addHasForniture'); //true - false
       var valAddSice = $("#addSice");
       var valAddChooseClient = $("#chooseClient");
 
-      if (valAddDireccion.length == 0) {
+      if (valAddDireccion.val().length == 0) {
           todoCorrecto = false;
-        //   errorMes += "<li style='color:red;'>El campo <b>direccion</b> no es correcto.</li>";
           generatePopover(
-            valAddDireccion,
-            'Error',
-            'El campo direccion no es correcto.'
-        )
-    } else {
-        toggleErrorClass(valAddDireccion, true);
-    }
+              valAddDireccion,
+              'Error',
+              'El campo direccion no es correcto.'
+          )
+      } else {
+          toggleErrorClass(valAddDireccion, true);
+      }
       if (!validarCiudad(valAddCiudad.val())) {
           todoCorrecto = false;
-        //   errorMes += "<li style='color:red;'>El campo <b>ciudad</b> no es correcto.</li>";
           generatePopover(
-            valAddCiudad,
-            'Error',
-            'El campo ciudad no es correcto.'
-        )
-    } else {
-        toggleErrorClass(valAddCiudad, true);
-    }
+              valAddCiudad,
+              'Error',
+              'El campo ciudad no es correcto.'
+          )
+      } else {
+          toggleErrorClass(valAddCiudad, true);
+      }
       if (!validarTamano(valAddSice.val())) {
           todoCorrecto = false;
-        //   errorMes += "<li style='color:red;'>El campo <b>tamaño</b> no es correcto.</li>";
           generatePopover(
-            valAddSice,
-            'Error',
-            'El campo tamaño no es correcto.'
-        )
-    } else {
-        toggleErrorClass(valAddSice, true);
-    }
-      if (todoCorrecto == true) {
-        //   console.log("hey");
-        //   console.log(errorMes);
-          consultaAjaxCasas("anadircasa", valAddDireccion.val(), valAddCiudad.val(), valAddHAsForniture.is(":checked"), valAddSice.val(), valAddChooseClient.val());
+              valAddSice,
+              'Error',
+              'El campo tamaño no es correcto.'
+          )
       } else {
-        //   console.log("hey hey");
-        //   console.log(errorMes);
-        //   $("#mensaje_error").html(errorMes);
+          toggleErrorClass(valAddSice, true);
       }
+      if (todoCorrecto == true) {
+          consultaAjaxCasas("anadircasa", valAddDireccion.val(), valAddCiudad.val(), valAddHAsForniture.is(":checked"), valAddSice.val(), valAddChooseClient.val());
+      } else {}
   }
 
   function validarModCasa(e) {
-      $("#mensaje_error").html("");
       e.preventDefault();
       console.log("validarNuevaCasa");
       var todoCorrecto = true;
-      var errorMes = "";
-      console.log(errorMes.length);
-      var valModifyDireccion = $("#modifyDireccion").val();
-      var valModifyCiudad = $("#modifyCiudad").val();
-      var valModifyHAsForniture = $('#modifyHasForniture').is(":checked"); //true - false
-      var valModifySice = $("#modifySice").val();
-      var valModifyChooseClient = $("#chooseClient").val();
+      var valModifyDireccion = $("#modifyDireccion");
+      var valModifyCiudad = $("#modifyCiudad");
+      var valModifyHAsForniture = $('#modifyHasForniture'); //true - false
+      var valModifySice = $("#modifySice");
+      var valModifyChooseClient = $("#chooseClient");
 
-      if (valModifyDireccion.length == 0) {
+      if (valModifyDireccion.val().length == 0) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>direccion</b> no es correcto.</li>";
+          generatePopover(
+              valModifyDireccion,
+              'Error',
+              'El campo direccion no es correcto.'
+          )
+      } else {
+          toggleErrorClass(valModifyDireccion, true);
       }
-      if (!validarCiudad(valModifyCiudad)) {
+      if (!validarCiudad(valModifyCiudad.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>ciudad</b> no es correcto.</li>";
+          generatePopover(
+              valModifyCiudad,
+              'Error',
+              'El campo ciudad no es correcto.'
+          )
+      } else {
+          toggleErrorClass(valModifyCiudad, true);
       }
-      if (!validarTamano(valModifySice)) {
+      if (!validarTamano(valModifySice.val())) {
           todoCorrecto = false;
-          errorMes += "<li style='color:red;'>El campo <b>tamaño</b> no es correcto.</li>";
+          generatePopover(
+              valModifySice,
+              'Error',
+              'El campo tamaño no es correcto.'
+          )
+      } else {
+          toggleErrorClass(valModifySice, true);
       }
       if (todoCorrecto == true) {
-          console.log("hey");
-          console.log(errorMes);
-          consultaAjaxCasas("modificarcasa", valModifyDireccion, valModifyCiudad, valModifyHAsForniture, valModifySice, valModifyChooseClient);
+          consultaAjaxCasas("modificarcasa", valModifyDireccion.val(), valModifyCiudad.val(), valModifyHAsForniture.is(":checked"), valModifySice.val(), valModifyChooseClient.val());
       } else {
-          console.log("hey hey");
-          console.log(errorMes);
-          $("#mensaje_error").html(errorMes);
+
       }
   }
 

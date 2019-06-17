@@ -44,12 +44,10 @@ function generatePopover(el, title, content) {
 }
 
 function validarNuevoCliente(e) {
-    $("#mensaje_error").html("");
     e.preventDefault();
     console.log("validarNuevoCliente");
 
     var todoCorrecto = true;
-    // var errorMes = "";
     var valAddUsuario = $("#addUsuario");
     var valAddContrasena = $("#addPwd");
     var valAddNombre = $("#addNombre");
@@ -74,7 +72,6 @@ function validarNuevoCliente(e) {
 
     if (!validarContrasena(valAddContrasena.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
         generatePopover(
             valAddContrasena,
             'Error',
@@ -85,7 +82,6 @@ function validarNuevoCliente(e) {
     }
     if (!validarNombre(valAddNombre.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
         generatePopover(
             valAddNombre,
             'Error',
@@ -96,7 +92,6 @@ function validarNuevoCliente(e) {
     }
     if (!validarApellidos(valAddApellidos.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
         generatePopover(
             valAddApellidos,
             'Error',
@@ -107,7 +102,6 @@ function validarNuevoCliente(e) {
     }
     if (!validarDni(valAddDni.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
         generatePopover(
             valAddDni,
             'Error',
@@ -118,7 +112,6 @@ function validarNuevoCliente(e) {
     }
     if (!validarTelefono(valAddTelefono.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
         generatePopover(
             valAddTelefono,
             'Error',
@@ -129,7 +122,6 @@ function validarNuevoCliente(e) {
     }
     if (!validarEmail(valAddCorreo.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
         generatePopover(
             valAddCorreo,
             'Error',
@@ -139,23 +131,14 @@ function validarNuevoCliente(e) {
         toggleErrorClass(valAddCorreo, true);
     }
     if (todoCorrecto == true) {
-        // console.log("hey");
-        // console.log(errorMes);
         consultaAjaxCli("anadircli", "./../sign_in/controller.php", valAddUsuario.val(), valAddContrasena.val(), valAddNombre.val(), valAddApellidos.val(), valAddDni.val(), valAddTelefono.val(), valAddCorreo.val(), valAddFnacimiento.val(), "", "");
-    } else {
-        // console.log("hey hey");
-        // console.log(errorMes);
-        // $("#mensaje_error").html(errorMes);
-    }
+    } else {}
 }
 
 function validarModCliente(e) {
     e.preventDefault();
-    // $("#mensaje_error").html("");
     console.log("validarModCliente");
     var todoCorrecto = true;
-    // var errorMes = "";
-    // console.log(errorMes.length);
     var valModifyUsuario = $("#modifyUsuario");
     var valModifyContrasena = $("#modifyContrasena");
     var valModifyNombre = $("#modifyNombre");
@@ -168,7 +151,6 @@ function validarModCliente(e) {
     var valModifyNCuenta = $('#modifyNCuenta');
     if (!validarUsuario(valModifyUsuario.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>usuario</b> no es correcto.</li>";
         generatePopover(
             valModifyUsuario,
             'Error',
@@ -179,7 +161,6 @@ function validarModCliente(e) {
     }
     if (!validarContrasena(valModifyContrasena.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>contraseña</b> no es correcto, al menos tiene que tener 8 dígitos, una letra mayúscula, una letra minúscula, un numero y un caracter especial @$!%*?&.</li>";
         generatePopover(
             valModifyContrasena,
             'Error',
@@ -190,7 +171,6 @@ function validarModCliente(e) {
     }
     if (!validarNombre(valModifyNombre.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>nombre</b> no es correcto.</li>";
         generatePopover(
             valModifyNombre,
             'Error',
@@ -201,7 +181,6 @@ function validarModCliente(e) {
     }
     if (!validarApellidos(valModifyApellidos.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>apellidos</b> no es correcto.</li>";
         generatePopover(
             valModifyApellidos,
             'Error',
@@ -212,7 +191,6 @@ function validarModCliente(e) {
     }
     if (!validarDni(valModifyDni.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>dni</b> no es correcto.</li>";
         generatePopover(
             valModifyDni,
             'Error',
@@ -223,7 +201,6 @@ function validarModCliente(e) {
     }
     if (!validarTelefono(valModifyTelefono.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>telefono</b> no es correcto, empiece por 6 o 9.</li>";
         generatePopover(
             valModifyTelefono,
             'Error',
@@ -234,7 +211,6 @@ function validarModCliente(e) {
     }
     if (!validarEmail(valModifyCorreo.val())) {
         todoCorrecto = false;
-        // errorMes += "<li style='color:red;'>El campo <b>correo</b> no es correcto.</li>";
         generatePopover(
             valModifyCorreo,
             'Error',
@@ -248,7 +224,6 @@ function validarModCliente(e) {
         consultaAjaxCli("modificarcli", "./../home/controller-validation.php", valModifyUsuario.val(), valModifyContrasena.val(), valModifyNombre.val(), valModifyApellidos.val(), valModifyDni.val(), valModifyTelefono.val(), valModifyCorreo.val(), valModifyFnacimiento.val(), valModifyPago.val(), valModifyNCuenta.val());
     } else {
         console.log(errorMes);
-        // $("#mensaje_error").html(errorMes);
     }
 }
 
