@@ -168,7 +168,7 @@ function tipoFormCasas($tipoForm){
             return menuCasas("casas") . formAddCasas() . "</div>";
             break;
         case 'anadircasacli':
-            return menuCasaPerfil($_SESSION['userLogueado']) . formAddCasas() . "</div>";
+            return menuCasaPerfil($_SESSION['userLogueado']) . formAddCasasCli($_SESSION['userID']) . "</div>";
             break;
         case 'modificar':
             if (isset($_POST['btnRadioCasa'])) 

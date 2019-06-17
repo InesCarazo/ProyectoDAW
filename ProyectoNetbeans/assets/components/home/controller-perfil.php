@@ -303,8 +303,8 @@ function menuCasasCliente($userName){
     $contenido = "<div class='col-md-12 collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
     <ul class='nav navbar-nav navbar-right'>
         <li><a>". strtoupper($userName) ."</a></li>
-        <li><a href='?casa=ver'>Ver</a></li>
-        <li><a href='?casa=anadir'>Añadir</a></li> 
+        <li><a href='?casa=vercasacli'>Ver</a></li>
+        <li><a href='?casa=anadircasacli'>Añadir</a></li> 
     </ul>
 </div>
 </div>
@@ -437,8 +437,11 @@ if (isset($_POST['programarTareaCli']))
     $carrito = $_SESSION['carrito'];
     foreach ($carrito as $key => $value) 
     {
+        $model = new modelClass();
+    $cli = $model->buscarCliente($value[1]); 
+    $idcli = $cli->getP_cliente();
         $idEmpleado = 2; 
-        $idCliente = 11;
+        $idCliente = $idcli;
         $idTarea = $value[2];
         $fecha = $value[3];;
         $duracion_h =  $value[4];
@@ -449,4 +452,46 @@ if (isset($_POST['programarTareaCli']))
     }
 
     $_SESSION['carrito'] = Array();
+}
+
+function formAddCasasCli($userid){
+    $model = new modelClass();
+    $cli = $model->buscarCliente($userid); 
+    $idcli = $cli->getP_cliente();
+    $contenido = "<form method='POST' action='?gestion=casas'>
+    <div>
+        <div class='form-group row'>
+            <label for='direccion' class='control-label col-md-4'>Dirección</label>
+            <div class='col-md-8'>
+                <input id='addDireccion' name='addDireccion' placeholder='Ej: Avda. Pintor Sorolla, 125 4ºG' type='text' required='required' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='ciudad' class='control-label col-md-4'>Ciudad</label>
+            <div class='col-md-8'>
+                <input id='addCiudad' name='addCiudad' placeholder='Ej: Madrid' type='text' required='required' class='form-control'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='hasForniture' class='control-label col-md-4'>Electrodomésticos</label>
+            <div class='col-md-8'>
+                <input type='checkbox' id='addHasForniture' name='addHasForniture' class='checkbox checkbox-inline form-control-static'>
+            </div>
+        </div>
+        <div class='form-group row'>
+            <label for='sice' class='control-label col-md-4'>Tamaño (m<sup>2</sup>)</label>
+            <div class='col-md-8'>
+                <input id='addSice' name='addSice' placeholder='Ej: 220' type='text' class='form-control'>
+            </div>
+        </div>
+        <input type='hidden' id='chooseClient' value='".$idcli."'>
+        <div class='form-group row'>
+            <div class='col-md-offset-9 col-md-3'>
+                <button id='addCasa' name='addCasa' type='submit' class='btn estilo-btn btn-pagos-empl'>Añadir Casa</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div id='mensaje_error' class='row'></div>";
+    return $contenido;
 }
