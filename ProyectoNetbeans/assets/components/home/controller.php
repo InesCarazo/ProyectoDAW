@@ -168,13 +168,13 @@ function tipoFormCasas($tipoForm){
             return menuCasas("casas") . formAddCasas() . "</div>";
             break;
         case 'anadircasacli':
-            return menuCasaPerfil($_SESSION['userLogueado']) . formAddCasasCli($_SESSION['userID']) . "</div>";
+            return menuCasaPerfil($_SESSION['userLogueado']) . formModifyCasaPerfil($_SESSION['userID']) . "</div>";
             break;
         case 'modificar':
             if (isset($_POST['btnRadioCasa'])) 
             {
                 $id = $_POST['btnRadioCasa'];
-                return menuCasas("casas") . formModifyCasas($id) . "</div>";
+                return menuCasaPerfil("casas") . formModifyCasas($id) . "</div>";
             }
             else
             {

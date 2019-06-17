@@ -214,7 +214,7 @@ function formPerfilClientes($id)
 function formModifyCasaPerfil($id){
     $model = new modelClass();
     $casa = $model->buscarCasa($id);
-    $contenido = "<form method='POST' action='?gestion=casas' class='contenido-home'>
+    $contenido = "<form method='POST' action='?gestion=vercasacli'>
     <div>
         <div class='form-group row'>
             <label for='id' class='control-label col-md-4'>Id</label>
