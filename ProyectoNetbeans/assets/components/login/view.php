@@ -7,8 +7,9 @@ require_once './controller.php';
     <head>
         <title>Login</title>
         <meta charset="UTF-8">
-        <!--MainScripts-->
-        <script type="text/javascript " src="./../../js/main.js "></script>
+        
+    <link href="../../images/icono/ico/favicon.ico" rel="SHORTCUT ICON">
+        
         <!-- Font cousine -->
         <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
         <!--Fontawesome-->
@@ -58,7 +59,8 @@ require_once './controller.php';
         <script src="./../../vendors/jquery/jquery.min.js "></script>
         <!--Boostrap-->
         <script src="./../../vendors/bootstrap/js/bootstrap.min.js "></script>
-        
+        <!--MainScripts-->
+        <script type="text/javascript " src="./../../js/main.js "></script>
 
     </footer>
 

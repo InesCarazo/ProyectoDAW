@@ -8,6 +8,8 @@ require_once './controller.php';
 <head>
     <meta charset="UTF-8">
     <title>Gestión</title>
+    
+    <link href="../../images/icono/ico/favicon.ico" rel="SHORTCUT ICON">
     <!-- Font cousine -->
     <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">
     <!--Fontawesome-->

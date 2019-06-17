@@ -11,15 +11,19 @@ class modelClass
                  $fnacimiento: string
         Descripción: Inserta los datos del formulario e la base de datos
 */
-    function registro($usuario, $contrasena, $nombre, $apellidos, $telefono, $correo, $fnacimiento) 
+    function registro($usuario, $contrasena, $nombre, $apellidos, $dni, $telefono, $correo, $fnacimiento) 
     {
         require_once './../conexion/conexion.php';
 
         try {
             $conn->beginTransaction();
-            $conn->exec("INSERT INTO usuario(usuario, contrasena, nombre, apellidos, telefono, correo, fechaNacimiento, rol) VALUES ('$usuario', MD5('$contrasena'),'$nombre','$apellidos',$telefono,'$correo','$fnacimiento','CLIENTE')");
+            $sql = "INSERT INTO usuario(usuario, contrasena, nombre, apellidos, dni, telefono, correo, fechaNacimiento, rol) VALUES ('$usuario', MD5('$contrasena'),'$nombre','$apellidos', '$dni',$telefono,'$correo','$fnacimiento','CLIENTE')";
+            $conn->exec($sql);
+            echo $sql;
             $lastId = $conn->lastInsertId();
-            $conn->exec("INSERT INTO cliente(formaPago, nCuenta, A_usuario) VALUES ('', '', $lastId)");
+            $sql2 = "INSERT INTO cliente(formaPago, nCuenta, A_usuario) VALUES ('', '', $lastId)";
+            $conn->exec($sql2);
+            echo $sql2;
             $conn->commit();
         } catch (Exception $e) {
             $message = "Fallo: " . $e->getMessage();

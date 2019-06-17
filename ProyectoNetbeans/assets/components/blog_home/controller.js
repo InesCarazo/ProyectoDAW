@@ -58,6 +58,10 @@ function formContacto(e) {
         emailjs.send('gmail', 'template_kn9UMMGx', templateParams)
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
+                $("numhid").text("");
+                $("#name").text("");
+                $("#mail").text("");
+                $("#comentario").text("");
             }, function(error) {
                 console.log('FAILED...', error);
             });
@@ -66,11 +70,6 @@ function formContacto(e) {
         console.log(errorMes);
         $("#mensaje_error").html(errorMes);
     }
-
-}
-
-function sendEmail(templateParams) {
-
 
 }
 

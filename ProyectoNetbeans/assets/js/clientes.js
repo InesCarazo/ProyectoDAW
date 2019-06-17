@@ -261,7 +261,7 @@ function consultaAjaxCli(tipoForm, url, valUsuario, valContrasena, valNombre, va
 function consultaFinalizada(respuesta) {
     console.log("hey hey");
     console.log(respuesta);
-    window.location.href = "?casa=ver";
+    // window.location.href = "?casa=ver";
 }
 
 /*
